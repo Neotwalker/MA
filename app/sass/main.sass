@@ -2113,52 +2113,51 @@ textarea
 				transform: translateY(1px)
 	.taxonomy--directions
 		&__head
-			max-width: 820px
-			margin-bottom: 40px
+			max-width: 760px
+			margin-bottom: 36px
 			.h2
-				margin-bottom: 20px
+				margin-bottom: 18px
 			p
+				max-width: 720px
 				font-size: 20px
 				line-height: 1.5
 				color: color.adjust($white, $alpha: -.2)
 		&__wrapper
 			display: flex
 			flex-wrap: wrap
+			align-items: stretch
 			gap: 24px
 		&__item
 			min-width: 0
-			min-height: 300px
-			flex: 1 1 calc(33.333% - 24px)
-			max-width: calc(33.333% - 16px)
+			min-height: 310px
+			flex: 0 1 calc((100% - 48px) / 3)
+			max-width: calc((100% - 48px) / 3)
 			display: flex
 			flex-direction: column
-			gap: 28px
-			padding: 34px
-			border-radius: 24px
-			background-color: $blockGlass
+			gap: 22px
+			padding: 32px
+			border-radius: 20px
+			background: linear-gradient(145deg, color.adjust($blockGlass, $alpha: -.04), color.adjust($black, $alpha: -.74))
 			backdrop-filter: blur(7px)
-			border: 1px solid color.adjust($white, $alpha: -.8)
-			transition: transform .25s ease, border-color .25s ease, background-color .25s ease
-			&:nth-child(2),
-			&:nth-child(6)
-				flex-basis: calc(50% - 24px)
-				max-width: calc(50% - 12px)
+			border: 1px solid color.adjust($white, $alpha: -.78)
+			transition: transform .25s ease, border-color .25s ease, background .25s ease
 			&:hover
-				transform: translateY(-4px)
-				border-color: color.adjust($white, $alpha: -.55)
-				background-color: color.adjust($blockGlass, $alpha: -.05)
+				transform: translateY(-3px)
+				border-color: color.adjust($accent, $alpha: -.35)
+				background: linear-gradient(145deg, color.adjust($blockGlass, $alpha: -.01), color.adjust($black, $alpha: -.68))
 		&__title
-			font-size: 30px
+			font-size: 28px
 			line-height: 1.25
 			font-weight: 500
 			overflow-wrap: anywhere
 		&__description
 			font-size: 18px
-			line-height: 1.5
+			line-height: 1.55
 			color: color.adjust($white, $alpha: -.18)
 		&__links
 			display: flex
 			flex-wrap: wrap
+			align-items: flex-start
 			gap: 10px
 			margin-top: auto
 		&__link
@@ -2167,12 +2166,14 @@ textarea
 			align-items: center
 			justify-content: center
 			gap: 8px
-			padding: 11px 18px
-			border-radius: 24px
-			border: 1px solid color.adjust($white, $alpha: -.75)
+			max-width: 100%
+			padding: 11px 17px
+			border-radius: 18px
+			border: 1px solid color.adjust($white, $alpha: -.7)
+			background-color: color.adjust($white, $alpha: -.96)
 			color: $white
 			font-size: 15px
-			line-height: 1.2
+			line-height: 1.25
 			text-align: center
 			white-space: normal
 			overflow-wrap: anywhere
@@ -2193,6 +2194,8 @@ textarea
 				outline-offset: 4px
 			&:active
 				transform: translateY(1px)
+				border-color: color.adjust($accent, $alpha: -.15)
+				background-color: color.adjust($accent, $alpha: -.88)
 	.taxonomy--services
 		&__head
 			max-width: 820px
