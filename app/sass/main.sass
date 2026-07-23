@@ -1751,72 +1751,93 @@ textarea
 
 .taxonomy
 	&--header
+		padding-top: clamp(52px, 5.4vw, 88px)
+		padding-bottom: clamp(44px, 5vw, 78px)
 		&__wrapper
-			border-radius: 40px
 			position: relative
-			overflow: hidden
-			&::before
-				content: ''
-				z-index: 1
-				display: block
-				position: absolute
-				top: 0
-				left: 0
-				width: 100%
-				height: 100%
-				background: linear-gradient(267.03deg, rgba(15, 29, 69, 0) 0.28%, color.adjust($black, $alpha: -.2) 67.49%)
-				opacity: 0
-				transition: opacity 1.5s ease
-			img
-				position: absolute
-				top: 0
-				left: 0
-				width: 100%
-				height: 100%
-				object-fit: cover
-				z-index: 0
-				opacity: 0
-				transition: opacity 1.5s ease
-				transition-delay: .3s
+			width: 100%
 		&__text 
 			position: relative
 			z-index: 2
-			padding: 60px
+			display: flex
+			align-items: flex-start
+			justify-content: space-between
+			gap: clamp(40px, 5vw, 80px)
+			width: 100%
+		&__content
+			flex: 1 1 68%
+			max-width: 900px
+			min-width: 0
 			.h1
-				display: inline-flex
-				flex-wrap: wrap
-				gap: 10px
 				margin-bottom: 40px
 				opacity: 0
-			p, div
-				font-size: 22px
-				line-height: 150%
-				opacity: 0
-				&:not(:last-child)
-					margin-bottom: 40px
+				max-width: 100%
+				overflow-wrap: anywhere
+				font-size: clamp(48px, 4.9vw, 78px)
+				line-height: 1.08
+		&__aside
+			flex: 0 1 34%
+			max-width: 420px
+			min-width: 300px
+			display: flex
+			flex-direction: column
+			align-items: flex-start
+			gap: 22px
+			padding-left: clamp(28px, 3vw, 48px)
+			border-left: 1px solid color.adjust($white, $alpha: -.75)
+			opacity: 0
+			.price
+				font-size: 24px
+				line-height: 1.3
+				font-weight: 500
+				max-width: 100%
+				color: $white
 			.button
 				font-size: 20px
 				opacity: 0
 				&--white 
 					padding: 20px 30px
-					margin-top: 30px
-					min-width: 300px
+					min-width: 260px
+		&__description
+			max-width: 760px
+			display: flex
+			flex-direction: column
+			gap: 18px
+			opacity: 0
+			p
+				max-width: 100%
+				font-size: 22px
+				line-height: 1.55
+				color: color.adjust($white, $alpha: -.08)
+		&__actions
+			display: flex
+			flex-wrap: wrap
+			align-items: center
+			gap: 16px
+			.button
+				min-width: 260px
+				max-width: 100%
+				margin-top: 0
+				white-space: normal
+				text-align: center
+				line-height: 1.1
+		&__price-note
+			max-width: 100%
+			font-size: 16px
+			line-height: 1.5
+			color: color.adjust($white, $alpha: -.2)
 		&.visible
 			.h1, .button 
 				opacity: 1
 			.h1
 				animation: scroll 2s ease forwards
-			.taxonomy--header__wrapper:before
-				opacity: 1
 			.taxonomy--header__text 
-				p, div
+				.taxonomy--header__description
 					animation: scroll 2.2s ease forwards
-			.price 
-				animation: scroll 2.4s ease forwards
+				.taxonomy--header__aside
+					animation: scroll 2.4s ease forwards
 			.button
 				animation: slideIn 2.6s ease forwards
-			img
-				opacity: 1
 	&--services 
 		.h2
 			margin-bottom: 40px
@@ -2073,26 +2094,6 @@ textarea
 	#development-cases
 		scroll-margin-top: 120px
 	.taxonomy--header
-		&__text
-			max-width: 780px
-			p
-				max-width: 720px
-			.price
-				max-width: 700px
-		&__price-note
-			max-width: 680px
-			color: color.adjust($white, $alpha: -.2)
-		&__actions
-			display: flex
-			flex-wrap: wrap
-			align-items: center
-			gap: 16px
-			.button
-				min-width: 260px
-				margin-top: 0
-				white-space: normal
-				text-align: center
-				line-height: 1.1
 		&__case-link
 			padding: 20px 30px
 			border: 1px solid color.adjust($white, $alpha: -.35)

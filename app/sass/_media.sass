@@ -51,9 +51,6 @@
 						p
 							font-size: 20px
 	.taxonomy
-		&--header 
-			&__text 
-				padding: 50px
 		&--services 
 			.item
 				&--image
@@ -319,10 +316,8 @@
 		&--header
 			&__wrapper 
 				.h1
-					font-size: 45px
-					line-height: 1.2
-			&__text
-				padding-top: 100px
+					font-size: clamp(56px, 4.7vw, 72px)
+					line-height: 1.08
 			.button
 				font-size: 16px
 		&--services 
@@ -440,12 +435,16 @@
 		&--header
 			&__wrapper 
 				.h1
-					font-size: 40px
-					line-height: 1.25
-			&__text 
-				padding: 40px 30px
+					font-size: clamp(42px, 4.3vw, 62px)
+					line-height: 1.12
+			&__description
 				p
 					font-size: 18px
+			&__aside
+				min-width: 280px
+				gap: 20px
+				.price
+					font-size: 22px
 			.button
 				padding: 15px 30px
 				&--block
@@ -730,6 +729,31 @@
 	.main
 		&--experts
 			&__wrapper 
+				gap: 20px
+
+@media (max-width : 1023px)
+	.taxonomy
+		&--header
+			padding-top: 48px
+			padding-bottom: 52px
+			&__text
+				flex-direction: column
+				justify-content: flex-start
+				gap: 28px
+				max-width: 760px
+			&__content
+				flex: 1 1 100%
+				max-width: 100%
+				width: 100%
+			&__aside
+				flex: 1 1 100%
+				width: 100%
+				max-width: 100%
+				min-width: 0
+				padding-left: 0
+				padding-top: 26px
+				border-left: none
+				border-top: 1px solid color.adjust($white, $alpha: -.75)
 				gap: 20px
 
 /* Medium Devices, Desktops */
@@ -1018,15 +1042,20 @@
 	.taxonomy
 		&--header
 			&__wrapper 
-				border-top-right-radius: 20px
-				border-bottom-left-radius: 20px
 				.h1
-					font-size: 30px
-					line-height: 1.3
+					font-size: clamp(34px, 5.8vw, 44px)
+					line-height: 1.14
 					font-weight: 500
-					max-width: 30%
 					b
 						font-weight: 500
+			&__text
+				max-width: 680px
+			&__description
+				p
+					font-size: 18px
+			&__actions
+				.button
+					min-width: 230px
 		&--services 
 			&__wrapper 
 				flex-wrap: nowrap
@@ -1075,15 +1104,6 @@
 			.item 
 				flex-direction: column
 	.taxonomy--dev
-		.taxonomy--header
-			&__wrapper 
-				.h1
-					max-width: 680px
-			&__text
-				max-width: 680px
-			&__actions
-				.button
-					min-width: 230px
 		.taxonomy--directions
 			&__item
 				min-height: 280px
@@ -1257,6 +1277,11 @@
 			flex-direction: column
 			align-items: flex-start
 	.taxonomy
+		&--header
+			&__actions
+				.button
+					flex: 1 1 calc(50% - 12px)
+					min-width: 220px
 		&--services 
 			.item
 				flex: 100%
@@ -1281,11 +1306,6 @@
 				min-width: 95%
 				max-width: initial
 	.taxonomy--dev
-		.taxonomy--header
-			&__actions
-				.button
-					flex: 1 1 calc(50% - 12px)
-					min-width: 220px
 		.taxonomy--directions
 			&__head
 				p
@@ -1345,15 +1365,8 @@
 	.taxonomy
 		&--header 
 			&__wrapper 
-				border-radius: 12px
-				&::before
-					background: linear-gradient(182.28deg, rgba(15, 29, 69, 0) -6%, rgba(15, 29, 69, 0.95) 10%)
 				.h1
-					max-width: fit-content
-			&__text
-				padding-left: 20px
-				padding-right: 20px
-				padding-top: 30px
+					max-width: 100%
 			.button
 				&--block 
 					padding-bottom: 20px
@@ -1883,26 +1896,42 @@
 	.taxonomy
 		&--header
 			&__wrapper 
-				padding: 0
-				border-radius: 0
-				margin-left: -16px
-				margin-right: -16px
-				padding-left: 16px
-				padding-right: 16px
-				&::before
-					display: none
 				.h1
 					margin-bottom: 20px
 					display: block
 			&__text 
-				padding: 0
-				br
-					display: none
+				max-width: 100%
+				gap: 22px
 				.button 
 					font-size: 16px
 					min-width: 100%
-			img
-				display: none
+			&__content
+				.h1
+					font-size: clamp(32px, 9vw, 38px)
+					line-height: 1.16
+			&__description
+				gap: 14px
+				p
+					font-size: 16px
+					line-height: 1.5
+			&__aside
+				padding-top: 22px
+				gap: 16px
+				.price
+					font-size: 20px
+					line-height: 1.35
+			&__price-note
+				font-size: 15px
+			&__actions
+				width: 100%
+				flex-direction: column
+				align-items: stretch
+				gap: 12px
+				.button
+					width: 100%
+					min-width: 0
+					flex: 100%
+					padding: 16px 18px
 		&--services 
 			&__wrapper 
 				gap: 16px
@@ -1989,22 +2018,6 @@
 				.h3
 					margin-bottom: 20px
 	.taxonomy--dev
-		.taxonomy--header
-			&__text
-				p, div
-					&:not(:last-child)
-						margin-bottom: 20px
-			&__price-note
-				font-size: 15px
-			&__actions
-				flex-direction: column
-				align-items: stretch
-				gap: 12px
-				.button
-					width: 100%
-					min-width: 0
-					flex: 100%
-					padding: 16px 18px
 		.taxonomy--directions
 			&__head
 				margin-bottom: 24px
