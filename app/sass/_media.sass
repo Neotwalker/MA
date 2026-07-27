@@ -169,7 +169,7 @@
 				max-width: 218px
 			&__item
 				&--button
-					> span
+					> span:not(.main--faq__item--icon)
 						font-size: 20px
 						line-height: 1.3
 		&--contacts
@@ -850,7 +850,7 @@
 				min-height: 62px
 				&--button
 					min-height: 62px
-					> span
+					> span:not(.main--faq__item--icon)
 						font-size: 16px
 						line-height: 1.4
 				&--icon 
@@ -860,13 +860,15 @@
 					&::before
 						width: 30px
 						height: 30px
-					span
-						&:first-of-type
-							height: 16px
-							width: 3px
-						&:last-of-type
-							width: 16px
-							height: 3px
+					&__lines
+						> span
+							transform: translate(-50%, -50%)
+							&:first-of-type
+								height: 16px
+								width: 3px
+							&:last-of-type
+								width: 16px
+								height: 3px
 				&--answer
 					font-size: 14px
 					line-height: 1.35
@@ -1744,7 +1746,7 @@
 					padding-left: 12px
 					padding-right: 12px 
 					padding-bottom: 12px
-					> span
+					> span:not(.main--faq__item--icon)
 						font-size: 16px
 						line-height: 1.3
 						padding-right: 10px
@@ -2279,13 +2281,15 @@
 					&::before
 						width: 25px
 						height: 25px
-					span
-						&:first-of-type
-							height: 14px
-							width: 2px
-						&:last-of-type
-							width: 14px
-							height: 2px
+					&__lines
+						> span
+							transform: translate(-50%, -50%)
+							&:first-of-type
+								height: 14px
+								width: 2px
+							&:last-of-type
+								width: 14px
+								height: 2px
 				&--answer
 					font-size: 14px
 		&--cases

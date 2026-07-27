@@ -359,14 +359,27 @@ document.addEventListener("DOMContentLoaded", () => {
 		const items = document.querySelectorAll(itemSelector);
 		if (!items.length) return;
 
+		const setItemState = (item, button, content, isOpen) => {
+			item.dataset.open = isOpen ? 'true' : 'false';
+			item.classList.toggle('active', isOpen);
+			button.classList.toggle('active', isOpen);
+
+			if (button.hasAttribute('aria-expanded')) {
+				button.setAttribute('aria-expanded', String(isOpen));
+			}
+
+			if (content.hasAttribute('aria-hidden')) {
+				content.setAttribute('aria-hidden', String(!isOpen));
+			}
+
+			content.style.maxHeight = isOpen ? `${content.scrollHeight}px` : '';
+		};
+
 		const firstItem = items[0];
 		const firstButton = firstItem.querySelector(buttonSelector);
 		const firstContent = firstItem.querySelector(contentSelector);
 		if (firstButton && firstContent) {
-			firstItem.classList.add('active');
-			firstButton.classList.add('active');
-			firstItem.dataset.open = 'true';
-			firstContent.style.maxHeight = `${firstContent.scrollHeight}px`;
+			setItemState(firstItem, firstButton, firstContent, true);
 		}
 
 		// Функция для получения высоты шапки динамически
@@ -379,20 +392,22 @@ document.addEventListener("DOMContentLoaded", () => {
 			const button = item.querySelector(buttonSelector);
 			const content = item.querySelector(contentSelector);
 			if (button && content) {
+				if (item !== firstItem) {
+					setItemState(item, button, content, false);
+				}
+
 				button.addEventListener('click', () => {
 					const isOpen = item.dataset.open === 'true';
 					items.forEach(i => {
 						if (i !== item) {
-							i.dataset.open = 'false';
-							i.classList.remove('active');
-							i.querySelector(buttonSelector)?.classList.remove('active');
-							i.querySelector(contentSelector).style.maxHeight = '';
+							const otherButton = i.querySelector(buttonSelector);
+							const otherContent = i.querySelector(contentSelector);
+							if (otherButton && otherContent) {
+								setItemState(i, otherButton, otherContent, false);
+							}
 						}
 					});
-					item.dataset.open = isOpen ? 'false' : 'true';
-					item.classList.toggle('active', !isOpen);
-					button.classList.toggle('active', !isOpen);
-					content.style.maxHeight = isOpen ? '' : `${content.scrollHeight}px`;
+					setItemState(item, button, content, !isOpen);
 
 					// Прокрутка к началу активного блока, если он открыт
 					if (!isOpen) {
@@ -422,7 +437,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	};
-	smoothHeight('.main--faq__item', '.main--faq__item--button', '.main--faq__item--answer');
+	smoothHeight('.main--faq__item', '.main--faq__toggle, .main--faq__item--button', '.main--faq__item--answer');
 
 	// анимации при появлении
 	const headitems = document.querySelectorAll(".main--header, .taxonomy--header");
@@ -1136,4 +1151,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
-

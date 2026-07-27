@@ -1306,6 +1306,16 @@ textarea
 			gap: 24px
 			position: relative
 			z-index: 1
+		&__title
+			margin: 0
+			font-size: inherit
+			line-height: inherit
+			font-weight: inherit
+			span
+				background-image: none
+				-webkit-background-clip: initial
+				-webkit-text-fill-color: currentColor
+				color: inherit
 		&__item 
 			border-radius: 20px
 			border: 0.5px solid $white
@@ -1327,14 +1337,37 @@ textarea
 				opacity: 0
 				transition: opacity .3s ease
 			&--button 
+				width: 100%
+				padding-top: 0
 				padding-left: 32px
 				padding-right: 32px
+				padding-bottom: 0
 				display: flex
 				justify-content: space-between
+				border: 0
+				border-radius: 20px
+				background: transparent
+				color: inherit
 				cursor: pointer
+				font: inherit
+				text-align: left
 				user-select: none
 				min-height: 87px
-				> span
+				&:focus
+					outline: none
+					background-color: color.adjust($white, $alpha: -.96)
+					box-shadow: inset 0 0 0 2px color.adjust($orange, $alpha: -.2)
+				&:focus:not(:focus-visible)
+					background-color: transparent
+					box-shadow: none
+				&:focus-visible
+					outline: none
+					background-color: color.adjust($white, $alpha: -.96)
+					box-shadow: inset 0 0 0 2px color.adjust($orange, $alpha: -.2)
+					.main--faq__item--icon
+						&::before
+							opacity: 1
+				> span:not(.main--faq__item--icon)
 					font-size: 24px
 					line-height: 1.3
 					font-weight: bold
@@ -1372,22 +1405,21 @@ textarea
 					align-items: center
 					justify-content: center
 					transition: all .3s ease
-					span
-						margin: auto
+					> span
 						position: absolute
+						top: 50%
+						left: 50%
+						transform: translate(-50%, -50%)
+						transform-origin: center
 						transition: all .3s ease
 						border-radius: 5px
 						&:first-of-type
 							background-image: linear-gradient(180deg, #E3255E 0%, #FF2323 44.5%, #E2CC00 100%)
-							left: 0
-							right: 0
 							width: 5px
 							height: 24px
 						&:last-of-type
 							background-image: linear-gradient(90deg, #E3255E 0%, #FF2323 44.5%, #E2CC00 100%)
-							bottom: 0
 							height: 5px
-							top: 0
 							width: 24px
 			&--answer
 				max-height: 0
@@ -1414,7 +1446,7 @@ textarea
 					&--icon
 						&__lines
 							span:first-of-type
-								transform: rotate(90deg)
+								transform: translate(-50%, -50%) rotate(90deg)
 					&--answer
 						margin-bottom: 23px
 		&.visible 
@@ -2094,6 +2126,11 @@ textarea
 	#development-services,
 	#development-cases
 		scroll-margin-top: 120px
+	.main--faq
+		&__item
+			&--answer
+				p
+					max-width: 1160px
 	.main--cases
 		&__description
 			max-width: 760px
