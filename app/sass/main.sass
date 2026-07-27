@@ -2094,6 +2094,45 @@ textarea
 	#development-services,
 	#development-cases
 		scroll-margin-top: 120px
+	.main--cases
+		&__description
+			max-width: 760px
+			margin: -18px 0 34px
+			color: color.adjust($white, $alpha: -.22)
+			font-size: 20px
+			line-height: 1.5
+			transform: translateY(40px)
+			opacity: 0
+			transition: opacity 1.5s ease, transform 1.5s ease
+		&__item
+			display: flex
+			flex-direction: column
+			.text
+				padding-bottom: 24px
+				.h3
+					a
+						color: inherit
+						transition: color .3s ease
+						&:hover
+							color: $accent
+			.background
+				position: relative
+				right: auto
+				bottom: auto
+				width: 100%
+				max-width: 100%
+				margin-top: auto
+		&__role
+			max-width: 96%
+			margin: 0 0 20px
+			color: color.adjust($white, $alpha: -.18)
+			font-size: 16px
+			line-height: 1.45
+		&.visible
+			.main--cases__description
+				opacity: 1
+				transform: translateY(0)
+				transition-delay: .45s
 	.taxonomy--process
 		.h2
 			margin-bottom: 18px
