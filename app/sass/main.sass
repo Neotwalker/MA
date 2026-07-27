@@ -1815,8 +1815,9 @@ textarea
 			align-items: center
 			gap: 16px
 			.button
-				min-width: 260px
-				max-width: 100%
+				width: 100%
+				min-width: 0
+				max-width: 260px
 				margin-top: 0
 				white-space: normal
 				text-align: center
@@ -2161,6 +2162,23 @@ textarea
 			.taxonomy--process__list
 				transition-delay: .75s
 	.taxonomy--header
+		&__identity
+			max-width: 720px
+			display: inline-flex
+			align-items: flex-start
+			gap: 12px
+			margin: 0 0 18px
+			color: color.adjust($white, $alpha: -.18)
+			font-size: 18px
+			line-height: 1.35
+			font-weight: 500
+			overflow-wrap: anywhere
+			&::before
+				content: ''
+				flex: 0 0 28px
+				height: 1px
+				margin-top: .75em
+				background-color: $accent
 		&__case-link
 			padding: 20px 30px
 			border: 1px solid color.adjust($white, $alpha: -.35)
