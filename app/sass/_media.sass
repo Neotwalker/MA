@@ -755,6 +755,16 @@
 				border-left: none
 				border-top: 1px solid color.adjust($white, $alpha: -.75)
 				gap: 20px
+	.taxonomy--dev
+		.taxonomy--process
+			&__list
+				gap: 0
+			&__item
+				flex-basis: 100%
+				max-width: 100%
+				padding: 24px 0 26px
+			&__content
+				max-width: 720px
 
 /* Medium Devices, Desktops */
 @media (max-width : 992px)
@@ -1417,6 +1427,24 @@
 		.taxonomy--services-link
 			min-height: 96px
 			padding: 18px 38px 18px 16px
+		.taxonomy--process
+			&__list
+				width: 100%
+				overflow: visible
+			&__item
+				gap: 14px
+				padding: 22px 0 24px
+			&__number
+				flex-basis: 34px
+				font-size: 14px
+			&__content
+				max-width: none
+				padding-left: 14px
+			&__title
+				margin-bottom: 8px
+				font-size: 20px
+			&__text
+				font-size: 14px
 		.taxonomy--workscope
 			&__item
 				flex-basis: 100%
@@ -2134,6 +2162,14 @@
 				min-height: 42px
 				padding: 10px 14px
 				font-size: 14px
+		.taxonomy--process
+			.h2
+				margin-bottom: 12px
+			&__head
+				margin-bottom: 26px
+			&__description
+				font-size: 16px
+				line-height: 1.5
 		.taxonomy--workscope
 			&__wrapper
 				gap: 28px
