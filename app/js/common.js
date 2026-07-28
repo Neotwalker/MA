@@ -194,10 +194,24 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
+	function focusWithoutScroll(element) {
+		if (!element) return;
+		try {
+			element.focus({ preventScroll: true });
+		} catch {
+			element.focus();
+		}
+	}
+
 	function focusModalWrapper(modal) {
 		const wrapper = modal?.querySelector('.modal--wrapper');
+		if (wrapper && !wrapper.hasAttribute('tabindex')) {
+			wrapper.setAttribute('tabindex', '-1');
+		}
 		requestAnimationFrame(() => {
-			(wrapper || modal)?.focus?.({ preventScroll: true });
+			requestAnimationFrame(() => {
+				focusWithoutScroll(wrapper || modal);
+			});
 		});
 	}
 
@@ -239,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const focusable = getFocusableElements(activeModal);
 		if (!focusable.length) {
 			event.preventDefault();
-			(wrapper || activeModal).focus({ preventScroll: true });
+			focusWithoutScroll(wrapper || activeModal);
 			return;
 		}
 
@@ -424,6 +438,94 @@ document.addEventListener("DOMContentLoaded", () => {
 		el.value = pattern.replace(/./g, a => /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a);
 	};
 	phoneInputs.forEach(input => ['input', 'blur', 'focus'].forEach(ev => input.addEventListener(ev, applyPhoneMask)));
+	const scopedPhoneMaskPattern = '+_ (___) ___ __-__';
+	const scopedPhoneMaxDigits = 11;
+	const getScopedPhoneDigits = (value = '', limit = scopedPhoneMaxDigits) => String(value).replace(/\D/g, '').slice(0, limit);
+	const getScopedPhoneDigitCount = (value = '') => String(value).replace(/\D/g, '').length;
+	const formatScopedPhoneDigits = (value = '') => {
+		const digits = getScopedPhoneDigits(value);
+		if (!digits) return '';
+		let digitIndex = 0;
+		let pendingChars = '';
+		let formattedValue = '';
+
+		for (const char of scopedPhoneMaskPattern) {
+			if (char === '_') {
+				if (digitIndex >= digits.length) break;
+				formattedValue += pendingChars + digits[digitIndex];
+				pendingChars = '';
+				digitIndex += 1;
+			} else {
+				pendingChars += char;
+			}
+		}
+		return formattedValue;
+	};
+	const getScopedPhoneCaretPosition = (value, digitsBeforeCaret) => {
+		if (!digitsBeforeCaret) return 0;
+		let digitCount = 0;
+		for (let index = 0; index < value.length; index += 1) {
+			if (/\d/.test(value[index])) {
+				digitCount += 1;
+				if (digitCount === digitsBeforeCaret) return index + 1;
+			}
+		}
+		return value.length;
+	};
+	const initScopedPhoneMask = (input, onInput = () => {}) => {
+		if (!input) return () => {};
+		let clearOnNextInput = false;
+		const applyMask = () => {
+			const selectionStart = input.selectionStart ?? input.value.length;
+			const digitsBeforeCaret = Math.min(getScopedPhoneDigitCount(input.value.slice(0, selectionStart)), scopedPhoneMaxDigits);
+			const digits = getScopedPhoneDigits(input.value);
+
+			if (clearOnNextInput || !digits) {
+				clearOnNextInput = false;
+				input.value = '';
+				if (document.activeElement === input && typeof input.setSelectionRange === 'function') {
+					input.setSelectionRange(0, 0);
+				}
+				return;
+			}
+
+			clearOnNextInput = false;
+			const formattedValue = formatScopedPhoneDigits(digits);
+			input.value = formattedValue;
+
+			if (document.activeElement === input && typeof input.setSelectionRange === 'function') {
+				const caretPosition = getScopedPhoneCaretPosition(formattedValue, Math.min(digitsBeforeCaret, digits.length));
+				input.setSelectionRange(caretPosition, caretPosition);
+			}
+		};
+
+		input.addEventListener('beforeinput', (event) => {
+			const inputType = event.inputType || '';
+			if (!inputType.startsWith('delete')) {
+				clearOnNextInput = false;
+				return;
+			}
+
+			const currentDigits = getScopedPhoneDigitCount(input.value);
+			const selectionStart = input.selectionStart ?? input.value.length;
+			const selectionEnd = input.selectionEnd ?? selectionStart;
+			const selectedDigits = getScopedPhoneDigitCount(input.value.slice(selectionStart, selectionEnd));
+			clearOnNextInput = Boolean(currentDigits && selectedDigits >= currentDigits);
+		});
+		input.addEventListener('keydown', (event) => {
+			if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 'a') return;
+			event.preventDefault();
+			if (typeof input.setSelectionRange === 'function') {
+				input.setSelectionRange(0, input.value.length);
+			}
+		});
+		input.addEventListener('input', () => {
+			applyMask();
+			onInput(input);
+		});
+		input.addEventListener('change', applyMask);
+		return applyMask;
+	};
 	// Form Checkboxes
 	const setupCheckbox = (checkboxId, buttonSelector) => {
 		const checkbox = document.getElementById(checkboxId);
@@ -447,40 +549,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const modalContactForms = document.querySelectorAll('[data-modal-contact-form]');
 	const modalContactFormState = new Map();
 	if (modalContactForms.length) {
-		const modalPhoneMaskPattern = '+_ (___) ___ __-__';
-		const modalPhoneMaxDigits = 11;
-		const getModalPhoneDigits = (value = '', limit = modalPhoneMaxDigits) => String(value).replace(/\D/g, '').slice(0, limit);
-		const getModalPhoneDigitCount = (value = '') => String(value).replace(/\D/g, '').length;
-		const formatModalPhone = (value = '') => {
-			const digits = getModalPhoneDigits(value);
-			if (!digits) return '';
-			let digitIndex = 0;
-			let pendingChars = '';
-			let formattedValue = '';
-
-			for (const char of modalPhoneMaskPattern) {
-				if (char === '_') {
-					if (digitIndex >= digits.length) break;
-					formattedValue += pendingChars + digits[digitIndex];
-					pendingChars = '';
-					digitIndex += 1;
-				} else {
-					pendingChars += char;
-				}
-			}
-			return formattedValue;
-		};
-		const getModalPhoneCaretPosition = (value, digitsBeforeCaret) => {
-			if (!digitsBeforeCaret) return 0;
-			let digitCount = 0;
-			for (let index = 0; index < value.length; index += 1) {
-				if (/\d/.test(value[index])) {
-					digitCount += 1;
-					if (digitCount === digitsBeforeCaret) return index + 1;
-				}
-			}
-			return value.length;
-		};
 		const hasModalContactForm7Context = (form) => {
 			const hasCf7Api = typeof window.wpcf7 === 'object' && typeof window.wpcf7.submit === 'function';
 			const hasCf7Unit = Boolean(form.querySelector('input[name="_wpcf7"], input[name="_wpcf7_unit_tag"]'));
@@ -529,31 +597,21 @@ document.addEventListener("DOMContentLoaded", () => {
 					error.textContent = '';
 				});
 			};
-			const applyModalPhoneMask = () => {
-				if (!fields.phone) return;
-				const selectionStart = fields.phone.selectionStart ?? fields.phone.value.length;
-				const digitsBeforeCaret = Math.min(getModalPhoneDigitCount(fields.phone.value.slice(0, selectionStart)), modalPhoneMaxDigits);
-				const digits = getModalPhoneDigits(fields.phone.value);
-				const formattedValue = formatModalPhone(digits);
-				fields.phone.value = formattedValue;
-
-				if (document.activeElement === fields.phone && typeof fields.phone.setSelectionRange === 'function') {
-					const caretPosition = getModalPhoneCaretPosition(formattedValue, Math.min(digitsBeforeCaret, digits.length));
-					fields.phone.setSelectionRange(caretPosition, caretPosition);
-				}
-			};
+			const applyModalPhoneMask = initScopedPhoneMask(fields.phone, () => {
+				setFieldError(fields.phone, 'modal-contact-phone-error');
+			});
 			const validate = () => {
 				clearErrors();
 				setStatus('');
 				applyModalPhoneMask();
-				const phoneDigits = getModalPhoneDigitCount(fields.phone?.value || '');
+				const phoneDigits = getScopedPhoneDigitCount(fields.phone?.value || '');
 				const emailValue = fields.email?.value.trim() || '';
 				const errors = [];
 
 				if (!phoneDigits) {
 					setFieldError(fields.phone, 'modal-contact-phone-error', 'Укажите номер телефона.');
 					errors.push(fields.phone);
-				} else if (phoneDigits !== modalPhoneMaxDigits) {
+				} else if (phoneDigits !== scopedPhoneMaxDigits) {
 					setFieldError(fields.phone, 'modal-contact-phone-error', 'Введите номер телефона полностью.');
 					errors.push(fields.phone);
 				}
@@ -580,17 +638,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				fields.name.value = fields.name.value.replace(/http|https|url|www|\.net|\.ru|\.com|[0-9]/gi, '');
 				setFieldError(fields.name, 'modal-contact-name-error');
 			});
-			fields.phone?.addEventListener('beforeinput', (e) => {
-				if (e.inputType !== 'insertText') return;
-				if (e.data && /\D/.test(e.data)) {
-					e.preventDefault();
-				}
-			});
-			fields.phone?.addEventListener('input', () => {
-				applyModalPhoneMask();
-				setFieldError(fields.phone, 'modal-contact-phone-error');
-			});
-			fields.phone?.addEventListener('change', applyModalPhoneMask);
 			fields.email?.addEventListener('input', () => {
 				setFieldError(fields.email, 'modal-contact-email-error');
 			});
@@ -672,59 +719,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			email: developmentContactForm.querySelector('#development-contact-email'),
 			consent: developmentContactForm.querySelector('#development-contact-consent'),
 		};
-		const phoneMaskPattern = '+_ (___) ___ __-__';
-		const phoneMaxDigits = 11;
-
-		const getDevelopmentPhoneDigits = (value = '', limit = phoneMaxDigits) => String(value).replace(/\D/g, '').slice(0, limit);
-		const getDevelopmentPhoneDigitCount = (value = '') => String(value).replace(/\D/g, '').length;
-
-		const formatDevelopmentPhone = (value = '') => {
-			const digits = getDevelopmentPhoneDigits(value);
-			if (!digits) return '';
-			let digitIndex = 0;
-			let pendingChars = '';
-			let formattedValue = '';
-
-			for (const char of phoneMaskPattern) {
-				if (char === '_') {
-					if (digitIndex >= digits.length) break;
-					formattedValue += pendingChars + digits[digitIndex];
-					pendingChars = '';
-					digitIndex += 1;
-				} else {
-					pendingChars += char;
-				}
-			}
-			return formattedValue;
-		};
-
-		const getDevelopmentPhoneCaretPosition = (value, digitsBeforeCaret) => {
-			if (!digitsBeforeCaret) return 0;
-			let digitCount = 0;
-			for (let index = 0; index < value.length; index += 1) {
-				if (/\d/.test(value[index])) {
-					digitCount += 1;
-					if (digitCount === digitsBeforeCaret) {
-						return index + 1;
-					}
-				}
-			}
-			return value.length;
-		};
-
-		const applyDevelopmentPhoneMask = () => {
-			if (!fields.phone) return;
-			const selectionStart = fields.phone.selectionStart ?? fields.phone.value.length;
-			const digitsBeforeCaret = Math.min(getDevelopmentPhoneDigitCount(fields.phone.value.slice(0, selectionStart)), phoneMaxDigits);
-			const digits = getDevelopmentPhoneDigits(fields.phone.value);
-			const formattedValue = formatDevelopmentPhone(digits);
-			fields.phone.value = formattedValue;
-
-			if (document.activeElement === fields.phone && typeof fields.phone.setSelectionRange === 'function') {
-				const caretPosition = getDevelopmentPhoneCaretPosition(formattedValue, Math.min(digitsBeforeCaret, digits.length));
-				fields.phone.setSelectionRange(caretPosition, caretPosition);
-			}
-		};
 
 		const hasContactForm7Context = () => {
 			const hasCf7Api = typeof window.wpcf7 === 'object' && typeof window.wpcf7.submit === 'function';
@@ -780,6 +774,12 @@ document.addEventListener("DOMContentLoaded", () => {
 				error.textContent = '';
 			});
 		};
+		const clearDevelopmentContactErrors = () => {
+			setChannelError('');
+			setFieldError(fields.phone, 'development-contact-phone-error');
+			setFieldError(fields.email, 'development-contact-email-error');
+		};
+		const applyDevelopmentPhoneMask = initScopedPhoneMask(fields.phone, clearDevelopmentContactErrors);
 
 		const validateDevelopmentContactForm = () => {
 			clearErrors();
@@ -796,7 +796,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			if (phoneValue) {
 				const digitsCount = phoneValue.replace(/\D/g, '').length;
-				if (digitsCount !== phoneMaxDigits) {
+				if (digitsCount !== scopedPhoneMaxDigits) {
 					setFieldError(fields.phone, 'development-contact-phone-error', 'Введите номер телефона полностью.');
 					errors.push(fields.phone);
 				}
@@ -820,22 +820,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			return true;
 		};
 
-		fields.phone?.addEventListener('beforeinput', (e) => {
-			if (e.inputType !== 'insertText') return;
-			if (e.data && /\D/.test(e.data)) {
-				e.preventDefault();
-			}
-		});
-		fields.phone?.addEventListener('input', applyDevelopmentPhoneMask);
-		fields.phone?.addEventListener('change', applyDevelopmentPhoneMask);
-
 		['input', 'change'].forEach(eventName => {
-			[fields.phone, fields.email].forEach(field => {
-				field?.addEventListener(eventName, () => {
-					setChannelError('');
-					setFieldError(fields.phone, 'development-contact-phone-error');
-					setFieldError(fields.email, 'development-contact-email-error');
-				});
+			fields.email?.addEventListener(eventName, () => {
+				clearDevelopmentContactErrors();
 			});
 			fields.consent?.addEventListener(eventName, () => {
 				setFieldError(fields.consent, 'development-contact-consent-error');
