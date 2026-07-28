@@ -330,6 +330,14 @@
 					p
 						font-size: 16px
 
+@media (max-width : 1440px)
+	.modal
+		&--general
+			.modal--wrapper
+				width: calc(100% - 64px)
+				max-width: 720px
+				padding: 46px 48px 40px
+
 @media (max-width : 1280px)
 	.h3, h3
 		font-size: 22px
@@ -708,6 +716,11 @@
 				.form--check 
 					.custom--check + label
 						font-size: 16px
+	.modal
+		&--general
+			.modal--wrapper
+				max-width: 700px
+				padding: 42px 40px 38px
 
 @media (max-width : 1024px)
 	html
@@ -740,6 +753,11 @@
 				gap: 20px
 
 @media (max-width : 1023px)
+	.modal
+		&--general
+			.modal--wrapper
+				width: calc(100% - 72px)
+				max-width: 656px
 	.taxonomy
 		&--header
 			padding-top: 48px
@@ -1967,6 +1985,34 @@
 						margin-bottom: 20px
 				.button
 					margin-top: 20px
+		&--general
+			.modal--wrapper
+				width: 100%
+				max-width: 100%
+				padding: 30px 12px
+			[data-modal-contact-form]
+				gap: 12px
+				.form-field
+					gap: 6px
+				.form-field__label
+					font-size: 14px
+				.form-field__error,
+				.form-status
+					font-size: 12px
+				.wpcf7-form-control-wrap
+					&:not(:last-child)
+						margin-bottom: 0
+				input
+					min-height: 48px
+				.form-field--consent
+					.custom--check
+						+ label
+							font-size: 13px
+							line-height: 1.35
+				.wpcf7-submit
+					width: 100%
+					max-width: 100%
+					margin-top: 6px
 		&--close 
 			min-width: 44px
 			width: 44px

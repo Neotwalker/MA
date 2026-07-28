@@ -401,7 +401,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Input Name Validation
 	const fioInputs = document.querySelectorAll('input[name="fio"], input[name="fio1"]');
 	fioInputs.forEach(input => {
-		if (input.closest('[data-development-contact-form]')) return;
+		if (input.closest('[data-development-contact-form], [data-modal-contact-form]')) return;
 		input.addEventListener('keyup', () => {
 			input.value = input.value.replace(/http|https|url|www|\.net|\.ru|\.com|[0-9]/gi, '');
 		});
@@ -410,7 +410,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const phoneInputs = document.querySelectorAll('.wpcf7-tel');
 	const applyPhoneMask = (e) => {
 		const el = e.target;
-		if (el.closest('[data-development-contact-form]')) return;
+		if (el.closest('[data-development-contact-form], [data-modal-contact-form]')) return;
 		const clearVal = el.dataset.phoneClear;
 		const pattern = el.dataset.phonePattern || '+_(___) ___-__-__';
 		const def = pattern.replace(/\D/g, '');
@@ -435,7 +435,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		}
 	};
-	setupCheckbox('check', '.modal--general .wpcf7-submit');
 	setupCheckbox('check1', '.main--contacts__left form .wpcf7-submit');
 	const getCf7EventForm = (e) => {
 		const targetForm = e.target?.closest?.('form');
@@ -444,6 +443,223 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (unit?.matches?.('form')) return unit;
 		return unit?.querySelector?.('form') || null;
 	};
+	// Modal Contact Form
+	const modalContactForms = document.querySelectorAll('[data-modal-contact-form]');
+	const modalContactFormState = new Map();
+	if (modalContactForms.length) {
+		const modalPhoneMaskPattern = '+_ (___) ___ __-__';
+		const modalPhoneMaxDigits = 11;
+		const getModalPhoneDigits = (value = '', limit = modalPhoneMaxDigits) => String(value).replace(/\D/g, '').slice(0, limit);
+		const getModalPhoneDigitCount = (value = '') => String(value).replace(/\D/g, '').length;
+		const formatModalPhone = (value = '') => {
+			const digits = getModalPhoneDigits(value);
+			if (!digits) return '';
+			let digitIndex = 0;
+			let pendingChars = '';
+			let formattedValue = '';
+
+			for (const char of modalPhoneMaskPattern) {
+				if (char === '_') {
+					if (digitIndex >= digits.length) break;
+					formattedValue += pendingChars + digits[digitIndex];
+					pendingChars = '';
+					digitIndex += 1;
+				} else {
+					pendingChars += char;
+				}
+			}
+			return formattedValue;
+		};
+		const getModalPhoneCaretPosition = (value, digitsBeforeCaret) => {
+			if (!digitsBeforeCaret) return 0;
+			let digitCount = 0;
+			for (let index = 0; index < value.length; index += 1) {
+				if (/\d/.test(value[index])) {
+					digitCount += 1;
+					if (digitCount === digitsBeforeCaret) return index + 1;
+				}
+			}
+			return value.length;
+		};
+		const hasModalContactForm7Context = (form) => {
+			const hasCf7Api = typeof window.wpcf7 === 'object' && typeof window.wpcf7.submit === 'function';
+			const hasCf7Unit = Boolean(form.querySelector('input[name="_wpcf7"], input[name="_wpcf7_unit_tag"]'));
+			return hasCf7Api && hasCf7Unit;
+		};
+		const createModalContactFormState = (form) => {
+			const formStatus = form.querySelector('.form-status');
+			const submitButton = form.querySelector('.wpcf7-submit');
+			const submitText = submitButton?.querySelector('span');
+			const defaultSubmitText = submitText?.textContent || '';
+			const fields = {
+				name: form.querySelector('#modal-contact-name'),
+				phone: form.querySelector('#modal-contact-phone'),
+				email: form.querySelector('#modal-contact-email'),
+				consent: form.querySelector('#modal-contact-consent'),
+			};
+
+			const getErrorElement = (id) => form.querySelector(`#${id}`);
+			const setStatus = (message = '', type = '') => {
+				if (!formStatus) return;
+				formStatus.textContent = message;
+				formStatus.dataset.status = type;
+			};
+			const setLoading = (isLoading) => {
+				form.setAttribute('aria-busy', isLoading ? 'true' : 'false');
+				submitButton?.toggleAttribute('disabled', isLoading);
+				if (submitText) {
+					submitText.textContent = isLoading ? 'Отправляю…' : defaultSubmitText;
+				}
+			};
+			const setFieldError = (field, errorId, message = '') => {
+				if (!field) return;
+				const error = getErrorElement(errorId);
+				field.setAttribute('aria-invalid', message ? 'true' : 'false');
+				field.closest('.form-field')?.classList.toggle('form-field--error', Boolean(message));
+				if (error) {
+					error.textContent = message;
+				}
+			};
+			const clearErrors = () => {
+				setFieldError(fields.name, 'modal-contact-name-error');
+				setFieldError(fields.phone, 'modal-contact-phone-error');
+				setFieldError(fields.email, 'modal-contact-email-error');
+				setFieldError(fields.consent, 'modal-contact-consent-error');
+				form.querySelectorAll('.form-field__error').forEach(error => {
+					error.textContent = '';
+				});
+			};
+			const applyModalPhoneMask = () => {
+				if (!fields.phone) return;
+				const selectionStart = fields.phone.selectionStart ?? fields.phone.value.length;
+				const digitsBeforeCaret = Math.min(getModalPhoneDigitCount(fields.phone.value.slice(0, selectionStart)), modalPhoneMaxDigits);
+				const digits = getModalPhoneDigits(fields.phone.value);
+				const formattedValue = formatModalPhone(digits);
+				fields.phone.value = formattedValue;
+
+				if (document.activeElement === fields.phone && typeof fields.phone.setSelectionRange === 'function') {
+					const caretPosition = getModalPhoneCaretPosition(formattedValue, Math.min(digitsBeforeCaret, digits.length));
+					fields.phone.setSelectionRange(caretPosition, caretPosition);
+				}
+			};
+			const validate = () => {
+				clearErrors();
+				setStatus('');
+				applyModalPhoneMask();
+				const phoneDigits = getModalPhoneDigitCount(fields.phone?.value || '');
+				const emailValue = fields.email?.value.trim() || '';
+				const errors = [];
+
+				if (!phoneDigits) {
+					setFieldError(fields.phone, 'modal-contact-phone-error', 'Укажите номер телефона.');
+					errors.push(fields.phone);
+				} else if (phoneDigits !== modalPhoneMaxDigits) {
+					setFieldError(fields.phone, 'modal-contact-phone-error', 'Введите номер телефона полностью.');
+					errors.push(fields.phone);
+				}
+
+				if (emailValue && fields.email && !fields.email.validity.valid) {
+					setFieldError(fields.email, 'modal-contact-email-error', 'Проверьте адрес электронной почты.');
+					errors.push(fields.email);
+				}
+
+				if (fields.consent && !fields.consent.checked) {
+					setFieldError(fields.consent, 'modal-contact-consent-error', 'Подтвердите согласие на обработку данных.');
+					errors.push(fields.consent);
+				}
+
+				if (errors.length) {
+					setStatus('Проверьте выделенные поля.', 'error');
+					errors[0]?.focus();
+					return false;
+				}
+				return true;
+			};
+
+			fields.name?.addEventListener('input', () => {
+				fields.name.value = fields.name.value.replace(/http|https|url|www|\.net|\.ru|\.com|[0-9]/gi, '');
+				setFieldError(fields.name, 'modal-contact-name-error');
+			});
+			fields.phone?.addEventListener('beforeinput', (e) => {
+				if (e.inputType !== 'insertText') return;
+				if (e.data && /\D/.test(e.data)) {
+					e.preventDefault();
+				}
+			});
+			fields.phone?.addEventListener('input', () => {
+				applyModalPhoneMask();
+				setFieldError(fields.phone, 'modal-contact-phone-error');
+			});
+			fields.phone?.addEventListener('change', applyModalPhoneMask);
+			fields.email?.addEventListener('input', () => {
+				setFieldError(fields.email, 'modal-contact-email-error');
+			});
+			fields.consent?.addEventListener('change', () => {
+				setFieldError(fields.consent, 'modal-contact-consent-error');
+			});
+			form.addEventListener('submit', (e) => {
+				if (submitButton?.disabled) {
+					e.preventDefault();
+					return;
+				}
+				if (!validate()) {
+					e.preventDefault();
+					return;
+				}
+				if (!hasModalContactForm7Context(form)) {
+					e.preventDefault();
+					setLoading(false);
+					setStatus('Форма подготовлена к отправке. Фактическая отправка будет подключена при интеграции с WordPress.', 'info');
+					formStatus?.focus();
+					return;
+				}
+				setLoading(true);
+			});
+
+			return {
+				form,
+				formStatus,
+				setStatus,
+				setLoading,
+				clearErrors,
+				applyModalPhoneMask,
+			};
+		};
+
+		modalContactForms.forEach(form => {
+			modalContactFormState.set(form, createModalContactFormState(form));
+		});
+
+		document.addEventListener('wpcf7mailsent', (e) => {
+			const form = getCf7EventForm(e);
+			const state = modalContactFormState.get(form);
+			if (!state) return;
+			form.querySelector('.cf7sg-response-output')?.style.setProperty('display', 'none');
+			state.clearErrors();
+			form.reset();
+			state.applyModalPhoneMask();
+			state.setLoading(false);
+			state.setStatus('');
+			const sourceModal = form.closest('.modal');
+			if (modalSend && sourceModal && activeModal === sourceModal) {
+				closeModal(sourceModal, { unlockScroll: false });
+				openModal(modalSend);
+			}
+		});
+
+		const handleModalCf7Failure = (message) => (e) => {
+			const form = getCf7EventForm(e);
+			const state = modalContactFormState.get(form);
+			if (!state) return;
+			state.setLoading(false);
+			state.setStatus(message, 'error');
+			state.formStatus?.focus();
+		};
+
+		document.addEventListener('wpcf7invalid', handleModalCf7Failure('Проверьте выделенные поля.'));
+		document.addEventListener('wpcf7mailfailed', handleModalCf7Failure('Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь со мной другим способом.'));
+		document.addEventListener('wpcf7spam', handleModalCf7Failure('Заявка не отправлена. Проверьте данные и попробуйте ещё раз.'));
+	}
 	// Development Contact Form
 	const developmentContactForm = document.querySelector('[data-development-contact-form]');
 	if (developmentContactForm) {
@@ -671,7 +887,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.addEventListener('wpcf7mailsent', (e) => {
 		const form = getCf7EventForm(e);
 		if (!form) return;
-		if (form?.matches?.('[data-development-contact-form]')) return;
+		if (form?.matches?.('[data-development-contact-form], [data-modal-contact-form]')) return;
 		const sourceModal = form.closest('.modal');
 		if (!sourceModal || activeModal !== sourceModal) return;
 
