@@ -7,13 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	// ---------- UTILS ----------
 	const header = document.querySelector('.header');
 	const topButton = document.querySelector('.top');
-	const modal = document.querySelector('.modal');
-	const modalSend = document.querySelector('.modal--send');
+	const modalGeneral = document.querySelector('#modal_general');
+	const modalSend = document.querySelector('#modal_send') || document.querySelector('.modal--send');
 	const burgerMenu = document.querySelector('.burger');
 	const headerMenu = document.querySelector('.header--menu');
 	const menu = headerMenu ? headerMenu.querySelector('.menu') : null;
 
-	const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+	let activeModal = null;
+	const modalScrollState = {
+		locked: false,
+		scrollY: 0,
+		body: {},
+		headerPaddingRight: '',
+	};
 	
 	// ---------- COOKIES BANNER (6 месяцев) ----------
 	(function () {
@@ -76,15 +82,16 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Убрать скролл при открытии модалок/меню
 	const hasClass = (el, cls) => el && el.classList.contains(cls);
 	const qsa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+	const getScrollbarWidth = () => window.innerWidth - document.documentElement.clientWidth;
 	function isAnythingOverlayOpen() {
 		return (
 			hasClass(headerMenu, 'open') ||
-			hasClass(modal, 'active') ||
-			hasClass(modalSend, 'active')
+			Boolean(activeModal)
 		);
 	}
 	function lockScroll() {
 		if (!isAnythingOverlayOpen()) return;
+		const scrollbarWidth = getScrollbarWidth();
 		docEl.classList.add('overflow');
 		if (scrollbarWidth > 0 && header) {
 			header.style.paddingRight = `${scrollbarWidth}px`;
@@ -101,38 +108,190 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	// ---------- MODALS ----------
-	function openModal(selector = '.modal--general') {
-		const target = document.querySelector(selector);
-		if (!target) return;
-		target.classList.add('active');
-		// .modal — общий контейнер, если он есть
-		if (modal && !modal.classList.contains('active')) {
-			modal.classList.add('active');
+	function getModalTarget(trigger) {
+		if (!trigger) return null;
+		const dataTarget = trigger.getAttribute('data-modal-target')?.trim();
+		const href = trigger.getAttribute('href')?.trim();
+		const selector = dataTarget || (href && href.startsWith('#') && href.length > 1 ? href : '');
+		if (!selector || !selector.startsWith('#')) return null;
+		try {
+			const target = document.querySelector(selector);
+			return target?.classList.contains('modal') ? target : null;
+		} catch (e) {
+			return null;
 		}
-		lockScroll();
 	}
-	function closeModal() {
-		if (modal) modal.classList.remove('active');
-		if (modalSend) modalSend.classList.remove('active');
-		qsa('.modal--general.active').forEach(m => m.classList.remove('active'));
-		unlockScrollIfFree();
+
+	function lockModalScroll() {
+		if (modalScrollState.locked) return;
+		const scrollbarWidth = getScrollbarWidth();
+		modalScrollState.scrollY = window.scrollY || window.pageYOffset || 0;
+		modalScrollState.body = {
+			position: body.style.position,
+			top: body.style.top,
+			left: body.style.left,
+			width: body.style.width,
+			paddingRight: body.style.paddingRight,
+		};
+		modalScrollState.headerPaddingRight = header?.style.paddingRight || '';
+
+		docEl.classList.add('overflow');
+		body.style.position = 'fixed';
+		body.style.top = `-${modalScrollState.scrollY}px`;
+		body.style.left = '0';
+		body.style.width = '100%';
+		if (scrollbarWidth > 0) {
+			body.style.paddingRight = `${scrollbarWidth}px`;
+			if (header) {
+				header.style.paddingRight = `${scrollbarWidth}px`;
+			}
+		}
+		modalScrollState.locked = true;
 	}
-	if (modal || modalSend) {
-		// Открытие модалок
-		qsa('.modal--open').forEach(button => {
-			button.addEventListener('click', e => {
+
+	function unlockModalScroll() {
+		if (!modalScrollState.locked) return;
+		const { scrollY, body: previousBody, headerPaddingRight } = modalScrollState;
+		const previousScrollBehavior = docEl.style.scrollBehavior;
+
+		docEl.style.scrollBehavior = 'auto';
+		body.style.position = previousBody.position || '';
+		body.style.top = previousBody.top || '';
+		body.style.left = previousBody.left || '';
+		body.style.width = previousBody.width || '';
+		body.style.paddingRight = previousBody.paddingRight || '';
+		if (header) {
+			header.style.paddingRight = headerPaddingRight || '';
+		}
+		modalScrollState.locked = false;
+
+		if (hasClass(headerMenu, 'open')) {
+			lockScroll();
+		} else {
+			docEl.classList.remove('overflow');
+		}
+		window.scrollTo(0, scrollY);
+		requestAnimationFrame(() => {
+			docEl.style.scrollBehavior = previousScrollBehavior || '';
+		});
+	}
+
+	function getFocusableElements(modal) {
+		if (!modal) return [];
+		const selectors = [
+			'a[href]',
+			'button:not([disabled])',
+			'input:not([disabled]):not([type="hidden"])',
+			'textarea:not([disabled])',
+			'select:not([disabled])',
+			'[tabindex]:not([tabindex="-1"])',
+		];
+		return qsa(selectors.join(','), modal).filter(element => {
+			if (element.closest('[inert], [aria-hidden="true"]')) return false;
+			const style = window.getComputedStyle(element);
+			if (style.display === 'none' || style.visibility === 'hidden') return false;
+			return element.offsetWidth > 0 || element.offsetHeight > 0 || element.getClientRects().length > 0;
+		});
+	}
+
+	function focusModalWrapper(modal) {
+		const wrapper = modal?.querySelector('.modal--wrapper');
+		requestAnimationFrame(() => {
+			(wrapper || modal)?.focus?.({ preventScroll: true });
+		});
+	}
+
+	function openModal(modal) {
+		if (!modal) return;
+		if (activeModal && activeModal !== modal) {
+			closeModal(activeModal, { unlockScroll: false });
+		}
+		if (!modalScrollState.locked) {
+			lockModalScroll();
+		}
+		activeModal = modal;
+		modal.removeAttribute('inert');
+		modal.setAttribute('aria-hidden', 'false');
+		modal.classList.add('active');
+		focusModalWrapper(modal);
+	}
+
+	function closeModal(modal = activeModal, options = {}) {
+		const { unlockScroll = true } = options;
+		if (!modal) return;
+		if (modal.contains(document.activeElement)) {
+			document.activeElement.blur();
+		}
+		modal.classList.remove('active');
+		modal.setAttribute('aria-hidden', 'true');
+		modal.setAttribute('inert', '');
+		if (activeModal === modal) {
+			activeModal = null;
+		}
+		if (unlockScroll) {
+			unlockModalScroll();
+		}
+	}
+
+	function trapModalFocus(event) {
+		if (!activeModal || event.key !== 'Tab') return;
+		const wrapper = activeModal.querySelector('.modal--wrapper');
+		const focusable = getFocusableElements(activeModal);
+		if (!focusable.length) {
+			event.preventDefault();
+			(wrapper || activeModal).focus({ preventScroll: true });
+			return;
+		}
+
+		const first = focusable[0];
+		const last = focusable[focusable.length - 1];
+		const current = document.activeElement;
+
+		if (event.shiftKey && (current === first || current === wrapper || !activeModal.contains(current))) {
+			event.preventDefault();
+			last.focus({ preventScroll: true });
+			return;
+		}
+
+		if (!event.shiftKey && (current === last || current === wrapper || !activeModal.contains(current))) {
+			event.preventDefault();
+			first.focus({ preventScroll: true });
+		}
+	}
+
+	if (modalGeneral || modalSend) {
+		qsa('.modal--open').forEach(trigger => {
+			trigger.addEventListener('click', e => {
+				const target = getModalTarget(trigger);
+				if (!target) return;
 				e.preventDefault();
-				const targetSelector = button.getAttribute('data-modal-target') || '.modal--general';
-				openModal(targetSelector);
+				openModal(target);
 			});
 		});
 
-		// Закрытие по кнопкам
 		qsa('.modal--close').forEach(close => {
 			close.addEventListener('click', e => {
 				e.stopPropagation();
-				closeModal();
+				closeModal(close.closest('.modal') || activeModal);
 			});
+		});
+
+		qsa('.modal').forEach(modalElement => {
+			modalElement.addEventListener('click', e => {
+				if (e.target === modalElement && activeModal === modalElement) {
+					closeModal(modalElement);
+				}
+			});
+		});
+
+		document.addEventListener('keydown', e => {
+			if (!activeModal) return;
+			if (e.key === 'Escape') {
+				e.preventDefault();
+				closeModal(activeModal);
+				return;
+			}
+			trapModalFocus(e);
 		});
 	}
 
@@ -239,21 +398,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			menu.classList.add('active');
 		}
 	});
-	// ---------- ГЛОБАЛЬНЫЙ КЛИК: закрытие модалки ----------
-	document.addEventListener('click', e => {
-		const target = e.target;
-
-		// Закрытие модалки по клику вне содержимого
-		if (
-			modal &&
-			hasClass(modal, 'active') &&
-			!target.closest('.modal--wrapper') &&
-			!target.closest('.modal--open')
-		) {
-			closeModal();
-		}
-	});
-
 	// Input Name Validation
 	const fioInputs = document.querySelectorAll('input[name="fio"], input[name="fio1"]');
 	fioInputs.forEach(input => {
@@ -291,8 +435,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		}
 	};
-	setupCheckbox('check', '.modal--general button');
-	setupCheckbox('check1', '.main--contacts__left form button');
+	setupCheckbox('check', '.modal--general .wpcf7-submit');
+	setupCheckbox('check1', '.main--contacts__left form .wpcf7-submit');
 	const getCf7EventForm = (e) => {
 		const targetForm = e.target?.closest?.('form');
 		if (targetForm) return targetForm;
@@ -526,21 +670,15 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Form Submission
 	document.addEventListener('wpcf7mailsent', (e) => {
 		const form = getCf7EventForm(e);
+		if (!form) return;
 		if (form?.matches?.('[data-development-contact-form]')) return;
+		const sourceModal = form.closest('.modal');
+		if (!sourceModal || activeModal !== sourceModal) return;
+
 		form?.querySelector('.cf7sg-response-output')?.style.setProperty('display', 'none');
-		document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
 		if (modalSend) {
-			modalSend.classList.add('active');
-			setTimeout(() => {
-				modalSend.classList.remove('active');
-				if (!headerMenu?.classList.contains('open')) {
-					document.documentElement.classList.remove('overflow');
-					if (header) {
-						header.style.paddingRight = '';
-					}
-					document.body.style.paddingRight = '';
-				}
-			}, 5000);
+			closeModal(sourceModal, { unlockScroll: false });
+			openModal(modalSend);
 		}
 		form?.querySelector('.wpcf7-submit')?.setAttribute('disabled', 'disabled');
 		form?.reset();

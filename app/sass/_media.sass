@@ -291,12 +291,12 @@
 				input, textarea
 					border-radius: 20px
 		&--close
-			min-width: 35px
-			width: 35px
-			height: 35px
+			min-width: 44px
+			width: 44px
+			height: 44px
 			svg
-				width: 100%
-				height: 100%
+				width: 35px
+				height: 35px
 	.case
 		&--header
 			&__wrapper
@@ -1951,9 +1951,12 @@
 						+ label
 							font-size: 14px
 	.modal
+		padding: calc(16px + env(safe-area-inset-top)) calc(12px + env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) calc(12px + env(safe-area-inset-left))
 		&--wrapper
 			padding: 30px 12px
-			max-width: 90%
+			max-width: 100%
+			max-height: calc(100vh - 32px)
+			max-height: calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom))
 			.title 
 				margin-bottom: 30px
 			form
@@ -1965,19 +1968,25 @@
 				.button
 					margin-top: 20px
 		&--close 
-			min-width: 20px
-			width: 20px
-			height: 20px
-			top: 30px
-			right: 12px
+			min-width: 44px
+			width: 44px
+			height: 44px
+			top: 20px
+			right: 8px
+			svg
+				width: 20px
+				height: 20px
 		&--send 
 			.modal
 				&--close 
-					height: 15px
-					min-width: 15px
-					width: 15px
+					height: 44px
+					min-width: 44px
+					width: 44px
 					top: 15px
 					right: 15px
+					svg
+						width: 15px
+						height: 15px
 				&--wrapper
 					padding: 30px
 					.h1, h1

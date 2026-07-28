@@ -142,7 +142,7 @@
 								<a href="contacts.html">Контакты</a>
 							</li>
 						</ul>
-						<a href="#modal_general" class="header--button button button--gradient modal--open mobile">
+						<a href="#modal_general" class="header--button button button--gradient modal--open mobile" data-modal-target="#modal_general">
 							<span>Оставить заявку</span>
 						</a>
 					</nav>
@@ -151,7 +151,7 @@
 							<span>RU</span>
 							<span>En</span>
 						</button>
-						<a href="#modal_general" class="header--button button button--gradient modal--open desktop">
+						<a href="#modal_general" class="header--button button button--gradient modal--open desktop" data-modal-target="#modal_general">
 							<span>Оставить заявку</span>
 						</a>
 						<button class="burger" title="Открыть меню">
@@ -193,7 +193,7 @@
 						</div>
 						<div class="buttons">
 							<a href="https://funtech.agency/" class="button button--white" target="_blank">Смотреть сайт</a>
-							<a href="https://funtech.agency/" class="button button--white modal--open" target="_blank">Оставить заявку</a>
+							<a href="brief.html" class="button button--white" target="_blank" rel="noopener">Оставить заявку</a>
 						</div>
 					</div>
 				</div>
@@ -390,15 +390,15 @@
 		</svg>
 	</div>
 
-	<div class="modal modal--general" id="modal_general">
-		<div class="modal--wrapper">
-			<div class="title h2">Оставить заявку</div>
-			<div class="modal--close">
-				<svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<div class="modal modal--general" id="modal_general" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-general-title" inert>
+		<div class="modal--wrapper" tabindex="-1">
+			<h2 class="title h2" id="modal-general-title">Оставить заявку</h2>
+			<button class="modal--close" type="button" aria-label="Закрыть окно">
+				<svg aria-hidden="true" width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M3.09985 3L38 37.9002" stroke="white" stroke-width="5" stroke-linecap="round"/>
 					<path d="M37.9001 3.09955L2.99997 37.9997" stroke="white" stroke-width="5" stroke-linecap="round"/>
 				</svg>
-			</div>
+			</button>
 			<form action="/#wpcf7-f8-o2" method="post" class="wpcf7-form init" aria-label="Контактная форма" novalidate="novalidate" data-status="init">
 				<div style="display: none;">
 				<input type="hidden" name="_wpcf7" value="8">
@@ -422,14 +422,14 @@
 		</div>
 	</div>
 
-	<div class="modal modal--send">
-		<div class="modal--wrapper">
-			<div class="modal--close">
-				<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<div class="modal modal--send" id="modal_send" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-send-title" inert>
+		<div class="modal--wrapper" tabindex="-1">
+			<button class="modal--close" type="button" aria-label="Закрыть окно">
+				<svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M1 13L13 1M1 1L13 13" stroke="#0F67FE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
 				</svg>
-			</div>
-			<div class="modal--send__message h1">Ваша заявка отправлена!</div>
+			</button>
+			<h2 class="modal--send__message h1" id="modal-send-title">Ваша заявка отправлена!</h2>
 			<div class="h2">Скоро с вами свяжется наш специалист.</div>
 		</div>
 	</div>
