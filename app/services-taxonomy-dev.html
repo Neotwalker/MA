@@ -758,7 +758,7 @@
 									Расскажите о задаче — я уточню детали и предложу подходящий следующий шаг.
 								</p>
 							</div>
-							<a href="#modal_brief" class="button button--gradient"><span>Рассказать о задаче</span></a>
+							<a href="#contacts" class="button button--gradient"><span>Рассказать о задаче</span></a>
 						</div>
 					</div>
 				</div>
@@ -914,29 +914,48 @@
 					<div class="main--contacts__wrapper">
 						<div class="main--contacts__left">
 							<h2 class="h2">Рассказать о задаче</h2>
-							<form action="/#wpcf7-f8-o1" method="post" class="wpcf7-form init" aria-label="Контактная форма" novalidate="novalidate" data-status="init">
-								<div style="display: none;">
-								<input type="hidden" name="_wpcf7" value="8">
-								<input type="hidden" name="_wpcf7_version" value="5.9.3">
-								<input type="hidden" name="_wpcf7_locale" value="ru_RU">
-								<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f8-o1">
-								<input type="hidden" name="_wpcf7_container_post" value="0">
-								<input type="hidden" name="_wpcf7_posted_data_hash" value="">
+							<p class="main--contacts__description">
+								Оставьте контакт и пару слов о проекте. Я посмотрю задачу и предложу подходящий следующий шаг.
+							</p>
+							<form action="/#wpcf7-f8-o1" method="post" class="wpcf7-form init" aria-label="Контактная форма" novalidate="novalidate" data-status="init" data-development-contact-form aria-busy="false">
+								<div class="form-field">
+									<label class="form-field__label" for="development-contact-name">Как к вам обращаться</label>
+									<span class="wpcf7-form-control-wrap" data-name="fio1"><input id="development-contact-name" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" aria-describedby="development-contact-name-error" placeholder="Например, Марат" value="" type="text" name="fio1" autocomplete="name" maxlength="80"></span>
+									<span class="form-field__error" id="development-contact-name-error" aria-live="polite"></span>
 								</div>
-								<span class="wpcf7-form-control-wrap" data-name="fio1"><input size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="ФИО" value="" type="text" name="fio1"></span>
-								<span class="wpcf7-form-control-wrap" data-name="tel"><input size="40" class="wpcf7-form-control wpcf7-tel wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-tel" aria-required="true" aria-invalid="false" placeholder="Телефон" value="" type="tel" name="tel"></span>
-								<span class="wpcf7-form-control-wrap" data-name="email"><input size="40" class="wpcf7-form-control wpcf7-email wpcf7-text wpcf7-validates-as-email" aria-invalid="false" placeholder="E-mail" value="" type="email" name="email"></span>
-								<div class="radio--button">
-									<input class="custom--check" type="checkbox" id="check1" name="check1">
-									<label for="check1">
+								<div class="main--contacts__contact-group">
+									<p class="form-field__hint" id="development-contact-channel-hint">Укажите телефон или e-mail — достаточно одного способа связи.</p>
+									<span class="form-field__error" id="development-contact-channel-error" aria-live="polite"></span>
+									<div class="form-field">
+										<label class="form-field__label" for="development-contact-phone">Телефон</label>
+										<span class="wpcf7-form-control-wrap" data-name="tel"><input id="development-contact-phone" size="40" class="wpcf7-form-control wpcf7-tel wpcf7-text" aria-invalid="false" aria-describedby="development-contact-channel-hint development-contact-channel-error development-contact-phone-error" placeholder="+7 (999) 123 45-67" value="" type="tel" name="tel" autocomplete="tel" inputmode="numeric" maxlength="18"></span>
+										<span class="form-field__error" id="development-contact-phone-error" aria-live="polite"></span>
+									</div>
+									<div class="form-field">
+										<label class="form-field__label" for="development-contact-email">E-mail</label>
+										<span class="wpcf7-form-control-wrap" data-name="email"><input id="development-contact-email" size="40" class="wpcf7-form-control wpcf7-email wpcf7-text" aria-invalid="false" aria-describedby="development-contact-channel-hint development-contact-channel-error development-contact-email-error" placeholder="name@example.com" value="" type="email" name="email" autocomplete="email" inputmode="email" maxlength="160"></span>
+										<span class="form-field__error" id="development-contact-email-error" aria-live="polite"></span>
+									</div>
+								</div>
+								<div class="form-field">
+									<label class="form-field__label" for="development-contact-message">Кратко о задаче</label>
+									<span class="wpcf7-form-control-wrap" data-name="message"><textarea id="development-contact-message" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" aria-describedby="development-contact-message-error" placeholder="Например: нужен корпоративный сайт, каталог услуг или доработка WordPress" name="message" rows="5" maxlength="1000"></textarea></span>
+									<span class="form-field__error" id="development-contact-message-error" aria-live="polite"></span>
+								</div>
+								<div class="radio--button form-field form-field--consent">
+									<input class="custom--check" type="checkbox" id="development-contact-consent" name="check1" required aria-required="true" aria-invalid="false" aria-describedby="development-contact-consent-error">
+									<label for="development-contact-consent">
 										<span>
-											Отправляя заявку, Вы принимаете и соглашаетесь с <a href="#" target="_blank">Политикой конфиденциальности</a>
+											Я соглашаюсь с обработкой персональных данных и принимаю <a href="/privacy-policy/" target="_blank" rel="noopener">Политику конфиденциальности</a>.
 										</span>
 									</label>
+									<span class="form-field__error" id="development-contact-consent-error" aria-live="polite"></span>
 								</div>
-								<button class="button button--gradient wpcf7-form-control wpcf7-submit" type="submit" disabled="">
-								 <span>Отправить</span>
-								</button><div class="wpcf7-response-output" aria-hidden="true"></div>
+								<button class="button button--gradient wpcf7-form-control wpcf7-submit" type="submit">
+								 <span>Отправить задачу</span>
+								</button>
+								<div class="form-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></div>
+								<div class="wpcf7-response-output" aria-hidden="true"></div>
 							</form>
 						</div>
 						<div class="main--contacts__right">

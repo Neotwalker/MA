@@ -257,6 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Input Name Validation
 	const fioInputs = document.querySelectorAll('input[name="fio"], input[name="fio1"]');
 	fioInputs.forEach(input => {
+		if (input.closest('[data-development-contact-form]')) return;
 		input.addEventListener('keyup', () => {
 			input.value = input.value.replace(/http|https|url|www|\.net|\.ru|\.com|[0-9]/gi, '');
 		});
@@ -265,6 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const phoneInputs = document.querySelectorAll('.wpcf7-tel');
 	const applyPhoneMask = (e) => {
 		const el = e.target;
+		if (el.closest('[data-development-contact-form]')) return;
 		const clearVal = el.dataset.phoneClear;
 		const pattern = el.dataset.phonePattern || '+_(___) ___-__-__';
 		const def = pattern.replace(/\D/g, '');
@@ -291,27 +293,257 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 	setupCheckbox('check', '.modal--general button');
 	setupCheckbox('check1', '.main--contacts__left form button');
-	// Form Submission
-	document.querySelectorAll('.wpcf7-form').forEach(form => {
-		form.addEventListener('submit', () => {
-			document.addEventListener('wpcf7mailsent', (e) => {
-				form.querySelector('.cf7sg-response-output')?.style.setProperty('display', 'none');
-				document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
-				if (modalSend) {
-					modalSend.classList.add('active');
-					setTimeout(() => {
-						modalSend.classList.remove('active');
-						if (!headerMenu?.classList.contains('open')) {
-							document.documentElement.classList.remove('overflow');
-							header.style.paddingRight = '';
-							document.body.style.paddingRight = '';
-						}
-					}, 5000);
+	const getCf7EventForm = (e) => {
+		const targetForm = e.target?.closest?.('form');
+		if (targetForm) return targetForm;
+		const unit = e.detail?.unitTag ? document.getElementById(e.detail.unitTag) : null;
+		if (unit?.matches?.('form')) return unit;
+		return unit?.querySelector?.('form') || null;
+	};
+	// Development Contact Form
+	const developmentContactForm = document.querySelector('[data-development-contact-form]');
+	if (developmentContactForm) {
+		const formStatus = developmentContactForm.querySelector('.form-status');
+		const submitButton = developmentContactForm.querySelector('.wpcf7-submit');
+		const submitText = submitButton?.querySelector('span');
+		const defaultSubmitText = submitText?.textContent || '';
+		const fields = {
+			phone: developmentContactForm.querySelector('#development-contact-phone'),
+			email: developmentContactForm.querySelector('#development-contact-email'),
+			consent: developmentContactForm.querySelector('#development-contact-consent'),
+		};
+		const phoneMaskPattern = '+_ (___) ___ __-__';
+		const phoneMaxDigits = 11;
+
+		const getDevelopmentPhoneDigits = (value = '', limit = phoneMaxDigits) => String(value).replace(/\D/g, '').slice(0, limit);
+		const getDevelopmentPhoneDigitCount = (value = '') => String(value).replace(/\D/g, '').length;
+
+		const formatDevelopmentPhone = (value = '') => {
+			const digits = getDevelopmentPhoneDigits(value);
+			if (!digits) return '';
+			let digitIndex = 0;
+			let pendingChars = '';
+			let formattedValue = '';
+
+			for (const char of phoneMaskPattern) {
+				if (char === '_') {
+					if (digitIndex >= digits.length) break;
+					formattedValue += pendingChars + digits[digitIndex];
+					pendingChars = '';
+					digitIndex += 1;
+				} else {
+					pendingChars += char;
 				}
-				form.querySelector('.wpcf7-submit')?.setAttribute('disabled', 'disabled');
-				form.reset();
-			}, { once: true });
+			}
+			return formattedValue;
+		};
+
+		const getDevelopmentPhoneCaretPosition = (value, digitsBeforeCaret) => {
+			if (!digitsBeforeCaret) return 0;
+			let digitCount = 0;
+			for (let index = 0; index < value.length; index += 1) {
+				if (/\d/.test(value[index])) {
+					digitCount += 1;
+					if (digitCount === digitsBeforeCaret) {
+						return index + 1;
+					}
+				}
+			}
+			return value.length;
+		};
+
+		const applyDevelopmentPhoneMask = () => {
+			if (!fields.phone) return;
+			const selectionStart = fields.phone.selectionStart ?? fields.phone.value.length;
+			const digitsBeforeCaret = Math.min(getDevelopmentPhoneDigitCount(fields.phone.value.slice(0, selectionStart)), phoneMaxDigits);
+			const digits = getDevelopmentPhoneDigits(fields.phone.value);
+			const formattedValue = formatDevelopmentPhone(digits);
+			fields.phone.value = formattedValue;
+
+			if (document.activeElement === fields.phone && typeof fields.phone.setSelectionRange === 'function') {
+				const caretPosition = getDevelopmentPhoneCaretPosition(formattedValue, Math.min(digitsBeforeCaret, digits.length));
+				fields.phone.setSelectionRange(caretPosition, caretPosition);
+			}
+		};
+
+		const hasContactForm7Context = () => {
+			const hasCf7Api = typeof window.wpcf7 === 'object' && typeof window.wpcf7.submit === 'function';
+			const hasCf7Unit = Boolean(developmentContactForm.querySelector('input[name="_wpcf7"], input[name="_wpcf7_unit_tag"]'));
+			return hasCf7Api && hasCf7Unit;
+		};
+
+		const setStatus = (message = '', type = '') => {
+			if (!formStatus) return;
+			formStatus.textContent = message;
+			formStatus.dataset.status = type;
+		};
+
+		const setLoading = (isLoading) => {
+			developmentContactForm.setAttribute('aria-busy', isLoading ? 'true' : 'false');
+			if (submitButton) {
+				submitButton.toggleAttribute('disabled', isLoading);
+			}
+			if (submitText) {
+				submitText.textContent = isLoading ? 'Отправляю…' : defaultSubmitText;
+			}
+		};
+
+		const getErrorElement = (id) => document.getElementById(id);
+
+		const setFieldError = (field, errorId, message = '') => {
+			if (!field) return;
+			const error = getErrorElement(errorId);
+			field.setAttribute('aria-invalid', message ? 'true' : 'false');
+			field.closest('.form-field')?.classList.toggle('form-field--error', Boolean(message));
+			if (error) {
+				error.textContent = message;
+			}
+		};
+
+		const setChannelError = (message = '') => {
+			const error = getErrorElement('development-contact-channel-error');
+			if (error) {
+				error.textContent = message;
+			}
+			fields.phone?.setAttribute('aria-invalid', message ? 'true' : 'false');
+			fields.email?.setAttribute('aria-invalid', message ? 'true' : 'false');
+			fields.phone?.closest('.form-field')?.classList.toggle('form-field--error', Boolean(message));
+			fields.email?.closest('.form-field')?.classList.toggle('form-field--error', Boolean(message));
+		};
+
+		const clearErrors = () => {
+			setChannelError('');
+			setFieldError(fields.phone, 'development-contact-phone-error');
+			setFieldError(fields.email, 'development-contact-email-error');
+			setFieldError(fields.consent, 'development-contact-consent-error');
+			developmentContactForm.querySelectorAll('.form-field__error').forEach(error => {
+				error.textContent = '';
+			});
+		};
+
+		const validateDevelopmentContactForm = () => {
+			clearErrors();
+			setStatus('');
+			applyDevelopmentPhoneMask();
+			const phoneValue = fields.phone?.value.trim() || '';
+			const emailValue = fields.email?.value.trim() || '';
+			const errors = [];
+
+			if (!phoneValue && !emailValue) {
+				setChannelError('Укажите телефон или e-mail.');
+				errors.push(fields.phone);
+			}
+
+			if (phoneValue) {
+				const digitsCount = phoneValue.replace(/\D/g, '').length;
+				if (digitsCount !== phoneMaxDigits) {
+					setFieldError(fields.phone, 'development-contact-phone-error', 'Введите номер телефона полностью.');
+					errors.push(fields.phone);
+				}
+			}
+
+			if (emailValue && fields.email && !fields.email.validity.valid) {
+				setFieldError(fields.email, 'development-contact-email-error', 'Проверьте адрес электронной почты.');
+				errors.push(fields.email);
+			}
+
+			if (fields.consent && !fields.consent.checked) {
+				setFieldError(fields.consent, 'development-contact-consent-error', 'Подтвердите согласие на обработку данных.');
+				errors.push(fields.consent);
+			}
+
+			if (errors.length) {
+				setStatus('Проверьте выделенные поля.', 'error');
+				errors[0]?.focus();
+				return false;
+			}
+			return true;
+		};
+
+		fields.phone?.addEventListener('beforeinput', (e) => {
+			if (e.inputType !== 'insertText') return;
+			if (e.data && /\D/.test(e.data)) {
+				e.preventDefault();
+			}
 		});
+		fields.phone?.addEventListener('input', applyDevelopmentPhoneMask);
+		fields.phone?.addEventListener('change', applyDevelopmentPhoneMask);
+
+		['input', 'change'].forEach(eventName => {
+			[fields.phone, fields.email].forEach(field => {
+				field?.addEventListener(eventName, () => {
+					setChannelError('');
+					setFieldError(fields.phone, 'development-contact-phone-error');
+					setFieldError(fields.email, 'development-contact-email-error');
+				});
+			});
+			fields.consent?.addEventListener(eventName, () => {
+				setFieldError(fields.consent, 'development-contact-consent-error');
+			});
+		});
+
+		developmentContactForm.addEventListener('submit', (e) => {
+			if (submitButton?.disabled) {
+				e.preventDefault();
+				return;
+			}
+			if (!validateDevelopmentContactForm()) {
+				e.preventDefault();
+				return;
+			}
+			if (!hasContactForm7Context()) {
+				e.preventDefault();
+				setLoading(false);
+				setStatus('Форма подготовлена к отправке. Фактическая отправка будет подключена при интеграции с WordPress.', 'info');
+				return;
+			}
+			setLoading(true);
+		});
+
+		document.addEventListener('wpcf7mailsent', (e) => {
+			const eventForm = getCf7EventForm(e);
+			if (eventForm !== developmentContactForm) return;
+			developmentContactForm.querySelector('.cf7sg-response-output')?.style.setProperty('display', 'none');
+			clearErrors();
+			developmentContactForm.reset();
+			setLoading(false);
+			setStatus('Спасибо, задача отправлена. Я свяжусь с вами после просмотра сообщения.', 'success');
+			formStatus?.focus();
+		});
+
+		const handleCf7Failure = (message) => (e) => {
+			const eventForm = getCf7EventForm(e);
+			if (eventForm !== developmentContactForm) return;
+			setLoading(false);
+			setStatus(message, 'error');
+			formStatus?.focus();
+		};
+
+		document.addEventListener('wpcf7invalid', handleCf7Failure('Проверьте выделенные поля.'));
+		document.addEventListener('wpcf7mailfailed', handleCf7Failure('Не удалось отправить сообщение. Попробуйте ещё раз или свяжитесь со мной другим способом.'));
+		document.addEventListener('wpcf7spam', handleCf7Failure('Сообщение не отправлено. Проверьте данные и попробуйте ещё раз.'));
+	}
+	// Form Submission
+	document.addEventListener('wpcf7mailsent', (e) => {
+		const form = getCf7EventForm(e);
+		if (form?.matches?.('[data-development-contact-form]')) return;
+		form?.querySelector('.cf7sg-response-output')?.style.setProperty('display', 'none');
+		document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+		if (modalSend) {
+			modalSend.classList.add('active');
+			setTimeout(() => {
+				modalSend.classList.remove('active');
+				if (!headerMenu?.classList.contains('open')) {
+					document.documentElement.classList.remove('overflow');
+					if (header) {
+						header.style.paddingRight = '';
+					}
+					document.body.style.paddingRight = '';
+				}
+			}, 5000);
+		}
+		form?.querySelector('.wpcf7-submit')?.setAttribute('disabled', 'disabled');
+		form?.reset();
 	});
 
 	// Footer Menu (Mobile)
