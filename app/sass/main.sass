@@ -388,38 +388,59 @@ textarea
 			background-color: $white
 			color: $black
 
-.burger 
-	width: 20px
-	height: 14px
-	position: relative
+.burger
 	display: none
-	span
-		display: flex
-		width: 100%
+	align-items: center
+	justify-content: center
+	width: 46px
+	min-width: 46px
+	height: 46px
+	border: 1px solid color.adjust($white, $alpha: -.82)
+	border-radius: 50%
+	color: $white
+	position: relative
+	transition: color .3s ease, border-color .3s ease, background-color .3s ease
+	&__line, span
+		display: block
+		width: 18px
 		height: 2px
-		background-color: $white
+		background-color: currentColor
 		border-radius: 2px
-		display: flex
 		position: absolute
 		top: 50%
 		left: 50%
 		transform: translate(-50%, -50%)
-		transition: all .3s ease
-		&:nth-of-type(2)
-			top: calc(50% - 8px)
-		&:last-of-type
-			top: calc(50% + 8px)
-	&.active 
-		span
-			&:first-of-type
-				top: 50%
-				transform: translate(-50%) rotate(45deg)
-			&:nth-of-type(2)
+		transition: transform .3s ease, opacity .3s ease
+		&:first-child
+			transform: translate(-50%, calc(-50% - 6px))
+		&:last-child
+			transform: translate(-50%, calc(-50% + 6px))
+	&:hover
+		color: $orange
+		border-color: color.adjust($orange, $alpha: -.45)
+		background-color: color.adjust($white, $alpha: -.95)
+	&:focus-visible
+		outline: 2px solid color.adjust($orange, $alpha: -.15)
+		outline-offset: 3px
+	&.active
+		.burger__line, span
+			&:first-child
+				transform: translate(-50%, -50%) rotate(45deg)
+			&:nth-child(2)
 				opacity: 0
-				top: -5px
-			&:last-of-type
-				top: 50%
-				transform: translate(-50%) rotate(-45deg)
+			&:last-child
+				transform: translate(-50%, -50%) rotate(-45deg)
+
+.visually-hidden
+	position: absolute !important
+	width: 1px !important
+	height: 1px !important
+	padding: 0 !important
+	margin: -1px !important
+	overflow: hidden !important
+	clip: rect(0, 0, 0, 0) !important
+	white-space: nowrap !important
+	border: 0 !important
 
 .breadcrumbs
 	display: flex
@@ -524,16 +545,17 @@ textarea
 	&:not(:last-child)
 		margin-bottom: 40px
 	
-.header 
+.header
+	--header-height: 88px
 	position: fixed
 	width: 100%
 	top: 0
 	left: 0
-	border-bottom: 1px solid color.adjust($white, $alpha: -.8)
+	border-bottom: 1px solid color.adjust($white, $alpha: -.86)
 	z-index: 999
-	transition: backdrop-filter .3s ease, border-color .3s ease
-	max-height: 150px
-	height: 100px
+	background-color: color.adjust($black, $alpha: -.12)
+	backdrop-filter: blur(16px)
+	transition: background-color .3s ease, border-color .3s ease, backdrop-filter .3s ease
 	&::before
 		content: ''
 		display: block
@@ -542,153 +564,515 @@ textarea
 		left: 0
 		width: 100%
 		height: 100%
-		opacity: 0
-		background: radial-gradient(50% 50% at 50% 50%, rgba(7, 15, 36, 0.8) 0%, rgba(7, 15, 36, 0.845) 100%)
+		background: linear-gradient(180deg, rgba(7,15,36,.94), rgba(7,15,36,.78))
+		opacity: .76
+		pointer-events: none
 		z-index: 1
-		transition: opacity .3s ease
 	.container
 		position: relative
-		z-index: 2
-	&--wrapper 
-		display: flex
-		align-items: center
-		justify-content: space-between
-		gap: 35px
-		height: 100px
-	&--logo 
-		transition: transform .3s ease
+		z-index: 3
+	.row
 		position: relative
-		max-width: 150px
-		width: 100%
-		img
-			max-width: 150px
-			width: 150px
-			top: 0
-			left: 0
-		&:hover, &:focus
-			transform: scale(1.05)
-	&--contacts
-		display: none
-		.social 
-			&--mail, &--phone 
-				&:not(:last-child)
-					margin-bottom: 0
-	&--menu 
-		margin-right: auto
-		height: 100%
+	&__inner
 		display: flex
 		align-items: center
-		.menu
-			height: 100%
-			> li
-				display: flex
-				align-items: center
-				height: 100%
-			.menu-item-has-children
-				display: flex
-				align-items: center
-				justify-content: space-between
-				gap: 10px
-				position: relative
-				&::after
-					content: ''
-					display: block
-					background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.43157 15H15.334M15.334 15V5.35258M15.334 15L1.33398 1" stroke="white" stroke-linecap="round"/></svg>')
-					background-size: 14px 14px
-					background-repeat: no-repeat
-					width: 14px
-					height: 14px
-					transform: rotate(0)
-					margin-top: -1px
-					transition: all .3s ease
-				&:hover 
-					&::after
-						transform: rotate(0deg)	
-					> .sub-menu
-							visibility: visible
-							opacity: 1
-				.sub-menu
-					display: flex
-					flex-direction: column
-					gap: 15px
-					background-color: $black
-					border: 1px solid color.adjust($white, $alpha: -.8)
-					border-top: 0
-					position: absolute
-					visibility: hidden
-					opacity: 0
-					transition: all .3s ease
-					padding: 30px 0
-					li
-						padding: 0 30px
-			> .menu-item-has-children
-					&::after
-						content: ''
-						display: block
-						background-image: url('data:image/svg+xml,<svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6C5.76325 5.99413 5.54679 5.91781 5.37091 5.75342L0.229988 1.18591C0.081172 1.05675 0 0.892368 0 0.69863C0 0.311155 0.351748 0 0.798196 0C1.01466 0 1.22435 0.0763209 1.37993 0.21135L5.99324 4.32681L10.6201 0.21135C10.7756 0.0821918 10.9786 0 11.2018 0C11.6483 0 12 0.311155 12 0.69863C12 0.892368 11.9188 1.05675 11.77 1.18591L6.62232 5.75342C6.43968 5.91781 6.23675 6 6 6Z" fill="white"/></svg>')
-						background-size: 12px 6px
-						background-repeat: no-repeat
-						width: 12px
-						height: 6px
-						transform: rotate(-90deg)
-						margin-top: -1px
-						transition: all .3s ease
-					> .sub-menu
-						top: 100%
-						left: 0
-						.menu-item-has-children
-							.sub-menu
-								left: 100%
-								top: -30px
-								background-color: $black
-								border-top: 0
-								a
-									font-size: 16px
-							&:hover 
-								&::after
-									transform: rotate(-45deg)
-		li
-			a
-				font-weight: 500
-				position: relative
-				overflow: hidden
-				display: flex
-				&:hover 
-					color: $accent
-	&--block
-		display: flex
-		align-items: center
-		gap: 20px
-	&--button
-		margin-left: auto
-	&--language 
+		gap: 28px
+		min-height: var(--header-height)
+		height: var(--header-height)
+	&.scroll
+		background-color: color.adjust($black, $alpha: -.04)
+		border-color: color.adjust($white, $alpha: -.78)
+	&.open-menu
+		background-color: color.adjust($black, $alpha: -.02)
+
+.header-brand
+	display: flex
+	align-items: center
+	justify-content: center
+	width: 56px
+	min-width: 56px
+	height: 56px
+	color: $white
+	flex-shrink: 0
+	transition: transform .3s ease, opacity .3s ease
+	&__image
+		display: block
+		width: 52px
+		height: 52px
+		object-fit: contain
+		max-width: 52px
+		max-height: 52px
+	&:hover
+		opacity: .88
+		transform: translateY(-1px)
+	&:focus-visible
+		outline: 2px solid color.adjust($orange, $alpha: -.15)
+		outline-offset: 4px
 		border-radius: 50%
-		background: $buttonBlack
-		width: 50px
-		min-width: 50px
-		height: 50px
+
+.header-nav
+	display: flex
+	align-items: center
+	margin-right: auto
+	min-width: 0
+	&__list
+		display: flex
+		align-items: center
+		gap: 4px
+		list-style: none
+		padding: 0
+		margin: 0
+	&__item
+		display: flex
+		align-items: center
+	&__link
 		display: flex
 		align-items: center
 		justify-content: center
-		transition: background .3s ease
-		color: $white
+		gap: 8px
+		min-height: 44px
+		padding: 0 12px
+		border-radius: 0
+		color: color.adjust($white, $alpha: -.22)
+		font-size: 16px
+		font-weight: 500
+		line-height: 1
+		white-space: nowrap
 		position: relative
-		display: none
-		span
-			display: flex
-			align-items: center
-			justify-content: center
-			line-height: 0.7
-			font-size: 18px
-			font-weight: 500
-			position: relative
-			z-index: 2
+		transition: color .3s ease, background-color .3s ease
+		&::after
+			content: ''
+			position: absolute
+			left: 12px
+			right: 12px
+			bottom: 6px
+			height: 2px
+			background-image: $gradient
+			opacity: 0
+			transition: opacity .3s ease
 		&:hover
-			background-color: $red
-	&.scroll 
-		backdrop-filter: blur(15px)
-		&::before
-			opacity: .3
+			color: $white
+			background-color: color.adjust($white, $alpha: -.96)
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.15)
+			outline-offset: 3px
+		&[aria-current="page"]
+			color: $white
+			&::after
+				opacity: 1
+	&__chevron
+		flex-shrink: 0
+		transition: transform .3s ease, color .3s ease
+	&__services-toggle
+		font: inherit
+		color: color.adjust($white, $alpha: -.22)
+		text-align: left
+		&[aria-expanded="true"]
+			color: $white
+			.header-nav__chevron
+				transform: rotate(180deg)
+
+.header-actions
+	display: flex
+	align-items: center
+	gap: 12px
+	margin-left: auto
+	min-width: 0
+
+.header-search-toggle, .header-social
+	display: flex
+	align-items: center
+	justify-content: center
+	width: 44px
+	min-width: 44px
+	height: 44px
+	border: 1px solid color.adjust($white, $alpha: -.84)
+	color: color.adjust($white, $alpha: -.16)
+	transition: color .3s ease, border-color .3s ease, background-color .3s ease
+	&:hover
+		color: $orange
+		border-color: color.adjust($orange, $alpha: -.42)
+		background-color: color.adjust($white, $alpha: -.96)
+	&:focus-visible
+		outline: 2px solid color.adjust($orange, $alpha: -.15)
+		outline-offset: 3px
+
+.header-search-toggle
+	border-radius: 50%
+	&[aria-expanded="true"]
+		color: $orange
+		border-color: color.adjust($orange, $alpha: -.32)
+
+.header-phone
+	display: flex
+	align-items: center
+	min-height: 44px
+	padding: 0 4px
+	color: $white
+	font-size: 17px
+	font-weight: 600
+	line-height: 1
+	white-space: nowrap
+	transition: color .3s ease
+	&:hover
+		color: $orange
+	&:focus-visible
+		outline: 2px solid color.adjust($orange, $alpha: -.15)
+		outline-offset: 3px
+
+.header-socials
+	display: flex
+	align-items: center
+	gap: 8px
+	flex-shrink: 0
+
+.header-social
+	border-radius: 50%
+
+.header-cta
+	min-height: 46px
+	padding: 15px 28px
+	font-size: 16px
+	flex-shrink: 0
+	text-transform: none
+	span
+		text-transform: none
+	&:focus-visible
+		outline: 2px solid color.adjust($white, $alpha: -.08)
+		outline-offset: 3px
+
+.header-services-menu, .header-search-panel
+	position: absolute
+	top: calc(100% + 6px)
+	background: rgb(4, 12, 31)
+	border: 1px solid color.adjust($white, $alpha: -.88)
+	opacity: 0
+	visibility: hidden
+	pointer-events: none
+	transform: translateY(-8px)
+	transition: opacity .25s ease, transform .25s ease, visibility .25s ease
+	z-index: 5
+	&.is-open
+		opacity: 1
+		visibility: visible
+		pointer-events: auto
+		transform: translateY(0)
+
+.header-services-menu
+	left: 88px
+	right: auto
+	width: min(960px, calc(100vw - 48px))
+	padding: 20px
+	backdrop-filter: blur(10px)
+	&__layout
+		display: flex
+		align-items: stretch
+		gap: 18px
+	&__group
+		min-width: 0
+		&--primary
+			flex: 1 1 68%
+		&--secondary
+			flex: 0 1 32%
+			padding-left: 18px
+			border-left: 1px solid color.adjust($white, $alpha: -.9)
+	&__label
+		margin-bottom: 12px
+		color: color.adjust($white, $alpha: -.42)
+		font-size: 12px
+		font-weight: 700
+		line-height: 1.2
+		letter-spacing: .08em
+		text-transform: uppercase
+	&__primary-grid
+		display: flex
+		flex-wrap: wrap
+		gap: 8px
+	&__secondary-list
+		display: flex
+		flex-direction: column
+		gap: 0
+	&__link
+		display: flex
+		min-width: 0
+		flex-direction: column
+		gap: 8px
+		position: relative
+		color: $white
+		border-top: 1px solid color.adjust($white, $alpha: -.9)
+		background-color: transparent
+		transition: background-color .22s ease, color .22s ease
+		&--primary
+			flex: 1 1 calc(50% - 4px)
+			min-height: 106px
+			padding: 14px 36px 14px 12px
+		&--secondary
+			min-height: 70px
+			padding: 12px 32px 12px 0
+		&:hover, &:focus-visible
+			background-color: color.adjust($white, $alpha: -.96)
+			.header-services-menu__title
+				color: $white
+			.header-services-menu__arrow
+				color: $orange
+				transform: translateX(3px)
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.08)
+			outline-offset: 3px
+		&[aria-current="page"]
+			.header-services-menu__title
+				color: $orange
+	&__title
+		font-size: 17px
+		font-weight: 700
+		line-height: 1.2
+		transition: color .22s ease
+	&__text
+		color: color.adjust($white, $alpha: -.28)
+		font-size: 14px
+		line-height: 1.45
+	&__arrow
+		position: absolute
+		top: 15px
+		right: 12px
+		color: color.adjust($white, $alpha: -.52)
+		font-size: 16px
+		line-height: 1
+		transition: color .22s ease, transform .22s ease
+	&__cta
+		display: flex
+		align-items: center
+		justify-content: space-between
+		gap: 16px
+		margin-top: 14px
+		padding-top: 16px
+		border-top: 1px solid color.adjust($white, $alpha: -.9)
+		color: $orange
+		font-size: 15px
+		font-weight: 600
+		line-height: 1.35
+		transition: color .22s ease
+		&:hover
+			color: $white
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.15)
+			outline-offset: 4px
+
+.header-search-panel
+	left: 40px
+	right: 40px
+	padding: 16px 18px
+	backdrop-filter: blur(10px)
+
+.header-search-form
+	display: flex
+	align-items: center
+	gap: 10px
+	width: 100%
+	&__input
+		width: 100%
+		min-height: 54px
+		border-radius: 0
+		padding: 14px 16px
+		font-size: 18px
+		font-weight: 500
+		color: $white
+		background-color: color.adjust($white, $alpha: -.94)
+		border: 1px solid transparent
+		box-shadow: inset 0 -1px 0 color.adjust($white, $alpha: -.82)
+		&::placeholder
+			color: color.adjust($white, $alpha: -.4)
+			opacity: 1
+		&:focus-visible
+			outline: none
+			border-color: transparent
+			background-color: color.adjust($white, $alpha: -.92)
+			box-shadow: inset 0 0 0 2px color.adjust($orange, $alpha: -.28)
+	&__submit
+		min-height: 50px
+		padding: 0 22px
+		background-image: $gradient
+		color: $white
+		font-size: 15px
+		font-weight: 700
+		line-height: 1
+		white-space: nowrap
+		transition: filter .3s ease
+		&:hover
+			filter: brightness(1.08)
+		&:focus-visible
+			outline: 2px solid color.adjust($white, $alpha: -.08)
+			outline-offset: 3px
+	&__close
+		display: flex
+		align-items: center
+		justify-content: center
+		width: 46px
+		min-width: 46px
+		height: 46px
+		border: 0
+		background-color: transparent
+		color: color.adjust($white, $alpha: -.14)
+		transition: color .22s ease, background-color .22s ease
+		&:hover
+			color: $orange
+			background-color: color.adjust($white, $alpha: -.96)
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.15)
+			outline-offset: 3px
+
+.mobile-navigation-overlay
+	position: fixed
+	top: var(--header-height)
+	left: 0
+	right: 0
+	bottom: 0
+	background-color: rgba(0, 0, 0, .52)
+	opacity: 0
+	visibility: hidden
+	pointer-events: none
+	transition: opacity .25s ease, visibility .25s ease
+	z-index: 2
+	&.is-open
+		opacity: 1
+		visibility: visible
+		pointer-events: auto
+
+.mobile-navigation
+	position: fixed
+	top: var(--header-height)
+	right: 0
+	width: min(430px, calc(100vw - 24px))
+	height: calc(100dvh - var(--header-height))
+	max-height: calc(100dvh - var(--header-height))
+	overflow-x: hidden
+	overflow-y: auto
+	background: rgb(4, 12, 31)
+	border-left: 1px solid color.adjust($white, $alpha: -.86)
+	transform: translateX(100%)
+	opacity: 0
+	visibility: hidden
+	transition: transform .28s ease, opacity .28s ease, visibility .28s ease
+	z-index: 4
+	-webkit-overflow-scrolling: touch
+	&.is-open
+		transform: translateX(0)
+		opacity: 1
+		visibility: visible
+	&:focus-visible
+		outline: none
+	&__content
+		display: flex
+		flex-direction: column
+		gap: 26px
+		min-height: 0
+		padding: 28px 24px 32px
+	&__list, &__services
+		list-style: none
+		margin: 0
+		padding: 0
+	&__list
+		display: flex
+		flex-direction: column
+		gap: 6px
+		padding-bottom: 22px
+		border-bottom: 1px solid color.adjust($white, $alpha: -.9)
+	&__item
+		border-bottom: 0
+	&__link, &__service-link
+		display: flex
+		align-items: center
+		justify-content: space-between
+		gap: 14px
+		width: 100%
+		min-height: 52px
+		padding: 0 4px
+		color: color.adjust($white, $alpha: -.12)
+		font-size: 20px
+		font-weight: 600
+		line-height: 1.2
+		text-align: left
+		transition: color .3s ease, background-color .3s ease
+		&:hover
+			color: $white
+			background-color: color.adjust($white, $alpha: -.97)
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.15)
+			outline-offset: 3px
+		&[aria-current="page"]
+			color: $orange
+	&__services-toggle
+		svg
+			flex-shrink: 0
+			transition: transform .3s ease
+		&[aria-expanded="true"]
+			svg
+				transform: rotate(180deg)
+	&__services
+		max-height: 0
+		overflow: hidden
+		padding-left: 18px
+		transition: max-height .3s ease
+	&__service-link
+		min-height: 40px
+		padding: 0 4px
+		color: color.adjust($white, $alpha: -.28)
+		font-size: 16px
+		font-weight: 500
+	&__cta
+		width: 100%
+		min-height: 52px
+		font-size: 16px
+		text-transform: none
+		span
+			text-transform: none
+	&__contacts
+		display: flex
+		flex-direction: column
+		gap: 6px
+		margin-top: 0
+		padding-top: 18px
+		border-top: 1px solid color.adjust($white, $alpha: -.9)
+	&__contacts-title
+		margin-bottom: 4px
+		color: $white
+		font-size: 15px
+		font-weight: 700
+		line-height: 1.2
+	&__contact
+		display: flex
+		align-items: center
+		gap: 10px
+		min-height: 46px
+		padding: 0 6px
+		color: color.adjust($white, $alpha: -.24)
+		font-size: 15px
+		line-height: 1.25
+		transition: color .22s ease, background-color .22s ease
+		&--phone
+			color: $white
+			font-size: 18px
+			font-weight: 700
+		&--telegram
+			color: color.adjust($white, $alpha: -.1)
+		&:hover
+			color: $orange
+			background-color: color.adjust($white, $alpha: -.97)
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.15)
+			outline-offset: 3px
+	&__contact-icon
+		width: 18px
+		min-width: 18px
+		height: 18px
+		color: currentColor
+	&__contact-text
+		min-width: 0
+		overflow-wrap: anywhere
+
+@media (prefers-reduced-motion: reduce)
+	.header, .header *, .mobile-navigation, .mobile-navigation-overlay
+		transition-duration: .01ms !important
 
 .main
 	transition: background-color .3s ease
@@ -2472,6 +2856,88 @@ textarea
 				transform: translateY(1px)
 				border-color: color.adjust($accent, $alpha: -.15)
 				background-color: color.adjust($accent, $alpha: -.88)
+	.development-industries
+		scroll-margin-top: 120px
+		&__wrapper
+			display: flex
+			align-items: flex-start
+			justify-content: space-between
+			gap: 48px
+			padding: 36px 0 40px
+			border-top: 1px solid color.adjust($white, $alpha: -.86)
+			border-bottom: 1px solid color.adjust($white, $alpha: -.9)
+		&__intro
+			flex: 0 1 500px
+			max-width: 540px
+			min-width: 0
+		&__kicker
+			margin-bottom: 12px
+			color: $accent
+			font-size: 14px
+			font-weight: 700
+			line-height: 1.2
+		.h2
+			margin-bottom: 18px
+		&__description
+			color: color.adjust($white, $alpha: -.18)
+			font-size: 18px
+			line-height: 1.55
+			max-width: 700px
+		&__body
+			flex: 1 1 560px
+			min-width: 0
+			display: flex
+			flex-direction: column
+			align-items: flex-start
+			gap: 22px
+		&__list
+			display: flex
+			flex-wrap: wrap
+			align-items: flex-start
+			gap: 10px
+			width: 100%
+			margin: 0
+			padding: 0
+			list-style: none
+			li
+				display: flex
+				min-width: 0
+			span
+				display: inline-flex
+				align-items: center
+				min-height: 42px
+				max-width: 100%
+				padding: 9px 14px
+				border: 1px solid color.adjust($white, $alpha: -.78)
+				background-color: color.adjust($white, $alpha: -.97)
+				color: color.adjust($white, $alpha: -.12)
+				font-size: 15px
+				font-weight: 500
+				line-height: 1.3
+				overflow-wrap: anywhere
+		&__cta
+			display: inline-flex
+			align-items: center
+			justify-content: center
+			min-height: 46px
+			padding: 0 22px
+			border: 1px solid color.adjust($accent, $alpha: -.25)
+			background-color: color.adjust($accent, $alpha: -.9)
+			color: $white
+			font-size: 15px
+			font-weight: 700
+			line-height: 1.2
+			text-align: center
+			transition: color .25s ease, border-color .25s ease, background-color .25s ease
+			&:hover
+				border-color: $accent
+				background-color: color.adjust($accent, $alpha: -.84)
+				color: $white
+			&:focus-visible
+				outline: 2px solid color.adjust($orange, $alpha: -.08)
+				outline-offset: 4px
+			&:active
+				background-color: color.adjust($accent, $alpha: -.78)
 	.taxonomy--services-catalog
 		&__head
 			max-width: 820px

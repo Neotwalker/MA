@@ -9,11 +9,26 @@ document.addEventListener("DOMContentLoaded", () => {
 	const topButton = document.querySelector('.top');
 	const modalGeneral = document.querySelector('#modal_general');
 	const modalSend = document.querySelector('#modal_send') || document.querySelector('.modal--send');
+	const servicesToggle = document.querySelector('.header-nav__services-toggle');
+	const servicesMenu = document.querySelector('#header-services-menu');
+	const searchToggle = document.querySelector('.header-search-toggle');
+	const searchPanel = document.querySelector('#header-search-panel');
+	const searchInput = document.querySelector('#header-search-input');
+	const searchClose = document.querySelector('.header-search-form__close');
 	const burgerMenu = document.querySelector('.burger');
-	const headerMenu = document.querySelector('.header--menu');
-	const menu = headerMenu ? headerMenu.querySelector('.menu') : null;
+	const mobileNavigation = document.querySelector('#mobile-navigation');
+	const mobileNavigationOverlay = document.querySelector('.mobile-navigation-overlay');
+	const mobileServicesToggle = document.querySelector('.mobile-navigation__services-toggle');
+	const mobileServicesList = document.querySelector('#mobile-services-list');
 
 	let activeModal = null;
+	let isMobileNavigationOpen = false;
+	const mobileScrollState = {
+		locked: false,
+		scrollY: 0,
+		headerPaddingRight: '',
+		bodyPaddingRight: '',
+	};
 	const modalScrollState = {
 		locked: false,
 		scrollY: 0,
@@ -85,26 +100,44 @@ document.addEventListener("DOMContentLoaded", () => {
 	const getScrollbarWidth = () => window.innerWidth - document.documentElement.clientWidth;
 	function isAnythingOverlayOpen() {
 		return (
-			hasClass(headerMenu, 'open') ||
+			isMobileNavigationOpen ||
 			Boolean(activeModal)
 		);
 	}
 	function lockScroll() {
-		if (!isAnythingOverlayOpen()) return;
+		if (!isMobileNavigationOpen || mobileScrollState.locked) return;
 		const scrollbarWidth = getScrollbarWidth();
+		mobileScrollState.scrollY = window.scrollY || window.pageYOffset || 0;
+		mobileScrollState.headerPaddingRight = header?.style.paddingRight || '';
+		mobileScrollState.bodyPaddingRight = body.style.paddingRight || '';
 		docEl.classList.add('overflow');
 		if (scrollbarWidth > 0 && header) {
 			header.style.paddingRight = `${scrollbarWidth}px`;
 			body.style.paddingRight = `${scrollbarWidth}px`;
 		}
+		mobileScrollState.locked = true;
 	}
-	function unlockScrollIfFree() {
+	function unlockScrollIfFree(options = {}) {
+		const { restoreScroll = true } = options;
 		if (isAnythingOverlayOpen()) return;
+		const { scrollY, headerPaddingRight, bodyPaddingRight } = mobileScrollState;
+		const previousScrollBehavior = docEl.style.scrollBehavior;
 		docEl.classList.remove('overflow');
 		if (header) {
-			header.style.paddingRight = '';
+			header.style.paddingRight = headerPaddingRight || '';
 		}
-		body.style.paddingRight = '';
+		body.style.paddingRight = bodyPaddingRight || '';
+		if (mobileScrollState.locked && restoreScroll) {
+			docEl.style.scrollBehavior = 'auto';
+			window.scrollTo(0, scrollY);
+			requestAnimationFrame(() => {
+				docEl.style.scrollBehavior = previousScrollBehavior || '';
+			});
+		}
+		mobileScrollState.locked = false;
+		mobileScrollState.scrollY = 0;
+		mobileScrollState.headerPaddingRight = '';
+		mobileScrollState.bodyPaddingRight = '';
 	}
 
 	// ---------- MODALS ----------
@@ -165,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 		modalScrollState.locked = false;
 
-		if (hasClass(headerMenu, 'open')) {
+		if (isMobileNavigationOpen) {
 			lockScroll();
 		} else {
 			docEl.classList.remove('overflow');
@@ -203,16 +236,26 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
+	function focusAfterPaint(element) {
+		if (!element) return;
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				focusWithoutScroll(element);
+				window.setTimeout(() => {
+					if (document.activeElement !== element) {
+						focusWithoutScroll(element);
+					}
+				}, 60);
+			});
+		});
+	}
+
 	function focusModalWrapper(modal) {
 		const wrapper = modal?.querySelector('.modal--wrapper');
 		if (wrapper && !wrapper.hasAttribute('tabindex')) {
 			wrapper.setAttribute('tabindex', '-1');
 		}
-		requestAnimationFrame(() => {
-			requestAnimationFrame(() => {
-				focusWithoutScroll(wrapper || modal);
-			});
-		});
+		focusAfterPaint(wrapper || modal);
 	}
 
 	function openModal(modal) {
@@ -279,6 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				const target = getModalTarget(trigger);
 				if (!target) return;
 				e.preventDefault();
+				closeHeaderLayers({ beforeModal: true });
 				openModal(target);
 			});
 		});
@@ -309,107 +353,288 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-	function openMenu() {
-		if (!burgerMenu || !headerMenu || !menu) return;
-		header.classList.add('open-menu');
-		headerMenu.classList.add('open');
-		burgerMenu.classList.add('active');
-		menu.classList.add('active');
-		lockScroll();
-	}
-	function closeMenu() {
-		if (!burgerMenu || !headerMenu || !menu) return;
-
-		header.classList.remove('open-menu');
-		headerMenu.classList.remove('open');
-		burgerMenu.classList.remove('active');
-		menu.classList.remove('active');
-
-		unlockScrollIfFree();
+	function closeServicesDropdown() {
+		if (!servicesToggle || !servicesMenu) return;
+		servicesToggle.setAttribute('aria-expanded', 'false');
+		servicesMenu.setAttribute('aria-hidden', 'true');
+		servicesMenu.setAttribute('inert', '');
+		servicesMenu.classList.remove('is-open');
+		header?.classList.remove('header--services-open');
 	}
 
-	if (burgerMenu && headerMenu && menu) {
-		burgerMenu.addEventListener('click', e => {
-			e.stopPropagation();
-			if (hasClass(headerMenu, 'open')) {
-				closeMenu();
-			} else {
-				openMenu();
-			}
-		});
+	function openServicesDropdown() {
+		if (!servicesToggle || !servicesMenu) return;
+		closeSearchPanel();
+		closeMobileNavigation();
+		servicesToggle.setAttribute('aria-expanded', 'true');
+		servicesMenu.setAttribute('aria-hidden', 'false');
+		servicesMenu.removeAttribute('inert');
+		servicesMenu.classList.add('is-open');
+		header?.classList.add('header--services-open');
 	}
 
-	// ---------- MENU SUBMENU HANDLING ----------
-	const isMobileMenu = () => window.innerWidth <= 1200;
-	function resetSubMenus() {
-		if (!headerMenu) return;
-
-		qsa('.menu-item-has-children', headerMenu).forEach(li => {
-			li.classList.remove('open-submenu');
-
-			const sub = li.querySelector('.sub-menu');
-			if (sub) {
-				sub.style.maxHeight = '';
-				sub.classList.remove('active');
-			}
-		});
-	}
-	function toggleSubMenu(li) {
-		const sub = li.querySelector('.sub-menu');
-		if (!sub) return;
-
-		const isOpen = li.classList.toggle('open-submenu');
-
-		if (isOpen) {
-			sub.classList.add('active');
-			sub.style.maxHeight = sub.scrollHeight + 'px';
-
-			let parent = li.parentElement;
-			while (parent && parent !== headerMenu) {
-				if (parent.classList?.contains('sub-menu')) {
-					parent.style.maxHeight = 'none';
-				}
-				parent = parent.parentElement;
-			}
+	function toggleServicesDropdown() {
+		if (servicesToggle?.getAttribute('aria-expanded') === 'true') {
+			closeServicesDropdown();
 		} else {
-			sub.style.maxHeight = '';
-			sub.classList.remove('active');
+			openServicesDropdown();
 		}
 	}
-	function initSubMenus() {
-		if (!headerMenu) return;
 
-		qsa('.menu-item-has-children', headerMenu).forEach(li => {
-			if (!li.querySelector('.submenu-toggle')) {
-				const toggle = document.createElement('span');
-				toggle.className = 'submenu-toggle';
-				li.appendChild(toggle);
-			}
+	function closeSearchPanel() {
+		if (!searchToggle || !searchPanel) return;
+		searchToggle.setAttribute('aria-expanded', 'false');
+		searchToggle.setAttribute('aria-label', 'Открыть поиск');
+		searchPanel.setAttribute('aria-hidden', 'true');
+		searchPanel.setAttribute('inert', '');
+		searchPanel.classList.remove('is-open');
+		header?.classList.remove('header--search-open');
+	}
 
-			if (li.dataset.submenuInited === '1') return;
-			li.dataset.submenuInited = '1';
+	function openSearchPanel() {
+		if (!searchToggle || !searchPanel) return;
+		closeServicesDropdown();
+		closeMobileNavigation();
+		searchToggle.setAttribute('aria-expanded', 'true');
+		searchToggle.setAttribute('aria-label', 'Закрыть поиск');
+		searchPanel.setAttribute('aria-hidden', 'false');
+		searchPanel.removeAttribute('inert');
+		searchPanel.classList.add('is-open');
+		header?.classList.add('header--search-open');
+		focusAfterPaint(searchInput);
+	}
 
-			li.querySelector('.submenu-toggle').addEventListener('click', e => {
-				if (!isMobileMenu()) return;
+	function toggleSearchPanel() {
+		if (searchToggle?.getAttribute('aria-expanded') === 'true') {
+			closeSearchPanel();
+		} else {
+			openSearchPanel();
+		}
+	}
 
-				e.preventDefault();
-				e.stopPropagation();
+	function closeMobileServices() {
+		if (!mobileServicesToggle || !mobileServicesList) return;
+		mobileServicesToggle.setAttribute('aria-expanded', 'false');
+		mobileServicesList.setAttribute('aria-hidden', 'true');
+		mobileServicesList.setAttribute('inert', '');
+		mobileServicesList.classList.remove('is-open');
+		mobileServicesList.style.maxHeight = '';
+	}
 
-				toggleSubMenu(li);
+	function openMobileServices() {
+		if (!mobileServicesToggle || !mobileServicesList) return;
+		mobileServicesToggle.setAttribute('aria-expanded', 'true');
+		mobileServicesList.setAttribute('aria-hidden', 'false');
+		mobileServicesList.removeAttribute('inert');
+		mobileServicesList.classList.add('is-open');
+		mobileServicesList.style.maxHeight = `${mobileServicesList.scrollHeight}px`;
+	}
+
+	function toggleMobileServices() {
+		if (mobileServicesToggle?.getAttribute('aria-expanded') === 'true') {
+			closeMobileServices();
+		} else {
+			openMobileServices();
+		}
+	}
+
+	function openMobileNavigation() {
+		if (!burgerMenu || !mobileNavigation) return;
+		closeServicesDropdown();
+		closeSearchPanel();
+		isMobileNavigationOpen = true;
+		header?.classList.add('open-menu');
+		burgerMenu.classList.add('active');
+		burgerMenu.setAttribute('aria-expanded', 'true');
+		burgerMenu.setAttribute('aria-label', 'Закрыть меню');
+		mobileNavigation.setAttribute('aria-hidden', 'false');
+		mobileNavigation.removeAttribute('inert');
+		mobileNavigation.classList.add('is-open');
+		mobileNavigationOverlay?.classList.add('is-open');
+		lockScroll();
+		const preferredFocusable = mobileServicesToggle || getFocusableElements(mobileNavigation)[0];
+		focusAfterPaint(preferredFocusable || mobileNavigation);
+	}
+
+	function closeMobileNavigation(options = {}) {
+		const { restoreScroll = true } = options;
+		if (!burgerMenu || !mobileNavigation || !isMobileNavigationOpen) return;
+		if (mobileNavigation.contains(document.activeElement)) {
+			document.activeElement.blur();
+		}
+		isMobileNavigationOpen = false;
+		header?.classList.remove('open-menu');
+		burgerMenu.classList.remove('active');
+		burgerMenu.setAttribute('aria-expanded', 'false');
+		burgerMenu.setAttribute('aria-label', 'Открыть меню');
+		closeMobileServices();
+		mobileNavigation.classList.remove('is-open');
+		mobileNavigation.setAttribute('aria-hidden', 'true');
+		mobileNavigation.setAttribute('inert', '');
+		mobileNavigationOverlay?.classList.remove('is-open');
+		unlockScrollIfFree({ restoreScroll });
+	}
+
+	function closeHeaderLayers(options = {}) {
+		const { beforeModal = false } = options;
+		closeServicesDropdown();
+		closeSearchPanel();
+		closeMobileNavigation({ restoreScroll: !beforeModal });
+	}
+
+	function trapMobileNavigationFocus(event) {
+		if (!isMobileNavigationOpen || activeModal || event.key !== 'Tab') return;
+		const focusable = getFocusableElements(mobileNavigation);
+		if (!focusable.length) {
+			event.preventDefault();
+			focusWithoutScroll(mobileNavigation);
+			return;
+		}
+
+		const first = focusable[0];
+		const last = focusable[focusable.length - 1];
+		const current = document.activeElement;
+
+		if (event.shiftKey && (current === first || current === mobileNavigation || !mobileNavigation.contains(current))) {
+			event.preventDefault();
+			last.focus({ preventScroll: true });
+			return;
+		}
+
+		if (!event.shiftKey && (current === last || current === mobileNavigation || !mobileNavigation.contains(current))) {
+			event.preventDefault();
+			first.focus({ preventScroll: true });
+		}
+	}
+
+	function handleToggleKey(event, callback) {
+		if (event.key !== 'Enter' && event.key !== ' ' && event.key !== 'Spacebar') return;
+		event.preventDefault();
+		event.stopPropagation();
+		callback();
+	}
+
+	if (servicesToggle && servicesMenu) {
+		servicesToggle.addEventListener('keydown', e => {
+			handleToggleKey(e, toggleServicesDropdown);
+		});
+		servicesToggle.addEventListener('click', e => {
+			e.stopPropagation();
+			toggleServicesDropdown();
+		});
+		servicesMenu.addEventListener('click', e => {
+			e.stopPropagation();
+		});
+		qsa('a[href]', servicesMenu).forEach(link => {
+			link.addEventListener('click', () => {
+				if (link.classList.contains('modal--open')) return;
+				closeServicesDropdown();
 			});
 		});
 	}
-	// Инициализация
-	initSubMenus();
 
-	
+	if (searchToggle && searchPanel) {
+		searchToggle.addEventListener('keydown', e => {
+			handleToggleKey(e, toggleSearchPanel);
+		});
+		searchToggle.addEventListener('click', e => {
+			e.stopPropagation();
+			toggleSearchPanel();
+		});
+		searchPanel.addEventListener('click', e => {
+			e.stopPropagation();
+		});
+		searchClose?.addEventListener('click', () => {
+			closeSearchPanel();
+		});
+	}
+
+	if (burgerMenu && mobileNavigation) {
+		burgerMenu.addEventListener('keydown', e => {
+			handleToggleKey(e, () => {
+				if (isMobileNavigationOpen) {
+					closeMobileNavigation();
+				} else {
+					openMobileNavigation();
+				}
+			});
+		});
+		burgerMenu.addEventListener('click', e => {
+			e.stopPropagation();
+			if (isMobileNavigationOpen) {
+				closeMobileNavigation();
+			} else {
+				openMobileNavigation();
+			}
+		});
+		mobileNavigation.addEventListener('click', e => {
+			e.stopPropagation();
+		});
+		mobileNavigationOverlay?.addEventListener('click', () => {
+			closeMobileNavigation();
+		});
+	}
+
+	mobileServicesToggle?.addEventListener('click', e => {
+		e.preventDefault();
+		toggleMobileServices();
+	});
+	mobileServicesToggle?.addEventListener('keydown', e => {
+		handleToggleKey(e, toggleMobileServices);
+	});
+
+	qsa('a[href]', mobileNavigation).forEach(link => {
+		link.addEventListener('click', () => {
+			if (link.classList.contains('modal--open')) return;
+			const href = link.getAttribute('href') || '';
+			if (!href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+				closeMobileNavigation();
+			}
+		});
+	});
+
+	document.addEventListener('click', e => {
+		if (activeModal) return;
+		if (servicesMenu?.classList.contains('is-open') && !servicesMenu.contains(e.target) && !servicesToggle?.contains(e.target)) {
+			closeServicesDropdown();
+		}
+		if (searchPanel?.classList.contains('is-open') && !searchPanel.contains(e.target) && !searchToggle?.contains(e.target)) {
+			closeSearchPanel();
+		}
+	});
+
+	document.addEventListener('keydown', e => {
+		if (activeModal) return;
+		if (e.key === 'Tab') {
+			trapMobileNavigationFocus(e);
+			return;
+		}
+		if (e.key !== 'Escape') return;
+
+		if (isMobileNavigationOpen) {
+			e.preventDefault();
+			closeMobileNavigation();
+			return;
+		}
+		if (searchPanel?.classList.contains('is-open')) {
+			e.preventDefault();
+			closeSearchPanel();
+			return;
+		}
+		if (servicesMenu?.classList.contains('is-open')) {
+			e.preventDefault();
+			closeServicesDropdown();
+		}
+	});
+
 	window.addEventListener('resize', () => {
-		// При ресайзе чистим неправильные состояния
-		if (window.innerWidth > 1200) {
-			resetSubMenus();
-			if (menu) menu.classList.remove('active');
-		} else if (headerMenu && hasClass(headerMenu, 'open') && menu) {
-			menu.classList.add('active');
+		if (window.innerWidth >= 1200) {
+			closeMobileNavigation({ restoreScroll: false });
+		} else {
+			closeServicesDropdown();
+		}
+		if (mobileServicesList?.classList.contains('is-open')) {
+			mobileServicesList.style.maxHeight = `${mobileServicesList.scrollHeight}px`;
 		}
 	});
 	// Input Name Validation

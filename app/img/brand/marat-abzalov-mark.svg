@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="72 72 368 368" role="img" aria-labelledby="title desc">
+  <title id="title">Логотип MA</title>
+  <desc id="desc">Минималистичная монограмма из букв M и A</desc>
+  <g fill="#fff">
+    <!-- M -->
+    <path d="M96 112h56l104 124 104-124h56v288l-56-62V207L256 336 152 207v131l-56 62V112z"/>
+    <!-- A -->
+    <path d="M256 226 104 416h66l31-42h110l31 42h66L256 226zm0 72 32 44h-64l32-44z"/>
+  </g>
+</svg>

@@ -80,6 +80,10 @@
 			display: flex
 			font-size: 14px
 			text-transform: uppercase
+	.header-cta, .mobile-navigation__cta
+		text-transform: none
+		span
+			text-transform: none
 	.politic
 		font-size: 16px
 	.custom
@@ -520,172 +524,6 @@
 					margin-right: auto
 
 @media (max-width : 1200px)
-	.burger
-		display: flex
-	.menu
-		width: 100%
-	.header
-		height: auto
-		&--wrapper 
-			padding-top: 20px
-			padding-bottom: 20px
-			height: auto
-		&--menu
-			position: fixed
-			top: 86.5px
-			left: 0
-			width: 100%
-			margin: 0
-			display: flex
-			flex-direction: column
-			align-items: flex-start
-			justify-content: flex-start
-			gap: 20px
-			padding-left: 24px
-			padding-right: 24px
-			height: 0
-			opacity: 0
-			overflow: hidden
-			visibility: hidden
-			transition: all .3s ease
-			min-height: 0
-			max-height: 0
-			li
-				width: 100%
-				display: flex
-				align-items: center
-				justify-content: space-between
-				gap: 10px
-				border-bottom: none
-				a
-					padding: 15px 0
-			.menu 
-				overflow: hidden
-				flex-direction: column
-				gap: 0
-				transition: all .3s ease
-				max-height: fit-content
-				li
-					&:not(:last-child)
-						border-bottom: 1px solid color.adjust($white, $alpha: -.8)
-				> li
-					align-items: flex-start
-					height: initial
-					> a
-						border-bottom: none !important
-				&:not(.menu-item-has-children)
-					a
-						width: 100%
-				.menu-item-has-children
-					flex-direction: column
-					gap: 0
-					align-items: flex-start
-					cursor: pointer
-					touch-action: manipulation
-					&::after
-						display: none
-					> .submenu-toggle
-							position: absolute
-							z-index: 1
-							top: 0
-							right: 0
-							margin: auto
-							width: 50px
-							height: 54px
-							background-color: $blockGlass
-							background-image: url('data:image/svg+xml,<svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6C5.76325 5.99413 5.54679 5.91781 5.37091 5.75342L0.229988 1.18591C0.081172 1.05675 0 0.892368 0 0.69863C0 0.311155 0.351748 0 0.798196 0C1.01466 0 1.22435 0.0763209 1.37993 0.21135L5.99324 4.32681L10.6201 0.21135C10.7756 0.0821918 10.9786 0 11.2018 0C11.6483 0 12 0.311155 12 0.69863C12 0.892368 11.9188 1.05675 11.77 1.18591L6.62232 5.75342C6.43968 5.91781 6.23675 6 6 6Z" fill="white"/></svg>')
-							background-size: 12px 6px
-							background-repeat: no-repeat
-							background-position: center center
-							transform: rotate(-90deg)
-							transition: transform .3s ease
-					.sub-menu
-						max-height: 0
-						padding: 0
-						background-color: initial
-						backdrop-filter: initial
-						width: 100%
-						position: relative
-						top: 0 !important
-						left: 0 !important
-						border-left: none !important
-						overflow: hidden
-						gap: 0
-						border: none
-						border-top: 1px solid transparent
-						border-bottom: 1px solid transparent
-						visibility: visible
-						&.active 
-							border-color: $white
-							visibility: visible
-							opacity: 1
-						li
-							padding: 0
-							ul
-								padding: 0
-								left: 0
-								top: 0
-								border-left: none
-								li
-									padding: 0
-								a
-									font-size: 16px
-					> a
-						z-index: 0
-					&:hover
-						&:after
-							transform: rotate(-90deg)
-					&.active, &.open-submenu
-						> .submenu-toggle
-							transform: rotate(0deg) !important
-				> .menu-item-has-children
-					&::after
-						display: none
-					.submenu-toggle
-						position: absolute
-						top: 0
-						right: 0
-						margin: auto
-					> .sub-menu 
-						.menu-item-has-children
-							.sub-menu
-								background-color: initial
-								&.active 
-									border-top: 1px solid $white
-									border-bottom: 1px solid $white
-							&:hover
-								&:after
-									transform: rotate(-90deg)
-			.button
-				margin-left: 0
-			&.open 
-				background-color: $black
-				border: none
-				height: auto
-				min-height: calc(100vh - 87.5px)
-				max-height: calc(100vh - 87.5px)
-				overflow-x: hidden
-				overflow-y: auto
-				padding-bottom: 20px
-				opacity: 1
-				visibility: visible
-				.menu
-					margin-top: 0
-					margin-bottom: 0
-					border-color: $white
-					overflow: initial
-		&--contacts 
-			display: flex
-			flex-direction: column
-			gap: 20px
-			transition: margin-bottom .3s ease
-		.social 
-			li
-				width: 40px
-				a
-					padding: 0
-		&.open-menu 
-			background-color: $black
 	.main
 		> * 
 			&:first-child
@@ -1156,6 +994,17 @@
 			&__item
 				flex-basis: calc((100% - 24px) / 2)
 				max-width: calc((100% - 24px) / 2)
+		.development-industries
+			scroll-margin-top: 104px
+			&__wrapper
+				flex-direction: column
+				gap: 28px
+			&__intro
+				flex-basis: auto
+				max-width: 760px
+			&__body
+				flex-basis: auto
+				width: 100%
 		.taxonomy--services-catalog
 			&__groups
 				gap: 48px
@@ -1380,6 +1229,22 @@
 				font-size: 24px
 			&__link
 				font-size: 14px
+		.development-industries
+			&__wrapper
+				gap: 24px
+				padding: 30px 0 34px
+			&__kicker
+				margin-bottom: 10px
+			.h2
+				margin-bottom: 14px
+			&__description
+				font-size: 16px
+			&__list
+				gap: 8px
+			span
+				min-height: 40px
+				padding: 8px 12px
+				font-size: 14px
 		.taxonomy--services-catalog
 			&__head
 				margin-bottom: 34px
@@ -1447,6 +1312,8 @@
 				min-height: fit-content
 				flex-basis: 100%
 				max-width: 100%
+		.development-industries
+			scroll-margin-top: 88px
 		.taxonomy--services-catalog
 			&__groups
 				gap: 36px
@@ -2339,6 +2206,18 @@
 			&__link
 				width: 100%
 				justify-content: space-between
+		.development-industries
+			&__wrapper
+				padding: 26px 0 30px
+			&__list
+				flex-direction: column
+				align-items: stretch
+				li
+					width: 100%
+			span
+				width: 100%
+			&__cta
+				width: 100%
 		.taxonomy--services-link
 			gap: 12px
 			padding-left: 14px
@@ -2390,6 +2269,209 @@
 	.taxonomy--services .item--tags .tag
 		padding: 5px 10px
 
-@media (hover: hover)
-	.menu-item-has-children:hover .sub-menu
-		display: block
+@media (max-width : 1440px)
+	.header
+		--header-height: 84px
+		&__inner
+			gap: 22px
+	.header-brand
+		width: 52px
+		min-width: 52px
+		height: 52px
+		&__image
+			width: 48px
+			height: 48px
+			max-width: 48px
+			max-height: 48px
+	.header-nav
+		&__list
+			gap: 2px
+		&__link
+			padding-left: 10px
+			padding-right: 10px
+			font-size: 15px
+			&::after
+				left: 10px
+				right: 10px
+	.header-actions
+		gap: 10px
+	.header-socials
+		display: none
+	.header-phone
+		font-size: 16px
+	.header-cta
+		padding-left: 24px
+		padding-right: 24px
+	.header-services-menu
+		left: 72px
+		width: min(920px, calc(100vw - 48px))
+
+@media (max-width : 1280px)
+	.header
+		&__inner
+			gap: 16px
+	.header-nav
+		&__link
+			padding-left: 8px
+			padding-right: 8px
+			font-size: 14px
+			&::after
+				left: 8px
+				right: 8px
+	.header-actions
+		gap: 8px
+	.header-phone
+		font-size: 15px
+	.header-cta
+		padding-left: 20px
+		padding-right: 20px
+	.header-services-menu
+		left: 64px
+		width: min(860px, calc(100vw - 40px))
+		padding: 18px
+		&__layout
+			gap: 16px
+		&__group
+			&--secondary
+				padding-left: 16px
+		&__link
+			&--primary
+				min-height: 112px
+				padding-right: 34px
+
+@media (min-width : 1200px)
+	.header
+		height: var(--header-height)
+		max-height: var(--header-height)
+		&__inner
+			min-height: var(--header-height)
+			height: var(--header-height)
+	.burger
+		display: none !important
+
+@media (max-width : 1199px)
+	.header
+		--header-height: 76px
+		height: var(--header-height)
+		max-height: var(--header-height)
+		&__inner
+			min-height: var(--header-height)
+			height: var(--header-height)
+			gap: 14px
+	.header-brand
+		width: 50px
+		min-width: 50px
+		height: 50px
+		&__image
+			width: 46px
+			height: 46px
+			max-width: 46px
+			max-height: 46px
+	.header-nav, .header-phone, .header-socials, .header-cta
+		display: none
+	.header-actions
+		margin-left: auto
+		gap: 10px
+	.header-search-toggle, .burger
+		display: flex
+		width: 46px
+		min-width: 46px
+		height: 46px
+	.header-services-menu
+		display: none
+	.header-search-panel
+		left: 40px
+		right: 40px
+		top: calc(var(--header-height) + 10px)
+	.mobile-navigation-overlay
+		top: var(--header-height)
+	.mobile-navigation
+		top: var(--header-height)
+		height: calc(100dvh - var(--header-height))
+		max-height: calc(100dvh - var(--header-height))
+
+@media (max-width : 767px)
+	.header
+		--header-height: 66px
+		height: var(--header-height)
+		max-height: var(--header-height)
+		.container
+			.row
+				padding-left: 16px
+				padding-right: 16px
+		&__inner
+			min-height: var(--header-height)
+			height: var(--header-height)
+	.header-brand
+		width: 44px
+		min-width: 44px
+		height: 44px
+		&__image
+			width: 42px
+			height: 42px
+			max-width: 42px
+			max-height: 42px
+	.header-actions
+		gap: 8px
+	.header-search-toggle, .burger
+		width: 44px
+		min-width: 44px
+		height: 44px
+	.header-search-panel
+		left: 16px
+		right: 16px
+		padding: 14px
+	.header-search-form
+		gap: 8px
+		flex-wrap: wrap
+		&__input
+			order: 1
+			flex: 1 1 calc(100% - 56px)
+			min-height: 48px
+			padding: 12px 14px
+			font-size: 16px
+		&__submit
+			order: 3
+			flex: 1 1 100%
+			min-height: 48px
+			padding-left: 18px
+			padding-right: 18px
+		&__close
+			order: 2
+			flex: 0 0 48px
+			width: 48px
+			min-width: 48px
+			height: 48px
+	.mobile-navigation
+		width: calc(100vw - 20px)
+		right: 0
+		&__content
+			gap: 24px
+			padding: 22px 20px 28px
+		&__link
+			font-size: 19px
+		&__service-link
+			font-size: 15px
+		&__contact
+			font-size: 14px
+			&--phone
+				font-size: 17px
+
+@media (max-width : 390px)
+	.header-search-form
+		&__input
+			flex-basis: calc(100% - 56px)
+		&__submit
+			flex-basis: 100%
+		&__close
+			flex: 0 0 48px
+	.mobile-navigation
+		width: calc(100vw - 16px)
+		&__content
+			padding-left: 16px
+			padding-right: 16px
+		&__contact
+			padding-left: 4px
+			padding-right: 4px
+		&__contact--email
+			font-size: 13px

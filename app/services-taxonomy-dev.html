@@ -83,116 +83,155 @@
 	<header class="header">
 		<div class="container">
 			<div class="row">
-				<div class="header--wrapper">
-					<a class="header--logo" title="Limitless Creators - логотип" href="index.html">
-						<img src="img/logo/logo.png" class="img-responsive logo--black" alt="Limitless Creators - Комплексная разработка и продвижение сайтов">
+				<div class="header__inner">
+					<a class="header-brand" href="index.html" aria-label="Марат Абзалов — перейти на главную страницу">
+						<img class="header-brand__image" src="img/brand/marat-abzalov-mark.svg" alt="" width="52" height="52">
 					</a>
-					<nav class="header--menu">
-						<ul id="menu-shapka" class="menu">
-							<li id="menu-item-38" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-2 current_page_item menu-item-38">
-								<a href="index.html" aria-current="page">Главная</a>
+					<nav class="header-nav" aria-label="Основная навигация">
+						<ul class="header-nav__list">
+							<li class="header-nav__item">
+								<button class="header-nav__link header-nav__services-toggle" type="button" aria-expanded="false" aria-controls="header-services-menu" aria-current="page">
+									<span>Услуги</span>
+									<svg class="header-nav__chevron" width="12" height="8" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+										<path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+									</svg>
+								</button>
 							</li>
-							<li id="menu-item-49" class="menu-item menu-item-type-post_type_archive menu-item-object-services menu-item-has-children menu-item-49">
-								<a href="services.html">Услуги</a>
-								<ul class="sub-menu">
-									<li id="menu-item-3953" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3953">
-										<a href="services-taxonomy-dev.html">Разработка</a>
-										<ul class="sub-menu">
-											<li id="menu-item-3957" class="menu-item menu-item-type-post_type menu-item-object-services menu-item-3957">
-												<a href="services-single.html">Landing Page</a>
-											</li>
-											<li id="menu-item-3958" class="menu-item menu-item-type-post_type menu-item-object-services menu-item-3958">
-												<a href="http://limitlesscreators/services/razrabotka-internet-portala-pod-klyuch/?swcfpc=1">Разработка интернет-портала</a>
-											</li>
-											<li id="menu-item-3959" class="menu-item menu-item-type-post_type menu-item-object-services menu-item-3959">
-												<a href="http://limitlesscreators/services/marketplace/?swcfpc=1">Разработка маркетплейса</a>
-											</li>
-											<li id="menu-item-3960" class="menu-item menu-item-type-post_type menu-item-object-services menu-item-3960">
-												<a href="services-single.html">Разработка промо‑сайта</a>
-											</li>
-											<li id="menu-item-3961" class="menu-item menu-item-type-post_type menu-item-object-services menu-item-3961">
-												<a href="services-single.html">Сайт на конструкторе</a>
-											</li>
-											<li id="menu-item-3962" class="menu-item menu-item-type-post_type menu-item-object-services menu-item-3962">
-												<a href="services-single.html">Сайт под ключ</a>
-											</li>
-											<li id="menu-item-3963" class="menu-item menu-item-type-post_type menu-item-object-services menu-item-3963">
-												<a href="services-single.html">Сайт-визитка</a>
-											</li>
-										</ul>
-									</li>
-									<li id="menu-item-3954" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3954">
-										<a href="#">Дизайн</a>
-									</li>
-									<li id="menu-item-3955" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3955">
-										<a href="services-taxonomy-seo.html">Продвижение</a>
-									</li>
-									<li id="menu-item-3956" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3956">
-										<a href="#">Готовые решения</a>
-									</li>
-								</ul>
-							</li>
-							<li id="menu-item-3942" class="menu-item menu-item-type-post_type_archive menu-item-object-cases menu-item-3942">
-								<a href="archive-case.html">Проекты</a>
-							</li>
-							<li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43">
-								<a href="faq.html">FAQ</a>
-							</li>
-							<li id="menu-item-40" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40">
-								<a href="contacts.html">Контакты</a>
-							</li>
-							<li>
-								<a href="archive-articles.html">Статьи</a>
-							</li>
+							<li class="header-nav__item"><a class="header-nav__link" href="archive-case.html">Портфолио</a></li>
+							<li class="header-nav__item"><a class="header-nav__link" href="archive-articles.html">Статьи</a></li>
+							<li class="header-nav__item"><a class="header-nav__link" href="faq.html">FAQ</a></li>
+							<li class="header-nav__item"><a class="header-nav__link" href="contacts.html">Контакты</a></li>
 						</ul>
-						<a href="#modal_general" class="header--button button button--gradient modal--open mobile" data-modal-target="#modal_general">
-							<span>Оставить заявку</span>
-						</a>
-						<div class="header--contacts">
-							<a href="tel:+79617968186">+7(961)796-81-86</a>
-							<a href="mailto:limitlesscreatorsweb@gmail.com" target="_blank">limitlesscreatorsweb@gmail.com</a>
-							<ul class="social">
-								<li>
-									<a href="//t.me/neotwalker_WebDev" target="_blank" title="Telegram">
-										<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M20 0C8.95097 0 0 8.95226 0 20C0 31.0477 8.95226 40 20 40C31.049 40 40 31.0477 40 20C40 8.95226 31.0477 0 20 0ZM29.8232 13.7019L26.5406 29.1703C26.2981 30.2671 25.6452 30.5329 24.7342 30.0168L19.7342 26.3316L17.3226 28.6542C17.0568 28.92 16.831 29.1458 16.3148 29.1458L16.6697 24.0568L25.9355 15.6852C26.3394 15.3303 25.8465 15.129 25.3135 15.4839L13.8619 22.6929L8.92645 21.1523C7.85419 20.8142 7.82968 20.08 9.15226 19.5639L28.4348 12.1277C29.3303 11.8052 30.1123 12.3458 29.8219 13.7006L29.8232 13.7019Z" fill="white"></path>
-										</svg>
-									</a>
-								</li>
-								<li>
-									<a href="https://api.whatsapp.com/send?phone=79617968186" target="_blank" title="Whatsapp">
-										<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M37.0085 9.24977C31.025 -0.000306019 18.8087 -2.75033 9.33481 2.99972C0.110229 8.74976 -2.88153 21.2499 3.10199 30.4999L3.60061 31.2499L1.60611 38.75L9.0855 36.75L9.83344 37.25C13.0745 39 16.5649 40 20.0553 40C23.795 40 27.5347 39 30.7757 37C40.0003 30.9999 42.7427 18.7498 37.0085 9.24977ZM31.773 28.4999C30.7757 29.9999 29.5292 30.9999 27.784 31.2499C26.7867 31.2499 25.5401 31.7499 20.5539 29.7499C16.3156 27.7499 12.8252 24.4999 10.3321 20.7499C8.83618 18.9998 8.08824 16.7498 7.83893 14.4998C7.83893 12.4998 8.58687 10.7498 9.83344 9.49977C10.3321 8.99976 10.8307 8.74976 11.3293 8.74976H12.5759C13.0745 8.74976 13.5731 8.74976 13.8224 9.74977C14.3211 10.9998 15.5676 13.9998 15.5676 14.2498C15.8169 14.4998 15.8169 14.9998 15.5676 15.2498C15.8169 15.7498 15.5676 16.2498 15.3183 16.4998C15.069 16.7498 14.8197 17.2498 14.5704 17.4998C14.0718 17.7498 13.8224 18.2498 14.0718 18.7498C15.069 20.2498 16.3156 21.7499 17.5621 22.9999C19.058 24.2499 20.5539 25.2499 22.2991 25.9999C22.7977 26.2499 23.2963 26.2499 23.5456 25.7499C23.795 25.2499 25.0415 23.9999 25.5402 23.4999C26.0388 22.9999 26.2881 22.9999 26.7867 23.2499L30.7757 25.2499C31.2744 25.4999 31.773 25.7499 32.0223 25.9999C32.2716 26.7499 32.2716 27.7499 31.773 28.4999Z" fill="white"></path>
-										</svg>
-									</a>
-								</li>
-								<li>
-									<a href="mailto:and1marat9@gmail.com" target="_blank" title="Почта">
-										<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M20 0C8.95423 0 0 8.95423 0 20C0 31.0458 8.95423 40 20 40C31.0458 40 40 31.0458 40 20C40 8.95423 31.0458 0 20 0ZM6.89655 13.6263L15.7994 20.4815L6.89655 27.3367V13.6276V13.6263ZM6.89655 28.79L16.9781 21.1912L20.1881 23.5987L23.5737 21.1912L33.4796 28.79H6.89655ZM33.4796 27.3354L24.5768 20.4803L33.4796 13.6251V27.3342V27.3354ZM20.1881 21.8182L6.89655 11.7868H33.4796L20.1881 21.8182Z" fill="white"></path>
-										</svg>
-									</a>
-								</li>
-							</ul>
-						</div>
 					</nav>
-					<div class="header--block">
-						<button class="header--language" title="Сменить язык сайта">
-							<span>RU</span>
-							<span>En</span>
+					<div class="header-actions">
+						<button class="header-search-toggle" type="button" aria-expanded="false" aria-controls="header-search-panel" aria-label="Открыть поиск">
+							<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+								<path d="M8.8 15.1C12.3 15.1 15.1 12.3 15.1 8.8C15.1 5.3 12.3 2.5 8.8 2.5C5.3 2.5 2.5 5.3 2.5 8.8C2.5 12.3 5.3 15.1 8.8 15.1Z" fill="none" stroke="currentColor" stroke-width="1.7" />
+								<path d="M13.4 13.4L17.5 17.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+							</svg>
 						</button>
-						<a href="#modal_general" class="header--button button button--gradient modal--open desktop" data-modal-target="#modal_general">
-							<span>Оставить заявку</span>
-						</a>
-						<button class="burger" title="Открыть меню">
-							<span class="first"></span>
-							<span class="second"></span>
-							<span class="last"></span>
+						<a class="header-phone" href="tel:+79617968186" aria-label="Позвонить Марату Абзалову">+7 (961) 796-81-86</a>
+						<div class="header-socials" aria-label="Социальные сети">
+							<a class="header-social" href="https://t.me/limitlesscreators" target="_blank" rel="noopener" aria-label="Написать Марату Абзалову в Telegram">
+								<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+									<path d="M17.7 3.3L15.2 16.2C15 17 14.6 17.2 13.9 16.8L10.1 13.9L8.3 15.7C8.1 15.9 7.9 16.1 7.5 16.1L7.8 12.1L15 5.5C15.3 5.2 14.9 5 14.5 5.3L5.6 10.9L1.8 9.7C1 9.5 1 8.9 1.9 8.5L16.8 2.8C17.5 2.5 18 2.9 17.7 3.3Z" fill="currentColor" />
+								</svg>
+							</a>
+							<a class="header-social" href="https://vk.com/limitlesscreatorsweb" target="_blank" rel="noopener" aria-label="Страница Марата Абзалова во ВКонтакте">
+								<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+									<path d="M10.8 14.8C5.8 14.8 3 11.4 2.9 5.7H5.4C5.5 9.9 7.3 11.6 8.6 12V5.7H11V9.3C12.3 9.2 13.6 7.4 14.1 5.7H16.6C16.2 7.9 14.4 9.6 13.2 10.3C14.4 10.9 16.4 12.4 17.2 14.8H14.5C14 13.1 12.8 11.8 11 11.6V14.8H10.8Z" fill="currentColor" />
+								</svg>
+							</a>
+						</div>
+						<a href="#modal_general" class="header-cta button button--gradient modal--open" data-modal-target="#modal_general"><span>Обсудить проект</span></a>
+						<button class="burger" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Открыть меню">
+							<span class="burger__line"></span>
+							<span class="burger__line"></span>
+							<span class="burger__line"></span>
 						</button>
 					</div>
 				</div>
+				<div class="header-services-menu" id="header-services-menu" aria-hidden="true" inert>
+					<div class="header-services-menu__layout">
+						<div class="header-services-menu__group header-services-menu__group--primary">
+							<div class="header-services-menu__label">Основные направления</div>
+							<div class="header-services-menu__primary-grid">
+								<a class="header-services-menu__link header-services-menu__link--primary" href="services-taxonomy-dev.html" aria-current="page">
+									<span class="header-services-menu__title">Разработка сайтов</span>
+									<span class="header-services-menu__text">Лендинги, корпоративные сайты, каталоги, магазины и веб-платформы.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+								<a class="header-services-menu__link header-services-menu__link--primary" href="services-taxonomy-seo.html">
+									<span class="header-services-menu__title">SEO-продвижение</span>
+									<span class="header-services-menu__text">Продвижение в Яндексе и Google, структура, контент и коммерческие страницы.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+								<a class="header-services-menu__link header-services-menu__link--primary" href="https://limitlesscreators.ru/services/branding/">
+									<span class="header-services-menu__title">Брендинг</span>
+									<span class="header-services-menu__text">Позиционирование, нейминг, логотип и фирменный стиль.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+								<a class="header-services-menu__link header-services-menu__link--primary" href="https://limitlesscreators.ru/services/reklama/">
+									<span class="header-services-menu__title">Реклама</span>
+									<span class="header-services-menu__text">Яндекс Директ, реклама во ВКонтакте, аналитика и сопровождение.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+							</div>
+						</div>
+						<div class="header-services-menu__group header-services-menu__group--secondary">
+							<div class="header-services-menu__label">Дополнительные решения</div>
+							<div class="header-services-menu__secondary-list">
+								<a class="header-services-menu__link header-services-menu__link--secondary" href="https://limitlesscreators.ru/services/ready-made-sites/">
+									<span class="header-services-menu__title">Готовые сайты</span>
+									<span class="header-services-menu__text">Готовая архитектурная основа с адаптацией под конкретный бизнес.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+								<a class="header-services-menu__link header-services-menu__link--secondary" href="services-taxonomy-dev.html#development-industries">
+									<span class="header-services-menu__title">Сайты для отраслей</span>
+									<span class="header-services-menu__text">Структура и пользовательские сценарии с учётом специфики отрасли.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+								<a class="header-services-menu__link header-services-menu__link--secondary" href="services.html">
+									<span class="header-services-menu__title">Все услуги</span>
+									<span class="header-services-menu__text">Полный список направлений разработки, продвижения, брендинга и рекламы.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<a class="header-services-menu__cta modal--open" href="#modal_general" data-modal-target="#modal_general">Не знаете, какой формат нужен? Рассказать о задаче →</a>
+				</div>
+				<div class="header-search-panel" id="header-search-panel" role="search" aria-hidden="true" inert>
+					<form class="header-search-form" action="https://limitlesscreators.ru/" method="get">
+						<label class="visually-hidden" for="header-search-input">Поиск по сайту</label>
+						<input class="header-search-form__input" type="search" name="s" id="header-search-input" autocomplete="off" enterkeyhint="search" placeholder="Что вы ищете?">
+						<button class="header-search-form__submit" type="submit">Найти</button>
+						<button class="header-search-form__close" type="button" aria-label="Закрыть поиск">
+							<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+								<path d="M3 3L15 15M15 3L3 15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+							</svg>
+						</button>
+					</form>
+				</div>
 			</div>
 		</div>
+		<div class="mobile-navigation-overlay" aria-hidden="true"></div>
+		<nav class="mobile-navigation" id="mobile-navigation" aria-hidden="true" inert tabindex="-1" aria-label="Мобильная навигация">
+			<div class="mobile-navigation__content">
+				<ul class="mobile-navigation__list">
+					<li class="mobile-navigation__item mobile-navigation__item--services">
+						<button class="mobile-navigation__link mobile-navigation__services-toggle" type="button" aria-expanded="false" aria-controls="mobile-services-list" aria-current="page">
+							<span>Услуги</span>
+							<svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+								<path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</button>
+						<ul class="mobile-navigation__services" id="mobile-services-list" aria-hidden="true" inert>
+							<li><a class="mobile-navigation__service-link" href="services-taxonomy-dev.html" aria-current="page">Разработка сайтов</a></li>
+							<li><a class="mobile-navigation__service-link" href="services-taxonomy-seo.html">SEO-продвижение</a></li>
+							<li><a class="mobile-navigation__service-link" href="https://limitlesscreators.ru/services/branding/">Брендинг</a></li>
+							<li><a class="mobile-navigation__service-link" href="https://limitlesscreators.ru/services/reklama/">Реклама</a></li>
+							<li><a class="mobile-navigation__service-link" href="https://limitlesscreators.ru/services/ready-made-sites/">Готовые сайты</a></li>
+							<li><a class="mobile-navigation__service-link" href="services-taxonomy-dev.html#development-industries">Сайты для отраслей</a></li>
+							<li><a class="mobile-navigation__service-link" href="services.html">Все услуги</a></li>
+						</ul>
+					</li>
+					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="archive-case.html">Портфолио</a></li>
+					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="archive-articles.html">Статьи</a></li>
+					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="faq.html">FAQ</a></li>
+					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="contacts.html">Контакты</a></li>
+				</ul>
+				<a href="#modal_general" class="mobile-navigation__cta button button--gradient modal--open" data-modal-target="#modal_general"><span>Обсудить проект</span></a>
+				<div class="mobile-navigation__contacts" aria-label="Контакты">
+					<div class="mobile-navigation__contacts-title">Связаться со мной</div>
+					<a class="mobile-navigation__contact mobile-navigation__contact--phone" href="tel:+79617968186"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M5.1 2.2L6.7 5.8L5.5 7C6.4 8.9 8 10.5 10 11.5L11.2 10.3L14.8 11.9L14.2 14.8C14 15.5 13.4 16 12.7 16C6.8 16 2 11.2 2 5.3C2 4.6 2.5 4 3.2 3.8L5.1 2.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg><span class="mobile-navigation__contact-text">+7 (961) 796-81-86</span></a>
+					<a class="mobile-navigation__contact mobile-navigation__contact--email" href="mailto:info@limitlesscreators.ru"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M3 4.5H15V13.5H3V4.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /><path d="M3.5 5L9 9.5L14.5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg><span class="mobile-navigation__contact-text">info@limitlesscreators.ru</span></a>
+					<a class="mobile-navigation__contact mobile-navigation__contact--telegram" href="https://t.me/limitlesscreators" target="_blank" rel="noopener"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M15.8 3.1L13.6 14.7C13.4 15.4 13 15.5 12.4 15.2L9 12.6L7.4 14.1C7.2 14.3 7 14.4 6.7 14.4L7 10.9L13.4 5C13.7 4.8 13.3 4.6 13 4.8L5 9.8L1.6 8.7C.9 8.5.9 8 1.7 7.6L15 2.5C15.6 2.3 16 2.6 15.8 3.1Z" fill="currentColor" /></svg><span class="mobile-navigation__contact-text">Написать в Telegram</span></a>
+					<a class="mobile-navigation__contact" href="https://t.me/limitlesscreatorsweb" target="_blank" rel="noopener"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M3 10.2V7.8L12.8 4V14L3 10.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /><path d="M5.3 10.6L6.2 14H8.2L7 11.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg><span class="mobile-navigation__contact-text">Telegram-канал</span></a>
+					<a class="mobile-navigation__contact" href="https://vk.com/limitlesscreatorsweb" target="_blank" rel="noopener"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M9.6 13.2C5.2 13.2 2.8 10.2 2.7 5.2H5C5.1 8.9 6.6 10.4 7.8 10.7V5.2H10V8.4C11.1 8.3 12.2 6.8 12.7 5.2H15C14.6 7.1 13 8.6 12 9.2C13 9.7 14.8 11 15.5 13.2H13.1C12.6 11.7 11.5 10.6 10 10.4V13.2H9.6Z" fill="currentColor" /></svg><span class="mobile-navigation__contact-text">ВКонтакте</span></a>
+				</div>
+			</div>
+		</nav>
 	</header>
 	<main class="main services taxonomy taxonomy--dev">
 		<section id="main" class="section taxonomy--header">
@@ -289,6 +328,31 @@
 								<a href="services-single.html" class="taxonomy--directions__link">Нестандартный сайт</a>
 							</div>
 						</article>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="section development-industries" id="development-industries" aria-labelledby="development-industries-title">
+			<div class="container">
+				<div class="row">
+					<div class="development-industries__wrapper">
+						<div class="development-industries__intro">
+							<p class="development-industries__kicker">Отраслевые решения</p>
+							<h2 class="h2" id="development-industries-title">Сайты для отраслей</h2>
+							<p class="development-industries__description">Структура, контент и пользовательские сценарии сайта зависят от того, как устроен конкретный бизнес. Ниже — направления, для которых можно заранее учесть типовые страницы, функции и путь пользователя.</p>
+						</div>
+						<div class="development-industries__body">
+							<ul class="development-industries__list" aria-label="Отрасли">
+								<li><span>Дизайн интерьеров</span></li>
+								<li><span>Клининг</span></li>
+								<li><span>Коммерция и ритейл</span></li>
+								<li><span>Рекламное производство</span></li>
+								<li><span>Медицина</span></li>
+								<li><span>Промышленность и производство</span></li>
+								<li><span>Строительство и недвижимость</span></li>
+							</ul>
+							<a href="#modal_general" class="development-industries__cta modal--open" data-modal-target="#modal_general">Обсудить отраслевую задачу</a>
+						</div>
 					</div>
 				</div>
 			</div>
