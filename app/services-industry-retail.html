@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<title>Разработка сайтов для торговли и ритейла — Марат Абзалов</title>
+	<meta name="description" content="Разрабатываю сайты для торговли, ритейла, брендов и поставщиков: каталоги, фильтры, поиск, точки продаж, заявки, интеграции и сценарии покупки.">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+	<link rel="canonical" href="https://limitlesscreators.ru/services/development/riteyl/">
+	<meta property="og:title" content="Разработка сайтов для торговли и ритейла — Марат Абзалов">
+	<meta property="og:description" content="Разрабатываю сайты для торговли, ритейла, брендов и поставщиков: каталоги, фильтры, поиск, точки продаж, заявки, интеграции и сценарии покупки.">
+	<meta property="og:url" content="https://limitlesscreators.ru/services/development/riteyl/">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Limitless Creators">
+	<meta property="og:locale" content="ru_RU">
+	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png">
+	<meta name="theme-color" content="#070F24">
+	<meta name="msapplication-navbutton-color" content="#070F24">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#070F24">
+	<link rel="stylesheet" href="css/main.min.css">
+	<style>
+		.main--header{
+			background-image: url(img/circle-bg.svg);
+		}
+		.main--header::before{
+			background-image: url(img/line.svg)
+		}
+		.main--services:before{
+			background-image: url(img/line.svg);
+		}
+		.main--services::after{
+			background-image: url(img/line-left.svg);
+		}
+		.main--experts:before{
+			background-image: url(img/line-horizontal.svg);
+		}
+		.main--projects:before{
+			background-image: url(img/line.svg)
+		}
+		.main--faq:after {
+			background-image: url(img/line-left.svg);
+		}
+		@media (max-width: 992px) {
+			.main--header {
+				background-image: url(img/circle-bg-tab.svg);
+			}
+		}
+		@media (max-width: 480px) {
+			.main--header {
+				background-image: url(img/circle-bg-mob.svg);
+			}
+			.main--services::before{
+				background-image: url(img/line-mob.svg);
+			}
+			.main--services:after{
+				background-image: url(img/line-left-mob.svg);
+			}
+			.main--projects:before{
+				background-image: url(img/line-mob.svg);
+			}
+			.main--faq:after{
+				background-image: url(img/line-left-mob.svg);
+			}
+			.main--contacts:after{
+				background-image: url(img/line-mob.svg)
+			}
+			.main--brief::before{
+				background-image: url(img/line-mob.svg)
+			}
+		}
+	</style>
+	<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Главная",
+					"item": "https://limitlesscreators.ru/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "Услуги",
+					"item": "https://limitlesscreators.ru/services/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 3,
+					"name": "Разработка сайтов",
+					"item": "https://limitlesscreators.ru/services/development/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 4,
+					"name": "Коммерция и ритейл",
+					"item": "https://limitlesscreators.ru/services/development/riteyl/"
+				}
+			]
+		},
+		{
+			"@type": "Service",
+			"name": "Разработка сайтов для торговли и ритейла",
+			"serviceType": "Разработка сайтов",
+			"provider": {
+				"@type": "Person",
+				"name": "Марат Абзалов"
+			},
+			"areaServed": "Россия",
+			"description": "Сайт для торговли может быть витриной, каталогом, интернет-магазином или B2B-инструментом. Я начинаю не с корзины, а с логики ассортимента: категории, фильтры, карточки, наличие, точки продаж и способ оформить интерес.",
+			"url": "https://limitlesscreators.ru/services/development/riteyl/"
+		},
+		{
+			"@type": "FAQPage",
+			"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "Можно ли сделать каталог без онлайн-оплаты?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Да. Для многих торговых и B2B-проектов достаточно каталога с заявкой, запросом цены или коммерческого предложения. Онлайн-оплата нужна только там, где она действительно поддерживает процесс продажи."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Что нужно для фильтров и поиска?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Нужны понятные категории, характеристики товаров и правила заполнения карточек. Если данные уже есть в учётной системе или таблице, их можно подготовить к импорту."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Можно ли связать сайт с 1C или CRM?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Можно, если у системы есть подходящий API, обмен файлами или другой стабильный способ передачи данных. Перед обещанием интеграции нужно изучить документацию и формат данных."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Подходит ли сайт-каталог для оптовых продаж?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Да. Для опта можно предусмотреть скрытые цены, заявки, роли пользователей, документы, повторные заказы и личный кабинет, если это требуется процессом продаж."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Как подготовить ассортимент к разработке?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Нужно собрать категории, названия товаров, характеристики, изображения, цены или правила их отображения, остатки и условия заказа. Чем чище данные, тем надёжнее каталог."
+					}
+				}
+			]
+		}
+	]
+}</script>
+</head>
+<body class="industry-template industry-template--retail">
+	<div class="wrapper">
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="header__inner">
+					<a class="header-brand" href="index.html" aria-label="Марат Абзалов — перейти на главную страницу">
+						<img class="header-brand__image" src="img/brand/marat-abzalov-mark.svg" alt="" width="52" height="52">
+					</a>
+					<nav class="header-nav" aria-label="Основная навигация">
+						<ul class="header-nav__list">
+							<li class="header-nav__item">
+								<button class="header-nav__link header-nav__services-toggle is-current" type="button" aria-expanded="false" aria-controls="header-services-menu">
+									<span>Услуги</span>
+									<svg class="header-nav__chevron" width="12" height="8" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+										<path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+									</svg>
+								</button>
+							</li>
+							<li class="header-nav__item"><a class="header-nav__link" href="archive-case.html">Портфолио</a></li>
+							<li class="header-nav__item"><a class="header-nav__link" href="archive-articles.html">Статьи</a></li>
+							<li class="header-nav__item"><a class="header-nav__link" href="faq.html">FAQ</a></li>
+							<li class="header-nav__item"><a class="header-nav__link" href="contacts.html">Контакты</a></li>
+						</ul>
+					</nav>
+					<div class="header-actions">
+						<button class="header-search-toggle" type="button" aria-expanded="false" aria-controls="header-search-panel" aria-label="Открыть поиск">
+							<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+								<path d="M8.8 15.1C12.3 15.1 15.1 12.3 15.1 8.8C15.1 5.3 12.3 2.5 8.8 2.5C5.3 2.5 2.5 5.3 2.5 8.8C2.5 12.3 5.3 15.1 8.8 15.1Z" fill="none" stroke="currentColor" stroke-width="1.7" />
+								<path d="M13.4 13.4L17.5 17.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+							</svg>
+						</button>
+						<a class="header-phone" href="tel:+79617968186" aria-label="Позвонить Марату Абзалову">+7 (961) 796-81-86</a>
+						<div class="header-socials" aria-label="Социальные сети">
+							<a class="header-social" href="https://t.me/limitlesscreators" target="_blank" rel="noopener" aria-label="Написать Марату Абзалову в Telegram">
+								<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+									<path d="M17.7 3.3L15.2 16.2C15 17 14.6 17.2 13.9 16.8L10.1 13.9L8.3 15.7C8.1 15.9 7.9 16.1 7.5 16.1L7.8 12.1L15 5.5C15.3 5.2 14.9 5 14.5 5.3L5.6 10.9L1.8 9.7C1 9.5 1 8.9 1.9 8.5L16.8 2.8C17.5 2.5 18 2.9 17.7 3.3Z" fill="currentColor" />
+								</svg>
+							</a>
+							<a class="header-social" href="https://vk.com/limitlesscreatorsweb" target="_blank" rel="noopener" aria-label="Страница Марата Абзалова во ВКонтакте">
+								<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+									<path d="M10.8 14.8C5.8 14.8 3 11.4 2.9 5.7H5.4C5.5 9.9 7.3 11.6 8.6 12V5.7H11V9.3C12.3 9.2 13.6 7.4 14.1 5.7H16.6C16.2 7.9 14.4 9.6 13.2 10.3C14.4 10.9 16.4 12.4 17.2 14.8H14.5C14 13.1 12.8 11.8 11 11.6V14.8H10.8Z" fill="currentColor" />
+								</svg>
+							</a>
+						</div>
+						<a href="#modal_general" class="header-cta button button--gradient modal--open" data-modal-target="#modal_general"><span>Обсудить проект</span></a>
+						<button class="burger" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Открыть меню">
+							<span class="burger__line"></span>
+							<span class="burger__line"></span>
+							<span class="burger__line"></span>
+						</button>
+					</div>
+				</div>
+				<div class="header-services-menu" id="header-services-menu" aria-hidden="true" inert>
+					<div class="header-services-menu__layout">
+						<div class="header-services-menu__group header-services-menu__group--primary">
+							<div class="header-services-menu__label">Основные направления</div>
+							<div class="header-services-menu__primary-grid">
+								<a class="header-services-menu__link header-services-menu__link--primary" href="services-taxonomy-dev.html" aria-current="page">
+									<span class="header-services-menu__title">Разработка сайтов</span>
+									<span class="header-services-menu__text">Лендинги, корпоративные сайты, каталоги, магазины и веб-платформы.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+								<a class="header-services-menu__link header-services-menu__link--primary" href="services-taxonomy-seo.html">
+									<span class="header-services-menu__title">SEO-продвижение</span>
+									<span class="header-services-menu__text">Продвижение в Яндексе и Google, структура, контент и коммерческие страницы.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+								<a class="header-services-menu__link header-services-menu__link--primary" href="https://limitlesscreators.ru/services/branding/">
+									<span class="header-services-menu__title">Брендинг</span>
+									<span class="header-services-menu__text">Позиционирование, нейминг, логотип и фирменный стиль.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+								<a class="header-services-menu__link header-services-menu__link--primary" href="https://limitlesscreators.ru/services/reklama/">
+									<span class="header-services-menu__title">Реклама</span>
+									<span class="header-services-menu__text">Яндекс Директ, реклама во ВКонтакте, аналитика и сопровождение.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+							</div>
+						</div>
+						<div class="header-services-menu__group header-services-menu__group--secondary">
+							<div class="header-services-menu__label">Дополнительные решения</div>
+							<div class="header-services-menu__secondary-list">
+								<a class="header-services-menu__link header-services-menu__link--secondary" href="https://limitlesscreators.ru/services/ready-made-sites/">
+									<span class="header-services-menu__title">Готовые сайты</span>
+									<span class="header-services-menu__text">Готовая архитектурная основа с адаптацией под конкретный бизнес.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+								<a class="header-services-menu__link header-services-menu__link--secondary" href="services-taxonomy-dev.html#development-industries">
+									<span class="header-services-menu__title">Сайты для отраслей</span>
+									<span class="header-services-menu__text">Структура и пользовательские сценарии с учётом специфики отрасли.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+								<a class="header-services-menu__link header-services-menu__link--secondary" href="services.html">
+									<span class="header-services-menu__title">Все услуги</span>
+									<span class="header-services-menu__text">Полный список направлений разработки, продвижения, брендинга и рекламы.</span>
+									<span class="header-services-menu__arrow" aria-hidden="true">→</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<a class="header-services-menu__cta modal--open" href="#modal_general" data-modal-target="#modal_general">Не знаете, какой формат нужен? Рассказать о задаче →</a>
+				</div>
+				<div class="header-search-panel" id="header-search-panel" role="search" aria-hidden="true" inert>
+					<form class="header-search-form" action="https://limitlesscreators.ru/" method="get">
+						<label class="visually-hidden" for="header-search-input">Поиск по сайту</label>
+						<input class="header-search-form__input" type="search" name="s" id="header-search-input" autocomplete="off" enterkeyhint="search" placeholder="Что вы ищете?">
+						<button class="header-search-form__submit" type="submit">Найти</button>
+						<button class="header-search-form__close" type="button" aria-label="Закрыть поиск">
+							<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+								<path d="M3 3L15 15M15 3L3 15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+							</svg>
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="mobile-navigation-overlay" aria-hidden="true"></div>
+		<nav class="mobile-navigation" id="mobile-navigation" aria-hidden="true" inert tabindex="-1" aria-label="Мобильная навигация">
+			<div class="mobile-navigation__content">
+				<ul class="mobile-navigation__list">
+					<li class="mobile-navigation__item mobile-navigation__item--services">
+						<button class="mobile-navigation__link mobile-navigation__services-toggle" type="button" aria-expanded="false" aria-controls="mobile-services-list">
+							<span>Услуги</span>
+							<svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+								<path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</button>
+						<ul class="mobile-navigation__services" id="mobile-services-list" aria-hidden="true" inert>
+							<li><a class="mobile-navigation__service-link" href="services-taxonomy-dev.html" aria-current="page">Разработка сайтов</a></li>
+							<li><a class="mobile-navigation__service-link" href="services-taxonomy-seo.html">SEO-продвижение</a></li>
+							<li><a class="mobile-navigation__service-link" href="https://limitlesscreators.ru/services/branding/">Брендинг</a></li>
+							<li><a class="mobile-navigation__service-link" href="https://limitlesscreators.ru/services/reklama/">Реклама</a></li>
+							<li><a class="mobile-navigation__service-link" href="https://limitlesscreators.ru/services/ready-made-sites/">Готовые сайты</a></li>
+							<li><a class="mobile-navigation__service-link" href="services-taxonomy-dev.html#development-industries">Сайты для отраслей</a></li>
+							<li><a class="mobile-navigation__service-link" href="services.html">Все услуги</a></li>
+						</ul>
+					</li>
+					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="archive-case.html">Портфолио</a></li>
+					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="archive-articles.html">Статьи</a></li>
+					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="faq.html">FAQ</a></li>
+					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="contacts.html">Контакты</a></li>
+				</ul>
+				<a href="#modal_general" class="mobile-navigation__cta button button--gradient modal--open" data-modal-target="#modal_general"><span>Обсудить проект</span></a>
+				<div class="mobile-navigation__contacts" aria-label="Контакты">
+					<div class="mobile-navigation__contacts-title">Связаться со мной</div>
+					<a class="mobile-navigation__contact mobile-navigation__contact--phone" href="tel:+79617968186"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M5.1 2.2L6.7 5.8L5.5 7C6.4 8.9 8 10.5 10 11.5L11.2 10.3L14.8 11.9L14.2 14.8C14 15.5 13.4 16 12.7 16C6.8 16 2 11.2 2 5.3C2 4.6 2.5 4 3.2 3.8L5.1 2.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg><span class="mobile-navigation__contact-text">+7 (961) 796-81-86</span></a>
+					<a class="mobile-navigation__contact mobile-navigation__contact--email" href="mailto:info@limitlesscreators.ru"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M3 4.5H15V13.5H3V4.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /><path d="M3.5 5L9 9.5L14.5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg><span class="mobile-navigation__contact-text">info@limitlesscreators.ru</span></a>
+					<a class="mobile-navigation__contact mobile-navigation__contact--telegram" href="https://t.me/limitlesscreators" target="_blank" rel="noopener"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M15.8 3.1L13.6 14.7C13.4 15.4 13 15.5 12.4 15.2L9 12.6L7.4 14.1C7.2 14.3 7 14.4 6.7 14.4L7 10.9L13.4 5C13.7 4.8 13.3 4.6 13 4.8L5 9.8L1.6 8.7C.9 8.5.9 8 1.7 7.6L15 2.5C15.6 2.3 16 2.6 15.8 3.1Z" fill="currentColor" /></svg><span class="mobile-navigation__contact-text">Написать в Telegram</span></a>
+					<a class="mobile-navigation__contact" href="https://t.me/limitlesscreatorsweb" target="_blank" rel="noopener"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M3 10.2V7.8L12.8 4V14L3 10.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /><path d="M5.3 10.6L6.2 14H8.2L7 11.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg><span class="mobile-navigation__contact-text">Telegram-канал</span></a>
+					<a class="mobile-navigation__contact" href="https://vk.com/limitlesscreatorsweb" target="_blank" rel="noopener"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M9.6 13.2C5.2 13.2 2.8 10.2 2.7 5.2H5C5.1 8.9 6.6 10.4 7.8 10.7V5.2H10V8.4C11.1 8.3 12.2 6.8 12.7 5.2H15C14.6 7.1 13 8.6 12 9.2C13 9.7 14.8 11 15.5 13.2H13.1C12.6 11.7 11.5 10.6 10 10.4V13.2H9.6Z" fill="currentColor" /></svg><span class="mobile-navigation__contact-text">ВКонтакте</span></a>
+				</div>
+			</div>
+		</nav>
+	</header>
+		<main class="main industry-page industry-page--retail">
+<section class="section industry-hero">
+				<div class="container">
+					<div class="row">
+					<nav class="breadcrumbs" aria-label="Хлебные крошки">
+						<p>
+							<a href="index.html">Главная</a>
+							<span class="separator" aria-hidden="true"> - </span>
+							<a href="services.html">Услуги</a>
+							<span class="separator" aria-hidden="true"> - </span>
+							<a href="services-taxonomy-dev.html">Разработка сайтов</a>
+							<span class="separator" aria-hidden="true"> - </span>
+							<span class="last" aria-current="page">Коммерция и ритейл</span>
+						</p>
+					</nav>
+					<div class="industry-hero__wrapper">
+						<div class="industry-hero__content">
+							<p class="industry-hero__kicker">Сайты для продаж и каталогов</p>
+							<h1>Разработка сайтов для торговли и ритейла</h1>
+							<p class="industry-hero__lead">Сайт для торговли может быть витриной, каталогом, интернет-магазином или B2B-инструментом. Я начинаю не с корзины, а с логики ассортимента: категории, фильтры, карточки, наличие, точки продаж и способ оформить интерес.</p>
+							<div class="industry-hero__actions">
+								<a class="industry-hero__cta button button--white modal--open" href="#modal_general" data-modal-target="#modal_general">Обсудить проект</a>
+								<a class="industry-hero__case-link" href="archive-case.html">Посмотреть портфолио</a>
+							</div>
+						</div>
+						<aside class="industry-hero__aside" aria-label="Фокус первого экрана">
+							<p class="industry-hero__aside-title">Не каждый каталог обязан быть магазином</p>
+							<div class="industry-hero__aside-list" role="list">
+								<span role="listitem">витрина без оплаты</span>
+								<span role="listitem">заказ через корзину</span>
+								<span role="listitem">заявка менеджеру</span>
+								<span role="listitem">самовывоз или точки продаж</span>
+								<span role="listitem">B2B-условия при необходимости</span>
+							</div>
+						</aside>
+					</div>
+
+					</div></div>
+			</section>
+
+					<section class="industry-business">
+						<div class="container">
+							<div class="row">
+								<div class="industry-business__head">
+									<h2>Сайт под модель продаж в коммерции и ритейле</h2>
+									<p>Торговый сайт начинается с ответа на вопрос: человек изучает ассортимент, оформляет заказ, ищет точку продаж или запрашивает условия. От этого зависит структура каталога, роль карточки товара и глубина интеграций.</p>
+								</div>
+								<div class="industry-business__layout">
+									<article class="industry-business__article industry-business__article--lead">
+										<span class="industry-business__number" aria-hidden="true">01</span>
+										<div class="industry-business__body">
+											<h3>Сайт-каталог</h3>
+											<p>Каталог нужен, когда ассортимент важнее мгновенной оплаты на сайте. Пользователь смотрит категории, фильтры, карточки и уточняет детали у менеджера. В такой модели особенно важны атрибуты товаров и понятный переход к запросу.</p>
+											<div class="industry-business__points" aria-label="Возможные функции">
+												<span>ассортимент</span>
+												<span>категории</span>
+												<span>фильтры</span>
+												<span>заявка менеджеру</span>
+											</div>
+										</div>
+									</article>
+									<article class="industry-business__article">
+										<span class="industry-business__number" aria-hidden="true">02</span>
+										<div class="industry-business__body">
+											<h3>Интернет-магазин</h3>
+											<p>Интернет-магазин оправдан, если бизнес готов обрабатывать корзину, доставку, оплату и статусы заказа. Страница должна заранее учитывать правила оформления, способы получения и ограничения ассортимента. Без этих данных корзина превращается в лишний интерфейсный слой.</p>
+											<div class="industry-business__points" aria-label="Возможные функции">
+												<span>корзина</span>
+												<span>оформление заказа</span>
+												<span>доставка</span>
+												<span>оплата при необходимости</span>
+											</div>
+										</div>
+									</article>
+									<article class="industry-business__article">
+										<span class="industry-business__number" aria-hidden="true">03</span>
+										<div class="industry-business__body">
+											<h3>Сайт бренда или производителя</h3>
+											<p>Производителю или бренду часто важнее объяснить линейку продукции и направить человека к партнёрам, чем продавать напрямую. В этом случае каталог работает как презентационный справочник. Карточка товара связывает описание, материалы и точки продаж.</p>
+											<div class="industry-business__points" aria-label="Возможные функции">
+												<span>презентация продукции</span>
+												<span>точки продаж</span>
+												<span>партнёры</span>
+											</div>
+										</div>
+									</article>
+									<article class="industry-business__article">
+										<span class="industry-business__number" aria-hidden="true">04</span>
+										<div class="industry-business__body">
+											<h3>Оптовый B2B-каталог</h3>
+											<p>B2B-каталог строится вокруг условий, документов, ролей пользователей и запроса коммерческого предложения. Индивидуальные цены и остатки стоит подключать только при наличии понятного источника данных. До интеграции нужно описать, кто видит информацию и как менеджер получает заявку.</p>
+											<div class="industry-business__points" aria-label="Возможные функции">
+												<span>условия</span>
+												<span>документы</span>
+												<span>запрос КП</span>
+												<span>роли пользователей</span>
+											</div>
+										</div>
+									</article>
+									<article class="industry-business__article">
+										<span class="industry-business__number" aria-hidden="true">05</span>
+										<div class="industry-business__body">
+											<h3>Розничная сеть</h3>
+											<p>Для сети магазинов важны адреса, наличие, акции и сценарий самовывоза, если такие процессы реально используются. Пользователь должен быстро понять, где товар можно посмотреть или забрать. Поэтому структура сайта связывает каталог с географией и правилами обслуживания.</p>
+											<div class="industry-business__points" aria-label="Возможные функции">
+												<span>магазины</span>
+												<span>адреса</span>
+												<span>наличие</span>
+												<span>самовывоз</span>
+											</div>
+										</div>
+									</article>
+								</div>
+							</div>
+						</div>
+					</section>
+
+<section class="section industry-scenario industry-scenario--retail-flow" aria-labelledby="retail-scenario-title">
+				<div class="container">
+					<div class="row">
+					<div class="industry-scenario__head">
+						<p class="industry-section__kicker">Покупательский путь</p>
+						<h2 class="industry-scenario__title h2" id="retail-scenario-title">Путь покупателя от каталога до получения товара</h2>
+					</div>
+					<div class="industry-route industry-route--horizontal industry-route--wide" role="list">
+							<article class="industry-route__item" role="listitem"><span aria-hidden="true">01</span><p>Категория или поиск</p></article>
+							<article class="industry-route__item" role="listitem"><span aria-hidden="true">02</span><p>Фильтры</p></article>
+							<article class="industry-route__item" role="listitem"><span aria-hidden="true">03</span><p>Карточка товара</p></article>
+							<article class="industry-route__item" role="listitem"><span aria-hidden="true">04</span><p>Остатки или торговые точки</p></article>
+							<article class="industry-route__item" role="listitem"><span aria-hidden="true">05</span><p>Доставка или самовывоз</p></article>
+							<article class="industry-route__item" role="listitem"><span aria-hidden="true">06</span><p>Заказ или запрос менеджеру</p></article>
+						</div>
+					<div class="industry-mode-list">
+						<article><h3>Каталог</h3><p>Показывает ассортимент и собирает заявки без обязательной онлайн-оплаты.</p></article>
+						<article><h3>Интернет-магазин</h3><p>Нужен, когда есть корзина, оплата, доставка и понятные правила заказа.</p></article>
+						<article><h3>B2B-сценарий</h3><p>Может включать запрос КП, скрытые условия, документы или роли пользователей.</p></article>
+					</div>
+
+					</div></div>
+			</section>
+
+<section class="section industry-formats" aria-labelledby="industry-formats-title">
+				<div class="container">
+					<div class="row industry-section">
+					<div class="industry-section__head">
+						<p class="industry-section__kicker">Формат сайта</p>
+						<h2 class="industry-section__title h2" id="industry-formats-title">Подходящие варианты реализации</h2>
+					</div>
+					<ul class="industry-format-list">
+						<li>Каталог сайта</li>
+						<li>Интернет-магазин</li>
+						<li>B2B-веб-сервис</li>
+						<li>Корпоративный сайт с каталогом</li>
+					</ul>
+
+					</div></div>
+			</section>
+
+<section class="section industry-functions" aria-labelledby="industry-functions-title">
+				<div class="container">
+					<div class="row industry-section">
+					<div class="industry-section__head">
+						<p class="industry-section__kicker">Каталог и заказ</p>
+						<h2 class="industry-section__title h2" id="industry-functions-title">Функции зависят от модели продаж</h2>
+						<p class="industry-section__description">Состав интерфейса зависит от того, должен ли пользователь изучить ассортимент, оформить заказ или запросить условия.</p>
+					</div>
+					<div class="industry-function-system industry-function-system--retail">
+						<div class="industry-function-system__matrix">
+							<article class="industry-function-system__matrix-column">
+								<p class="industry-function-system__eyebrow">Каталог</p>
+								<h3>Изучить ассортимент</h3>
+								<div class="industry-function-system__rows">
+									<div>Категории</div>
+									<div>Фильтры</div>
+									<div>Карточка товара</div>
+									<div>Запрос менеджеру</div>
+								</div>
+							</article>
+							<article class="industry-function-system__matrix-column">
+								<p class="industry-function-system__eyebrow">Интернет-магазин</p>
+								<h3>Оформить заказ</h3>
+								<div class="industry-function-system__rows">
+									<div>Цены</div>
+									<div>Корзина</div>
+									<div>Доставка</div>
+									<div>Самовывоз</div>
+									<div>Оформление заказа</div>
+								</div>
+							</article>
+							<article class="industry-function-system__matrix-column">
+								<p class="industry-function-system__eyebrow">B2B</p>
+								<h3>Запросить условия</h3>
+								<div class="industry-function-system__rows">
+									<div>Авторизация при необходимости</div>
+									<div>Индивидуальные условия</div>
+									<div>Документы</div>
+									<div>Остатки</div>
+									<div>Запрос КП</div>
+								</div>
+							</article>
+						</div>
+					</div>
+
+					</div></div>
+			</section>
+
+<section class="section industry-delivery" aria-labelledby="industry-delivery-title">
+				<div class="container">
+					<div class="row industry-section">
+					<div class="industry-section__grid">
+						<article class="industry-panel industry-workscope">
+							<p class="industry-section__kicker">Состав работ</p>
+							<h2 class="industry-section__title h2" id="industry-delivery-title">Что входит в разработку</h2>
+							<div class="industry-list" role="list">
+					<article class="industry-line-item" role="listitem"><p>Проектирование каталога и атрибутов</p></article>
+					<article class="industry-line-item" role="listitem"><p>Дизайн пользовательских сценариев</p></article>
+					<article class="industry-line-item" role="listitem"><p>Frontend-вёрстка</p></article>
+					<article class="industry-line-item" role="listitem"><p>Интеграция каталога с CMS или WooCommerce</p></article>
+					<article class="industry-line-item" role="listitem"><p>Настройка поиска, форм и базовой аналитики</p></article>
+				</div>
+						</article>
+						<article class="industry-panel industry-integrations">
+							<p class="industry-section__kicker">Интеграции</p>
+							<h2 class="industry-section__title h2">Что можно подключить</h2>
+							<div class="industry-list" role="list">
+					<article class="industry-line-item" role="listitem"><p>CRM</p></article>
+					<article class="industry-line-item" role="listitem"><p>1C или учётная система при доступном API</p></article>
+					<article class="industry-line-item" role="listitem"><p>Платёжные сервисы при необходимости</p></article>
+					<article class="industry-line-item" role="listitem"><p>Сервисы доставки</p></article>
+					<article class="industry-line-item" role="listitem"><p>Импорт товаров из файлов или внешних источников</p></article>
+				</div>
+						</article>
+					</div>
+
+					</div></div>
+			</section>
+
+
+
+<section class="section industry-process" aria-labelledby="industry-process-title">
+				<div class="container">
+					<div class="row industry-section">
+					<div class="industry-section__head">
+						<p class="industry-section__kicker">Этапы</p>
+						<h2 class="industry-section__title h2" id="industry-process-title">Как проходит работа</h2>
+						<p class="industry-section__description">Последовательность зависит от масштаба проекта, но базовая логика остаётся прозрачной: от задачи и структуры к дизайну, вёрстке, интеграции и запуску.</p>
+					</div>
+					<ol class="industry-process__list">
+						<li><span aria-hidden="true">01</span>Обсуждение задачи и отраслевых сценариев</li>
+						<li><span aria-hidden="true">02</span>Структура страниц и пользовательских путей</li>
+						<li><span aria-hidden="true">03</span>Дизайн ключевых экранов</li>
+						<li><span aria-hidden="true">04</span>Frontend-вёрстка и адаптив</li>
+						<li><span aria-hidden="true">05</span>Интеграция с CMS или формами</li>
+						<li><span aria-hidden="true">06</span>Проверка, запуск и передача доступа</li>
+					</ol>
+
+					</div></div>
+			</section>
+
+<section class="section industry-topics" aria-labelledby="industry-topics-title">
+				<div class="container">
+					<div class="row">
+					<div class="industry-topics__head">
+						<p class="industry-topics__kicker">Отраслевые решения</p>
+						<h2 class="industry-topics__title h2" id="industry-topics-title">Создаю сайты для разных отраслей</h2>
+					</div>
+					<ul class="industry-topics__list" aria-label="Отрасли">
+						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-interiors.html">Дизайн интерьеров <span aria-hidden="true">→</span></a></li>
+						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-cleaning.html">Клининг <span aria-hidden="true">→</span></a></li>
+						<li class="industry-topics__item"><a class="industry-topics__link industry-topics__link--current" href="services-industry-retail.html" aria-current="page">Коммерция и ритейл <span aria-hidden="true">→</span></a></li>
+						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-advertising-production.html">Рекламное производство <span aria-hidden="true">→</span></a></li>
+						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-medical.html">Медицина <span aria-hidden="true">→</span></a></li>
+						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-industrial.html">Промышленность и производство <span aria-hidden="true">→</span></a></li>
+						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-construction.html">Строительство и недвижимость <span aria-hidden="true">→</span></a></li>
+					</ul>
+
+					</div></div>
+			</section>
+
+<section class="section main--faq industry-faq" id="faq" aria-labelledby="industry-faq-title">
+				<div class="container">
+					<div class="row">
+					<h2 class="h2" id="industry-faq-title">Вопросы по отраслевому сайту</h2>
+					<div class="main--faq__wrapper">
+						<div class="main--faq__item active" data-open="true">
+							<h3 class="main--faq__title">
+								<button class="main--faq__item--button main--faq__toggle active" type="button" aria-expanded="true" aria-controls="retail-faq-answer-1">
+									<span class="main--faq__question">Можно ли сделать каталог без онлайн-оплаты?</span>
+									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
+								</button>
+							</h3>
+							<div class="main--faq__item--answer" id="retail-faq-answer-1" aria-hidden="false">
+								<p>Да. Для многих торговых и B2B-проектов достаточно каталога с заявкой, запросом цены или коммерческого предложения. Онлайн-оплата нужна только там, где она действительно поддерживает процесс продажи.</p>
+							</div>
+						</div>
+						<div class="main--faq__item">
+							<h3 class="main--faq__title">
+								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="retail-faq-answer-2">
+									<span class="main--faq__question">Что нужно для фильтров и поиска?</span>
+									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
+								</button>
+							</h3>
+							<div class="main--faq__item--answer" id="retail-faq-answer-2" aria-hidden="true">
+								<p>Нужны понятные категории, характеристики товаров и правила заполнения карточек. Если данные уже есть в учётной системе или таблице, их можно подготовить к импорту.</p>
+							</div>
+						</div>
+						<div class="main--faq__item">
+							<h3 class="main--faq__title">
+								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="retail-faq-answer-3">
+									<span class="main--faq__question">Можно ли связать сайт с 1C или CRM?</span>
+									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
+								</button>
+							</h3>
+							<div class="main--faq__item--answer" id="retail-faq-answer-3" aria-hidden="true">
+								<p>Можно, если у системы есть подходящий API, обмен файлами или другой стабильный способ передачи данных. Перед обещанием интеграции нужно изучить документацию и формат данных.</p>
+							</div>
+						</div>
+						<div class="main--faq__item">
+							<h3 class="main--faq__title">
+								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="retail-faq-answer-4">
+									<span class="main--faq__question">Подходит ли сайт-каталог для оптовых продаж?</span>
+									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
+								</button>
+							</h3>
+							<div class="main--faq__item--answer" id="retail-faq-answer-4" aria-hidden="true">
+								<p>Да. Для опта можно предусмотреть скрытые цены, заявки, роли пользователей, документы, повторные заказы и личный кабинет, если это требуется процессом продаж.</p>
+							</div>
+						</div>
+						<div class="main--faq__item">
+							<h3 class="main--faq__title">
+								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="retail-faq-answer-5">
+									<span class="main--faq__question">Как подготовить ассортимент к разработке?</span>
+									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
+								</button>
+							</h3>
+							<div class="main--faq__item--answer" id="retail-faq-answer-5" aria-hidden="true">
+								<p>Нужно собрать категории, названия товаров, характеристики, изображения, цены или правила их отображения, остатки и условия заказа. Чем чище данные, тем надёжнее каталог.</p>
+							</div>
+						</div>
+					</div>
+
+					</div></div>
+			</section>
+
+<section class="section industry-cta" aria-labelledby="industry-cta-title">
+				<div class="container">
+					<div class="row">
+					<div class="industry-cta__wrapper">
+						<div>
+							<p class="industry-section__kicker">Обсудить проект</p>
+							<h2 class="industry-cta__title h2" id="industry-cta-title">Обсудим каталог, магазин или B2B-сценарий</h2>
+							<p>Расскажите, как устроен ассортимент, где хранятся остатки и что должен сделать покупатель после выбора товара.</p>
+						</div>
+						<a class="industry-cta__button button button--white modal--open" href="#modal_general" data-modal-target="#modal_general">Оставить заявку</a>
+					</div>
+
+					</div></div>
+			</section>
+
+			<div id="bg_container"><canvas id="gradient-canvas" data-transition-in></canvas></div>
+		</main>
+<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="footer--wrapper">
+					<div class="footer--top">
+						<nav class="footer--menu">
+							<div class="h3">Навигация</div>
+							<ul class="menu">
+								<li><a href="#">Проекты</a></li>
+								<li><a href="#">Услуги</a></li>
+								<li><a href="#">Контакты</a></li>
+								<li><a href="#">Q&A</a></li>
+								<li><a href="#">Статьи</a></li>
+							</ul>
+						</nav>
+						<nav class="footer--menu">
+							<div class="h3">Услуги</div>
+							<ul class="menu">
+								<li><a href="services-taxonomy-dev.html">Разработка</a></li>
+								<li><a href="services-taxonomy-seo.html">Продвижение</a></li>
+								<li><a href="#">Дизайн</a></li>
+								<li><a href="#">Готовые решения</a></li>
+							</ul>
+						</nav>
+						<div class="footer--contacts">
+							<div class="h3">Контакты</div>
+							<a href="tel:+79617968186">+7(961)796-81-86</a>
+							<a href="mailto:limitlesscreatorsweb@gmail.com" target="_blank">limitlesscreatorsweb@gmail.com</a>
+							<ul class="social">
+								<li>
+									<a href="//t.me/neotwalker_WebDev" target="_blank" title="Telegram">
+										<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M20 0C8.95097 0 0 8.95226 0 20C0 31.0477 8.95226 40 20 40C31.049 40 40 31.0477 40 20C40 8.95226 31.0477 0 20 0ZM29.8232 13.7019L26.5406 29.1703C26.2981 30.2671 25.6452 30.5329 24.7342 30.0168L19.7342 26.3316L17.3226 28.6542C17.0568 28.92 16.831 29.1458 16.3148 29.1458L16.6697 24.0568L25.9355 15.6852C26.3394 15.3303 25.8465 15.129 25.3135 15.4839L13.8619 22.6929L8.92645 21.1523C7.85419 20.8142 7.82968 20.08 9.15226 19.5639L28.4348 12.1277C29.3303 11.8052 30.1123 12.3458 29.8219 13.7006L29.8232 13.7019Z" fill="white"/>
+										</svg>
+									</a>
+								</li>
+								<li>
+									<a href="https://api.whatsapp.com/send?phone=79617968186" target="_blank" title="Whatsapp">
+										<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M37.0085 9.24977C31.025 -0.000306019 18.8087 -2.75033 9.33481 2.99972C0.110229 8.74976 -2.88153 21.2499 3.10199 30.4999L3.60061 31.2499L1.60611 38.75L9.0855 36.75L9.83344 37.25C13.0745 39 16.5649 40 20.0553 40C23.795 40 27.5347 39 30.7757 37C40.0003 30.9999 42.7427 18.7498 37.0085 9.24977ZM31.773 28.4999C30.7757 29.9999 29.5292 30.9999 27.784 31.2499C26.7867 31.2499 25.5401 31.7499 20.5539 29.7499C16.3156 27.7499 12.8252 24.4999 10.3321 20.7499C8.83618 18.9998 8.08824 16.7498 7.83893 14.4998C7.83893 12.4998 8.58687 10.7498 9.83344 9.49977C10.3321 8.99976 10.8307 8.74976 11.3293 8.74976H12.5759C13.0745 8.74976 13.5731 8.74976 13.8224 9.74977C14.3211 10.9998 15.5676 13.9998 15.5676 14.2498C15.8169 14.4998 15.8169 14.9998 15.5676 15.2498C15.8169 15.7498 15.5676 16.2498 15.3183 16.4998C15.069 16.7498 14.8197 17.2498 14.5704 17.4998C14.0718 17.7498 13.8224 18.2498 14.0718 18.7498C15.069 20.2498 16.3156 21.7499 17.5621 22.9999C19.058 24.2499 20.5539 25.2499 22.2991 25.9999C22.7977 26.2499 23.2963 26.2499 23.5456 25.7499C23.795 25.2499 25.0415 23.9999 25.5402 23.4999C26.0388 22.9999 26.2881 22.9999 26.7867 23.2499L30.7757 25.2499C31.2744 25.4999 31.773 25.7499 32.0223 25.9999C32.2716 26.7499 32.2716 27.7499 31.773 28.4999Z" fill="white"/>
+										</svg>
+									</a>
+								</li>
+								<li>
+									<a href="mailto:and1marat9@gmail.com" target="_blank" title="Почта">
+										<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M20 0C8.95423 0 0 8.95423 0 20C0 31.0458 8.95423 40 20 40C31.0458 40 40 31.0458 40 20C40 8.95423 31.0458 0 20 0ZM6.89655 13.6263L15.7994 20.4815L6.89655 27.3367V13.6276V13.6263ZM6.89655 28.79L16.9781 21.1912L20.1881 23.5987L23.5737 21.1912L33.4796 28.79H6.89655ZM33.4796 27.3354L24.5768 20.4803L33.4796 13.6251V27.3342V27.3354ZM20.1881 21.8182L6.89655 11.7868H33.4796L20.1881 21.8182Z" fill="white"/>
+										</svg>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="footer--bottom">
+						<div class="footer--info">
+							<a class="header--logo" title="Limitless Creators - логотип" href="index.html">
+								<img src="img/logo/logo.png" class="img-responsive logo--black" alt="Limitless Creators - Комплексная разработка и продвижение сайтов">
+							</a>
+						</div>
+						<div class="copyright">© Limitless Creators agency 2025</div>
+						<a href="#" class="politic">Политика конфиденциальности</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<div class="top" title="Наверх">
+		<svg class="svg--icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M6.8801 1.1199L12.9688 7.2086L0.791771 7.20823L0 8L0.791659 8.79166L12.9683 8.79168L6.88002 14.88L8 16L14.8801 9.11989L15.2082 8.79177L16 8L14.88 6.88001L8 9.48178e-07L6.8801 1.1199Z"></path>
+		</svg>
+	</div>
+
+	<div class="modal modal--general" id="modal_general" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-general-title" inert>
+		<div class="modal--wrapper" tabindex="-1">
+			<h2 class="title h2" id="modal-general-title">Оставить заявку</h2>
+			<button class="modal--close" type="button" aria-label="Закрыть окно">
+				<svg aria-hidden="true" width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M3.09985 3L38 37.9002" stroke="white" stroke-width="5" stroke-linecap="round"/>
+					<path d="M37.9001 3.09955L2.99997 37.9997" stroke="white" stroke-width="5" stroke-linecap="round"/>
+				</svg>
+			</button>
+			<form action="/#wpcf7-f8-o2" method="post" class="wpcf7-form init" aria-label="Контактная форма" novalidate="novalidate" data-status="init" data-modal-contact-form aria-busy="false">
+				<div class="form-field">
+					<label class="form-field__label" for="modal-contact-name">Как к вам обращаться</label>
+					<span class="wpcf7-form-control-wrap" data-name="fio"><input id="modal-contact-name" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" aria-describedby="modal-contact-name-error" placeholder="Например, Марат" value="" type="text" name="fio" autocomplete="name" maxlength="80"></span>
+					<span class="form-field__error" id="modal-contact-name-error" aria-live="polite"></span>
+				</div>
+				<div class="form-field">
+					<label class="form-field__label" for="modal-contact-phone">Телефон</label>
+					<span class="wpcf7-form-control-wrap" data-name="tel"><input id="modal-contact-phone" size="40" class="wpcf7-form-control wpcf7-tel wpcf7-text" aria-required="true" aria-invalid="false" aria-describedby="modal-contact-phone-error" placeholder="+7 (999) 123 45-67" value="" type="tel" name="tel" autocomplete="tel" inputmode="numeric" maxlength="18"></span>
+					<span class="form-field__error" id="modal-contact-phone-error" aria-live="polite"></span>
+				</div>
+				<div class="form-field">
+					<label class="form-field__label" for="modal-contact-email">E-mail</label>
+					<span class="wpcf7-form-control-wrap" data-name="email"><input id="modal-contact-email" size="40" class="wpcf7-form-control wpcf7-email wpcf7-text" aria-invalid="false" aria-describedby="modal-contact-email-error" placeholder="name@example.com" value="" type="email" name="email" autocomplete="email" inputmode="email" maxlength="160"></span>
+					<span class="form-field__error" id="modal-contact-email-error" aria-live="polite"></span>
+				</div>
+				<div class="form-field form-field--consent">
+					<span class="wpcf7-form-control-wrap" data-name="check"><input class="custom--check wpcf7-form-control" type="checkbox" id="modal-contact-consent" name="check" required aria-required="true" aria-invalid="false" aria-describedby="modal-contact-consent-error"><label class="form-field__consent" for="modal-contact-consent"><span>Я соглашаюсь с обработкой персональных данных и принимаю <a href="/privacy-policy/" target="_blank" rel="noopener">Политику конфиденциальности</a>.</span></label></span>
+					<span class="form-field__error" id="modal-contact-consent-error" aria-live="polite"></span>
+				</div>
+				<button class="button button--gradient wpcf7-form-control wpcf7-submit" type="submit">
+					<span>Отправить заявку</span>
+				</button>
+				<div class="form-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></div>
+				<div class="wpcf7-response-output" aria-hidden="true"></div>
+			</form>
+		</div>
+	</div>
+
+	<div class="modal modal--send" id="modal_send" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-send-title" inert>
+		<div class="modal--wrapper" tabindex="-1">
+			<button class="modal--close" type="button" aria-label="Закрыть окно">
+				<svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 13L13 1M1 1L13 13" stroke="#0F67FE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+				</svg>
+			</button>
+			<h2 class="modal--send__message h1" id="modal-send-title">Заявка отправлена</h2>
+			<h3 class="modal--send__message h2">Спасибо за обращение. Я свяжусь с вами после просмотра заявки.</h3>
+		</div>
+	</div>
+
+	<div class="cookies">
+		<div class="cookies--wrapper">
+			<span>
+				На этом сайте мы собираем файлы-cookie. Благодаря им сайт работает быстрее.
+				Используя сайт, вы соглашаетесь с <a href="/privacy-policy/" target="_blank">Политикой конфиденциальности</a> и обработкой файлов-cookie.
+			</span>
+			<button class="button button--gradient cookies--button"><span>Хорошо</span></button>
+		</div>
+	</div>
+
+	<script src="js/scripts.min.js"></script>
+
+</body>
+
+</html>

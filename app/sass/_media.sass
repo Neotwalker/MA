@@ -1005,6 +1005,9 @@
 			&__body
 				flex-basis: auto
 				width: 100%
+			&__list
+				li
+					flex-basis: calc(50% - 5px)
 		.taxonomy--services-catalog
 			&__groups
 				gap: 48px
@@ -1241,7 +1244,9 @@
 				font-size: 16px
 			&__list
 				gap: 8px
-			span
+				li
+					flex-basis: calc(50% - 4px)
+			a
 				min-height: 40px
 				padding: 8px 12px
 				font-size: 14px
@@ -2214,7 +2219,7 @@
 				align-items: stretch
 				li
 					width: 100%
-			span
+			a
 				width: 100%
 			&__cta
 				width: 100%
@@ -2475,3 +2480,507 @@
 			padding-right: 4px
 		&__contact--email
 			font-size: 13px
+
+@media (max-width : 1440px)
+	.industry-hero
+		h1
+			font-size: 62px
+		&__wrapper
+			gap: 48px
+	.industry-business
+		padding: 62px 0 68px
+		&__head
+			margin-bottom: 38px
+			h2
+				font-size: 42px
+		&__layout
+			gap: 32px 36px
+	.industry-section
+		padding: 62px 0
+	.industry-topics
+		padding: 58px 0 34px
+	.industry-scenario
+		padding: 50px 0 58px
+	.industry-faq
+		padding: 54px 0 56px
+	.industry-cta
+		padding: 60px 0 78px
+
+@media (max-width : 1200px)
+	.industry-hero
+		padding-top: 128px
+		h1
+			font-size: 56px
+		&__wrapper
+			gap: 38px
+		&__aside
+			flex-basis: 320px
+			min-width: 260px
+			padding-left: 28px
+	.industry-business
+		&__article
+			flex-basis: calc(50% - 18px)
+			&--lead
+				flex-basis: 100%
+	.industry-checklist,
+	.industry-feature-list
+		article,
+		li
+			flex-basis: calc(50% - 7px)
+	.industry-topics
+		&__item
+			flex-basis: calc(50% - 14px)
+	.industry-route
+		&__item
+			min-width: 150px
+	.industry-scenario-matrix
+		article
+			flex-basis: calc(50% - 11px)
+	.industry-function-system
+		&__grid--interiors
+			.industry-function-system__panel--path,
+			.industry-function-system__panel--project
+				flex-basis: calc(50% - 12px)
+			.industry-function-system__panel--target
+				flex-basis: 100%
+		&__grid--production
+			.industry-function-system__panel--brief
+				flex-basis: calc(60% - 12px)
+			.industry-function-system__results
+				flex-basis: calc(40% - 12px)
+
+@media (max-width : 1024px)
+	.industry-hero
+		h1
+			font-size: 52px
+		&__lead
+			font-size: 18px
+	.industry-business
+		&__head
+			h2
+				font-size: 38px
+		&__article
+			gap: 20px
+		&__number
+			flex-basis: 46px
+		&__body
+			h3
+				font-size: 24px
+		&__article--lead
+			h3
+				font-size: 28px
+	.industry-section
+		&__grid
+			gap: 28px
+	.industry-mode-list
+		article
+			flex-basis: calc(50% - 11px)
+	.industry-function-system
+		&__flow
+			flex-direction: column
+			gap: 18px
+		&__connector
+			min-height: 22px
+			width: 32px
+			justify-content: flex-start
+			padding-left: 28px
+			transform: rotate(90deg)
+			transform-origin: 18px 50%
+		&__matrix
+			.industry-function-system__matrix-column
+				flex-basis: calc(50% - 12px)
+		&__matrix-column:last-child
+			flex-basis: 100%
+		&__pairs
+			gap: 22px
+
+@media (max-width : 1023px)
+	.industry-hero
+		padding: 122px 0 56px
+		&__wrapper
+			flex-direction: column
+			gap: 32px
+		&__aside
+			flex-basis: auto
+			width: 100%
+			min-width: 0
+			padding-left: 0
+			padding-top: 24px
+			border-left: 0
+			border-top: 1px solid color.adjust($white, $alpha: -.84)
+	.industry-scenario
+		&__layout,
+		.industry-spec-board
+			flex-direction: column
+			gap: 28px
+		&__note
+			flex-basis: auto
+			width: 100%
+			padding-left: 0
+			border-left: 0
+			border-top: 1px solid color.adjust($white, $alpha: -.84)
+	.industry-spec-board
+		&__panel
+			flex-basis: auto
+			width: 100%
+			min-width: 0
+			padding-left: 0
+			border-left: 0
+			border-top: 1px solid color.adjust($white, $alpha: -.84)
+	.industry-spec-card
+		flex-direction: column
+		gap: 18px
+		&__eyebrow,
+		h3,
+		&__list
+			flex-basis: auto
+			width: 100%
+	.industry-cta
+		&__wrapper
+			align-items: flex-start
+			flex-direction: column
+			gap: 26px
+	.industry-function-system
+		&__grid--production
+			flex-direction: column
+			.industry-function-system__panel--brief,
+			.industry-function-system__results
+				flex-basis: auto
+		&__product-head
+			flex-direction: column
+		&__product-meta
+			justify-content: flex-start
+			flex-basis: auto
+			width: 100%
+		&__product-grid
+			flex-direction: column
+			div
+				flex-basis: auto
+				padding: 20px 0 0
+				border-top: 1px solid color.adjust($white, $alpha: -.9)
+				&:not(:first-child)
+					padding-left: 0
+					border-left: 0
+
+@media (max-width : 768px)
+	.industry-page
+		.breadcrumbs
+			margin-bottom: 28px
+	.industry-hero
+		padding: 108px 0 50px
+		h1
+			font-size: 42px
+			line-height: 1.08
+		&__lead
+			font-size: 16px
+			line-height: 1.58
+		&__actions
+			margin-top: 28px
+	.industry-business
+		padding: 48px 0 52px
+		&__head
+			margin-bottom: 28px
+			h2
+				font-size: 34px
+				line-height: 1.12
+			p
+				font-size: 16px
+				line-height: 1.58
+		&__layout
+			flex-direction: column
+			gap: 24px
+		&__article,
+		&__article--lead
+			flex-basis: auto
+			width: 100%
+			gap: 18px
+			padding-top: 24px
+		&__article--lead
+			h3
+				font-size: 24px
+		&__number
+			flex-basis: 42px
+			font-size: 17px
+		&__body
+			h3
+				font-size: 23px
+			p
+				font-size: 16px
+				line-height: 1.58
+		&__points
+			margin-top: 16px
+	.industry-section
+		padding: 48px 0
+	.industry-topics
+		padding: 46px 0 30px
+	.industry-faq
+		padding: 46px 0 48px
+	.industry-scenario
+		padding: 46px 0 50px
+		&__head
+			margin-bottom: 24px
+		&__description
+			font-size: 16px
+	.industry-section
+		&__head
+			margin-bottom: 26px
+		&__description
+			font-size: 16px
+		&__grid
+			flex-direction: column
+	.industry-panel
+		flex-basis: auto
+		h2,
+		h3
+			font-size: 24px
+	.industry-checklist,
+	.industry-feature-list
+		article,
+		li
+			flex-basis: 100%
+	.industry-process
+		&__list
+			flex-direction: column
+			gap: 0
+			li
+				flex-basis: auto
+	.industry-cases
+		&__list
+			flex-direction: column
+	.industry-case
+		flex-basis: auto
+	.industry-route
+		&__item
+			flex-basis: calc(50% - 9px)
+			min-width: 0
+	.industry-route--horizontal
+		gap: 0 18px
+		.industry-route__item
+			margin-right: 0
+	.industry-client-types,
+	.industry-mode-list,
+	.industry-linked-notes,
+	.industry-scenario-matrix
+		article
+			flex-basis: 100%
+	.industry-cta
+		padding: 48px 0 64px
+	.industry-function-system
+		h3
+			font-size: 22px
+		&__grid--interiors,
+		&__matrix,
+		&__pairs
+			flex-direction: column
+		&__grid--interiors
+			.industry-function-system__panel--path,
+			.industry-function-system__panel--project,
+			.industry-function-system__panel--target
+				flex-basis: auto
+		&__matrix-column,
+		&__matrix-column:last-child,
+		&__pair
+			flex-basis: auto
+		&__definition-list
+			div
+				flex-basis: 100%
+		&__timeline-step
+			gap: 18px
+		&__timeline-label
+			flex-basis: 58px
+			font-size: 24px
+		&__pair-flow
+			flex-direction: column
+			gap: 10px
+			span
+				flex-basis: auto
+				&:nth-child(2)
+					text-align: left
+					transform: rotate(90deg)
+					transform-origin: 10px 50%
+
+@media (max-width : 767px)
+	.taxonomy--dev
+		.development-industries
+			&__list
+				li
+					flex-basis: 100%
+			&__link
+				min-height: 48px
+	.industry-hero
+		&__actions
+			align-items: stretch
+			flex-direction: column
+			.button,
+			.industry-hero__case-link
+				width: 100%
+		&__aside-list
+			gap: 8px
+	.industry-scenario
+		&__layout
+			gap: 22px
+		&__note
+			padding-top: 20px
+			h3
+				font-size: 22px
+	.industry-route,
+	.industry-route--stacked,
+	.industry-route--timeline
+		gap: 0
+		.industry-route__item
+			flex-basis: 100%
+			padding: 15px 0
+			font-size: 15px
+			&:not(:last-child)
+				margin-right: 0
+	.industry-route--wide
+		margin-bottom: 22px
+	.industry-token-list
+		gap: 8px
+		span[role="listitem"],
+		li
+			min-height: 34px
+			font-size: 13px
+	.industry-client-types,
+	.industry-mode-list,
+	.industry-linked-notes,
+	.industry-scenario-matrix
+		gap: 18px
+		article
+			h3
+				font-size: 22px
+	.industry-spec-card
+		&__list
+			div
+				flex-basis: 100%
+	.industry-format-list
+		li
+			flex: 1 1 100%
+	.industry-topics
+		&__list
+			gap: 0
+		&__item
+			flex-basis: 100%
+		&__link
+			min-height: 48px
+	.industry-cta
+		.button
+			width: 100%
+	.industry-function-system
+		&__panel,
+		&__matrix-column,
+		&__timeline-step,
+		&__product-card,
+		&__pair
+			padding-top: 20px
+		&__sequence-item
+			gap: 12px
+			span
+				flex-basis: 38px
+		&__brief-fields
+			span
+				flex-basis: calc(50% - 4px)
+		&__tags,
+		&__brief-fields,
+		&__option-row,
+		&__product-meta
+			gap: 8px
+			span
+				padding: 8px 10px
+				font-size: 13px
+
+@media (max-width : 390px)
+	.industry-hero
+		padding: 100px 0 44px
+		h1
+			font-size: 36px
+		&__wrapper
+			padding-top: 26px
+		&__aside
+			p
+				font-size: 16px
+	.industry-business
+		padding: 42px 0 46px
+		&__head
+			margin-bottom: 24px
+			h2
+				font-size: 30px
+			p
+				font-size: 15px
+		&__article,
+		&__article--lead
+			gap: 14px
+			padding-top: 22px
+		&__number
+			flex-basis: 36px
+			font-size: 15px
+		&__body
+			h3
+				font-size: 21px
+			p
+				font-size: 15px
+		&__points
+			gap: 7px
+			span
+				padding: 6px 8px
+				font-size: 12px
+	.industry-section
+		padding: 42px 0
+	.industry-topics
+		padding: 40px 0 26px
+	.industry-faq
+		padding: 40px 0 42px
+	.industry-scenario
+		padding: 40px 0 44px
+		&__head
+			margin-bottom: 22px
+	.industry-checklist,
+	.industry-feature-list
+		article,
+		li
+			padding-top: 16px
+			padding-bottom: 16px
+	.industry-topics
+		&__link
+			font-size: 15px
+	.industry-function-system
+		h3
+			font-size: 21px
+		&__brief-fields
+			span
+				flex-basis: 100%
+		&__timeline-step
+			gap: 14px
+		&__timeline-label
+			flex-basis: 46px
+			font-size: 21px
+		&__pair-flow
+			span
+				font-size: 15px
+
+@media (max-width : 340px)
+	.industry-hero
+		h1
+			font-size: 32px
+		&__lead
+			font-size: 15px
+		&__case-link
+			padding-left: 14px
+			padding-right: 14px
+	.industry-route,
+	.industry-route--stacked,
+	.industry-route--timeline
+		.industry-route__item
+			gap: 12px
+			span
+				flex-basis: 30px
+	.industry-section
+		&__title
+			font-size: 30px
+	.industry-function-system
+		&__sequence-item
+			span
+				flex-basis: 32px
+		&__timeline-step
+			.industry-function-system__timeline-label
+				flex-basis: 38px

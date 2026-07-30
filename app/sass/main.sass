@@ -449,15 +449,33 @@ textarea
 	gap: 5px
 	&:not(:last-child)
 		margin-bottom: 40px !important
-	span
+	p
 		display: flex
+		flex-wrap: wrap
+		align-items: center
+		gap: 5px
+		margin: 0
+		color: color.adjust($white, $alpha: -.2)
+		font-size: 15px
+		font-weight: 500
+		line-height: 1.35
+	span
+		display: inline-flex
 		gap: 7px
 		flex-wrap: wrap
 		font-size: 15px
 		font-weight: 500
+		line-height: 1.35
+	.separator
+		color: color.adjust($white, $alpha: -.58)
+		font-weight: 500
+	.last
+		color: color.adjust($white, $alpha: -.08)
+		font-weight: 650
 	a
 		font-weight: 700
 		font-size: 15px
+		line-height: 1.35
 		-webkit-text-fill-color: transparent
 		-webkit-background-clip: text
 		background-image: linear-gradient(90deg, #fcfcfd, #fcfcfd 33.33333%, #FF2323 66.66666%, #E2CC00)
@@ -2901,43 +2919,70 @@ textarea
 			list-style: none
 			li
 				display: flex
+				flex: 1 1 calc(33.333% - 7px)
 				min-width: 0
-			span
+			a
 				display: inline-flex
 				align-items: center
-				min-height: 42px
+				justify-content: space-between
+				gap: 12px
+				width: 100%
+				min-height: 56px
 				max-width: 100%
-				padding: 9px 14px
-				border: 1px solid color.adjust($white, $alpha: -.78)
-				background-color: color.adjust($white, $alpha: -.97)
+				padding: 12px 14px
+				border-top: 1px solid color.adjust($white, $alpha: -.84)
+				background-color: transparent
 				color: color.adjust($white, $alpha: -.12)
 				font-size: 15px
-				font-weight: 500
+				font-weight: 600
 				line-height: 1.3
+				text-decoration: none
 				overflow-wrap: anywhere
+				box-sizing: border-box
+				transition: color .2s ease, background-color .2s ease, border-color .2s ease
+				span
+					flex: 0 0 auto
+					color: color.adjust($accent, $alpha: -.24)
+					transition: color .2s ease, transform .2s ease
+				&:hover
+					border-top-color: color.adjust($accent, $alpha: -.35)
+					background-color: color.adjust($white, $alpha: -.96)
+					color: $white
+					span
+						color: $accent
+						transform: translateX(4px)
+				&:focus-visible
+					outline: 2px solid color.adjust($orange, $alpha: -.08)
+					outline-offset: 3px
+					background-color: color.adjust($white, $alpha: -.96)
+				&:active
+					background-color: color.adjust($white, $alpha: -.94)
+					span
+						transform: translateX(2px)
 		&__cta
 			display: inline-flex
 			align-items: center
 			justify-content: center
-			min-height: 46px
-			padding: 0 22px
-			border: 1px solid color.adjust($accent, $alpha: -.25)
-			background-color: color.adjust($accent, $alpha: -.9)
+			min-height: 52px
+			padding: 0 24px
+			border: 2px solid $white
+			background-color: transparent
 			color: $white
-			font-size: 15px
+			font-size: 16px
 			font-weight: 700
 			line-height: 1.2
 			text-align: center
 			transition: color .25s ease, border-color .25s ease, background-color .25s ease
 			&:hover
-				border-color: $accent
-				background-color: color.adjust($accent, $alpha: -.84)
-				color: $white
+				border-color: $white
+				background-color: $white
+				color: $black
 			&:focus-visible
 				outline: 2px solid color.adjust($orange, $alpha: -.08)
 				outline-offset: 4px
 			&:active
-				background-color: color.adjust($accent, $alpha: -.78)
+				background-color: color.adjust($white, $alpha: -.12)
+				color: $black
 	.taxonomy--services-catalog
 		&__head
 			max-width: 820px
@@ -3842,6 +3887,954 @@ figure
 		text-decoration: underline
 		&:hover 
 			color: $accent !important
+
+body.industry-template
+	.header-nav__services-toggle,
+	.mobile-navigation__services-toggle
+		&[aria-current="page"]
+			color: $accent
+
+.industry-page
+	position: relative
+	z-index: 1
+	.breadcrumbs
+		margin-bottom: 38px
+
+.industry-hero
+	padding: 132px 0 56px
+	&__wrapper
+		display: flex
+		align-items: flex-start
+		gap: 54px
+		padding-top: 30px
+		border-top: 1px solid color.adjust($white, $alpha: -.84)
+	&__content
+		flex: 1 1 68%
+		min-width: 0
+	h1
+		max-width: 1040px
+		margin-bottom: 24px
+		font-size: 68px
+		line-height: 1.03
+		font-weight: 800
+	&__kicker
+		margin-bottom: 16px
+		color: $accent
+		font-size: 15px
+		font-weight: 700
+		line-height: 1.25
+	&__lead
+		max-width: 760px
+		color: color.adjust($white, $alpha: -.16)
+		font-size: 19px
+		line-height: 1.62
+		&:not(:last-of-type)
+			margin-bottom: 18px
+	&__actions
+		display: flex
+		flex-wrap: wrap
+		align-items: center
+		gap: 14px
+		margin-top: 34px
+	&__case-link
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		min-height: 52px
+		padding: 0 22px
+		border: 1px solid color.adjust($white, $alpha: -.72)
+		color: $white
+		font-size: 15px
+		font-weight: 700
+		line-height: 1.2
+		text-align: center
+		text-decoration: none
+		transition: color .2s ease, border-color .2s ease, background-color .2s ease
+		&:hover
+			border-color: color.adjust($accent, $alpha: -.2)
+			background-color: color.adjust($white, $alpha: -.96)
+			color: $white
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.08)
+			outline-offset: 4px
+		&:active
+			background-color: color.adjust($white, $alpha: -.94)
+	&__aside
+		flex: 0 1 340px
+		min-width: 280px
+		padding-left: 34px
+		border-left: 1px solid color.adjust($white, $alpha: -.82)
+		p
+			margin: 0
+			color: color.adjust($white, $alpha: -.08)
+			font-size: 18px
+			font-weight: 600
+			line-height: 1.55
+	&__aside-title
+		margin-bottom: 18px !important
+		color: $white !important
+		font-size: 18px !important
+		font-weight: 800 !important
+		line-height: 1.35 !important
+	&__aside-list
+		display: flex
+		flex-direction: column
+		gap: 10px
+		margin: 0
+		padding: 0
+		list-style: none
+		span[role="listitem"],
+		li
+			position: relative
+			padding-left: 18px
+			color: color.adjust($white, $alpha: -.14)
+			font-size: 15px
+			line-height: 1.45
+			&::before
+				content: ''
+				position: absolute
+				top: 9px
+				left: 0
+				width: 6px
+				height: 6px
+				background-color: $accent
+
+.industry-business
+	padding: 66px 0 72px
+	border-top: 1px solid color.adjust($white, $alpha: -.92)
+	&__head
+		max-width: 940px
+		margin-bottom: 42px
+		h2
+			max-width: 860px
+			margin-bottom: 18px
+			font-size: 46px
+			line-height: 1.08
+		p
+			max-width: 820px
+			color: color.adjust($white, $alpha: -.18)
+			font-size: 19px
+			line-height: 1.64
+	&__layout
+		display: flex
+		flex-wrap: wrap
+		align-items: flex-start
+		gap: 34px 42px
+	&__article
+		flex: 1 1 calc(50% - 21px)
+		display: flex
+		align-items: flex-start
+		gap: 24px
+		min-width: 0
+		padding-top: 28px
+		border-top: 1px solid color.adjust($white, $alpha: -.8)
+		background: linear-gradient(180deg, color.adjust($white, $alpha: -.985), rgba(255, 255, 255, 0) 72%)
+		&--lead
+			flex-basis: calc(58% - 21px)
+			.industry-business__body
+				max-width: 760px
+			h3
+				font-size: 32px
+	&__number
+		flex: 0 0 52px
+		color: color.adjust($accent, $alpha: -.05)
+		font-size: 20px
+		font-weight: 800
+		line-height: 1
+	&__body
+		min-width: 0
+		h3
+			margin-bottom: 14px
+			font-size: 27px
+			line-height: 1.18
+		p
+			color: color.adjust($white, $alpha: -.2)
+			font-size: 17px
+			line-height: 1.64
+	&__points
+		display: flex
+		flex-wrap: wrap
+		gap: 8px 10px
+		margin-top: 20px
+		span
+			min-width: 0
+			padding: 6px 9px
+			border: 1px solid color.adjust($white, $alpha: -.9)
+			border-radius: 2px
+			color: color.adjust($white, $alpha: -.28)
+			font-size: 12px
+			font-weight: 500
+			line-height: 1.25
+			overflow-wrap: anywhere
+
+.industry-scenario
+	padding: 54px 0 64px
+	border-top: 1px solid color.adjust($white, $alpha: -.92)
+	&__head
+		max-width: 820px
+		margin-bottom: 30px
+	&__title
+		margin-bottom: 16px
+	&__description
+		max-width: 720px
+		color: color.adjust($white, $alpha: -.2)
+		font-size: 17px
+		line-height: 1.58
+	&__layout
+		display: flex
+		align-items: stretch
+		gap: 30px
+		> *
+			min-width: 0
+	&__note
+		flex: 0 1 340px
+		padding: 24px 0 0 26px
+		border-left: 1px solid color.adjust($white, $alpha: -.82)
+		h3
+			margin-bottom: 16px
+			font-size: 24px
+			line-height: 1.2
+		p
+			color: color.adjust($white, $alpha: -.2)
+			font-size: 16px
+			line-height: 1.58
+
+.industry-route
+	display: flex
+	flex-wrap: wrap
+	gap: 0
+	margin: 0
+	padding: 0
+	list-style: none
+	&__item
+		position: relative
+		flex: 1 1 0
+		min-width: 170px
+		padding: 18px 20px 18px 0
+		border-top: 1px solid color.adjust($white, $alpha: -.78)
+		color: color.adjust($white, $alpha: -.12)
+		font-size: 16px
+		font-weight: 650
+		line-height: 1.35
+		p
+			margin: 0
+			color: inherit
+			font: inherit
+		&:not(:last-child)
+			margin-right: 18px
+		span
+			display: block
+			margin-bottom: 12px
+			color: $accent
+			font-size: 13px
+			font-weight: 800
+			line-height: 1
+			letter-spacing: .04em
+	&--horizontal
+		flex: 1 1 auto
+	&--wide
+		margin-bottom: 28px
+		.industry-route__item
+			min-width: 150px
+	&--stacked,
+	&--timeline
+		flex: 1 1 48%
+		flex-direction: column
+		flex-wrap: nowrap
+		min-width: 0
+		.industry-route__item
+			display: flex
+			align-items: flex-start
+			gap: 16px
+			min-width: 0
+			margin-right: 0
+			padding: 16px 0
+			span
+				flex: 0 0 34px
+				margin-bottom: 0
+				line-height: 1.35
+	&--timeline
+		.industry-route__item
+			padding-left: 18px
+			&::before
+				content: ''
+				position: absolute
+				top: 0
+				bottom: 0
+				left: 0
+				width: 1px
+				background-color: color.adjust($white, $alpha: -.86)
+
+.industry-token-list
+	display: flex
+	flex-wrap: wrap
+	gap: 10px
+	margin: 0
+	padding: 0
+	list-style: none
+	span[role="listitem"],
+	li
+		display: inline-flex
+		align-items: center
+		min-height: 36px
+		padding: 8px 12px
+		border: 1px solid color.adjust($white, $alpha: -.84)
+		color: color.adjust($white, $alpha: -.13)
+		font-size: 14px
+		line-height: 1.25
+
+.industry-client-types,
+.industry-mode-list,
+.industry-linked-notes,
+.industry-scenario-matrix
+	display: flex
+	flex-wrap: wrap
+	gap: 22px
+	article
+		flex: 1 1 calc(50% - 11px)
+		min-width: 0
+		padding: 24px 0 0
+		border-top: 1px solid color.adjust($white, $alpha: -.78)
+		h3
+			margin-bottom: 12px
+			font-size: 24px
+			line-height: 1.2
+		p
+			color: color.adjust($white, $alpha: -.22)
+			font-size: 16px
+			line-height: 1.58
+			&:not(:last-child)
+				margin-bottom: 10px
+
+.industry-client-types
+	flex: 1 1 52%
+
+.industry-mode-list
+	article
+		flex-basis: calc(33.333% - 15px)
+
+.industry-spec-board
+	display: flex
+	align-items: stretch
+	gap: 34px
+	&__panel
+		flex: 0 1 360px
+		min-width: 280px
+		padding: 24px 0 0 28px
+		border-left: 1px solid color.adjust($white, $alpha: -.82)
+		h3
+			margin-bottom: 16px
+			font-size: 24px
+			line-height: 1.2
+
+.industry-scenario__layout--linked-columns
+	flex-wrap: wrap
+
+.industry-spec-card
+	flex: 1 1 100%
+	display: flex
+	align-items: flex-start
+	justify-content: space-between
+	gap: 30px
+	min-width: 0
+	padding: 24px 0 0
+	border-top: 1px solid color.adjust($white, $alpha: -.78)
+	&__eyebrow
+		flex: 0 0 190px
+		margin: 0
+		color: $accent
+		font-size: 14px
+		font-weight: 800
+		line-height: 1.25
+	h3
+		flex: 0 1 340px
+		margin: 0
+		font-size: 24px
+		line-height: 1.2
+	&__list
+		flex: 1 1 430px
+		display: flex
+		flex-wrap: wrap
+		gap: 18px
+		margin: 0
+		min-width: 0
+		div
+			flex: 1 1 calc(33.333% - 12px)
+			min-width: 150px
+		dt
+			margin-bottom: 6px
+			color: color.adjust($white, $alpha: -.1)
+			font-size: 15px
+			font-weight: 700
+			line-height: 1.25
+		dd
+			margin: 0
+			color: color.adjust($white, $alpha: -.28)
+			font-size: 14px
+			line-height: 1.45
+
+.industry-linked-notes
+	flex: 1 1 48%
+	align-content: flex-start
+	article
+		flex-basis: 100%
+
+.industry-scenario-matrix
+	article
+		flex-basis: calc(25% - 17px)
+		p
+			b
+				color: color.adjust($white, $alpha: -.06)
+
+.industry-section
+	padding: 62px 0
+	border-top: 1px solid color.adjust($white, $alpha: -.92)
+	&__head
+		max-width: 820px
+		margin-bottom: 34px
+	&__kicker
+		margin-bottom: 12px
+		color: $accent
+		font-size: 14px
+		font-weight: 700
+		line-height: 1.25
+	&__title
+		margin-bottom: 16px
+	&__description
+		max-width: 760px
+		color: color.adjust($white, $alpha: -.2)
+		font-size: 18px
+		line-height: 1.6
+	&__grid
+		display: flex
+		flex-wrap: wrap
+		gap: 32px
+
+.industry-panel
+	flex: 1 1 calc(50% - 16px)
+	min-width: 0
+	padding-top: 26px
+	border-top: 1px solid color.adjust($white, $alpha: -.8)
+	h2,
+	h3
+		margin-bottom: 20px
+		font-size: 28px
+		line-height: 1.18
+	p
+		color: color.adjust($white, $alpha: -.2)
+		font-size: 16px
+		line-height: 1.6
+
+.industry-checklist,
+.industry-feature-list
+	display: flex
+	flex-wrap: wrap
+	gap: 14px
+	margin: 0
+	padding: 0
+	list-style: none
+	article,
+	li
+		flex: 1 1 calc(33.333% - 10px)
+		min-width: 0
+		padding: 18px 0 18px 18px
+		border-top: 1px solid color.adjust($white, $alpha: -.84)
+		color: color.adjust($white, $alpha: -.1)
+		font-size: 16px
+		line-height: 1.45
+		position: relative
+		&::before
+			content: ''
+			position: absolute
+			top: 27px
+			left: 0
+			width: 7px
+			height: 7px
+			background-color: $accent
+		p
+			margin: 0
+			color: inherit
+			font: inherit
+
+.industry-function-system
+	min-width: 0
+	&__grid,
+	&__flow,
+	&__matrix,
+	&__pairs,
+	&__product-grid
+		display: flex
+		flex-wrap: wrap
+		gap: 24px
+		min-width: 0
+	&__grid--interiors
+		.industry-function-system__panel--path,
+		.industry-function-system__panel--target
+			flex: 1 1 calc(28% - 16px)
+		.industry-function-system__panel--project
+			flex: 1.35 1 calc(40% - 16px)
+	&__grid--production
+		align-items: stretch
+		.industry-function-system__panel--brief
+			flex: 1 1 calc(66% - 12px)
+		.industry-function-system__results
+			flex: 1 1 calc(34% - 12px)
+	&__flow
+		flex-wrap: nowrap
+		align-items: start
+		.industry-function-system__panel
+			flex: 1 1 0
+	&__matrix
+		align-items: stretch
+		.industry-function-system__matrix-column
+			flex: 1 1 calc(33.333% - 16px)
+	&__pairs
+		.industry-function-system__pair
+			flex: 1 1 calc(50% - 12px)
+	&__panel,
+	&__matrix-column,
+	&__timeline-step,
+	&__product-card,
+	&__pair
+		min-width: 0
+		padding-top: 24px
+		border-top: 1px solid color.adjust($white, $alpha: -.82)
+		background: linear-gradient(180deg, color.adjust($white, $alpha: -.985), rgba(255, 255, 255, 0) 72%)
+	h3,
+	h4
+		margin: 0
+		color: $white
+		line-height: 1.2
+	h3
+		font-size: 24px
+	h4
+		font-size: 17px
+	&__eyebrow
+		margin: 0 0 12px
+		color: color.adjust($accent, $alpha: -.04)
+		font-size: 13px
+		font-weight: 700
+		line-height: 1.25
+	&__sequence
+		display: flex
+		flex-direction: column
+		gap: 0
+		margin-top: 24px
+	&__sequence-item
+		display: flex
+		gap: 14px
+		align-items: start
+		padding: 15px 0
+		border-top: 1px solid color.adjust($white, $alpha: -.9)
+		span
+			flex: 0 0 44px
+			color: color.adjust($white, $alpha: -.55)
+			font-size: 13px
+			font-weight: 700
+			line-height: 1.35
+		p
+			margin: 0
+			color: color.adjust($white, $alpha: -.12)
+			font-size: 16px
+			line-height: 1.5
+	&__definition-list
+		display: flex
+		flex-wrap: wrap
+		gap: 18px 22px
+		margin: 24px 0 0
+		div
+			flex: 1 1 calc(50% - 11px)
+			min-width: 0
+			padding-top: 14px
+			border-top: 1px solid color.adjust($white, $alpha: -.9)
+		dt
+			margin-bottom: 8px
+			color: color.adjust($white, $alpha: -.06)
+			font-size: 15px
+			font-weight: 700
+			line-height: 1.35
+		dd
+			margin: 0
+			color: color.adjust($white, $alpha: -.24)
+			font-size: 15px
+			line-height: 1.55
+	&__action-stack,
+	&__result-stack,
+	&__rows
+		display: flex
+		flex-direction: column
+		gap: 0
+		margin-top: 24px
+	&__action-stack
+		div
+			padding: 15px 0
+			border-top: 1px solid color.adjust($white, $alpha: -.88)
+			color: color.adjust($white, $alpha: -.1)
+			font-size: 16px
+			line-height: 1.45
+	&__tags,
+	&__brief-fields,
+	&__option-row,
+	&__product-meta
+		display: flex
+		flex-wrap: wrap
+		gap: 10px
+		margin-top: 24px
+		span
+			min-width: 0
+			padding: 9px 12px
+			border: 1px solid color.adjust($white, $alpha: -.86)
+			color: color.adjust($white, $alpha: -.15)
+			font-size: 14px
+			line-height: 1.35
+	&__connector
+		display: flex
+		align-items: center
+		justify-content: center
+		min-height: 78px
+		color: color.adjust($accent, $alpha: -.12)
+		font-size: 24px
+		line-height: 1
+	&__result-stack
+		p
+			margin: 0
+			padding: 13px 0
+			border-top: 1px solid color.adjust($white, $alpha: -.89)
+			color: color.adjust($white, $alpha: -.16)
+			font-size: 15px
+			line-height: 1.5
+	&__matrix-column
+		display: flex
+		flex-direction: column
+	&__rows
+		height: 100%
+		div
+			padding: 13px 0
+			border-top: 1px solid color.adjust($white, $alpha: -.9)
+			color: color.adjust($white, $alpha: -.16)
+			font-size: 15px
+			line-height: 1.5
+			&:last-child
+				margin-top: auto
+				color: color.adjust($white, $alpha: -.04)
+	&__results
+		display: flex
+		flex-direction: column
+		gap: 22px
+		min-width: 0
+		div
+			min-width: 0
+			padding-top: 24px
+			border-top: 1px solid color.adjust($white, $alpha: -.82)
+		p:not(.industry-function-system__eyebrow)
+			margin: 0
+			color: color.adjust($white, $alpha: -.16)
+			font-size: 16px
+			line-height: 1.55
+	&__brief-fields
+		span
+			flex: 1 1 calc(33.333% - 7px)
+	&__option-row
+		margin-top: 26px
+		padding-top: 18px
+		border-top: 1px solid color.adjust($white, $alpha: -.9)
+		span
+			border-color: color.adjust($accent, $alpha: -.72)
+			color: color.adjust($white, $alpha: -.1)
+	&__timeline
+		display: flex
+		flex-direction: column
+		gap: 0
+	&__timeline-step
+		display: flex
+		gap: 26px
+		padding: 26px 0
+		background: none
+		&:first-child
+			padding-top: 24px
+	&__timeline-label
+		flex: 0 0 72px
+		color: color.adjust($accent, $alpha: -.06)
+		font-size: 28px
+		font-weight: 700
+		line-height: 1
+	&__product-card
+		padding-bottom: 0
+		background: linear-gradient(180deg, color.adjust($white, $alpha: -.98), rgba(255, 255, 255, 0) 68%)
+	&__product-head
+		display: flex
+		align-items: flex-start
+		justify-content: space-between
+		gap: 24px
+		padding-bottom: 24px
+		border-bottom: 1px solid color.adjust($white, $alpha: -.88)
+		.industry-function-system__eyebrow
+			margin-bottom: 10px
+	&__product-meta
+		justify-content: flex-end
+		margin-top: 0
+		flex: 0 1 360px
+	&__product-grid
+		gap: 0
+		div
+			flex: 1 1 33.333%
+			min-width: 0
+			padding: 24px 24px 0 0
+			&:not(:first-child)
+				padding-left: 24px
+				border-left: 1px solid color.adjust($white, $alpha: -.9)
+		h4
+			margin-bottom: 12px
+		p
+			margin: 0
+			color: color.adjust($white, $alpha: -.2)
+			font-size: 15px
+			line-height: 1.55
+	&__caption
+		max-width: 860px
+		margin: 26px 0 0
+		padding-top: 18px
+		border-top: 1px solid color.adjust($white, $alpha: -.9)
+		color: color.adjust($white, $alpha: -.2)
+		font-size: 15px
+		line-height: 1.6
+	&__pair
+		background: none
+	&__pair-flow
+		display: flex
+		gap: 14px
+		align-items: start
+		margin-top: 20px
+		span
+			flex: 1 1 calc(50% - 28px)
+			min-width: 0
+			color: color.adjust($white, $alpha: -.14)
+			font-size: 16px
+			line-height: 1.5
+			&:nth-child(2)
+				flex: 0 0 28px
+				text-align: center
+				color: color.adjust($accent, $alpha: -.08)
+
+.industry-list
+	margin: 0
+	padding: 0
+	list-style: none
+	article,
+	li
+		position: relative
+		padding: 12px 0 12px 18px
+		border-top: 1px solid color.adjust($white, $alpha: -.9)
+		color: color.adjust($white, $alpha: -.18)
+		font-size: 16px
+		line-height: 1.55
+		&::before
+			content: ''
+			position: absolute
+			top: 22px
+			left: 0
+			width: 6px
+			height: 6px
+			background-color: color.adjust($accent, $alpha: -.08)
+		p
+			margin: 0
+			color: inherit
+			font: inherit
+
+.industry-format-list
+	display: flex
+	flex-wrap: wrap
+	gap: 12px
+	margin: 0
+	padding: 0
+	list-style: none
+	li
+		display: inline-flex
+		align-items: center
+		min-height: 44px
+		padding: 10px 15px
+		border: 1px solid color.adjust($white, $alpha: -.82)
+		color: color.adjust($white, $alpha: -.12)
+		font-size: 15px
+		line-height: 1.3
+
+.industry-cases
+	.industry-section__head
+		max-width: 780px
+	&__list
+		display: flex
+		flex-wrap: wrap
+		gap: 28px
+
+.industry-case
+	flex: 1 1 calc(50% - 14px)
+	min-width: 0
+	padding-top: 24px
+	border-top: 1px solid color.adjust($white, $alpha: -.78)
+	p
+		color: color.adjust($white, $alpha: -.2)
+		font-size: 16px
+		line-height: 1.6
+		&:not(:last-child)
+			margin-bottom: 12px
+	&__label
+		color: $accent !important
+		font-size: 14px !important
+		font-weight: 700
+		line-height: 1.2 !important
+	&__title
+		margin-bottom: 14px
+		font-size: 28px
+		line-height: 1.2
+		a
+			color: $white
+			text-decoration: none
+			transition: color .2s ease
+			&:hover
+				color: $accent
+			&:focus-visible
+				outline: 2px solid color.adjust($orange, $alpha: -.08)
+				outline-offset: 4px
+	&__note
+		color: color.adjust($white, $alpha: -.06) !important
+
+.industry-process
+	&__list
+		display: flex
+		flex-wrap: wrap
+		gap: 0 32px
+		margin: 0
+		padding: 0
+		list-style: none
+		li
+			display: flex
+			align-items: flex-start
+			gap: 18px
+			flex: 1 1 calc(50% - 16px)
+			min-width: 0
+			padding: 22px 0
+			border-top: 1px solid color.adjust($white, $alpha: -.84)
+			color: color.adjust($white, $alpha: -.12)
+			font-size: 16px
+			line-height: 1.45
+			span
+				flex: 0 0 38px
+				color: $accent
+				font-size: 14px
+				font-weight: 800
+				line-height: 1.45
+
+.industry-topics
+	padding: 64px 0 38px
+	border-top: 1px solid color.adjust($white, $alpha: -.92)
+	&__head
+		max-width: 760px
+		margin-bottom: 30px
+	&__kicker
+		margin-bottom: 12px
+		color: $accent
+		font-size: 14px
+		font-weight: 700
+		line-height: 1.25
+	&__title
+		margin-bottom: 16px
+	&__description
+		color: color.adjust($white, $alpha: -.18)
+		font-size: 18px
+		line-height: 1.6
+	&__list
+		display: flex
+		flex-wrap: wrap
+		gap: 0 28px
+		margin: 0
+		padding: 0
+		list-style: none
+	&__item
+		flex: 1 1 calc(33.333% - 19px)
+		min-width: 0
+	&__link
+		display: flex
+		align-items: center
+		justify-content: space-between
+		gap: 14px
+		min-height: 58px
+		padding: 15px 10px
+		border-top: 1px solid color.adjust($white, $alpha: -.84)
+		color: color.adjust($white, $alpha: -.1)
+		font-size: 16px
+		font-weight: 650
+		line-height: 1.35
+		text-decoration: none
+		overflow-wrap: anywhere
+		transition: color .2s ease, background-color .2s ease, border-color .2s ease
+		span
+			flex: 0 0 auto
+			color: color.adjust($accent, $alpha: -.28)
+			transition: color .2s ease, transform .2s ease
+		&:hover
+			border-top-color: color.adjust($accent, $alpha: -.35)
+			background-color: color.adjust($white, $alpha: -.96)
+			color: $white
+			span
+				color: $accent
+				transform: translateX(4px)
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.08)
+			outline-offset: 4px
+			background-color: color.adjust($white, $alpha: -.96)
+		&:active
+			background-color: color.adjust($white, $alpha: -.94)
+			span
+				transform: translateX(2px)
+		&--current,
+		&[aria-current="page"]
+			border-top-color: $accent
+			color: $white
+			box-shadow: inset 3px 0 0 color.adjust($accent, $alpha: -.05)
+
+.industry-faq
+	padding: 56px 0 58px
+	border-top: 1px solid color.adjust($white, $alpha: -.92)
+	&::after
+		display: none
+	.main--faq__wrapper
+		margin-top: 30px
+
+.industry-cta
+	padding: 66px 0 88px
+	border-top: 1px solid color.adjust($white, $alpha: -.92)
+	&__wrapper
+		display: flex
+		align-items: center
+		justify-content: space-between
+		gap: 42px
+		padding-top: 34px
+		border-top: 1px solid color.adjust($white, $alpha: -.82)
+		p
+			max-width: 740px
+			color: color.adjust($white, $alpha: -.18)
+			font-size: 18px
+			line-height: 1.6
+	&__title
+		max-width: 820px
+		margin-bottom: 16px
+
+@media (prefers-reduced-motion: reduce)
+	.taxonomy--dev
+		.development-industries__link
+			span
+				transition: none
+			&:hover,
+			&:active
+				span
+					transform: none
+	.industry-topics__link
+		span
+			transition: none
+		&:hover,
+		&:active
+			span
+				transform: none
 
 .cookies
 	display: block
