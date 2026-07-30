@@ -551,6 +551,7 @@
 					<p class="site-footer__copyright">© 2018–2026 Марат Абзалов</p>
 					<p class="site-footer__notice">Информация на сайте не является публичной офертой</p>
 					<a class="site-footer__privacy" href="https://limitlesscreators.ru/privacy-policy/">Политика конфиденциальности</a>
+				<button class="site-footer__cookie-settings cookie-settings-open" type="button" aria-haspopup="dialog" aria-controls="cookie-preferences">Настройки cookie</button>
 				</div>
 			</div>
 		</div>
@@ -613,13 +614,58 @@
 		</div>
 	</div>
 
-	<div class="cookies">
-		<div class="cookies--wrapper">
-			<span>
-				На этом сайте мы собираем файлы-cookie. Благодаря им сайт работает быстрее.
-				Используя сайт, вы соглашаетесь с <a href="/privacy-policy/" target="_blank">Политикой конфиденциальности</a> и обработкой файлов-cookie.
-			</span>
-			<button class="button button--gradient cookies--button"><span>Хорошо</span></button>
+	<section class="cookie-consent" aria-label="Настройки файлов cookie" aria-hidden="true" inert>
+		<div class="cookie-consent__inner">
+			<div class="cookie-consent__content">
+				<h2 class="cookie-consent__title">Файлы cookie и аналитика</h2>
+				<p class="cookie-consent__text">Для сохранения настроек сайт использует технические данные в браузере. Яндекс Метрика и Вебвизор подключаются только с вашего согласия.</p>
+				<a class="cookie-consent__policy" href="https://limitlesscreators.ru/privacy-policy/">Подробнее в политике конфиденциальности</a>
+			</div>
+			<div class="cookie-consent__actions">
+				<button class="cookie-consent__accept" type="button">Принять аналитику</button>
+				<button class="cookie-consent__necessary" type="button">Только необходимые</button>
+				<button class="cookie-consent__settings" type="button" aria-haspopup="dialog" aria-controls="cookie-preferences">Настроить</button>
+			</div>
+		</div>
+	</section>
+	<div class="cookie-preferences" id="cookie-preferences" role="dialog" aria-modal="true" aria-labelledby="cookie-preferences-title" aria-describedby="cookie-preferences-description" aria-hidden="true" inert>
+		<div class="cookie-preferences__overlay" data-cookie-settings-close></div>
+		<div class="cookie-preferences__dialog" tabindex="-1">
+			<div class="cookie-preferences__head">
+				<div>
+					<p class="cookie-preferences__eyebrow">Настройки хранения</p>
+					<h2 class="cookie-preferences__title" id="cookie-preferences-title">Файлы cookie и аналитика</h2>
+				</div>
+				<button class="cookie-preferences__close" type="button" aria-label="Закрыть настройки cookie" data-cookie-settings-close>
+					<span></span>
+					<span></span>
+				</button>
+			</div>
+			<p class="cookie-preferences__description" id="cookie-preferences-description">Технические данные нужны для сохранения выбранных настроек. Аналитика помогает понимать, какие страницы полезны, и подключается только после согласия.</p>
+			<div class="cookie-preferences__options">
+				<div class="cookie-preferences__option">
+					<div>
+						<h3 class="cookie-preferences__option-title">Технические данные</h3>
+						<p>Сохраняют выбранные настройки и помогают интерфейсу работать корректно.</p>
+					</div>
+					<span class="cookie-preferences__status">Всегда активно</span>
+				</div>
+				<label class="cookie-preferences__option cookie-preferences__option--toggle" for="cookie-analytics-toggle">
+					<div>
+						<h3 class="cookie-preferences__option-title">Аналитика</h3>
+						<p>Яндекс Метрика и Вебвизор будут подключаться только при включённом согласии.</p>
+					</div>
+					<span class="cookie-preferences__switch">
+						<input id="cookie-analytics-toggle" class="cookie-preferences__checkbox" type="checkbox">
+						<span class="cookie-preferences__switch-ui" aria-hidden="true"></span>
+					</span>
+				</label>
+			</div>
+			<div class="cookie-preferences__actions">
+				<button class="cookie-preferences__save" type="button">Сохранить выбор</button>
+				<button class="cookie-preferences__accept" type="button">Принять аналитику</button>
+				<button class="cookie-preferences__necessary" type="button">Только необходимые</button>
+			</div>
 		</div>
 	</div>
 

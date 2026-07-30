@@ -576,15 +576,14 @@
 			padding: 15px 20px
 			border-radius: 12px
 	.top
+		--top-button-right: 25px
+		--top-button-bottom: 70px
 		width: 50px
 		min-width: 50px
 		height: 50px
-		bottom: 70px
 		svg
 			width: 20px
 			height: 20px
-		&.scroll
-			right: 25px
 	.main
 		&--experts
 			&__wrapper 
@@ -1295,6 +1294,36 @@
 				font-size: 20px
 			&__text
 				font-size: 15px
+	.cookie-consent
+		padding: 0 16px
+		&__inner
+			flex-direction: column
+			align-items: stretch
+			justify-content: flex-start
+			gap: 16px
+		&__content
+			width: 100%
+			min-width: 0
+			max-width: none
+			flex: none
+		&__actions
+			width: 100%
+			min-width: 0
+			max-width: none
+			flex: none
+			flex-wrap: nowrap
+			align-items: stretch
+			justify-content: flex-start
+			gap: 10px
+		&__accept,
+		&__necessary,
+		&__settings
+			width: auto
+			min-width: 0
+			max-width: calc((100% - 20px) / 3)
+			flex: 1 1 calc((100% - 20px) / 3)
+			padding-left: 12px
+			padding-right: 12px
 	.services
 		&--stages
 			&__wrapper
@@ -1428,6 +1457,23 @@
 						&:before
 							display: none
 
+@media (max-width : 640px)
+	.cookie-consent
+		&__actions
+			width: 100%
+			display: flex
+			flex-direction: column
+			align-items: stretch
+			justify-content: flex-start
+			gap: 8px
+		&__accept,
+		&__necessary,
+		&__settings
+			width: 100%
+			min-width: 0
+			max-width: 100%
+			flex: 0 1 auto
+
 /* Extra Small Devices, Phones */
 @media (max-width : 480px)
 	.container
@@ -1444,9 +1490,8 @@
 		font-size: 20px
 		line-height: 1.35
 	.top
-		bottom: 20px
-		&.scroll 
-			right: 20px
+		--top-button-right: 20px
+		--top-button-bottom: 20px
 	form 
 		input, textarea
 			font-size: 14px
@@ -1961,20 +2006,75 @@
 						flex: 1 1 calc(70% - 20px)
 					span, div
 						font-size: 14px
-	.cookies
-		&--wrapper 
-			bottom: 10px
-			left: 10px
-			right: 10px
-			max-width: 100vw
-			border-radius: 10px
-			padding: 20px 12px
-			> span
-				font-size: 12px
-		&--button 
-			padding: 10px 15px
-			span
-				font-size: 12px
+	.cookie-consent
+		bottom: 12px
+		padding: 0 12px
+		&__inner
+			max-height: calc(100vh - 24px)
+			max-height: calc(100dvh - 24px)
+			flex-direction: column
+			align-items: stretch
+			justify-content: flex-start
+			gap: 14px
+			overflow-y: auto
+			padding: 16px
+			border-radius: 12px
+		&__title
+			font-size: 17px
+		&__content
+			flex: 0 1 auto
+		&__text
+			font-size: 13px
+			line-height: 1.48
+		&__actions
+			width: 100%
+			display: flex
+			flex: 0 0 auto
+			flex-direction: column
+			align-items: stretch
+			justify-content: flex-start
+			gap: 8px
+		&__accept,
+		&__necessary,
+		&__settings
+			width: 100%
+			max-width: 100%
+			flex: 0 1 auto
+			min-height: 44px
+			padding: 10px 14px
+	.cookie-preferences
+		align-items: flex-end
+		padding: 12px
+		&.active
+			.cookie-preferences__dialog
+				transform: translateY(0)
+		&__dialog
+			width: 100%
+			max-height: calc(100vh - 24px)
+			max-height: calc(100dvh - 24px)
+			gap: 18px
+			padding: 24px 18px 20px
+			border-radius: 16px
+			transform: translateY(18px)
+		&__head
+			gap: 14px
+		&__title
+			font-size: 24px
+		&__description
+			font-size: 14px
+		&__option
+			flex-direction: column
+			gap: 14px
+			padding: 16px
+		&__status
+			white-space: normal
+		&__actions
+			flex-direction: column
+			align-items: stretch
+		&__save,
+		&__accept,
+		&__necessary
+			width: 100%
 	.taxonomy
 		&--header
 			&__wrapper 
