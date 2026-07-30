@@ -26,22 +26,6 @@
 
 	<link rel="stylesheet" href="css/main.min.css">
 
-	<style>
-		/* .main--header{
-			background-image: url(img/circle-bg.svg);
-		} */
-		.main--header__wrapper:before{
-			background-image: url(img/main-hero.svg);
-		}
-		.main--header__info:before{
-			background-image: url(img/puzzle.png);
-		}
-		@media (max-width: 768px) {
-			.main--header__info:before{
-				background-image: url(img/puzzle-mob.png);
-			}
-		}
-	</style>
 </head>
 
 <body>
@@ -199,14 +183,71 @@
 		</nav>
 	</header>
 	<main class="main">
-		<section id="main" class="section main--header">
+		<section id="main" class="section home-hero" aria-labelledby="home-hero-title">
 			<div class="container">
 				<div class="row">
-					<div class="main--header__wrapper">
-						<div class="main--header__info">
-							<h1 class="h1">Маркетинговое агентство <span>Limitless CREATORS</span></h1>
-							<p class="h2">Закажите бесплатную консультацию<br> и начните масштабировать свой бизнес уже сегодня!</p>
-							<a href="#modal_general" class="button button--white modal--open" data-modal-target="#modal_general">Оставить заявку</a>
+					<div class="home-hero__layout">
+						<div class="home-hero__content">
+							<p class="home-hero__identity">Марат Абзалов — веб-разработчик и дизайнер</p>
+							<h1 class="home-hero__title h1" id="home-hero-title">Создаю сайты и веб-платформы под задачи бизнеса</h1>
+							<p class="home-hero__lead">Проектирую структуру и интерфейс, разрабатываю frontend, подключаю CMS и готовлю сайт к запуску и продвижению. Работаю напрямую и отвечаю за ключевые решения на всех этапах.</p>
+							<dl class="home-hero__proof">
+								<div class="home-hero__proof-item">
+									<dt>С 2018 года</dt>
+									<dd>Работаю с сайтами и цифровыми проектами.</dd>
+								</div>
+								<div class="home-hero__proof-item">
+									<dt>Напрямую</dt>
+									<dd>Без передачи задачи между менеджерами.</dd>
+								</div>
+								<div class="home-hero__proof-item">
+									<dt>Полный цикл</dt>
+									<dd>Структура, дизайн, разработка и подготовка к продвижению.</dd>
+								</div>
+							</dl>
+							<div class="home-hero__actions">
+								<a href="#modal_general" class="button button--gradient modal--open" data-modal-target="#modal_general"><span>Обсудить проект</span></a>
+								<a class="home-hero__link" href="archive-case.html">Посмотреть портфолио</a>
+							</div>
+							<p class="home-hero__start">Начать можно с короткого описания задачи: формат сайта, этапы и ориентир стоимости станут понятны после разговора.</p>
+						</div>
+						<div class="home-hero__visual" aria-label="Маршрут проекта">
+							<p class="home-hero__visual-label">Маршрут проекта</p>
+							<ol class="home-hero__route">
+								<li class="home-hero__route-item">
+									<span class="home-hero__route-number">01</span>
+									<span class="home-hero__route-point" aria-hidden="true"></span>
+									<span class="home-hero__route-content">
+										<span class="home-hero__route-title">Структура</span>
+										<span class="home-hero__route-text">Цели, аудитория и сценарии страниц.</span>
+									</span>
+								</li>
+								<li class="home-hero__route-item">
+									<span class="home-hero__route-number">02</span>
+									<span class="home-hero__route-point" aria-hidden="true"></span>
+									<span class="home-hero__route-content">
+										<span class="home-hero__route-title">Интерфейс</span>
+										<span class="home-hero__route-text">Прототип, визуальная система и адаптив.</span>
+									</span>
+								</li>
+								<li class="home-hero__route-item">
+									<span class="home-hero__route-number">03</span>
+									<span class="home-hero__route-point" aria-hidden="true"></span>
+									<span class="home-hero__route-content">
+										<span class="home-hero__route-title">Разработка</span>
+										<span class="home-hero__route-text">Frontend, CMS, формы и интеграции.</span>
+									</span>
+								</li>
+								<li class="home-hero__route-item">
+									<span class="home-hero__route-number">04</span>
+									<span class="home-hero__route-point" aria-hidden="true"></span>
+									<span class="home-hero__route-content">
+										<span class="home-hero__route-title">Запуск</span>
+										<span class="home-hero__route-text">Проверка, аналитика и SEO-подготовка.</span>
+									</span>
+								</li>
+							</ol>
+							<p class="home-hero__visual-note">Маршрут помогает держать в фокусе цель, содержание страниц, интерфейс, разработку и передачу сайта в работу.</p>
 						</div>
 					</div>
 				</div>

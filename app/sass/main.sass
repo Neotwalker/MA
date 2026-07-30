@@ -1115,6 +1115,210 @@ body.cookie-banner-visible
 		z-index: 1
 		&:first-child
 			padding-top: 180px
+	> .home-hero
+		position: relative
+		min-height: 620px
+		padding: 116px 0 12px
+		display: flex
+		align-items: center
+		background-image: linear-gradient(115deg, color.adjust($red, $alpha: -.88) 0%, color.adjust($black, $alpha: -1) 38%), linear-gradient(180deg, color.adjust($white, $alpha: -.98) 0, color.adjust($white, $alpha: -1) 44%), repeating-linear-gradient(90deg, color.adjust($white, $alpha: -.96) 0 1px, transparent 1px 168px)
+		background-position: center
+		> .container
+			width: 100%
+		&::before
+			content: ''
+			position: absolute
+			inset: 96px 0 0
+			background-image: repeating-linear-gradient(0deg, color.adjust($white, $alpha: -.975) 0 1px, transparent 1px 88px)
+			pointer-events: none
+		.home-hero
+			&__layout
+				position: relative
+				z-index: 1
+				width: 100%
+				min-height: 430px
+				display: flex
+				align-items: center
+				justify-content: space-between
+				gap: clamp(50px, 6vw, 108px)
+			&__content
+				flex: 1 1 64%
+				max-width: 960px
+				min-width: 0
+			&__identity
+				display: flex
+				align-items: center
+				gap: 14px
+				margin-bottom: 18px
+				color: color.adjust($white, $alpha: -.16)
+				font-size: clamp(14px, .95vw, 17px)
+				font-weight: 600
+				line-height: 1.4
+				&::before
+					content: ''
+					width: 42px
+					height: 2px
+					flex: 0 0 42px
+					background-image: $gradient
+			&__title
+				max-width: 960px
+				margin-bottom: 24px
+				font-size: clamp(52px, 4vw, 72px)
+				line-height: 1.02
+				letter-spacing: 0
+			&__lead
+				max-width: 820px
+				color: color.adjust($white, $alpha: -.14)
+				font-size: clamp(19px, 1.25vw, 23px)
+				line-height: 1.5
+			&__proof
+				max-width: 860px
+				margin: 30px 0 0
+				display: flex
+				flex-wrap: wrap
+				gap: 20px 26px
+			&__proof-item
+				flex: 1 1 0
+				min-width: 0
+				padding-top: 14px
+				border-top: 1px solid color.adjust($white, $alpha: -.82)
+				dt
+					color: $white
+					font-size: 16px
+					font-weight: 700
+					line-height: 1.25
+				dd
+					margin: 8px 0 0
+					color: color.adjust($white, $alpha: -.32)
+					font-size: 14px
+					line-height: 1.55
+			&__actions
+				margin-top: 32px
+				display: flex
+				align-items: center
+				flex-wrap: wrap
+				gap: 18px 26px
+				.button
+					width: auto
+					max-width: 280px
+					min-width: 220px
+					padding: 17px 32px
+					font-size: 18px
+					text-align: center
+			&__link
+				color: $white
+				font-size: 17px
+				font-weight: 600
+				line-height: 1.4
+				border-bottom: 1px solid color.adjust($orange, $alpha: -.15)
+				transition: color .22s ease, border-color .22s ease
+				&:hover
+					color: $orange
+					border-color: color.adjust($orange, $alpha: -.55)
+				&:focus-visible
+					outline: 2px solid color.adjust($orange, $alpha: -.15)
+					outline-offset: 4px
+			&__start
+				max-width: 620px
+				margin-top: 16px
+				color: color.adjust($white, $alpha: -.38)
+				font-size: 15px
+				line-height: 1.6
+			&__visual
+				position: relative
+				flex: 0 0 34%
+				max-width: 450px
+				min-height: 400px
+				padding: 28px 0 24px 42px
+				display: flex
+				flex-direction: column
+				justify-content: center
+				border-left: 1px solid color.adjust($white, $alpha: -.84)
+				&::before
+					content: ''
+					position: absolute
+					top: 0
+					bottom: 0
+					left: -1px
+					width: 1px
+					background-image: linear-gradient(180deg, transparent 0, color.adjust($orange, $alpha: -.2) 28%, color.adjust($red, $alpha: -.16) 72%, transparent 100%)
+			&__visual-label
+				margin-bottom: 24px
+				color: color.adjust($white, $alpha: -.32)
+				font-size: 15px
+				font-weight: 600
+				line-height: 1.4
+			&__route
+				--route-line-x: 73px
+				position: relative
+				list-style: none
+				margin: 0
+				padding: 0
+				display: flex
+				flex-direction: column
+				gap: 24px
+				&::before
+					content: ''
+					position: absolute
+					left: var(--route-line-x)
+					top: 14px
+					bottom: 14px
+					width: 1px
+					background-image: linear-gradient(180deg, $red 0%, $orange 100%)
+			&__route-item
+				position: relative
+				display: flex
+				align-items: flex-start
+				gap: 18px
+				min-width: 0
+			&__route-number
+				width: 46px
+				flex: 0 0 46px
+				color: $orange
+				font-size: 16px
+				font-weight: 700
+				line-height: 1
+			&__route-point
+				position: relative
+				z-index: 1
+				width: 18px
+				height: 18px
+				flex: 0 0 18px
+				border: 1px solid color.adjust($orange, $alpha: -.12)
+				background-color: $black
+				&::before
+					content: ''
+					position: absolute
+					top: 50%
+					left: 50%
+					width: 6px
+					height: 6px
+					background-color: $orange
+					transform: translate(-50%, -50%)
+			&__route-title
+				min-width: 0
+				color: $white
+				font-size: clamp(22px, 1.6vw, 28px)
+				font-weight: 600
+				line-height: 1.1
+			&__route-content
+				min-width: 0
+				display: flex
+				flex-direction: column
+				gap: 7px
+			&__route-text
+				max-width: 300px
+				color: color.adjust($white, $alpha: -.42)
+				font-size: 14px
+				line-height: 1.5
+			&__visual-note
+				max-width: 340px
+				margin-top: 26px
+				color: color.adjust($white, $alpha: -.35)
+				font-size: 15px
+				line-height: 1.65
+	> .home-hero + .main--companies
+		margin-top: -80px
 	&--wrapper 
 		display: flex
 		flex-direction: column
