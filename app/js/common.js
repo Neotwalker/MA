@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const modalSend = document.querySelector('#modal_send') || document.querySelector('.modal--send');
 	const servicesToggle = document.querySelector('.header-nav__services-toggle');
 	const servicesMenu = document.querySelector('#header-services-menu');
+	const aboutToggle = document.querySelector('.header-nav__about-toggle');
+	const aboutMenu = document.querySelector('#header-about-menu');
 	const searchToggle = document.querySelector('.header-search-toggle');
 	const searchPanel = document.querySelector('#header-search-panel');
 	const searchInput = document.querySelector('#header-search-input');
@@ -20,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const mobileNavigationOverlay = document.querySelector('.mobile-navigation-overlay');
 	const mobileServicesToggle = document.querySelector('.mobile-navigation__services-toggle');
 	const mobileServicesList = document.querySelector('#mobile-services-list');
+	const mobileAboutToggle = document.querySelector('.mobile-navigation__about-toggle');
+	const mobileAboutList = document.querySelector('#mobile-about-list');
 
 	let activeModal = null;
 	let activeModalTrigger = null;
@@ -647,6 +651,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	function openServicesDropdown() {
 		if (!servicesToggle || !servicesMenu) return;
 		closeSearchPanel();
+		closeAboutDropdown();
 		closeMobileNavigation();
 		servicesToggle.setAttribute('aria-expanded', 'true');
 		servicesMenu.setAttribute('aria-hidden', 'false');
@@ -663,6 +668,40 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
+	function closeAboutDropdown(options = {}) {
+		if (!aboutToggle || !aboutMenu) return;
+		const { restoreFocus = false } = options;
+		const wasOpen = aboutMenu.classList.contains('is-open');
+		aboutToggle.setAttribute('aria-expanded', 'false');
+		aboutMenu.setAttribute('aria-hidden', 'true');
+		aboutMenu.setAttribute('inert', '');
+		aboutMenu.classList.remove('is-open');
+		header?.classList.remove('header--about-open');
+		if (restoreFocus && wasOpen) {
+			focusAfterPaint(aboutToggle);
+		}
+	}
+
+	function openAboutDropdown() {
+		if (!aboutToggle || !aboutMenu) return;
+		closeSearchPanel();
+		closeServicesDropdown();
+		closeMobileNavigation();
+		aboutToggle.setAttribute('aria-expanded', 'true');
+		aboutMenu.setAttribute('aria-hidden', 'false');
+		aboutMenu.removeAttribute('inert');
+		aboutMenu.classList.add('is-open');
+		header?.classList.add('header--about-open');
+	}
+
+	function toggleAboutDropdown() {
+		if (aboutToggle?.getAttribute('aria-expanded') === 'true') {
+			closeAboutDropdown();
+		} else {
+			openAboutDropdown();
+		}
+	}
+
 	function closeSearchPanel() {
 		if (!searchToggle || !searchPanel) return;
 		searchToggle.setAttribute('aria-expanded', 'false');
@@ -676,6 +715,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	function openSearchPanel() {
 		if (!searchToggle || !searchPanel) return;
 		closeServicesDropdown();
+		closeAboutDropdown();
 		closeMobileNavigation();
 		searchToggle.setAttribute('aria-expanded', 'true');
 		searchToggle.setAttribute('aria-label', 'Закрыть поиск');
@@ -705,6 +745,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function openMobileServices() {
 		if (!mobileServicesToggle || !mobileServicesList) return;
+		closeMobileAbout();
 		mobileServicesToggle.setAttribute('aria-expanded', 'true');
 		mobileServicesList.setAttribute('aria-hidden', 'false');
 		mobileServicesList.removeAttribute('inert');
@@ -720,9 +761,37 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
+	function closeMobileAbout() {
+		if (!mobileAboutToggle || !mobileAboutList) return;
+		mobileAboutToggle.setAttribute('aria-expanded', 'false');
+		mobileAboutList.setAttribute('aria-hidden', 'true');
+		mobileAboutList.setAttribute('inert', '');
+		mobileAboutList.classList.remove('is-open');
+		mobileAboutList.style.maxHeight = '';
+	}
+
+	function openMobileAbout() {
+		if (!mobileAboutToggle || !mobileAboutList) return;
+		closeMobileServices();
+		mobileAboutToggle.setAttribute('aria-expanded', 'true');
+		mobileAboutList.setAttribute('aria-hidden', 'false');
+		mobileAboutList.removeAttribute('inert');
+		mobileAboutList.classList.add('is-open');
+		mobileAboutList.style.maxHeight = `${mobileAboutList.scrollHeight}px`;
+	}
+
+	function toggleMobileAbout() {
+		if (mobileAboutToggle?.getAttribute('aria-expanded') === 'true') {
+			closeMobileAbout();
+		} else {
+			openMobileAbout();
+		}
+	}
+
 	function openMobileNavigation() {
 		if (!burgerMenu || !mobileNavigation) return;
 		closeServicesDropdown();
+		closeAboutDropdown();
 		closeSearchPanel();
 		isMobileNavigationOpen = true;
 		header?.classList.add('open-menu');
@@ -734,7 +803,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		mobileNavigation.classList.add('is-open');
 		mobileNavigationOverlay?.classList.add('is-open');
 		lockScroll();
-		const preferredFocusable = mobileServicesToggle || getFocusableElements(mobileNavigation)[0];
+		const preferredFocusable = mobileServicesToggle || mobileAboutToggle || getFocusableElements(mobileNavigation)[0];
 		focusAfterPaint(preferredFocusable || mobileNavigation);
 	}
 
@@ -750,6 +819,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		burgerMenu.setAttribute('aria-expanded', 'false');
 		burgerMenu.setAttribute('aria-label', 'Открыть меню');
 		closeMobileServices();
+		closeMobileAbout();
 		mobileNavigation.classList.remove('is-open');
 		mobileNavigation.setAttribute('aria-hidden', 'true');
 		mobileNavigation.setAttribute('inert', '');
@@ -760,6 +830,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	function closeHeaderLayers(options = {}) {
 		const { beforeModal = false } = options;
 		closeServicesDropdown();
+		closeAboutDropdown();
 		closeSearchPanel();
 		closeMobileNavigation({ restoreScroll: !beforeModal });
 	}
@@ -815,6 +886,24 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
+	if (aboutToggle && aboutMenu) {
+		aboutToggle.addEventListener('keydown', e => {
+			handleToggleKey(e, toggleAboutDropdown);
+		});
+		aboutToggle.addEventListener('click', e => {
+			e.stopPropagation();
+			toggleAboutDropdown();
+		});
+		aboutMenu.addEventListener('click', e => {
+			e.stopPropagation();
+		});
+		qsa('a[href]', aboutMenu).forEach(link => {
+			link.addEventListener('click', () => {
+				closeAboutDropdown();
+			});
+		});
+	}
+
 	if (searchToggle && searchPanel) {
 		searchToggle.addEventListener('keydown', e => {
 			handleToggleKey(e, toggleSearchPanel);
@@ -865,6 +954,14 @@ document.addEventListener("DOMContentLoaded", () => {
 		handleToggleKey(e, toggleMobileServices);
 	});
 
+	mobileAboutToggle?.addEventListener('click', e => {
+		e.preventDefault();
+		toggleMobileAbout();
+	});
+	mobileAboutToggle?.addEventListener('keydown', e => {
+		handleToggleKey(e, toggleMobileAbout);
+	});
+
 	qsa('a[href]', mobileNavigation).forEach(link => {
 		link.addEventListener('click', () => {
 			if (link.classList.contains('modal--open')) return;
@@ -879,6 +976,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (activeModal) return;
 		if (servicesMenu?.classList.contains('is-open') && !servicesMenu.contains(e.target) && !servicesToggle?.contains(e.target)) {
 			closeServicesDropdown();
+		}
+		if (aboutMenu?.classList.contains('is-open') && !aboutMenu.contains(e.target) && !aboutToggle?.contains(e.target)) {
+			closeAboutDropdown();
 		}
 		if (searchPanel?.classList.contains('is-open') && !searchPanel.contains(e.target) && !searchToggle?.contains(e.target)) {
 			closeSearchPanel();
@@ -903,6 +1003,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			closeSearchPanel();
 			return;
 		}
+		if (aboutMenu?.classList.contains('is-open')) {
+			e.preventDefault();
+			closeAboutDropdown({ restoreFocus: true });
+			return;
+		}
 		if (servicesMenu?.classList.contains('is-open')) {
 			e.preventDefault();
 			closeServicesDropdown();
@@ -914,9 +1019,13 @@ document.addEventListener("DOMContentLoaded", () => {
 			closeMobileNavigation({ restoreScroll: false });
 		} else {
 			closeServicesDropdown();
+			closeAboutDropdown();
 		}
 		if (mobileServicesList?.classList.contains('is-open')) {
 			mobileServicesList.style.maxHeight = `${mobileServicesList.scrollHeight}px`;
+		}
+		if (mobileAboutList?.classList.contains('is-open')) {
+			mobileAboutList.style.maxHeight = `${mobileAboutList.scrollHeight}px`;
 		}
 	});
 	// Input Name Validation

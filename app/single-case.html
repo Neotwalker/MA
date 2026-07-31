@@ -88,7 +88,7 @@
 						<img class="header-brand__image" src="img/brand/marat-abzalov-mark-tiny-1.png" alt="Знак Марата Абзалова" width="55" height="58" decoding="async">
 					</a>
 					<nav class="header-nav" aria-label="Основная навигация">
-						<ul class="header-nav__list">
+												<ul class="header-nav__list">
 							<li class="header-nav__item">
 								<button class="header-nav__link header-nav__services-toggle" type="button" aria-expanded="false" aria-controls="header-services-menu">
 									<span>Услуги</span>
@@ -97,10 +97,24 @@
 									</svg>
 								</button>
 							</li>
-							<li class="header-nav__item"><a class="header-nav__link" href="archive-case.html" aria-current="page">Портфолио</a></li>
-							<li class="header-nav__item"><a class="header-nav__link" href="archive-articles.html">Статьи</a></li>
-							<li class="header-nav__item"><a class="header-nav__link" href="faq.html">FAQ</a></li>
-							<li class="header-nav__item"><a class="header-nav__link" href="contacts.html">Контакты</a></li>
+							<li class="header-nav__item"><a class="header-nav__link is-active" href="archive-case.html">Портфолио</a></li>
+							<li class="header-nav__item"><a class="header-nav__link" href="archive-articles.html">Блог</a></li>
+							<li class="header-nav__item"><a class="header-nav__link" href="faq.html">Вопрос-ответ</a></li>
+							<li class="header-nav__item header-nav__item--about">
+								<button class="header-nav__link header-nav__about-toggle" type="button" aria-expanded="false" aria-controls="header-about-menu">
+									<span>Информация</span>
+									<svg class="header-nav__chevron" width="12" height="8" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+										<path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+									</svg>
+								</button>
+								<div class="header-about-menu" id="header-about-menu" aria-hidden="true" inert>
+									<div class="header-about-menu__list">
+										<a class="header-about-menu__link" href="about.html"><span>Обо мне</span><span class="header-about-menu__arrow" aria-hidden="true">→</span></a>
+										<a class="header-about-menu__link" href="contacts.html"><span>Контакты</span><span class="header-about-menu__arrow" aria-hidden="true">→</span></a>
+										<a class="header-about-menu__link" href="brief.html"><span>Заполнить бриф</span><span class="header-about-menu__arrow" aria-hidden="true">→</span></a>
+									</div>
+								</div>
+							</li>
 						</ul>
 					</nav>
 					<div class="header-actions">
@@ -198,7 +212,7 @@
 		<div class="mobile-navigation-overlay" aria-hidden="true"></div>
 		<nav class="mobile-navigation" id="mobile-navigation" aria-hidden="true" inert tabindex="-1" aria-label="Мобильная навигация">
 			<div class="mobile-navigation__content">
-				<ul class="mobile-navigation__list">
+								<ul class="mobile-navigation__list">
 					<li class="mobile-navigation__item mobile-navigation__item--services">
 						<button class="mobile-navigation__link mobile-navigation__services-toggle" type="button" aria-expanded="false" aria-controls="mobile-services-list">
 							<span>Услуги</span>
@@ -216,10 +230,22 @@
 							<li><a class="mobile-navigation__service-link" href="services.html">Все услуги</a></li>
 						</ul>
 					</li>
-					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="archive-case.html" aria-current="page">Портфолио</a></li>
-					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="archive-articles.html">Статьи</a></li>
-					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="faq.html">FAQ</a></li>
-					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="contacts.html">Контакты</a></li>
+					<li class="mobile-navigation__item"><a class="mobile-navigation__link is-active" href="archive-case.html">Портфолио</a></li>
+					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="archive-articles.html">Блог</a></li>
+					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="faq.html">Вопрос-ответ</a></li>
+					<li class="mobile-navigation__item mobile-navigation__item--about">
+						<button class="mobile-navigation__link mobile-navigation__about-toggle" type="button" aria-expanded="false" aria-controls="mobile-about-list">
+							<span>Информация</span>
+							<svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+								<path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</button>
+						<ul class="mobile-navigation__about" id="mobile-about-list" aria-hidden="true" inert>
+							<li><a class="mobile-navigation__service-link mobile-navigation__about-link" href="about.html">Обо мне</a></li>
+							<li><a class="mobile-navigation__service-link mobile-navigation__about-link" href="contacts.html">Контакты</a></li>
+							<li><a class="mobile-navigation__service-link mobile-navigation__about-link" href="brief.html">Заполнить бриф</a></li>
+						</ul>
+					</li>
 				</ul>
 				<a href="#modal_general" class="mobile-navigation__cta button button--primary button--gradient modal--open" data-modal-target="#modal_general"><span>Обсудить проект</span></a>
 				<div class="mobile-navigation__contacts" aria-label="Контакты">
@@ -243,7 +269,7 @@
 								<a href="https://open-log.com/">Главная</a>
 							</span> 
 							-
-							<span class="breadcrumb_last" aria-current="page">Автомобильные перевозки</span>
+							<span class="breadcrumb_last">Автомобильные перевозки</span>
 						</span>
 					</div>
 					<div class="case--header__wrapper">
@@ -422,14 +448,16 @@
 							<li><a href="services.html">Все услуги</a></li>
 						</ul>
 					</nav>
-					<nav class="site-footer__nav" aria-label="Разделы сайта">
+										<nav class="site-footer__nav" aria-label="Разделы сайта">
 						<h2 class="site-footer__heading">Разделы</h2>
 						<ul class="site-footer__list">
 							<li><a href="archive-case.html">Портфолио</a></li>
-							<li><a href="archive-articles.html">Статьи</a></li>
-							<li><a href="faq.html">FAQ</a></li>
+							<li><a href="archive-articles.html">Блог</a></li>
+							<li><a href="faq.html">Вопрос-ответ</a></li>
+							<li><a href="about.html">Обо мне</a></li>
 							<li><a href="contacts.html">Контакты</a></li>
 							<li><a href="brief.html">Бриф</a></li>
+							<li><a href="sitemap.html">Карта сайта</a></li>
 						</ul>
 					</nav>
 					<address class="site-footer__contacts">

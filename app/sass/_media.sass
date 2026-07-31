@@ -2920,6 +2920,9 @@
 			&::after
 				left: 10px
 				right: 10px
+		&__item
+			&--about
+				--header-dropdown-offset: 26px
 	.header-actions
 		gap: 10px
 	.header-socials
@@ -2932,6 +2935,10 @@
 	.header-services-menu
 		left: 72px
 		width: min(920px, calc(100vw - 48px))
+	.header-about-menu
+		left: 0
+		right: auto
+		width: min(280px, calc(100vw - 48px))
 
 @media (max-width : 1280px)
 	.header
@@ -2965,6 +2972,10 @@
 			&--primary
 				min-height: 112px
 				padding-right: 34px
+	.header-about-menu
+		left: 0
+		right: auto
+		width: min(280px, calc(100vw - 40px))
 
 @media (min-width : 1200px)
 	.header
@@ -3004,7 +3015,7 @@
 		width: 46px
 		min-width: 46px
 		height: 46px
-	.header-services-menu
+	.header-services-menu, .header-about-menu
 		display: none
 	.header-search-panel
 		left: 40px
@@ -3769,3 +3780,214 @@
 			flex-basis: auto
 		&__name
 			font-size: 21px
+
+@media (max-width : 1199px)
+	.main
+		&.about-page
+			.about-hero
+				padding-top: 142px
+			.about-hero__layout
+				gap: 36px
+			.about-hero__coordinate
+				flex-basis: 300px
+				min-width: 280px
+			.about-section__title
+				font-size: clamp(34px, 4.8vw, 50px)
+		&.sitemap-page
+			.sitemap-hero
+				padding-top: 142px
+
+@media (max-width : 1024px)
+	.main
+		&.about-page
+			.about-hero__layout
+				flex-direction: column
+			.about-hero__coordinate
+				width: 100%
+				min-width: 0
+				padding: 30px 0 0
+				border-left: 0
+				border-top: 1px solid color.adjust($white, $alpha: -.84)
+			.about-coordinate
+				flex-direction: row
+				flex-wrap: wrap
+				gap: 16px 22px
+				&::before
+					left: 18px
+					right: 18px
+					top: 21px
+					bottom: auto
+					width: auto
+					height: 1px
+					background-image: linear-gradient(90deg, $red 0%, $orange 100%)
+			.about-coordinate__item
+				flex: 1 1 190px
+			.about-stack__layout, .about-format__layout, .about-cta__wrapper
+				flex-direction: column
+				align-items: flex-start
+			.about-format__layout
+				h2
+					flex-basis: auto
+			.about-cta__actions
+				justify-content: flex-start
+
+@media (max-width : 1023px)
+	.main
+		&.sitemap-page
+			.sitemap-grid
+				flex-wrap: wrap
+			.sitemap-column
+				flex: 1 1 calc(50% - 12px)
+				min-width: 280px
+
+@media (max-width : 768px)
+	.main
+		&.about-page, &.sitemap-page
+			.breadcrumbs
+				margin-bottom: 28px
+		&.about-page
+			.about-hero
+				padding: 120px 0 54px
+			.about-hero__title
+				font-size: clamp(38px, 9vw, 54px)
+				line-height: 1.03
+			.about-hero__lead
+				font-size: 19px
+			.about-hero__actions
+				margin-top: 30px
+			.about-directions, .about-process, .about-principles, .about-stack, .about-format, .about-cta
+				padding: 52px 0
+			.about-section__head
+				margin-bottom: 28px
+			.about-directions__item, .about-process__item, .about-principles__list li, .about-format__list li
+				flex-basis: 100%
+				min-width: 0
+			.about-process__item
+				&:last-child:nth-child(odd)
+					max-width: none
+			.about-stack__list
+				width: 100%
+				li
+					flex-basis: 100%
+			.about-cta__wrapper
+				gap: 26px
+			.about-cta__actions
+				width: 100%
+				.button
+					width: 100%
+					min-width: 0
+		&.sitemap-page
+			.sitemap-hero
+				padding: 120px 0 44px
+			.sitemap-hero__title
+				font-size: clamp(42px, 10vw, 58px)
+			.sitemap-hero__lead
+				font-size: 18px
+			.sitemap-content
+				padding: 36px 0 72px
+
+@media (max-width : 767px)
+	.main
+		&.sitemap-page
+			.sitemap-column
+				flex-basis: 100%
+				min-width: 0
+
+@media (max-width : 480px)
+	.main
+		&.about-page
+			.about-hero
+				padding-top: 104px
+			.about-hero__layout, .about-hero__content
+				width: 100%
+				min-width: 0
+				max-width: 100%
+			.about-kicker
+				margin-bottom: 14px
+			.about-hero__title
+				max-width: 100%
+				font-size: clamp(31px, 9vw, 37px)
+				white-space: normal
+				overflow-wrap: break-word
+			.about-hero__actions
+				width: 100%
+				flex-direction: column
+				align-items: stretch
+				gap: 12px
+				.button, .about-hero__link
+					width: 100%
+					max-width: 100%
+					min-width: 0
+					min-height: 48px
+					justify-content: center
+					text-align: center
+					white-space: normal
+				.button span
+					white-space: normal
+			.about-hero__coordinate
+				padding-top: 24px
+			.about-hero__coordinate-label
+				margin-bottom: 18px
+			.about-coordinate
+				display: flex
+				flex-direction: column
+				flex-wrap: nowrap
+				align-items: stretch
+				width: 100%
+				gap: 16px
+				&::before
+					left: 21px
+					right: auto
+					top: 32px
+					bottom: 32px
+					width: 1px
+					height: auto
+					background-image: linear-gradient(180deg, $red 0%, $orange 100%)
+			.about-coordinate__item
+				display: flex
+				align-items: center
+				gap: 16px
+				flex: 0 0 auto
+				width: 100%
+				min-width: 0
+				max-width: 100%
+				min-height: 64px
+				span:not(.about-coordinate__index)
+					min-width: 0
+					overflow-wrap: break-word
+			.about-directions__item
+				padding-left: 0
+				padding-right: 0
+				h3
+					font-size: 22px
+			.about-process__item
+				gap: 16px
+				p
+					font-size: 18px
+			.about-principles__list li, .about-format__list li
+				font-size: 17px
+			.about-cta__title
+				font-size: 32px
+		&.sitemap-page
+			.sitemap-hero
+				padding-top: 104px
+			.sitemap-hero__lead
+				font-size: 17px
+			.sitemap-grid
+				gap: 20px
+			.sitemap-group
+				h2
+					font-size: 23px
+
+@media (max-width : 390px)
+	.main
+		&.about-page
+			.about-hero__title
+				font-size: 34px
+			.about-hero__lead
+				font-size: 18px
+			.about-section__title
+				font-size: 30px
+		&.sitemap-page
+			.sitemap-hero__title
+				font-size: 38px
