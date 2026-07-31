@@ -338,18 +338,28 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	})();
 	// ---------- HEADER SCROLL & SCROLL-TO-TOP ----------
-	if (header && topButton) {
-		const checkScroll = () => {
+	if (header || topButton) {
+		let isScrollTicking = false;
+
+		const updateScrollState = () => {
 			const y = window.scrollY || window.pageYOffset;
-			header.classList.toggle('scroll', y > 40);
-			topButton.classList.toggle('scroll', y > 500);
+			header?.classList.toggle('scroll', y > 8);
+			topButton?.classList.toggle('scroll', y > 500);
+			isScrollTicking = false;
 		};
 
-		checkScroll();
-		window.addEventListener('load', checkScroll);
-		window.addEventListener('scroll', checkScroll);
+		const requestScrollStateUpdate = () => {
+			if (isScrollTicking) return;
+			isScrollTicking = true;
+			requestAnimationFrame(updateScrollState);
+		};
 
-		topButton.addEventListener('click', () => {
+		updateScrollState();
+		window.addEventListener('load', updateScrollState);
+		window.addEventListener('pageshow', updateScrollState);
+		window.addEventListener('scroll', requestScrollStateUpdate, { passive: true });
+
+		topButton?.addEventListener('click', () => {
 			window.scrollTo({ top: 0, behavior: 'smooth' });
 		});
 	}
@@ -1411,6 +1421,214 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		});
 	}
+
+	// Home Project Logos Marquee
+	const logoMarquees = document.querySelectorAll('[data-logo-marquee]');
+	logoMarquees.forEach(viewport => {
+		const track = viewport.querySelector('[data-logo-marquee-track]');
+		const group = viewport.querySelector('[data-logo-marquee-group]');
+		if (!track || !group || viewport.dataset.marqueeReady === 'true') return;
+
+		viewport.dataset.marqueeReady = 'true';
+
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const speed = 32;
+		const dragThreshold = 6;
+		const state = {
+			offset: 0,
+			groupWidth: 0,
+			lastTime: 0,
+			hoverPaused: false,
+			focusPaused: false,
+			dragging: false,
+			dragIntent: false,
+			pointerId: null,
+			startX: 0,
+			startY: 0,
+			startOffset: 0,
+			lastX: 0,
+			lastMoveTime: 0,
+			velocity: 0,
+			resumeAt: 0,
+			suppressClick: false,
+		};
+
+		const clone = group.cloneNode(true);
+		clone.setAttribute('aria-hidden', 'true');
+		clone.removeAttribute('data-logo-marquee-group');
+		clone.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
+		clone.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach(element => {
+			element.setAttribute('tabindex', '-1');
+		});
+		track.appendChild(clone);
+
+		const normalizeOffset = value => {
+			if (!state.groupWidth) return 0;
+			const offset = value % state.groupWidth;
+			return offset < 0 ? offset + state.groupWidth : offset;
+		};
+
+		const updateTransform = () => {
+			if (reduceMotion.matches) {
+				viewport.dataset.reducedMotion = 'true';
+				track.style.transform = '';
+				return;
+			}
+
+			viewport.dataset.reducedMotion = 'false';
+			track.style.transform = `translate3d(${-state.offset}px, 0, 0)`;
+		};
+
+		const measure = () => {
+			state.groupWidth = Math.max(group.getBoundingClientRect().width, 1);
+			state.offset = normalizeOffset(state.offset);
+			updateTransform();
+		};
+
+		const requestAutoplayResume = delay => {
+			state.resumeAt = performance.now() + delay;
+		};
+
+		const isPaused = () => state.hoverPaused || state.focusPaused;
+
+		const finishDrag = () => {
+			if (!state.dragging) return;
+
+			state.dragging = false;
+			state.dragIntent = false;
+			viewport.classList.remove('is-dragging');
+			if (state.pointerId !== null && viewport.hasPointerCapture?.(state.pointerId)) {
+				try {
+					viewport.releasePointerCapture(state.pointerId);
+				} catch (e) {}
+			}
+			state.pointerId = null;
+			requestAutoplayResume(1200);
+		};
+
+		const animate = time => {
+			if (!state.lastTime) state.lastTime = time;
+			const delta = Math.min((time - state.lastTime) / 1000, .05);
+			state.lastTime = time;
+
+			if (!reduceMotion.matches && state.groupWidth) {
+				if (!state.dragging && !isPaused()) {
+					if (Math.abs(state.velocity) > 4) {
+						state.offset = normalizeOffset(state.offset - state.velocity * delta);
+						state.velocity *= Math.pow(.9, delta * 60);
+					} else {
+						state.velocity = 0;
+					}
+
+					if (time >= state.resumeAt) {
+						state.offset = normalizeOffset(state.offset + speed * delta);
+					}
+				}
+
+				updateTransform();
+			}
+
+			requestAnimationFrame(animate);
+		};
+
+		viewport.addEventListener('mouseenter', () => {
+			state.hoverPaused = true;
+			state.velocity = 0;
+		});
+
+		viewport.addEventListener('mouseleave', () => {
+			state.hoverPaused = false;
+			requestAutoplayResume(350);
+		});
+
+		viewport.addEventListener('focusin', () => {
+			state.focusPaused = true;
+			state.velocity = 0;
+		});
+
+		viewport.addEventListener('focusout', () => {
+			if (viewport.contains(document.activeElement)) return;
+			state.focusPaused = false;
+			requestAutoplayResume(350);
+		});
+
+		viewport.addEventListener('pointerdown', event => {
+			if (reduceMotion.matches || (event.pointerType === 'mouse' && event.button !== 0)) return;
+
+			state.dragging = true;
+			state.dragIntent = false;
+			state.pointerId = event.pointerId;
+			state.startX = event.clientX;
+			state.startY = event.clientY;
+			state.startOffset = state.offset;
+			state.lastX = event.clientX;
+			state.lastMoveTime = performance.now();
+			state.velocity = 0;
+			state.suppressClick = false;
+		});
+
+		viewport.addEventListener('pointermove', event => {
+			if (!state.dragging || state.pointerId !== event.pointerId) return;
+
+			const deltaX = event.clientX - state.startX;
+			const deltaY = event.clientY - state.startY;
+
+			if (!state.dragIntent) {
+				if (Math.abs(deltaX) < dragThreshold && Math.abs(deltaY) < dragThreshold) return;
+				if (Math.abs(deltaY) > Math.abs(deltaX)) {
+					finishDrag();
+					return;
+				}
+
+				state.dragIntent = true;
+				viewport.classList.add('is-dragging');
+				try {
+					viewport.setPointerCapture?.(event.pointerId);
+				} catch (e) {}
+			}
+
+			event.preventDefault();
+			state.offset = normalizeOffset(state.startOffset - deltaX);
+			const now = performance.now();
+			const elapsed = Math.max(now - state.lastMoveTime, 16);
+			state.velocity = ((event.clientX - state.lastX) / elapsed) * 1000;
+			state.lastX = event.clientX;
+			state.lastMoveTime = now;
+			state.suppressClick = Math.abs(deltaX) > dragThreshold;
+			updateTransform();
+		});
+
+		viewport.addEventListener('pointerup', finishDrag);
+		viewport.addEventListener('pointercancel', finishDrag);
+
+		viewport.addEventListener('click', event => {
+			if (!state.suppressClick) return;
+			event.preventDefault();
+			event.stopPropagation();
+			state.suppressClick = false;
+		}, true);
+
+		const handleMotionChange = () => {
+			state.velocity = 0;
+			state.lastTime = 0;
+			measure();
+		};
+
+		if (reduceMotion.addEventListener) {
+			reduceMotion.addEventListener('change', handleMotionChange);
+		} else {
+			reduceMotion.addListener(handleMotionChange);
+		}
+
+		if (typeof ResizeObserver !== 'undefined') {
+			new ResizeObserver(measure).observe(group);
+		} else {
+			window.addEventListener('resize', measure);
+		}
+
+		measure();
+		requestAnimationFrame(animate);
+	});
 
 	// Smooth Height for FAQ
 	const smoothHeight = (itemSelector, buttonSelector, contentSelector) => {

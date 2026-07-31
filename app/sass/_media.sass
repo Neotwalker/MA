@@ -382,6 +382,35 @@
 				&__route-text
 					max-width: 260px
 					font-size: 13px
+		.home-project-logos
+			.row
+				gap: 22px
+			&__kicker
+				flex-basis: 220px
+			&__group
+				gap: 28px
+				padding-right: 28px
+			&__item
+				min-width: 130px
+				img
+					max-width: 145px
+		.home-selected-projects
+			&__item
+				gap: 38px
+				&:nth-child(odd)
+					.home-selected-projects__image
+						flex-basis: calc(58.333% - 19px)
+					.home-selected-projects__body
+						flex-basis: calc(41.667% - 19px)
+				&:nth-child(even)
+					.home-selected-projects__image
+						flex-basis: calc(41.667% - 19px)
+					.home-selected-projects__body
+						flex-basis: calc(58.333% - 19px)
+			&__image
+				aspect-ratio: 16 / 10
+			&__description
+				font-size: 17px
 		&--header
 			&__wrapper 
 				min-height: fit-content
@@ -575,6 +604,25 @@
 					padding-left: 30px
 				&__visual-note
 					font-size: 14px
+		.home-project-logos
+			&__kicker
+				flex-basis: 200px
+			&__group
+				gap: 24px
+				padding-right: 24px
+			&__item
+				min-width: 124px
+			&__text-logo
+				font-size: 19px
+		.home-selected-projects
+			&__head
+				margin-bottom: 40px
+			&__item
+				padding-top: 30px
+			&__image
+				aspect-ratio: 16 / 10
+			&__name
+				font-size: clamp(28px, 3vw, 38px)
 		&--brief
 			&__wrapper 
 				gap: 30px
@@ -672,6 +720,31 @@
 					flex-basis: 16px
 				&__route-title
 					font-size: 22px
+		.home-project-logos
+			.row
+				gap: 18px
+			&__kicker
+				flex: 0 0 170px
+				max-width: none
+			&__group
+				gap: 22px
+				padding-right: 22px
+			&__item
+				min-height: 66px
+				min-width: 118px
+		.home-selected-projects
+			&__list
+				gap: 36px
+			&__item
+				gap: 30px
+			&__image
+				aspect-ratio: 16 / 10
+			&__number
+				margin-bottom: 20px
+			&__description
+				font-size: 16px
+			&__role
+				font-size: 14px
 		&--experts
 			&__wrapper 
 				gap: 20px
@@ -1214,6 +1287,67 @@
 					gap: 22px
 				&__visual-note
 					display: none
+		> .home-hero + .home-project-logos
+			margin-top: -56px
+		> .home-project-logos + .home-selected-projects
+			margin-top: -36px
+		.home-project-logos
+			padding: 8px 0
+			&__kicker
+				flex-basis: 150px
+				font-size: 13px
+			&__group
+				gap: 18px
+				padding-right: 18px
+			&__item
+				min-height: 62px
+				min-width: 112px
+				padding: 7px 10px
+				img
+					max-width: 122px
+					max-height: 30px
+			&__text-logo
+				font-size: 16px
+		.home-selected-projects
+			&__head
+				margin-bottom: 34px
+			&__list
+				flex-direction: row
+				flex-wrap: wrap
+				gap: 30px 20px
+			&__item
+				flex: 1 1 calc(50% - 10px)
+				max-width: calc(50% - 10px)
+				flex-direction: column !important
+				gap: 18px
+				padding-top: 24px
+			&__image
+				width: 100%
+				min-height: 0
+				aspect-ratio: 16 / 10
+				flex-basis: auto !important
+			&__body
+				width: 100%
+				flex-basis: auto !important
+				padding: 0
+			&__number
+				margin-bottom: 14px
+			&__type
+				margin-bottom: 10px
+				font-size: 13px
+			&__name
+				margin-bottom: 14px
+				font-size: 25px
+			&__description
+				font-size: 15px
+			&__role
+				margin-top: 14px
+				font-size: 13px
+			&__link
+				padding-top: 22px
+				font-size: 15px
+			&__archive
+				margin-top: 34px
 		&--header 
 			padding-top: 120px
 			&__info, &__wrapper 
@@ -1569,6 +1703,19 @@
 
 @media (max-width : 650px)
 	.main
+		.home-selected-projects
+			&__list
+				flex-direction: column
+				gap: 30px
+			&__item
+				flex-basis: 100%
+				max-width: 100%
+				gap: 16px
+			&__image
+				aspect-ratio: 16 / 10
+			&__archive
+				width: fit-content
+				max-width: 100%
 		&--services 
 			&__wrapper 
 				gap: 30px
@@ -1752,7 +1899,7 @@
 				&__actions
 					align-items: stretch
 					flex-direction: column
-					gap: 14px
+					gap: 12px
 					.button
 						width: 100%
 						max-width: 100%
@@ -1760,8 +1907,31 @@
 						padding: 14px 24px
 						font-size: 16px
 				&__link
-					width: fit-content
+					width: 100%
 					max-width: 100%
+					min-height: 48px
+					padding: 0 22px
+					display: inline-flex
+					align-items: center
+					justify-content: center
+					color: $white
+					font-size: 16px
+					font-weight: 700
+					line-height: 1.25
+					text-align: center
+					border: 1px solid color.adjust($orange, $alpha: -.28)
+					border-radius: 40px
+					background-color: color.adjust($white, $alpha: -.98)
+					transition: color .22s ease, border-color .22s ease, background-color .22s ease
+					&:hover
+						color: $orange
+						border-color: color.adjust($orange, $alpha: -.05)
+						background-color: color.adjust($white, $alpha: -.95)
+					&:active
+						background-color: color.adjust($white, $alpha: -.92)
+					&:focus-visible
+						outline: 2px solid color.adjust($orange, $alpha: -.2)
+						outline-offset: 4px
 				&__start
 					font-size: 14px
 				&__visual
@@ -1770,23 +1940,92 @@
 					margin-bottom: 22px
 					font-size: 14px
 				&__route
-					--route-line-x: 56px
-					gap: 14px
+					--route-number-width: 44px
+					--route-marker-size: 16px
+					--route-marker-center: 8px
+					--route-line-x: 52px
+					--route-line-overlap: -24px
+					--route-gap: 16px
+					gap: var(--route-gap)
+					&::before
+						display: none
+				&__route-item
+					display: flex
+					align-items: start
+					gap: 0
+					&::before
+						content: ''
+						position: absolute
+						z-index: 0
+						left: var(--route-line-x)
+						top: var(--route-marker-center)
+						bottom: var(--route-line-overlap)
+						width: 1px
+						background-image: linear-gradient(180deg, $red 0%, $orange 100%)
+					&:last-child::before
+						display: none
 				&__route-number
-					width: 36px
-					flex-basis: 36px
+					width: auto
+					flex: 0 0 var(--route-number-width)
+					padding-top: 1px
 					font-size: 14px
 				&__route-point
-					width: 14px
-					height: 14px
-					flex-basis: 14px
+					width: var(--route-marker-size)
+					height: var(--route-marker-size)
+					flex: 0 0 var(--route-marker-size)
 				&__route-title
 					font-size: 20px
+				&__route-content
+					padding-left: 14px
 				&__visual-note
 					margin-top: 22px
 					font-size: 14px
-		> .home-hero + .main--companies
-			margin-top: -60px
+		> .home-hero + .home-project-logos
+			margin-top: 0
+		> .home-project-logos + .home-selected-projects
+			margin-top: -28px
+		.home-project-logos
+			padding: 8px 0
+			&__kicker
+				flex-basis: 118px
+				font-size: 12px
+				line-height: 1.35
+			&__group
+				gap: 14px
+				padding-right: 14px
+			&__item
+				min-height: 58px
+				min-width: 104px
+				padding: 7px 8px
+				img
+					max-width: 120px
+					max-height: 28px
+			&__text-logo
+				font-size: 15px
+		.home-selected-projects
+			&__head
+				margin-bottom: 28px
+			&__kicker
+				margin-bottom: 14px
+				font-size: 13px
+				&::before
+					width: 30px
+					flex-basis: 30px
+			&__title
+				font-size: clamp(26px, 8vw, 34px)
+			&__list
+				gap: 28px
+			&__item
+				padding-top: 20px
+			&__name
+				font-size: 24px
+			&__archive
+				margin-top: 30px
+				font-size: 16px
+				width: 100%
+				min-height: 48px
+				padding-left: 22px
+				padding-right: 22px
 		&--header
 			background-size: contain
 			background-position: 50% 0
@@ -2585,13 +2824,32 @@
 					font-size: 13px
 					line-height: 1.55
 				&__route
-					--route-line-x: 52px
-					gap: 12px
-				&__route-number
-					width: 34px
-					flex-basis: 34px
+					--route-number-width: 42px
+					--route-marker-size: 14px
+					--route-marker-center: 7px
+					--route-line-x: 49px
+					--route-line-overlap: -21px
+					--route-gap: 14px
 				&__route-title
 					font-size: 18px
+		.home-project-logos
+			&__text-logo
+				font-size: 13px
+			&__item
+				min-width: 94px
+				img
+					max-width: 108px
+		.home-selected-projects
+			&__image
+				aspect-ratio: 16 / 10
+			&__name
+				font-size: 22px
+			&__description
+				font-size: 14px
+			&__role
+				font-size: 13px
+			&__link
+				padding-top: 20px
 		&--faq
 			&__item
 				&--icon
@@ -2645,10 +2903,10 @@
 		min-width: 52px
 		height: 52px
 		&__image
-			width: 48px
-			height: 48px
+			width: auto
+			height: 46px
 			max-width: 48px
-			max-height: 48px
+			max-height: 52px
 	.header-nav
 		&__list
 			gap: 2px
@@ -2729,10 +2987,10 @@
 		min-width: 50px
 		height: 50px
 		&__image
-			width: 46px
-			height: 46px
+			width: auto
+			height: 44px
 			max-width: 46px
-			max-height: 46px
+			max-height: 50px
 	.header-nav, .header-phone, .header-socials, .header-cta
 		display: none
 	.header-actions
@@ -2773,10 +3031,10 @@
 		min-width: 44px
 		height: 44px
 		&__image
-			width: 42px
+			width: auto
 			height: 42px
 			max-width: 42px
-			max-height: 42px
+			max-height: 44px
 	.header-actions
 		gap: 8px
 	.header-search-toggle, .burger
@@ -3393,9 +3651,11 @@
 		&__cta-title
 			font-size: 40px
 		&__mark
-			width: 50px
-			height: 50px
-			flex-basis: 50px
+			width: auto
+			height: 46px
+			max-width: 55px
+			max-height: 58px
+			flex-basis: auto
 		&__name
 			font-size: 25px
 		&__nav--services,
@@ -3441,9 +3701,11 @@
 			&:not(:last-child)
 				margin-bottom: 20px
 		&__mark
-			width: 46px
-			height: 46px
-			flex-basis: 46px
+			width: auto
+			height: 44px
+			max-width: 46px
+			max-height: 48px
+			flex-basis: auto
 		&__name
 			font-size: 23px
 		&__description
@@ -3482,9 +3744,11 @@
 		&__brand-link
 			align-items: flex-start
 		&__mark
-			width: 44px
+			width: auto
 			height: 44px
-			flex-basis: 44px
+			max-width: 44px
+			max-height: 48px
+			flex-basis: auto
 		&__name
 			font-size: 22px
 		&__description
@@ -3495,8 +3759,10 @@
 		&__cta-title
 			font-size: 27px
 		&__mark
-			width: 42px
+			width: auto
 			height: 42px
-			flex-basis: 42px
+			max-width: 42px
+			max-height: 44px
+			flex-basis: auto
 		&__name
 			font-size: 21px
