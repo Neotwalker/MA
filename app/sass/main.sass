@@ -85,7 +85,7 @@ body
 		font-family: $default-font
 
 input, textarea, button, select, option
-	transition: all .3s ease
+	transition: color .3s ease, background-color .3s ease, border-color .3s ease, box-shadow .3s ease, opacity .3s ease
 
 .h1, h1
 	font-size: 60px
@@ -359,14 +359,40 @@ body.cookie-banner-visible
 	display: flex
 	align-items: center
 	justify-content: center
+	min-height: 44px
 	font-weight: 600
 	font-size: 20px
 	line-height: 1
 	border-radius: 40px
 	white-space: nowrap
 	position: relative
+	box-sizing: border-box
+	border: 0
+	background-color: transparent
+	color: $white
+	text-align: center
+	text-decoration: none
+	cursor: pointer
+	transition: color .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, opacity .2s ease, transform .2s ease
 	span
 		line-height: 1
+	&:focus-visible
+		outline: none
+		box-shadow: inset 0 0 0 2px color.adjust($accent, $alpha: -.16), 0 0 0 3px color.adjust($accent, $alpha: -.78)
+	&:active
+		transform: translateY(1px)
+	&:disabled,
+	&[disabled],
+	&[aria-disabled="true"],
+	&.disabled
+		opacity: .58
+		cursor: not-allowed
+		pointer-events: none
+	&--sm
+		min-height: 40px
+		padding: 12px 24px
+		font-size: 15px
+	&--primary,
 	&--gradient
 		overflow: hidden
 		background-image: $gradient
@@ -385,9 +411,14 @@ body.cookie-banner-visible
 		span
 			z-index: 2
 			position: relative
-		&:hover, &:focus
+			transition: opacity .2s ease
+		&:hover
 			&::before
 				opacity: 1
+		&:focus-visible
+			&::before
+				opacity: .55
+	&--secondary,
 	&--white 
 		border: 2px solid $white
 		background-color: transparent
@@ -398,6 +429,42 @@ body.cookie-banner-visible
 		&:hover 
 			background-color: $white
 			color: $black
+	&--ghost
+		min-height: 42px
+		padding: 12px 24px
+		border: 1px solid color.adjust($white, $alpha: -.78)
+		background-color: transparent
+		color: color.adjust($white, $alpha: -.08)
+		font-size: 16px
+		&:hover
+			border-color: color.adjust($white, $alpha: -.56)
+			background-color: color.adjust($white, $alpha: -.95)
+			color: $white
+	&--loading,
+	&.is-loading,
+	&[aria-busy="true"]
+		color: transparent
+		opacity: 1
+		pointer-events: none
+		span
+			opacity: 0
+		&::after
+			content: ''
+			position: absolute
+			z-index: 4
+			top: 50%
+			left: 50%
+			width: 18px
+			height: 18px
+			margin: -9px 0 0 -9px
+			border: 2px solid color.adjust($white, $alpha: -.48)
+			border-top-color: $white
+			border-radius: 50%
+			animation: button-loading-spin .72s linear infinite
+
+@keyframes button-loading-spin
+	to
+		transform: rotate(360deg)
 
 .burger
 	display: none
@@ -4170,7 +4237,8 @@ figure
 				display: block
 				&:not(:last-child)
 					margin-bottom: 0
-			input
+			input,
+			textarea
 				min-height: 54px
 				transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease
 				&:focus-visible
@@ -4182,6 +4250,13 @@ figure
 				&[aria-invalid="true"]
 					border-color: color.adjust($red, $alpha: -.1)
 					box-shadow: inset 0 0 0 1px color.adjust($red, $alpha: -.2)
+			textarea
+				min-height: 132px
+				padding-top: 17px
+				padding-bottom: 17px
+				line-height: 1.45
+				resize: vertical
+				white-space: normal
 			.form-field--consent
 				gap: 8px
 				.wpcf7-form-control-wrap

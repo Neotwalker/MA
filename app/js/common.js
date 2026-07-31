@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const mobileServicesList = document.querySelector('#mobile-services-list');
 
 	let activeModal = null;
+	let activeModalTrigger = null;
 	let isMobileNavigationOpen = false;
 	const mobileScrollState = {
 		locked: false,
@@ -528,13 +529,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		focusAfterPaint(wrapper || modal);
 	}
 
-	function openModal(modal) {
+	function openModal(modal, trigger = null) {
 		if (!modal) return;
 		if (activeModal && activeModal !== modal) {
-			closeModal(activeModal, { unlockScroll: false });
+			closeModal(activeModal, { unlockScroll: false, restoreFocus: false });
 		}
 		if (!modalScrollState.locked) {
 			lockModalScroll();
+		}
+		if (trigger) {
+			activeModalTrigger = trigger;
 		}
 		activeModal = modal;
 		modal.removeAttribute('inert');
@@ -544,19 +548,27 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function closeModal(modal = activeModal, options = {}) {
-		const { unlockScroll = true } = options;
+		const { unlockScroll = true, restoreFocus = true } = options;
 		if (!modal) return;
+		const shouldClearActiveModal = activeModal === modal;
+		const restoreTarget = shouldClearActiveModal && restoreFocus ? activeModalTrigger : null;
 		if (modal.contains(document.activeElement)) {
 			document.activeElement.blur();
 		}
 		modal.classList.remove('active');
 		modal.setAttribute('aria-hidden', 'true');
 		modal.setAttribute('inert', '');
-		if (activeModal === modal) {
+		if (shouldClearActiveModal) {
 			activeModal = null;
 		}
 		if (unlockScroll) {
 			unlockModalScroll();
+		}
+		if (restoreFocus) {
+			activeModalTrigger = null;
+			if (restoreTarget && document.contains(restoreTarget)) {
+				focusAfterPaint(restoreTarget);
+			}
 		}
 	}
 
@@ -593,7 +605,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				if (!target) return;
 				e.preventDefault();
 				closeHeaderLayers({ beforeModal: true });
-				openModal(target);
+				openModal(target, trigger);
 			});
 		});
 
@@ -1069,7 +1081,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			};
 			const setLoading = (isLoading) => {
 				form.setAttribute('aria-busy', isLoading ? 'true' : 'false');
-				submitButton?.toggleAttribute('disabled', isLoading);
+				if (submitButton) {
+					submitButton.toggleAttribute('disabled', isLoading);
+					submitButton.classList.toggle('button--loading', isLoading);
+					submitButton.setAttribute('aria-busy', isLoading ? 'true' : 'false');
+				}
 				if (submitText) {
 					submitText.textContent = isLoading ? 'Отправляю…' : defaultSubmitText;
 				}
@@ -1184,7 +1200,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			state.setStatus('');
 			const sourceModal = form.closest('.modal');
 			if (modalSend && sourceModal && activeModal === sourceModal) {
-				closeModal(sourceModal, { unlockScroll: false });
+				closeModal(sourceModal, { unlockScroll: false, restoreFocus: false });
 				openModal(modalSend);
 			}
 		});
@@ -1231,6 +1247,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			developmentContactForm.setAttribute('aria-busy', isLoading ? 'true' : 'false');
 			if (submitButton) {
 				submitButton.toggleAttribute('disabled', isLoading);
+				submitButton.classList.toggle('button--loading', isLoading);
+				submitButton.setAttribute('aria-busy', isLoading ? 'true' : 'false');
 			}
 			if (submitText) {
 				submitText.textContent = isLoading ? 'Отправляю…' : defaultSubmitText;
@@ -1375,7 +1393,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		form?.querySelector('.cf7sg-response-output')?.style.setProperty('display', 'none');
 		if (modalSend) {
-			closeModal(sourceModal, { unlockScroll: false });
+			closeModal(sourceModal, { unlockScroll: false, restoreFocus: false });
 			openModal(modalSend);
 		}
 		form?.querySelector('.wpcf7-submit')?.setAttribute('disabled', 'disabled');

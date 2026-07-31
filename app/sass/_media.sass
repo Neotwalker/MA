@@ -1826,7 +1826,7 @@
 		&:not(:last-child)
 			margin-bottom: 30px
 	.button 
-		min-height: 40px
+		min-height: 48px
 		&--white 
 			padding: 10px 25px
 	.breadcrumbs:not(:last-child)
@@ -2101,7 +2101,7 @@
 				margin-bottom: 26px
 				.tag 
 					padding: 8px 16px
-					min-height: fit-content
+					min-height: 44px
 			&__wrapper
 				margin-left: -16px
 				margin-right: -16px
@@ -2394,8 +2394,11 @@
 				.wpcf7-form-control-wrap
 					&:not(:last-child)
 						margin-bottom: 0
-				input
+				input,
+				textarea
 					min-height: 48px
+				textarea
+					min-height: 120px
 				.form-field--consent
 					.custom--check
 						+ label
