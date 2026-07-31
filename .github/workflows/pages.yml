@@ -35,6 +35,9 @@ jobs:
       - name: Build website
         run: npm run build
 
+      - name: Verify compiled assets
+        run: npm run verify:dist
+
       - name: Verify build output
         shell: bash
         run: |

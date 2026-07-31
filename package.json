@@ -16,6 +16,7 @@
     "start": "concurrently -n GULP,SERVER \"npm run gulp --silent\" \"npm run serve --silent\"",
     "dev": "npm run start",
     "build": "node --no-deprecation ./node_modules/gulp/bin/gulp.js build",
+    "verify:dist": "node scripts/verify-dist-assets.js",
     "lint:project": "node ./scripts/check-project.mjs"
   },
   "devDependencies": {

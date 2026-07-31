@@ -60,11 +60,8 @@ function sass() {
 		.pipe(dest('app/css'))
 }
 
-async function imagemin() {
-	const { default: imageminfn } = await import('gulp-imagemin')
-
-	return src(['app/img/**/*'])
-		.pipe(imageminfn())
+function images() {
+	return src(['app/img/**/*'], { encoding: false })
 		.pipe(dest('dist/img/'))
 }
 
@@ -80,9 +77,13 @@ function buildcopy() {
 	return src([
 		'app/*.html',
 		'app/.htaccess',
-		'{app/js,app/css}/*.min.*',
-		'app/fonts/**/*'
+		'{app/js,app/css}/*.min.*'
 	], { base: 'app/' })
+		.pipe(dest('dist'))
+}
+
+function fonts() {
+	return src('app/fonts/**/*', { base: 'app/', encoding: false })
 		.pipe(dest('dist'))
 }
 
@@ -123,6 +124,6 @@ function startwatch() {
 	watch('app/*.html', { usePolling: true })
 }
 
-export { js, sass, imagemin, deploy, rsync, clearcache }
-export const build = series(removedist, imagemin, js, sass, buildcopy)
+export { js, sass, images, fonts, deploy, rsync, clearcache }
+export const build = series(removedist, images, js, sass, parallel(buildcopy, fonts))
 export default series(js, sass, startwatch)
