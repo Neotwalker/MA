@@ -4115,3 +4115,198 @@
 			font-size: 20px
 		&__text
 			font-size: 15px
+
+@media (max-width : 1440px)
+	.main
+		.portfolio-archive
+			padding-top: 138px
+			padding-bottom: 96px
+			&__title
+				font-size: 66px
+			&__lead
+				font-size: 20px
+		.portfolio-featured__grid, .portfolio-grid
+			gap: 20px
+		.portfolio-card
+			&--lead
+				.portfolio-card__title
+					font-size: 38px
+			&--featured
+				.portfolio-card__title
+					font-size: 28px
+
+@media (max-width : 1199px)
+	.main
+		.portfolio-archive
+			padding-top: 126px
+			&__hero
+				margin-bottom: 40px
+			&__title
+				font-size: 58px
+			&__lead
+				max-width: 760px
+			&__mid-cta, &__final
+				align-items: flex-start
+				flex-direction: column
+				margin-top: 52px
+				margin-bottom: 58px
+			&__cta-title, &__final-title
+				font-size: 30px
+		.portfolio-filters
+			position: relative
+			top: auto
+			align-items: flex-start
+			flex-direction: column
+			margin-bottom: 44px
+			&__status
+				white-space: normal
+		.portfolio-featured__grid, .portfolio-grid
+			grid-template-columns: repeat(6, minmax(0, 1fr))
+		.portfolio-card
+			&--lead, &--medium, &--wide, &--compact, &--compact.portfolio-card--wide
+				grid-column: span 3
+			&--lead
+				grid-row: auto
+			&--wide.portfolio-card--featured
+				grid-column: span 6
+				grid-template-columns: minmax(0, 1fr)
+				.portfolio-card__media
+					min-height: 0
+
+@media (max-width : 1023px)
+	.main
+		.portfolio-archive
+			.breadcrumbs
+				margin-bottom: 44px
+			&__title
+				font-size: 50px
+			&__lead
+				font-size: 19px
+		.portfolio-section-head
+			align-items: flex-start
+			flex-direction: column
+			gap: 10px
+			&__title
+				font-size: 38px
+		.portfolio-card
+			&--lead, &--medium, &--wide, &--compact, &--compact.portfolio-card--wide
+				grid-column: span 6
+			&--lead
+				.portfolio-card__title
+					font-size: 34px
+
+@media (max-width : 767px)
+	.main
+		&.portfolio-page
+			overflow-x: hidden
+		.portfolio-archive
+			padding-top: 112px
+			padding-bottom: 72px
+			.breadcrumbs
+				margin-bottom: 34px
+			&__hero
+				margin-bottom: 32px
+			&__eyebrow
+				font-size: 13px
+			&__title
+				font-size: 42px
+			&__lead
+				margin-bottom: 26px
+				font-size: 18px
+				line-height: 1.48
+			&__actions
+				align-items: stretch
+				flex-direction: column
+				.button
+					width: 100%
+			&__link
+				align-self: flex-start
+			&__mid-cta, &__final
+				gap: 22px
+				margin-top: 42px
+				margin-bottom: 48px
+				padding: 24px
+			&__final
+				p
+					font-size: 16px
+			&__cta-title, &__final-title
+				font-size: 26px
+		.portfolio-filters
+			margin-left: -24px
+			margin-right: -24px
+			padding: 12px 24px
+			border-left: 0
+			border-right: 0
+			border-radius: 0
+			&__list
+				flex-wrap: nowrap
+				width: 100%
+				overflow-x: auto
+				-webkit-overflow-scrolling: touch
+				scrollbar-width: none
+				&::-webkit-scrollbar
+					display: none
+			&__status
+				font-size: 13px
+		.portfolio-filter
+			flex: 0 0 auto
+			max-width: 280px
+			white-space: normal
+		.portfolio-section-head
+			margin-bottom: 22px
+			&__title
+				font-size: 32px
+		.portfolio-featured__grid, .portfolio-grid
+			grid-template-columns: minmax(0, 1fr)
+			gap: 18px
+		.portfolio-card
+			&--lead, &--medium, &--wide, &--compact, &--compact.portfolio-card--wide, &--wide.portfolio-card--featured
+				grid-column: auto
+			&--lead
+				.portfolio-card__body
+					padding: 24px
+				.portfolio-card__title
+					font-size: 30px
+				.portfolio-card__description
+					font-size: 16px
+			&--featured
+				.portfolio-card__title
+					font-size: 28px
+			&--compact
+				.portfolio-card__title
+					font-size: 25px
+			&__media
+				aspect-ratio: 16 / 9
+			&__body
+				padding: 22px
+			&__meta
+				align-items: flex-start
+				flex-direction: column
+				gap: 4px
+				margin-bottom: 16px
+			&__role, &__description
+				font-size: 15px
+
+@media (max-width : 390px)
+	.main
+		.portfolio-archive
+			padding-top: 104px
+			&__title
+				font-size: 38px
+			&__lead
+				font-size: 17px
+			&__mid-cta, &__final
+				padding: 20px
+			&__cta-title, &__final-title
+				font-size: 24px
+		.portfolio-filter
+			max-width: 244px
+			padding-left: 14px
+			padding-right: 14px
+			font-size: 14px
+		.portfolio-card
+			&--lead
+				.portfolio-card__title
+					font-size: 28px
+			&__body
+				padding: 20px

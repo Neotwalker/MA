@@ -2044,20 +2044,168 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-	// Project Tags
-	const tags = document.querySelectorAll('.main--cases__tags .tag');
-	const cases = document.querySelectorAll('.main--cases__block');
-	if (tags.length && cases.length) {
-		tags.forEach(tag => {
-			tag.addEventListener('click', () => {
-				tags.forEach(t => t.classList.remove('active'));
-				tag.classList.add('active');
-				const filter = tag.getAttribute('data-filter');
-				cases.forEach((block, index) => {
-					block.classList.toggle('active', filter === '*' ? index === 0 : block.getAttribute('data-type') === filter);
+	// Portfolio Archive Filters
+	const portfolioArchive = document.querySelector('[data-portfolio-archive]');
+	if (portfolioArchive && portfolioArchive.dataset.portfolioInitialized !== 'true') {
+		const portfolioFilters = Array.from(portfolioArchive.querySelectorAll('[data-portfolio-filter]'));
+		const portfolioCards = Array.from(portfolioArchive.querySelectorAll('[data-portfolio-card]'));
+		const portfolioLive = portfolioArchive.querySelector('[data-portfolio-live]');
+
+		if (portfolioFilters.length && portfolioCards.length) {
+			portfolioArchive.dataset.portfolioInitialized = 'true';
+			portfolioArchive.dataset.portfolioEnhanced = 'true';
+
+			const focusableSelector = 'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
+			const hideTimers = new WeakMap();
+			const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+			const labels = portfolioFilters.reduce((acc, button) => {
+				acc[button.dataset.portfolioFilter || 'all'] = button.textContent.trim();
+				return acc;
+			}, {});
+
+			const getPortfolioDeclension = (count, words) => {
+				const lastTwo = Math.abs(count) % 100;
+				const lastOne = lastTwo % 10;
+
+				if (lastTwo > 10 && lastTwo < 20) return words[2];
+				if (lastOne > 1 && lastOne < 5) return words[1];
+				if (lastOne === 1) return words[0];
+				return words[2];
+			};
+
+			const setCardFocusable = (card, isFocusable) => {
+				const focusableElements = Array.from(card.querySelectorAll(focusableSelector));
+				focusableElements.forEach(element => {
+					if (isFocusable) {
+						if (Object.prototype.hasOwnProperty.call(element.dataset, 'portfolioTabindex')) {
+							const originalTabindex = element.dataset.portfolioTabindex;
+							if (originalTabindex) {
+								element.setAttribute('tabindex', originalTabindex);
+							} else {
+								element.removeAttribute('tabindex');
+							}
+							delete element.dataset.portfolioTabindex;
+						}
+						return;
+					}
+
+					if (!Object.prototype.hasOwnProperty.call(element.dataset, 'portfolioTabindex')) {
+						element.dataset.portfolioTabindex = element.getAttribute('tabindex') || '';
+					}
+					element.setAttribute('tabindex', '-1');
 				});
+			};
+
+			const updateLive = (count, filter) => {
+				if (!portfolioLive) return;
+
+				const filterLabel = labels[filter] || 'проекты';
+				portfolioLive.textContent = filter === 'all'
+					? `Показаны все ${count} проектов`
+					: `${filterLabel}: ${count} ${getPortfolioDeclension(count, ['проект', 'проекта', 'проектов'])}`;
+			};
+
+			const showCard = card => {
+				const timer = hideTimers.get(card);
+				if (timer) {
+					window.clearTimeout(timer);
+					hideTimers.delete(card);
+				}
+
+				card.hidden = false;
+				card.removeAttribute('aria-hidden');
+				card.removeAttribute('inert');
+				card.inert = false;
+				setCardFocusable(card, true);
+				card.classList.remove('is-hiding');
+			};
+
+			const hideCard = card => {
+				setCardFocusable(card, false);
+				card.setAttribute('aria-hidden', 'true');
+				card.setAttribute('inert', '');
+				card.inert = true;
+				card.classList.add('is-hiding');
+
+				const completeHide = () => {
+					card.hidden = true;
+					hideTimers.delete(card);
+				};
+
+				if (reducedMotion.matches) {
+					completeHide();
+					return;
+				}
+
+				hideTimers.set(card, window.setTimeout(completeHide, 180));
+			};
+
+			const applyPortfolioFilter = (filter, shouldAnnounce = true) => {
+				let visibleCount = 0;
+
+				portfolioFilters.forEach(button => {
+					const isActive = button.dataset.portfolioFilter === filter;
+					button.classList.toggle('is-active', isActive);
+					button.setAttribute('aria-pressed', String(isActive));
+				});
+
+				portfolioCards.forEach(card => {
+					const categories = (card.dataset.portfolioCategory || '').split(/\s+/).filter(Boolean);
+					const isVisible = filter === 'all' || categories.includes(filter);
+					if (isVisible) {
+						visibleCount += 1;
+						showCard(card);
+					} else {
+						hideCard(card);
+					}
+				});
+
+				if (shouldAnnounce) {
+					updateLive(visibleCount, filter);
+				}
+			};
+
+			portfolioFilters.forEach((button, index) => {
+				button.addEventListener('click', () => {
+					applyPortfolioFilter(button.dataset.portfolioFilter || 'all');
+				});
+
+				button.addEventListener('keydown', event => {
+					const currentIndex = portfolioFilters.indexOf(button);
+					let nextIndex = currentIndex;
+
+					if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+						nextIndex = (currentIndex + 1) % portfolioFilters.length;
+					} else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+						nextIndex = (currentIndex - 1 + portfolioFilters.length) % portfolioFilters.length;
+					} else if (event.key === 'Home') {
+						nextIndex = 0;
+					} else if (event.key === 'End') {
+						nextIndex = portfolioFilters.length - 1;
+					} else {
+						return;
+					}
+
+					event.preventDefault();
+					portfolioFilters[nextIndex].focus();
+					portfolioFilters[nextIndex].click();
+				});
+
+				button.setAttribute('type', 'button');
+				if (index === 0 && !portfolioFilters.some(filter => filter.getAttribute('aria-pressed') === 'true')) {
+					button.setAttribute('aria-pressed', 'true');
+					button.classList.add('is-active');
+				}
 			});
-		});
+
+			const initialFilter = portfolioFilters.find(button => button.getAttribute('aria-pressed') === 'true')?.dataset.portfolioFilter || 'all';
+			applyPortfolioFilter(initialFilter, false);
+
+			window.addEventListener('pageshow', () => {
+				const activeFilter = portfolioFilters.find(button => button.getAttribute('aria-pressed') === 'true')?.dataset.portfolioFilter || 'all';
+				applyPortfolioFilter(activeFilter, false);
+			});
+		}
 	}
 
 	// Home Project Logos Marquee
