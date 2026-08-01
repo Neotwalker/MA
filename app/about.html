@@ -179,17 +179,22 @@
 					</div>
 					<a class="header-services-menu__cta modal--open" href="#modal_general" data-modal-target="#modal_general">Не знаете, какой формат нужен? Рассказать о задаче →</a>
 				</div>
-				<div class="header-search-panel" id="header-search-panel" role="search" aria-hidden="true" inert>
-					<form class="header-search-form" action="https://limitlesscreators.ru/" method="get">
+				<div class="header-search-panel site-search site-search--header" id="header-search-panel" role="search" aria-hidden="true" inert data-site-search data-search-context="header" data-search-limit="7">
+					<form class="header-search-form site-search__form" action="search.html" method="get" data-site-search-form>
 						<label class="visually-hidden" for="header-search-input">Поиск по сайту</label>
-						<input class="header-search-form__input" type="search" name="s" id="header-search-input" autocomplete="off" enterkeyhint="search" placeholder="Что вы ищете?">
-						<button class="header-search-form__submit" type="submit">Найти</button>
-						<button class="header-search-form__close" type="button" aria-label="Закрыть поиск">
+						<input class="header-search-form__input site-search__input" type="search" name="q" id="header-search-input" autocomplete="off" enterkeyhint="search" placeholder="Услуга, проект или статья" role="combobox" aria-expanded="false" aria-controls="header-search-results" aria-autocomplete="list" data-site-search-input>
+						<button class="header-search-form__submit site-search__submit" type="submit" data-site-search-submit>Найти</button>
+						<button class="header-search-form__close" type="button" aria-label="Закрыть поиск" data-site-search-close>
 							<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
 								<path d="M3 3L15 15M15 3L3 15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
 							</svg>
 						</button>
 					</form>
+					<div class="live-search" id="header-search-results" role="listbox" aria-label="Результаты поиска" data-site-search-dropdown hidden>
+						<p class="live-search__status" data-site-search-status>Начните вводить название услуги, проекта или статьи</p>
+						<div class="live-search__list" data-site-search-list></div>
+						<a class="live-search__all" data-site-search-all hidden>Показать все результаты</a>
+					</div>
 				</div>
 			</div>
 		</div>

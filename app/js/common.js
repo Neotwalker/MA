@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let activeModal = null;
 	let activeModalTrigger = null;
 	let isMobileNavigationOpen = false;
+	let resetHeaderSearch = null;
 	const mobileScrollState = {
 		locked: false,
 		scrollY: 0,
@@ -702,14 +703,22 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	function closeSearchPanel() {
+	function closeSearchPanel(options = {}) {
 		if (!searchToggle || !searchPanel) return;
+		const { restoreFocus = false, clear = true } = options;
+		const wasOpen = searchPanel.classList.contains('is-open');
 		searchToggle.setAttribute('aria-expanded', 'false');
 		searchToggle.setAttribute('aria-label', 'Открыть поиск');
 		searchPanel.setAttribute('aria-hidden', 'true');
 		searchPanel.setAttribute('inert', '');
 		searchPanel.classList.remove('is-open');
 		header?.classList.remove('header--search-open');
+		if (clear && typeof resetHeaderSearch === 'function') {
+			resetHeaderSearch();
+		}
+		if (restoreFocus && wasOpen) {
+			focusAfterPaint(searchToggle);
+		}
 	}
 
 	function openSearchPanel() {
@@ -867,6 +876,508 @@ document.addEventListener("DOMContentLoaded", () => {
 		callback();
 	}
 
+	const siteSearchRoots = qsa('[data-site-search]');
+	const siteSearchConfig = {
+		source: 'static',
+		staticIndexUrl: 'search-index.json',
+		futureEndpoint: '/wp-json/limitless/v1/search',
+		minLength: 2,
+		debounce: 200
+	};
+	let siteSearchIndexPromise = null;
+
+	function normalizeSearchValue(value = '') {
+		return String(value)
+			.toLowerCase()
+			.replace(/ё/g, 'е')
+			.replace(/[–—-]/g, ' ')
+			.replace(/[^a-zа-я0-9\s]+/gi, ' ')
+			.replace(/\s+/g, ' ')
+			.trim();
+	}
+
+	function getSearchTokens(value = '') {
+		return Array.from(new Set(normalizeSearchValue(value).split(' ').filter(token => token.length >= siteSearchConfig.minLength)));
+	}
+
+	function escapeHtml(value = '') {
+		return String(value).replace(/[&<>"']/g, (char) => ({
+			'&': '&amp;',
+			'<': '&lt;',
+			'>': '&gt;',
+			'"': '&quot;',
+			"'": '&#39;'
+		})[char]);
+	}
+
+	function escapeRegExp(value = '') {
+		return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	}
+
+	function getHighlightPattern(tokens = []) {
+		const patterns = tokens
+			.filter(Boolean)
+			.sort((a, b) => b.length - a.length)
+			.map(token => escapeRegExp(token).replace(/[её]/gi, '[её]'));
+
+		return patterns.length ? new RegExp(`(${patterns.join('|')})`, 'giu') : null;
+	}
+
+	function highlightSearchText(text = '', tokens = []) {
+		const escaped = escapeHtml(text);
+		const pattern = getHighlightPattern(tokens);
+		return pattern ? escaped.replace(pattern, '<mark>$1</mark>') : escaped;
+	}
+
+	function getSearchIndex() {
+		if (!siteSearchIndexPromise) {
+			siteSearchIndexPromise = fetch(siteSearchConfig.staticIndexUrl, {
+				headers: { Accept: 'application/json' },
+				cache: 'no-store'
+			})
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Search index request failed: ${response.status}`);
+					}
+					return response.json();
+				})
+				.then(index => {
+					if (!index || !Array.isArray(index.documents)) {
+						throw new Error('Search index has invalid schema');
+					}
+					return index.documents;
+				});
+		}
+
+		return siteSearchIndexPromise;
+	}
+
+	function scoreSearchDocument(documentItem, query, tokens) {
+		const normalizedQuery = normalizeSearchValue(query);
+		const title = normalizeSearchValue(documentItem.title);
+		const description = normalizeSearchValue(documentItem.description);
+		const content = normalizeSearchValue(documentItem.content);
+		const keywords = Array.isArray(documentItem.keywords) ? documentItem.keywords.map(normalizeSearchValue).join(' ') : '';
+		const fields = [title, keywords, description, content];
+
+		if (!tokens.every(token => fields.some(field => field.includes(token)))) {
+			return 0;
+		}
+
+		let score = Number(documentItem.weight) || 0;
+
+		if (title === normalizedQuery) score += 1000;
+		if (title.startsWith(normalizedQuery)) score += 720;
+		if (description.includes(normalizedQuery)) score += 180;
+		if (content.includes(normalizedQuery)) score += 60;
+
+		for (const token of tokens) {
+			if (title.split(' ').includes(token)) score += 170;
+			else if (title.includes(token)) score += 125;
+			if (keywords.split(' ').includes(token)) score += 110;
+			if (description.includes(token)) score += 55;
+			if (content.includes(token)) score += 18;
+		}
+
+		return score;
+	}
+
+	function searchDocuments(documents, query) {
+		const tokens = getSearchTokens(query);
+
+		if (tokens.length === 0) {
+			return [];
+		}
+
+		return documents
+			.map(documentItem => ({
+				...documentItem,
+				_score: scoreSearchDocument(documentItem, query, tokens)
+			}))
+			.filter(documentItem => documentItem._score > 0)
+			.sort((a, b) => b._score - a._score || a.title.localeCompare(b.title, 'ru'));
+	}
+
+	function getSearchSnippet(documentItem, tokens) {
+		const source = documentItem.description || documentItem.content || '';
+		const normalizedSource = normalizeSearchValue(source);
+		const firstToken = tokens.find(token => normalizedSource.includes(token));
+
+		if (!firstToken) {
+			return source.length > 168 ? `${source.slice(0, 165).trim()}...` : source;
+		}
+
+		const index = normalizedSource.indexOf(firstToken);
+		const start = Math.max(0, index - 70);
+		const end = Math.min(source.length, index + 120);
+		const prefix = start > 0 ? '...' : '';
+		const suffix = end < source.length ? '...' : '';
+
+		return `${prefix}${source.slice(start, end).trim()}${suffix}`;
+	}
+
+	function getSearchUrl(query = '') {
+		const normalizedQuery = query.trim();
+		return normalizedQuery ? `search.html?q=${encodeURIComponent(normalizedQuery)}` : 'search.html';
+	}
+
+	function initSiteSearch(root) {
+		const form = root.querySelector('[data-site-search-form]');
+		const input = root.querySelector('[data-site-search-input]');
+		const dropdown = root.querySelector('[data-site-search-dropdown]');
+		const status = root.querySelector('[data-site-search-status]');
+		const list = root.querySelector('[data-site-search-list]');
+		const allLink = root.querySelector('[data-site-search-all]');
+		const clearButton = root.querySelector('[data-site-search-clear]');
+		const pageSummary = root.querySelector('[data-search-page-summary]');
+		const pageResults = root.querySelector('[data-search-page-results]');
+		const context = root.dataset.searchContext || 'inline';
+		const isHeader = context === 'header';
+		const isPage = context === 'page';
+		const limit = Number.parseInt(root.dataset.searchLimit || (isPage ? '50' : '7'), 10);
+		let activeIndex = -1;
+		let currentResults = [];
+		let latestRequestId = 0;
+		let debounceTimer = 0;
+
+		if (!form || !input || !dropdown || !status || !list) {
+			return null;
+		}
+
+		function hideAllResultsLink() {
+			if (!allLink) return;
+			allLink.hidden = true;
+			allLink.removeAttribute('href');
+		}
+
+		function showAllResultsLink(query) {
+			if (!allLink) return;
+			allLink.href = getSearchUrl(query);
+			allLink.hidden = false;
+		}
+
+		function setDropdownOpen(isOpen) {
+			dropdown.hidden = !isOpen;
+			input.setAttribute('aria-expanded', String(isOpen));
+			if (!isOpen) {
+				activeIndex = -1;
+				input.removeAttribute('aria-activedescendant');
+				qsa('[role="option"]', list).forEach(option => option.setAttribute('aria-selected', 'false'));
+			}
+		}
+
+		function setStatus(message) {
+			status.textContent = message;
+			status.hidden = false;
+			list.replaceChildren();
+			currentResults = [];
+			hideAllResultsLink();
+			setDropdownOpen(true);
+		}
+
+		function closeDropdown() {
+			hideAllResultsLink();
+			setDropdownOpen(false);
+		}
+
+		function setActiveResult(nextIndex) {
+			if (!currentResults.length) return;
+			activeIndex = (nextIndex + currentResults.length) % currentResults.length;
+			qsa('[role="option"]', list).forEach((option, index) => {
+				const isActive = index === activeIndex;
+				option.setAttribute('aria-selected', String(isActive));
+				if (isActive) {
+					input.setAttribute('aria-activedescendant', option.id);
+					option.scrollIntoView({ block: 'nearest' });
+				}
+			});
+		}
+
+		function renderLiveResults(results, query) {
+			const tokens = getSearchTokens(query);
+			const shownResults = results.slice(0, limit);
+			currentResults = shownResults;
+			status.hidden = shownResults.length > 0;
+			status.textContent = shownResults.length ? '' : 'Ничего не найдено. Попробуйте другое слово или перейдите к карте сайта.';
+			list.replaceChildren();
+
+			for (const [index, result] of shownResults.entries()) {
+				const option = document.createElement('a');
+				option.className = 'live-search__item';
+				option.href = result.url;
+				option.id = `${dropdown.id}-option-${index + 1}`;
+				option.setAttribute('role', 'option');
+				option.setAttribute('aria-selected', 'false');
+				option.tabIndex = -1;
+				option.innerHTML = `
+					<span class="live-search__media" aria-hidden="true">${result.image ? `<img src="${escapeHtml(result.image)}" alt="" loading="lazy" decoding="async">` : `<span class="live-search__placeholder">${escapeHtml(result.type.slice(0, 1))}</span>`}</span>
+					<span class="live-search__body">
+						<span class="live-search__type">${escapeHtml(result.type)}</span>
+						<span class="live-search__title">${highlightSearchText(result.title, tokens)}</span>
+						<span class="live-search__snippet">${highlightSearchText(getSearchSnippet(result, tokens), tokens)}</span>
+					</span>
+					<span class="live-search__arrow" aria-hidden="true">→</span>
+				`;
+				option.addEventListener('mouseenter', () => setActiveResult(index));
+				list.append(option);
+			}
+
+			if (allLink) {
+				if (results.length > shownResults.length) {
+					showAllResultsLink(query);
+				} else {
+					hideAllResultsLink();
+				}
+			}
+
+			setDropdownOpen(true);
+		}
+
+		function renderPageResults(results, query, options = {}) {
+			if (!pageSummary || !pageResults) return;
+			const { loading = false, error = false } = options;
+			const trimmedQuery = query.trim();
+			const tokens = getSearchTokens(trimmedQuery);
+			pageResults.replaceChildren();
+			clearButton?.toggleAttribute('hidden', !trimmedQuery);
+
+			if (!trimmedQuery) {
+				pageSummary.textContent = 'Введите запрос, чтобы увидеть результаты.';
+				return;
+			}
+
+			if (trimmedQuery.length < siteSearchConfig.minLength) {
+				pageSummary.textContent = 'Введите ещё хотя бы один символ.';
+				return;
+			}
+
+			if (loading) {
+				pageSummary.textContent = 'Загружаю индекс поиска...';
+				return;
+			}
+
+			if (error) {
+				pageSummary.textContent = 'Не удалось загрузить поиск. Попробуйте обновить страницу.';
+				return;
+			}
+
+			pageSummary.textContent = `По запросу “${trimmedQuery}” найдено: ${results.length}`;
+
+			if (!results.length) {
+				const empty = document.createElement('div');
+				empty.className = 'search-page__empty';
+				empty.innerHTML = `
+					<h2>Ничего не найдено</h2>
+					<p>Попробуйте изменить формулировку: например, искать по типу сайта, отрасли, CMS, SEO или названию проекта.</p>
+				`;
+				pageResults.append(empty);
+				return;
+			}
+
+			for (const result of results) {
+				const item = document.createElement('a');
+				item.className = 'search-result';
+				item.href = result.url;
+				item.innerHTML = `
+					${result.image ? `<span class="search-result__media" aria-hidden="true"><img src="${escapeHtml(result.image)}" alt="" loading="lazy" decoding="async"></span>` : ''}
+					<span class="search-result__body">
+						<span class="search-result__type">${escapeHtml(result.type)}</span>
+						<span class="search-result__title h3">${highlightSearchText(result.title, tokens)}</span>
+						<span class="search-result__text">${highlightSearchText(getSearchSnippet(result, tokens), tokens)}</span>
+						<span class="search-result__url">${escapeHtml(result.url)}</span>
+					</span>
+					<span class="search-result__arrow" aria-hidden="true">→</span>
+				`;
+				pageResults.append(item);
+			}
+		}
+
+		async function runSearch(options = {}) {
+			const { live = true, page = isPage } = options;
+			const query = input.value.trim();
+			const requestId = ++latestRequestId;
+
+			clearButton?.toggleAttribute('hidden', !query);
+
+			if (!query) {
+				if (live) setStatus('Начните вводить название услуги, проекта или статьи');
+				if (page) renderPageResults([], query);
+				return;
+			}
+
+			if (query.length < siteSearchConfig.minLength) {
+				if (live) setStatus('Введите ещё хотя бы один символ');
+				if (page) renderPageResults([], query);
+				return;
+			}
+
+			if (live) setStatus('Загружаю индекс поиска...');
+			if (page) renderPageResults([], query, { loading: true });
+
+			try {
+				const documents = await getSearchIndex();
+				if (requestId !== latestRequestId) return;
+				const results = searchDocuments(documents, query);
+				if (live) renderLiveResults(results, query);
+				if (page) renderPageResults(results, query);
+			} catch (error) {
+				if (requestId !== latestRequestId) return;
+				if (live) setStatus('Не удалось загрузить поиск. Попробуйте обновить страницу.');
+				if (page) renderPageResults([], query, { error: true });
+			}
+		}
+
+		function debounceSearch() {
+			window.clearTimeout(debounceTimer);
+			debounceTimer = window.setTimeout(() => {
+				runSearch();
+			}, siteSearchConfig.debounce);
+		}
+
+		function openCurrentResult() {
+			if (activeIndex < 0 || !currentResults[activeIndex]) return false;
+			window.location.href = currentResults[activeIndex].url;
+			return true;
+		}
+
+		function submitSearch(pushHistory = true) {
+			const query = input.value.trim();
+			if (!query) {
+				input.focus();
+				return;
+			}
+
+			if (isPage) {
+				if (pushHistory && window.history?.pushState) {
+					window.history.pushState({ q: query }, '', getSearchUrl(query));
+				}
+				runSearch({ live: false, page: true });
+				closeDropdown();
+				return;
+			}
+
+			window.location.href = getSearchUrl(query);
+		}
+
+		function resetSearch() {
+			window.clearTimeout(debounceTimer);
+			input.value = '';
+			closeDropdown();
+			clearButton?.setAttribute('hidden', '');
+			status.textContent = 'Начните вводить название услуги, проекта или статьи';
+			list.replaceChildren();
+			currentResults = [];
+			hideAllResultsLink();
+			if (isPage) {
+				renderPageResults([], '');
+			}
+		}
+
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			if (event.submitter !== root.querySelector('[data-site-search-submit]') && openCurrentResult()) return;
+			submitSearch();
+		});
+
+		input.addEventListener('focus', () => {
+			if (!input.value.trim()) {
+				if (isHeader) return;
+				setStatus('Начните вводить название услуги, проекта или статьи');
+			} else {
+				runSearch();
+			}
+		});
+
+		input.addEventListener('input', debounceSearch);
+
+		input.addEventListener('keydown', (event) => {
+			if (event.key === 'ArrowDown') {
+				event.preventDefault();
+				if (dropdown.hidden) {
+					runSearch();
+				} else {
+					setActiveResult(activeIndex + 1);
+				}
+				return;
+			}
+
+			if (event.key === 'ArrowUp') {
+				event.preventDefault();
+				if (!dropdown.hidden) {
+					setActiveResult(activeIndex - 1);
+				}
+				return;
+			}
+
+			if (event.key === 'Home' && !dropdown.hidden && currentResults.length) {
+				event.preventDefault();
+				setActiveResult(0);
+				return;
+			}
+
+			if (event.key === 'End' && !dropdown.hidden && currentResults.length) {
+				event.preventDefault();
+				setActiveResult(currentResults.length - 1);
+				return;
+			}
+
+			if (event.key === 'Enter') {
+				event.preventDefault();
+				if (activeIndex >= 0) {
+					openCurrentResult();
+				} else {
+					submitSearch();
+				}
+				return;
+			}
+
+			if (event.key === 'Escape') {
+				if (!dropdown.hidden) {
+					event.preventDefault();
+					event.stopPropagation();
+					closeDropdown();
+					return;
+				}
+
+				if (isHeader && searchPanel?.classList.contains('is-open')) {
+					event.preventDefault();
+					event.stopPropagation();
+					closeSearchPanel({ restoreFocus: true });
+				}
+			}
+		});
+
+		clearButton?.addEventListener('click', () => {
+			resetSearch();
+			if (isPage && window.history?.pushState) {
+				window.history.pushState({ q: '' }, '', 'search.html');
+			}
+			input.focus();
+		});
+
+		if (isPage) {
+			const applyQueryFromUrl = () => {
+				const params = new URLSearchParams(window.location.search);
+				input.value = params.get('q') || '';
+				runSearch({ live: false, page: true });
+			};
+
+			applyQueryFromUrl();
+			window.addEventListener('popstate', applyQueryFromUrl);
+		}
+
+		return resetSearch;
+	}
+
+	if (siteSearchRoots.length) {
+		for (const root of siteSearchRoots) {
+			const reset = initSiteSearch(root);
+			if (root.dataset.searchContext === 'header') {
+				resetHeaderSearch = reset;
+			}
+		}
+	}
+
 	if (servicesToggle && servicesMenu) {
 		servicesToggle.addEventListener('keydown', e => {
 			handleToggleKey(e, toggleServicesDropdown);
@@ -916,7 +1427,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			e.stopPropagation();
 		});
 		searchClose?.addEventListener('click', () => {
-			closeSearchPanel();
+			closeSearchPanel({ restoreFocus: true });
 		});
 	}
 
@@ -1000,7 +1511,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 		if (searchPanel?.classList.contains('is-open')) {
 			e.preventDefault();
-			closeSearchPanel();
+			closeSearchPanel({ restoreFocus: true });
 			return;
 		}
 		if (aboutMenu?.classList.contains('is-open')) {

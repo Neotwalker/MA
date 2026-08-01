@@ -3991,3 +3991,127 @@
 		&.sitemap-page
 			.sitemap-hero__title
 				font-size: 38px
+
+@media (max-width : 1199px)
+	.main
+		&.search-page
+			.search-page__hero
+				padding-top: 142px
+
+@media (max-width : 1023px)
+	.main
+		&.search-page
+			.search-page__module
+				max-width: none
+	.search-result
+		gap: 18px
+		&__media
+			flex-basis: 190px
+			width: 190px
+			min-height: 124px
+
+@media (max-width : 767px)
+	.live-search
+		top: calc(100% + 8px)
+		max-height: min(390px, calc(100vh - var(--header-height, 66px) - 34px))
+		&__item
+			min-height: 76px
+			gap: 12px
+			padding: 12px 42px 12px 12px
+		&__media
+			flex-basis: 58px
+			width: 58px
+			height: 48px
+		&__title
+			font-size: 15px
+		&__snippet
+			font-size: 13px
+		&__arrow
+			right: 14px
+	.site-search--page
+		.live-search
+			position: relative
+			top: auto
+			margin-top: 10px
+	.main
+		&.search-page
+			.search-page__hero
+				padding: 120px 0 44px
+			.search-page__title
+				font-size: clamp(42px, 10vw, 58px)
+			.search-page__lead
+				font-size: 18px
+			.search-page__section
+				padding: 36px 0 72px
+			.search-page__form
+				flex-wrap: wrap
+				gap: 10px
+			.search-page__input
+				flex: 1 1 100%
+				min-height: 54px
+				font-size: 17px
+			.search-page__clear, .search-page__submit
+				flex: 1 1 calc(50% - 5px)
+				min-height: 52px
+			.search-page__results
+				margin-top: 24px
+		&--404
+			&__search
+				margin-bottom: 24px
+			&__search-form
+				flex-wrap: wrap
+			&__search-input
+				flex: 1 1 100%
+			&__search-submit
+				width: 100%
+	.search-result
+		flex-direction: column
+		gap: 14px
+		padding: 16px 44px 16px 0
+		&__media
+			width: 100%
+			flex: 0 0 auto
+			min-height: 0
+			aspect-ratio: 16 / 9
+		&__title
+			font-size: 22px
+
+@media (max-width : 480px)
+	.header-search-panel
+		padding: 12px
+	.live-search
+		left: -12px
+		right: -12px
+		max-height: min(360px, calc(100vh - var(--header-height, 66px) - 28px))
+		&__status
+			padding: 16px
+		&__item
+			align-items: flex-start
+		&__media
+			display: none
+	.main
+		&.search-page
+			.search-page__hero
+				padding-top: 104px
+			.search-page__title
+				font-size: 36px
+			.search-page__lead
+				font-size: 17px
+			.search-page__clear, .search-page__submit
+				flex-basis: 100%
+			.search-page__summary
+				font-size: 16px
+		&--404
+			&__search-text
+				font-size: 15px
+
+@media (max-width : 390px)
+	.main
+		&.search-page
+			.search-page__title
+				font-size: 34px
+	.search-result
+		&__title
+			font-size: 20px
+		&__text
+			font-size: 15px

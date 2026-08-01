@@ -13,16 +13,22 @@ const counters = {
 	htmlReferences: 0,
 	cssUrls: 0,
 	images: 0,
-	fonts: 0
+	fonts: 0,
+	searchDocuments: 0
 }
 
 const requiredFiles = [
 	'dist/index.html',
 	'dist/404.html',
+	'dist/search.html',
+	'dist/search-index.json',
 	'dist/css/main.min.css',
 	'dist/js/scripts.min.js',
 	'dist/img/brand/marat-abzalov-mark-tiny-1.png'
 ]
+
+const searchIndexExcludedUrls = new Set(['404.html', 'search.html', 'sitemap.html'])
+const searchIndexTypes = new Set(['Услуга', 'Проект', 'Статья', 'Страница'])
 
 const imageExts = new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif', '.ico'])
 const fontExts = new Set(['.woff', '.woff2', '.ttf', '.otf', '.eot'])
@@ -395,6 +401,104 @@ function verifyHtmlReferences(htmlFile) {
 	}
 }
 
+function verifySearchIndex(indexFile) {
+	if (!existsSync(indexFile)) {
+		return
+	}
+
+	let index = null
+
+	try {
+		index = JSON.parse(readFileSync(indexFile, 'utf8'))
+	} catch (error) {
+		addError(`${toProjectPath(indexFile)}: invalid JSON (${error.message})`)
+		return
+	}
+
+	if (!index || typeof index !== 'object') {
+		addError(`${toProjectPath(indexFile)}: root value must be an object`)
+		return
+	}
+
+	if (index.version !== 1) {
+		addError(`${toProjectPath(indexFile)}: version must be 1`)
+	}
+
+	if (index.source !== 'static') {
+		addError(`${toProjectPath(indexFile)}: source must be static`)
+	}
+
+	if (!Array.isArray(index.documents)) {
+		addError(`${toProjectPath(indexFile)}: documents must be an array`)
+		return
+	}
+
+	const urls = new Set()
+
+	for (const [indexPosition, document] of index.documents.entries()) {
+		const label = `${toProjectPath(indexFile)} documents[${indexPosition}]`
+		const requiredFields = ['title', 'url', 'type', 'description', 'content', 'image', 'keywords', 'weight']
+
+		for (const field of requiredFields) {
+			if (!(field in document)) {
+				addError(`${label}: missing ${field}`)
+			}
+		}
+
+		if (typeof document.title !== 'string' || !document.title.trim()) {
+			addError(`${label}: title must be a non-empty string`)
+		}
+
+		if (typeof document.url !== 'string' || !document.url.trim()) {
+			addError(`${label}: url must be a non-empty string`)
+		} else {
+			if (urls.has(document.url)) {
+				addError(`${label}: duplicate url ${document.url}`)
+			}
+
+			urls.add(document.url)
+
+			if (searchIndexExcludedUrls.has(document.url)) {
+				addError(`${label}: excluded url is indexed: ${document.url}`)
+			}
+
+			if (isExternalUrl(document.url) || document.url.startsWith('/')) {
+				addError(`${label}: url must be a local static file: ${document.url}`)
+			} else if (!existsSync(path.join(distDir, document.url))) {
+				addError(`${label}: url target is missing: ${document.url}`)
+			}
+		}
+
+		if (!searchIndexTypes.has(document.type)) {
+			addError(`${label}: unsupported type ${document.type}`)
+		}
+
+		if (typeof document.description !== 'string') {
+			addError(`${label}: description must be a string`)
+		}
+
+		if (typeof document.content !== 'string' || !document.content.trim()) {
+			addError(`${label}: content must be a non-empty string`)
+		}
+
+		if (typeof document.image !== 'string') {
+			addError(`${label}: image must be a string`)
+		} else if (document.image) {
+			assertLocalReference(indexFile, document.image, `${label} image`)
+		}
+
+		if (!Array.isArray(document.keywords) || document.keywords.some((keyword) => typeof keyword !== 'string')) {
+			addError(`${label}: keywords must be an array of strings`)
+		}
+
+		if (!Number.isFinite(document.weight)) {
+			addError(`${label}: weight must be a finite number`)
+		}
+	}
+
+	counters.searchDocuments = index.documents.length
+}
+
 for (const requiredFile of requiredFiles) {
 	const filePath = path.join(rootDir, requiredFile)
 
@@ -421,6 +525,8 @@ for (const htmlFile of walk(distDir).filter((filePath) => path.extname(filePath)
 	verifyHtmlReferences(htmlFile)
 }
 
+verifySearchIndex(path.join(distDir, 'search-index.json'))
+
 if (errors.length > 0) {
 	console.error('verify-dist-assets failed:')
 	for (const error of errors) {
@@ -435,6 +541,7 @@ console.log(
 		`${counters.htmlFiles} HTML files`,
 		`${counters.cssUrls} CSS URLs`,
 		`${counters.htmlReferences} HTML asset references`,
+		`${counters.searchDocuments} search documents`,
 		`${counters.images} images`,
 		`${counters.fonts} fonts`,
 		'0 errors'

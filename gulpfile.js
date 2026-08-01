@@ -15,6 +15,7 @@ import cache from 'gulp-cache'
 import autoprefixer from 'autoprefixer'
 import ftp from 'vinyl-ftp'
 import rsyncfn from 'gulp-rsync'
+import { generateSearchIndex } from './scripts/generate-search-index.js'
 
 const sassfn = gulpSass(dartSass)
 
@@ -73,10 +74,15 @@ async function clearcache() {
 	cache.clearAll()
 }
 
+async function searchIndex() {
+	await generateSearchIndex()
+}
+
 function buildcopy() {
 	return src([
 		'app/*.html',
 		'app/.htaccess',
+		'app/search-index.json',
 		'{app/js,app/css}/*.min.*'
 	], { base: 'app/' })
 		.pipe(dest('dist'))
@@ -124,6 +130,6 @@ function startwatch() {
 	watch('app/*.html', { usePolling: true })
 }
 
-export { js, sass, images, fonts, deploy, rsync, clearcache }
-export const build = series(removedist, images, js, sass, parallel(buildcopy, fonts))
+export { js, sass, images, fonts, deploy, rsync, clearcache, searchIndex }
+export const build = series(removedist, images, js, sass, searchIndex, parallel(buildcopy, fonts))
 export default series(js, sass, startwatch)
