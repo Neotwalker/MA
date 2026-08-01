@@ -1,5 +1,6 @@
 node_modules/
 dist/
+.qa-artifacts/
 _reference/
 .DS_Store
 Thumbs.db
