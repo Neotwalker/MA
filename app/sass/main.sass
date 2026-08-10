@@ -2811,6 +2811,8 @@ body.cookie-banner-visible
 			align-items: center
 			flex-wrap: wrap
 			gap: 10px
+			margin: -3px
+			padding: 3px
 		&__status
 			flex: 0 0 auto
 			margin-bottom: 0
@@ -2847,6 +2849,7 @@ body.cookie-banner-visible
 		justify-content: space-between
 		gap: 24px
 		margin-bottom: 28px
+		padding-top: 4px
 		&__kicker
 			margin-bottom: 8px
 			color: $accent
@@ -2873,11 +2876,11 @@ body.cookie-banner-visible
 			display: none !important
 		&__grid
 			display: grid
-			grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr))
+			grid-template-columns: repeat(3, minmax(0, 1fr))
 			gap: 24px
-			align-items: start
+			align-items: stretch
 			&[data-filtered-count="1"]
-				max-width: 860px
+				max-width: 760px
 				grid-template-columns: minmax(0, 1fr)
 			&[data-filtered-count="2"]
 				grid-template-columns: repeat(2, minmax(0, 1fr))
@@ -2886,7 +2889,7 @@ body.cookie-banner-visible
 			.portfolio-card
 				grid-column: auto
 				grid-row: auto
-				min-height: 0
+				min-height: 100%
 				&--lead, &--medium, &--wide, &--compact, &--desktop-half, &--compact.portfolio-card--wide, &--wide.portfolio-card--featured
 					grid-column: auto
 					grid-row: auto
@@ -2915,9 +2918,20 @@ body.cookie-banner-visible
 			align-items: start
 	.portfolio-grid
 		display: grid
-		grid-template-columns: repeat(12, minmax(0, 1fr))
+		grid-template-columns: repeat(3, minmax(0, 1fr))
 		gap: 24px
-		align-items: start
+		align-items: stretch
+		.portfolio-card
+			grid-column: auto
+			min-height: 100%
+			&--wide, &--desktop-half, &--compact.portfolio-card--wide
+				grid-column: auto
+	.portfolio-grid, .portfolio-filtered__grid
+		.portfolio-card__description
+			display: -webkit-box
+			overflow: hidden
+			-webkit-line-clamp: 3
+			-webkit-box-orient: vertical
 	.portfolio-card
 		--card-accent: #{$accent}
 		position: relative
@@ -2978,6 +2992,18 @@ body.cookie-banner-visible
 					min-height: 320px
 				.portfolio-card__body
 					align-self: center
+		&--sarakula
+			&.portfolio-card--featured
+				display: flex
+				grid-template-columns: none
+				.portfolio-card__media
+					height: auto
+					min-height: 0
+					aspect-ratio: 16 / 10
+					img
+						object-position: center top
+				.portfolio-card__body
+					align-self: stretch
 		&--compact
 			grid-column: span 4
 			.portfolio-card__media

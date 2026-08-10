@@ -4170,8 +4170,10 @@
 				width: 100%
 			&__status
 				white-space: normal
-		.portfolio-featured__grid, .portfolio-grid, .portfolio-filtered__grid
+		.portfolio-featured__grid
 			grid-template-columns: repeat(6, minmax(0, 1fr))
+		.portfolio-grid, .portfolio-filtered__grid
+			grid-template-columns: repeat(2, minmax(0, 1fr))
 		.portfolio-filtered
 			margin-bottom: 58px
 			&__grid
@@ -4264,6 +4266,8 @@
 				flex-wrap: nowrap
 				width: 100%
 				overflow-x: auto
+				margin: -3px -6px
+				padding: 3px 6px
 				scroll-padding-inline: 24px
 				-webkit-overflow-scrolling: touch
 				scrollbar-width: none
@@ -4288,6 +4292,11 @@
 		.portfolio-featured__grid, .portfolio-grid, .portfolio-filtered__grid
 			grid-template-columns: minmax(0, 1fr)
 			gap: 18px
+		.portfolio-grid, .portfolio-filtered__grid
+			.portfolio-card__description
+				display: block
+				overflow: visible
+				-webkit-line-clamp: initial
 		.portfolio-card
 			&--lead, &--medium, &--wide, &--compact, &--desktop-half, &--compact.portfolio-card--wide, &--wide.portfolio-card--featured
 				grid-column: auto
