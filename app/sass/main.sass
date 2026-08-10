@@ -1905,18 +1905,37 @@ body.cookie-banner-visible
 					outline-offset: 4px
 	&.about-page
 		.about-hero
-			padding: 170px 0 74px
+			position: relative
+			overflow: hidden
+			padding: 160px 0 82px
+			&::before
+				content: 'ABOUT'
+				position: absolute
+				right: max(34px, calc((100vw - 1520px) / 2))
+				top: 122px
+				color: color.adjust($white, $alpha: -.965)
+				font-size: clamp(96px, 16vw, 254px)
+				font-weight: 800
+				line-height: .78
+				letter-spacing: 0
+				pointer-events: none
+				user-select: none
 			.row
 				display: flex
 				flex-direction: column
 		.about-hero__layout
-			display: flex
-			align-items: stretch
-			gap: clamp(44px, 5vw, 88px)
+			position: relative
+			z-index: 1
+			display: grid
+			grid-template-columns: minmax(0, 7fr) minmax(360px, 5fr)
+			align-items: end
+			gap: clamp(28px, 5vw, 78px)
 			width: 100%
 		.about-hero__content
-			flex: 1 1 66%
+			position: relative
+			z-index: 2
 			min-width: 0
+			padding-bottom: clamp(26px, 4vw, 76px)
 		.about-kicker
 			margin: 0 0 18px
 			display: flex
@@ -1933,13 +1952,13 @@ body.cookie-banner-visible
 				flex: 0 0 42px
 				background-image: $gradient
 		.about-hero__title
-			max-width: 960px
-			font-size: clamp(46px, 5vw, 82px)
-			line-height: .98
+			max-width: 840px
+			font-size: clamp(52px, 6vw, 102px)
+			line-height: .9
 			&:not(:last-child)
 				margin-bottom: 26px
 		.about-hero__lead
-			max-width: 780px
+			max-width: 720px
 			margin: 0
 			color: color.adjust($white, $alpha: -.17)
 			font-size: clamp(20px, 1.6vw, 25px)
@@ -1966,196 +1985,339 @@ body.cookie-banner-visible
 			&:focus-visible
 				outline: 2px solid color.adjust($orange, $alpha: -.2)
 				outline-offset: 5px
-		.about-hero__coordinate
-			flex: 0 1 360px
-			min-width: 300px
-			padding: 8px 0 8px 34px
-			border-left: 1px solid color.adjust($white, $alpha: -.84)
-		.about-hero__coordinate-label
-			margin: 0 0 28px
-			color: color.adjust($white, $alpha: -.42)
-			font-size: 14px
-			font-weight: 700
-			line-height: 1.35
-		.about-coordinate
+		.about-hero__portrait-zone
 			position: relative
-			display: flex
-			flex-direction: column
-			gap: 28px
-			list-style: none
-			margin: 0
-			padding: 0
 			&::before
 				content: ''
 				position: absolute
-				left: 20px
-				top: 18px
-				bottom: 18px
-				width: 1px
-				background-image: linear-gradient(180deg, $red 0%, $orange 100%)
-		.about-coordinate__item
+				inset: 11% -8% 0 18%
+				background-image: radial-gradient(circle at 50% 38%, color.adjust($orange, $alpha: -.7), transparent 45%), linear-gradient(145deg, color.adjust($red, $alpha: -.8), transparent 62%)
+				filter: blur(22px)
+				opacity: .68
+				pointer-events: none
+		.about-hero__portrait-wrap
 			position: relative
 			z-index: 1
-			display: flex
+			display: block
+			width: min(100%, 540px)
+			margin-left: auto
+			aspect-ratio: 1122 / 1402
+			overflow: hidden
+			&::after
+				content: ''
+				position: absolute
+				left: 0
+				right: 0
+				bottom: 0
+				height: 34%
+				background-image: linear-gradient(180deg, transparent, $black 84%)
+				pointer-events: none
+		.about-hero__portrait
+			display: block
+			width: 100%
+			height: 100%
+			object-fit: cover
+		.about-hero__experience
+			position: absolute
+			z-index: 2
+			left: clamp(-34px, -3vw, -18px)
+			bottom: clamp(24px, 5vw, 70px)
+			display: grid
+			grid-template-columns: auto 84px auto
 			align-items: center
-			gap: 18px
+			gap: 11px
+			max-width: 280px
+			padding: 16px 0
 			color: $white
-			font-size: 22px
-			font-weight: 600
-			line-height: 1.2
-		.about-coordinate__index
-			display: flex
-			align-items: center
-			justify-content: center
-			width: 42px
-			min-width: 42px
-			height: 42px
-			border: 1px solid color.adjust($orange, $alpha: -.18)
-			background-color: $black
+		.about-hero__experience-year, .about-hero__experience-now
 			color: $orange
-			font-size: 14px
-			font-weight: 700
+			font-size: 15px
+			font-weight: 800
 			line-height: 1
-		.about-directions, .about-process, .about-principles, .about-stack, .about-format, .about-cta
-			padding: 70px 0
+			text-transform: uppercase
+		.about-hero__experience-line
+			height: 1px
+			background-image: linear-gradient(90deg, $red 0%, $orange 100%)
+		.about-hero__experience-text
+			grid-column: 1 / -1
+			max-width: 220px
+			color: color.adjust($white, $alpha: -.18)
+			font-size: 17px
+			line-height: 1.45
+		.about-journey, .about-capabilities, .about-manifesto, .about-projects, .about-collaboration
+			padding: 72px 0
 		.about-section__head
 			width: 100%
-			max-width: 920px
-			margin-bottom: 38px
-		.about-section__head--split
-			max-width: 980px
+			max-width: 940px
+			margin-bottom: 42px
 		.about-section__title
-			max-width: 900px
-			font-size: clamp(36px, 3.6vw, 56px)
-			line-height: 1.05
-		.about-directions__grid
-			display: flex
-			flex-wrap: wrap
-			gap: 18px
+			max-width: 920px
+			font-size: clamp(36px, 3.8vw, 60px)
+			line-height: 1.04
+		.about-journey__layout
 			width: 100%
-		.about-directions__item
-			flex: 1 1 calc(50% - 9px)
-			min-width: 280px
-			padding: 26px 24px 24px
-			border-top: 1px solid color.adjust($white, $alpha: -.82)
-			background-image: linear-gradient(180deg, color.adjust($white, $alpha: -.97), transparent)
-			.about-directions__index
-				display: block
-				margin-bottom: 28px
-				color: $orange
-				font-size: 14px
-				font-weight: 700
-				line-height: 1
-			h3
-				max-width: 500px
-				margin: 0 0 14px
-				color: $white
-				font-size: 25px
-				line-height: 1.18
-				font-weight: 700
-			p
-				max-width: 560px
-				margin: 0
-				color: color.adjust($white, $alpha: -.32)
-				font-size: 16px
-				line-height: 1.65
-		.about-process__list
-			width: 100%
-			display: flex
-			flex-wrap: wrap
-			gap: 0 34px
-			list-style: none
-			margin: 0
-			padding: 0
-		.about-process__item
-			flex: 1 1 calc(50% - 17px)
-			min-width: 300px
-			display: flex
-			align-items: flex-start
-			gap: 22px
-			padding: 24px 0
-			border-top: 1px solid color.adjust($white, $alpha: -.85)
-			&:last-child:nth-child(odd)
-				max-width: calc(50% - 17px)
-			p
-				margin: 0
-				color: color.adjust($white, $alpha: -.16)
-				font-size: 21px
-				line-height: 1.45
-		.about-process__number
-			flex: 0 0 48px
+			display: grid
+			grid-template-columns: minmax(170px, 260px) minmax(0, 1fr)
+			gap: clamp(34px, 5vw, 86px)
+			align-items: start
+			padding: 50px 0 18px
+			border-top: 1px solid color.adjust($white, $alpha: -.86)
+		.about-journey__marker
+			position: relative
+			display: grid
+			grid-template-rows: auto minmax(110px, 1fr) auto
+			min-height: 260px
 			color: $orange
-			font-size: 16px
-			font-weight: 700
-			line-height: 1.2
-		.about-principles__list, .about-format__list
-			width: 100%
+			font-weight: 800
+			line-height: 1
+			span
+				&:first-child, &:last-child
+					font-size: clamp(34px, 4.4vw, 66px)
+					letter-spacing: 0
+				&:nth-child(2)
+					position: relative
+					display: block
+					width: 1px
+					margin: 18px 0 18px 11px
+					background-image: linear-gradient(180deg, $red 0%, $orange 100%)
+					&::after
+						content: ''
+						position: absolute
+						left: -4px
+						bottom: -1px
+						width: 9px
+						height: 9px
+						border-right: 1px solid $orange
+						border-bottom: 1px solid $orange
+						transform: rotate(45deg)
+		.about-journey__content
+			min-width: 0
+		.about-journey__text
+			max-width: 760px
+			margin: 0
+			color: color.adjust($white, $alpha: -.18)
+			font-size: clamp(19px, 1.5vw, 23px)
+			line-height: 1.62
+		.about-journey__steps
 			display: flex
 			flex-wrap: wrap
-			gap: 0 30px
-			list-style: none
-			margin: 0
-			padding: 0
-			li
-				flex: 1 1 calc(50% - 15px)
-				min-width: 280px
-				padding: 20px 0
-				border-top: 1px solid color.adjust($white, $alpha: -.86)
-				color: color.adjust($white, $alpha: -.18)
-				font-size: 19px
-				line-height: 1.55
-		.about-stack__layout, .about-format__layout
-			width: 100%
-			display: flex
-			align-items: flex-start
-			gap: clamp(38px, 5vw, 82px)
-			border-top: 1px solid color.adjust($white, $alpha: -.84)
-			padding-top: 40px
-		.about-stack__layout
-			.about-section__head
-				flex: 1 1 48%
-				margin-bottom: 0
-		.about-stack__list
-			flex: 1 1 44%
-			display: flex
-			flex-wrap: wrap
-			gap: 10px
-			list-style: none
-			margin: 0
-			padding: 0
-			li
-				flex: 1 1 calc(50% - 5px)
-				min-width: 160px
-				padding: 10px 0
-				border-bottom: 1px solid color.adjust($white, $alpha: -.9)
-				color: color.adjust($white, $alpha: -.2)
-				font-size: 17px
-				line-height: 1.45
-		.about-format__layout
-			h2
-				flex: 0 1 360px
-		.about-format__list
-			flex: 1 1 auto
-		.about-cta
-			padding-bottom: 96px
-		.about-cta__wrapper
-			width: 100%
-			display: flex
 			align-items: center
-			justify-content: space-between
-			gap: 36px
-			padding-top: 42px
-			border-top: 1px solid color.adjust($white, $alpha: -.82)
-		.about-cta__title
-			max-width: 820px
-			font-size: clamp(36px, 3.8vw, 58px)
-			line-height: 1.06
-		.about-cta__actions
-			flex: 0 0 auto
-			display: flex
-			flex-wrap: wrap
-			justify-content: flex-end
-			gap: 14px
+			gap: 12px 18px
+			list-style: none
+			margin: 32px 0 0
+			padding: 0
+			li
+				position: relative
+				color: color.adjust($white, $alpha: -.24)
+				font-size: 17px
+				line-height: 1.35
+				&:not(:last-child)
+					padding-right: 24px
+					&::after
+						content: '→'
+						position: absolute
+						right: 0
+						color: $orange
+		.about-capabilities__list
+			width: 100%
+			list-style: none
+			margin: 0
+			padding: 0
+			counter-reset: capabilities
+		.about-capabilities__item
+			position: relative
+			display: grid
+			grid-template-columns: minmax(74px, 120px) minmax(0, 1fr)
+			gap: clamp(24px, 5vw, 74px)
+			padding: 34px 0
+			border-top: 1px solid color.adjust($white, $alpha: -.86)
+			&:nth-child(even)
+				.about-capabilities__body
+					margin-left: clamp(0px, 7vw, 112px)
+			&:last-child
+				border-bottom: 1px solid color.adjust($white, $alpha: -.9)
+		.about-capabilities__number
+			color: color.adjust($orange, $alpha: -.02)
+			font-size: 15px
+			font-weight: 800
+			line-height: 1
+		.about-capabilities__body
+			max-width: 860px
+			h3
+				margin: 0 0 12px
+				color: $white
+				font-size: clamp(27px, 3vw, 48px)
+				font-weight: 700
+				line-height: 1.08
+			p
+				max-width: 700px
+				margin: 0
+				color: color.adjust($white, $alpha: -.28)
+				font-size: clamp(17px, 1.2vw, 20px)
+				line-height: 1.62
+		.about-manifesto__layout
+			width: 100%
+			display: grid
+			grid-template-columns: minmax(0, 5fr) minmax(360px, 6fr)
+			gap: clamp(34px, 5vw, 84px)
+			align-items: start
+			padding-top: 46px
+			border-top: 1px solid color.adjust($white, $alpha: -.84)
+		.about-manifesto__items
+			display: grid
+			gap: 26px
+		.about-manifesto__item
+			position: relative
+			padding-left: 36px
+			&::before
+				content: ''
+				position: absolute
+				left: 0
+				top: .64em
+				width: 1px
+				height: calc(100% - .64em)
+				background-image: linear-gradient(180deg, $red 0%, color.adjust($orange, $alpha: -.65))
+			h3
+				margin: 0 0 10px
+				color: $white
+				font-size: clamp(24px, 2.2vw, 34px)
+				line-height: 1.12
+			p
+				max-width: 620px
+				margin: 0
+				color: color.adjust($white, $alpha: -.28)
+				font-size: 17px
+				line-height: 1.65
+		.about-projects
+			padding-bottom: 82px
+		.about-projects__list
+			width: 100%
+			display: grid
+			gap: 0
+			border-top: 1px solid color.adjust($white, $alpha: -.85)
+		.about-project
+			position: relative
+			display: grid
+			grid-template-columns: minmax(0, 1fr) minmax(240px, 320px)
+			gap: clamp(26px, 4vw, 58px)
+			align-items: center
+			min-height: 236px
+			padding: 30px 0
+			border-bottom: 1px solid color.adjust($white, $alpha: -.88)
+			color: $white
+			&::before
+				content: ''
+				position: absolute
+				left: 0
+				top: -1px
+				width: 0
+				height: 1px
+				background-image: $gradient
+				transition: width .28s ease
+			&:hover
+				&::before
+					width: 100%
+				.about-project__media img
+					transform: scale(1.035)
+				.about-project__link
+					color: $orange
+			&:nth-child(even)
+				grid-template-columns: minmax(240px, 320px) minmax(0, 1fr)
+				.about-project__media
+					order: 1
+				.about-project__body
+					order: 2
+		.about-project__body
+			min-width: 0
+			display: grid
+			grid-template-columns: minmax(0, 1fr) minmax(180px, 280px)
+			gap: 12px clamp(22px, 4vw, 56px)
+			align-items: start
+			h3
+				grid-column: 1
+				margin: 0
+				color: $white
+				font-size: clamp(34px, 4vw, 66px)
+				line-height: .96
+				a
+					color: inherit
+					&:focus-visible
+						outline: 2px solid color.adjust($orange, $alpha: -.2)
+						outline-offset: 6px
+		.about-project__type
+			grid-column: 1 / -1
+			margin: 0
+			color: $orange
+			font-size: 14px
+			font-weight: 800
+			line-height: 1.3
+			text-transform: uppercase
+		.about-project__role
+			grid-column: 2
+			grid-row: 2 / span 2
+			margin: 0
+			color: color.adjust($white, $alpha: -.28)
+			font-size: 16px
+			line-height: 1.55
+		.about-project__link
+			grid-column: 1
+			color: $white
+			font-size: 17px
+			font-weight: 800
+			line-height: 1.35
+			transition: color .22s ease
+			&:focus-visible
+				outline: 2px solid color.adjust($orange, $alpha: -.2)
+				outline-offset: 5px
+		.about-project__media
+			display: block
+			aspect-ratio: 16 / 10
+			overflow: hidden
+			background-color: color.adjust($white, $alpha: -.96)
+			&:focus-visible
+				outline: 2px solid color.adjust($orange, $alpha: -.2)
+				outline-offset: 5px
+			img
+				display: block
+				width: 100%
+				height: 100%
+				object-fit: cover
+				transform: scale(1)
+				transition: transform .28s ease
+		.about-projects__all
+			display: inline-flex
+			align-items: center
+			margin-top: 28px
+			color: $white
+			font-size: 20px
+			font-weight: 800
+			line-height: 1.35
+			border-bottom: 1px solid color.adjust($orange, $alpha: -.15)
+			transition: color .22s ease, border-color .22s ease
+			&:hover
+				color: $orange
+				border-color: color.adjust($orange, $alpha: -.55)
+			&:focus-visible
+				outline: 2px solid color.adjust($orange, $alpha: -.2)
+				outline-offset: 5px
+		.about-collaboration
+			padding-bottom: 96px
+		.about-collaboration__layout
+			width: 100%
+			display: grid
+			grid-template-columns: minmax(0, 5fr) minmax(320px, 6fr)
+			gap: clamp(30px, 5vw, 80px)
+			align-items: start
+			padding-top: 44px
+			border-top: 1px solid color.adjust($white, $alpha: -.84)
+			p
+				margin: 0
+				color: color.adjust($white, $alpha: -.2)
+				font-size: clamp(19px, 1.6vw, 24px)
+				line-height: 1.62
+		@media (prefers-reduced-motion: reduce)
+			.about-project, .about-project::before, .about-project__media img, .about-project__link, .about-hero__link, .about-projects__all
+				transition: none
 	&.sitemap-page
 		.sitemap-hero
 			padding: 170px 0 58px

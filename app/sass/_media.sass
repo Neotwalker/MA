@@ -3785,12 +3785,14 @@
 	.main
 		&.about-page
 			.about-hero
-				padding-top: 142px
+				padding-top: 138px
 			.about-hero__layout
-				gap: 36px
-			.about-hero__coordinate
-				flex-basis: 300px
-				min-width: 280px
+				grid-template-columns: minmax(0, 1.12fr) minmax(320px, .88fr)
+				gap: 34px
+			.about-hero__portrait-wrap
+				width: min(100%, 430px)
+			.about-hero__experience
+				left: -16px
 			.about-section__title
 				font-size: clamp(34px, 4.8vw, 50px)
 		&.sitemap-page
@@ -3801,35 +3803,39 @@
 	.main
 		&.about-page
 			.about-hero__layout
-				flex-direction: column
-			.about-hero__coordinate
-				width: 100%
-				min-width: 0
-				padding: 30px 0 0
-				border-left: 0
-				border-top: 1px solid color.adjust($white, $alpha: -.84)
-			.about-coordinate
-				flex-direction: row
-				flex-wrap: wrap
-				gap: 16px 22px
-				&::before
-					left: 18px
-					right: 18px
-					top: 21px
-					bottom: auto
-					width: auto
-					height: 1px
-					background-image: linear-gradient(90deg, $red 0%, $orange 100%)
-			.about-coordinate__item
-				flex: 1 1 190px
-			.about-stack__layout, .about-format__layout, .about-cta__wrapper
-				flex-direction: column
-				align-items: flex-start
-			.about-format__layout
-				h2
-					flex-basis: auto
-			.about-cta__actions
-				justify-content: flex-start
+				grid-template-columns: minmax(0, 1fr) minmax(280px, 360px)
+			.about-hero__title
+				font-size: clamp(48px, 7vw, 76px)
+			.about-journey__layout, .about-manifesto__layout, .about-collaboration__layout
+				grid-template-columns: 1fr
+			.about-journey__marker
+				grid-template-columns: auto minmax(120px, 1fr) auto
+				grid-template-rows: auto
+				min-height: 0
+				align-items: center
+				span
+					&:nth-child(2)
+						width: auto
+						height: 1px
+						margin: 0 2px
+						background-image: linear-gradient(90deg, $red 0%, $orange 100%)
+						&::after
+							left: auto
+							right: -1px
+							bottom: -4px
+							transform: rotate(-45deg)
+			.about-manifesto__layout
+				.about-section__head
+					margin-bottom: 0
+			.about-project, .about-project:nth-child(even)
+				grid-template-columns: minmax(0, 1fr) minmax(220px, 300px)
+				.about-project__media, .about-project__body
+					order: initial
+			.about-project__body
+				grid-template-columns: 1fr
+			.about-project__role
+				grid-column: 1
+				grid-row: auto
 
 @media (max-width : 1023px)
 	.main
@@ -3847,35 +3853,48 @@
 				margin-bottom: 28px
 		&.about-page
 			.about-hero
-				padding: 120px 0 54px
+				padding: 116px 0 56px
+				&::before
+					top: 116px
+					right: 24px
+					font-size: clamp(88px, 22vw, 150px)
+			.about-hero__layout
+				grid-template-columns: 1fr
+				align-items: start
+			.about-hero__content
+				padding-bottom: 0
 			.about-hero__title
 				font-size: clamp(38px, 9vw, 54px)
 				line-height: 1.03
 			.about-hero__lead
 				font-size: 19px
+				max-width: 620px
 			.about-hero__actions
 				margin-top: 30px
-			.about-directions, .about-process, .about-principles, .about-stack, .about-format, .about-cta
+			.about-hero__portrait-zone
+				width: min(68vw, 390px)
+				margin: -8px 0 0 auto
+			.about-hero__experience
+				left: -78px
+				bottom: 30px
+				grid-template-columns: auto 58px auto
+				max-width: 220px
+			.about-journey, .about-capabilities, .about-manifesto, .about-projects, .about-collaboration
 				padding: 52px 0
 			.about-section__head
 				margin-bottom: 28px
-			.about-directions__item, .about-process__item, .about-principles__list li, .about-format__list li
-				flex-basis: 100%
-				min-width: 0
-			.about-process__item
-				&:last-child:nth-child(odd)
-					max-width: none
-			.about-stack__list
-				width: 100%
-				li
-					flex-basis: 100%
-			.about-cta__wrapper
-				gap: 26px
-			.about-cta__actions
-				width: 100%
-				.button
-					width: 100%
-					min-width: 0
+			.about-capabilities__item
+				grid-template-columns: 58px minmax(0, 1fr)
+				&:nth-child(even)
+					.about-capabilities__body
+						margin-left: 0
+			.about-project, .about-project:nth-child(even)
+				grid-template-columns: 1fr
+				gap: 22px
+			.about-project__media
+				width: min(100%, 420px)
+			.about-collaboration
+				padding-bottom: 68px
 		&.sitemap-page
 			.sitemap-hero
 				padding: 120px 0 44px
@@ -3897,8 +3916,12 @@
 	.main
 		&.about-page
 			.about-hero
-				padding-top: 104px
-			.about-hero__layout, .about-hero__content
+				padding: 98px 0 42px
+				&::before
+					top: 96px
+					right: 12px
+					font-size: 84px
+			.about-hero__layout, .about-hero__content, .about-hero__portrait-zone
 				width: 100%
 				min-width: 0
 				max-width: 100%
@@ -3909,11 +3932,14 @@
 				font-size: clamp(31px, 9vw, 37px)
 				white-space: normal
 				overflow-wrap: break-word
+			.about-hero__lead
+				margin-top: 20px
 			.about-hero__actions
 				width: 100%
 				flex-direction: column
 				align-items: stretch
 				gap: 12px
+				margin-top: 26px
 				.button, .about-hero__link
 					width: 100%
 					max-width: 100%
@@ -3924,50 +3950,69 @@
 					white-space: normal
 				.button span
 					white-space: normal
-			.about-hero__coordinate
-				padding-top: 24px
-			.about-hero__coordinate-label
-				margin-bottom: 18px
-			.about-coordinate
-				display: flex
-				flex-direction: column
-				flex-wrap: nowrap
-				align-items: stretch
-				width: 100%
-				gap: 16px
+			.about-hero__portrait-zone
+				width: 88vw
+				margin: -2px -4vw 0 auto
 				&::before
-					left: 21px
-					right: auto
-					top: 32px
-					bottom: 32px
-					width: 1px
-					height: auto
-					background-image: linear-gradient(180deg, $red 0%, $orange 100%)
-			.about-coordinate__item
-				display: flex
-				align-items: center
-				gap: 16px
-				flex: 0 0 auto
+					inset: 16% -2% 3% 18%
+			.about-hero__portrait-wrap
 				width: 100%
-				min-width: 0
-				max-width: 100%
-				min-height: 64px
-				span:not(.about-coordinate__index)
-					min-width: 0
-					overflow-wrap: break-word
-			.about-directions__item
-				padding-left: 0
-				padding-right: 0
+			.about-hero__experience
+				left: 0
+				bottom: 18px
+				grid-template-columns: auto 48px auto
+				max-width: 190px
+			.about-hero__experience-text
+				font-size: 15px
+			.about-journey__layout
+				padding-top: 34px
+			.about-journey__marker
+				span
+					&:first-child, &:last-child
+						font-size: 30px
+			.about-journey__steps
+				display: grid
+				gap: 10px
+				li
+					padding: 0 0 0 24px
+					&:not(:last-child)
+						padding-right: 0
+						&::after
+							left: 0
+							right: auto
+					&:last-child
+						padding-left: 24px
+						&::before
+							content: '→'
+							position: absolute
+							left: 0
+							color: $orange
+			.about-capabilities__item
+				grid-template-columns: 1fr
+				gap: 14px
+				padding: 28px 0
+			.about-capabilities__body
 				h3
-					font-size: 22px
-			.about-process__item
-				gap: 16px
+					font-size: 26px
+			.about-manifesto__item
+				padding-left: 24px
+			.about-project
+				min-height: 0
+				padding: 26px 0
+			.about-project__body
+				h3
+					font-size: 34px
+			.about-project__role
+				font-size: 15px
+			.about-project__media
+				width: 100%
+			.about-collaboration__layout
 				p
 					font-size: 18px
-			.about-principles__list li, .about-format__list li
-				font-size: 17px
-			.about-cta__title
-				font-size: 32px
+			.about-section__title
+				font-size: 31px
+			.about-projects__all
+				font-size: 18px
 		&.sitemap-page
 			.sitemap-hero
 				padding-top: 104px
@@ -3988,6 +4033,12 @@
 				font-size: 18px
 			.about-section__title
 				font-size: 30px
+			.about-hero__portrait-zone
+				width: 86vw
+				margin-right: -2vw
+			.about-hero__experience
+				bottom: 14px
+				grid-template-columns: auto 34px auto
 		&.sitemap-page
 			.sitemap-hero__title
 				font-size: 38px
