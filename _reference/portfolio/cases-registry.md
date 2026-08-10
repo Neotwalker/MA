@@ -37,7 +37,7 @@
 - Каталоги и интернет-магазины
 - Сервисы и платформы
 - Продвижение
-- Другие работы
+- Промо и frontend
 
 ## Реестр
 
@@ -50,6 +50,8 @@
 - Publication status: `confirmed`
 - Archive filter category: `Каталоги и интернет-магазины`
 - Confirmed year: 2024-2025
+- Full-cycle status: да
+- Full-cycle scope: полный цикл интернет-магазина и конструктора
 - Actual Marat role: структура, визуальная система, пользовательский сценарий, интерфейс онлайн-конструктора, доработка Bitrix24-шаблона, корзина, заказ, онлайн-оплата и интеграция с CRM Bitrix24
 - Confirmed work: интернет-магазин персонализированных рамок с онлайн-конструктором персонажей, настройкой рамки и композиции, передачей заказа в корзину, сохранением загруженных изображений, уведомлениями и CRM-интеграцией
 - Confirmed tech: Bitrix24 site builder, CRM Bitrix24, онлайн-оплата, кастомная логика конструктора
@@ -70,6 +72,8 @@
 - Publication status: `promotion-case`
 - Archive filter category: `Продвижение`
 - Confirmed year: 2024
+- Full-cycle status: да
+- Full-cycle scope: полный цикл сайта и последующего продвижения
 - Actual Marat role: структура, прототип, дизайн, тексты, WordPress-разработка, формы, аналитика, базовая SEO-подготовка, посадочные страницы, сопровождение и работа с Яндекс Директ
 - Confirmed work: корпоративный сайт с посадочными страницами услуг, рекламным продвижением, аналитикой звонков, форм и переходов в мессенджеры, региональным расширением на Челябинск и сопровождением
 - Confirmed tech: WordPress, кастомная тема, формы, Яндекс Метрика, Яндекс Директ, sitemap, метаданные
@@ -150,6 +154,8 @@
 - Publication status: `confirmed`
 - Archive filter category: `Сервисы и платформы`
 - Confirmed year: разработка 2025, запуск 2026
+- Full-cycle status: да
+- Full-cycle scope: полный цикл брендинга, дизайна и разработки веб-сервиса
 - Actual Marat role: фирменный стиль, логотип, прототипы, дизайн, тексты, frontend, backend, интеграции, публичный сайт, личный кабинет, административный контур, deploy и поддержка
 - Confirmed work: веб-сервис международной доставки с регистрацией, Telegram-авторизацией, личным кабинетом, получателями, адресами, документами, калькулятором доставки, заказами, оплатой, трекингом, кошельком, уведомлениями и административными инструментами
 - Confirmed tech: Vue, Telegram authorization and notifications, online payment, tracking, user account, admin panel
@@ -190,6 +196,8 @@
 - Publication status: `confirmed`
 - Archive filter category: `Корпоративные сайты`
 - Confirmed year: 2024
+- Full-cycle status: да
+- Full-cycle scope: полный цикл корпоративного сайта
 - Actual Marat role: структура, прототипы, дизайн с доработками по комментариям клиента, адаптивная вёрстка, WordPress, ACF, отдельные типы записей, RU/EN-версии, формы, CBR API, SEO-подготовка и запуск
 - Confirmed work: многоязычный корпоративный сайт международной логистической компании с услугами, полезными материалами, подразделениями в разных странах, формами запроса расчёта и автоматическим получением курсов валют через API Банка России
 - Confirmed tech: WordPress, custom theme, ACF, Polylang, CBR exchange rate API, forms
@@ -228,7 +236,7 @@
 - Public title: `Markitties`
 - Material type: подробный кейс промо-сайта
 - Publication status: `confirmed`
-- Archive filter category: `Другие работы`
+- Archive filter category: `Промо и frontend`
 - Confirmed year: 2025
 - Actual Marat role: адаптивная вёрстка по готовому дизайну клиента, собственная тема WordPress, ACF, управляемые услуги, раздел команды клиента и портфолио, RU/EN-версии, формы, бриф, SEO-подготовка, домены, SSL и поддержка
 - Confirmed work: мультиязычный промо-сайт digital-проекта на WordPress, в котором контент основных разделов управляется через ACF, раздел команды клиента и портфолио работают внутри промо-страницы, а обращения и бриф отправляются через Contact Form 7
@@ -270,6 +278,8 @@
 - Publication status: `confirmed`
 - Archive filter category: `Сервисы и платформы`
 - Confirmed year: с 2024
+- Full-cycle status: да
+- Full-cycle scope: полный цикл проектирования и разработки B2B-платформы
 - Actual Marat role: проектирование, дизайн и разработка B2B-платформы с публичным каталогом, личными кабинетами, заказами, документами, сообщениями, ролевой моделью и административными инструментами
 - Confirmed work: действующая B2B-платформа для железнодорожной отрасли, объединяющая покупателей, поставщиков, каталог товаров и услуг, оформление заказов, документооборот, сообщения, импорт ассортимента и управление складами
 - Confirmed tech: Vue SSR/SSG, Express, MongoDB, Docker, Caddy, Excel import, role-based accounts
@@ -328,7 +338,7 @@
 - Public title: `Aggregator`
 - Material type: подробный кейс промо-сайта продукта
 - Publication status: `confirmed`
-- Archive filter category: `Другие работы`
+- Archive filter category: `Промо и frontend`
 - Confirmed year: 2023
 - Actual Marat role: адаптивная вёрстка по предоставленному дизайну, собственная тема WordPress, ACF, блог, динамические разделы, интерактивные элементы, Contact Form 7, hosting/deploy и SEO-подготовка
 - Confirmed work: промо-сайт цифрового продукта с главной страницей, редактируемыми блоками, тарифами, примерами, FAQ, блогом, архивом публикаций, шаблоном статьи, формами и публикацией на хостинге
@@ -350,6 +360,8 @@
 - Publication status: `confirmed`
 - Archive filter category: `Корпоративные сайты`
 - Confirmed year: 2023
+- Full-cycle status: да
+- Full-cycle scope: полный цикл дизайна и разработки сайта
 - Actual Marat role: дизайн, вёрстка, WordPress, ACF, мультиязычность, анимации, формы, SEO-подготовка и поддержка
 - Confirmed work: сайт-портфолио студии дизайна интерьеров с каталогом проектов, отдельными страницами жилых и общественных пространств, RU/EN-версиями, управлением проектами через WordPress и формами связи
 - Confirmed tech: WordPress, ACF, Polylang, animations, forms
@@ -368,7 +380,7 @@
 - Public title: `TopStore`
 - Material type: подробный frontend-кейс
 - Publication status: `confirmed`
-- Archive filter category: `Другие работы`
+- Archive filter category: `Промо и frontend`
 - Confirmed year: 2023
 - Actual Marat role: адаптивная frontend-вёрстка, реализация всех блоков, интерактивные элементы, SMTP-форма, оптимизация ресурсов, метатеги, аналитика и запуск опубликованной версии
 - Confirmed work: одностраничный промосайт сервиса для продавцов на маркетплейсах, созданный по предоставленным заказчиком структуре, дизайну и текстам

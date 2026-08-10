@@ -4119,18 +4119,26 @@
 @media (max-width : 1440px)
 	.main
 		.portfolio-archive
-			padding-top: 138px
+			padding-top: 124px
 			padding-bottom: 96px
 			&__title
 				font-size: 66px
 			&__lead
 				font-size: 20px
-		.portfolio-featured__grid, .portfolio-grid
+		.portfolio-filters
+			align-items: flex-start
+			flex-direction: column
+			gap: 12px
+			&__list
+				width: 100%
+			&__status
+				white-space: normal
+		.portfolio-featured__grid, .portfolio-grid, .portfolio-filtered__grid
 			gap: 20px
 		.portfolio-card
 			&--lead
 				.portfolio-card__title
-					font-size: 38px
+					font-size: 36px
 			&--featured
 				.portfolio-card__title
 					font-size: 28px
@@ -4138,9 +4146,9 @@
 @media (max-width : 1199px)
 	.main
 		.portfolio-archive
-			padding-top: 126px
+			padding-top: 116px
 			&__hero
-				margin-bottom: 40px
+				margin-bottom: 34px
 			&__title
 				font-size: 58px
 			&__lead
@@ -4157,18 +4165,27 @@
 			top: auto
 			align-items: flex-start
 			flex-direction: column
-			margin-bottom: 44px
+			margin-bottom: 40px
+			&__list
+				width: 100%
 			&__status
 				white-space: normal
-		.portfolio-featured__grid, .portfolio-grid
+		.portfolio-featured__grid, .portfolio-grid, .portfolio-filtered__grid
 			grid-template-columns: repeat(6, minmax(0, 1fr))
+		.portfolio-filtered
+			margin-bottom: 58px
+			&__grid
+				&[data-filtered-count="1"]
+					max-width: 760px
+				&[data-filtered-count="2"], &[data-filtered-count="3"]
+					grid-template-columns: repeat(2, minmax(0, 1fr))
 		.portfolio-card
-			&--lead, &--medium, &--wide, &--compact, &--compact.portfolio-card--wide
+			&--lead, &--medium, &--wide, &--compact, &--desktop-half, &--compact.portfolio-card--wide
 				grid-column: span 3
 			&--lead
 				grid-row: auto
 			&--wide.portfolio-card--featured
-				grid-column: span 6
+				grid-column: span 3
 				grid-template-columns: minmax(0, 1fr)
 				.portfolio-card__media
 					min-height: 0
@@ -4177,9 +4194,9 @@
 	.main
 		.portfolio-archive
 			.breadcrumbs
-				margin-bottom: 44px
+				margin-bottom: 34px
 			&__title
-				font-size: 50px
+				font-size: 48px
 			&__lead
 				font-size: 19px
 		.portfolio-section-head
@@ -4188,8 +4205,12 @@
 			gap: 10px
 			&__title
 				font-size: 38px
+			&__count
+				margin-bottom: 0
 		.portfolio-card
-			&--lead, &--medium, &--wide, &--compact, &--compact.portfolio-card--wide
+			&--lead, &--medium, &--wide, &--compact, &--desktop-half, &--compact.portfolio-card--wide
+				grid-column: span 6
+			&--wide.portfolio-card--featured
 				grid-column: span 6
 			&--lead
 				.portfolio-card__title
@@ -4200,18 +4221,18 @@
 		&.portfolio-page
 			overflow-x: hidden
 		.portfolio-archive
-			padding-top: 112px
+			padding-top: 104px
 			padding-bottom: 72px
 			.breadcrumbs
-				margin-bottom: 34px
+				margin-bottom: 26px
 			&__hero
-				margin-bottom: 32px
+				margin-bottom: 28px
 			&__eyebrow
 				font-size: 13px
 			&__title
 				font-size: 42px
 			&__lead
-				margin-bottom: 26px
+				margin-bottom: 22px
 				font-size: 18px
 				line-height: 1.48
 			&__actions
@@ -4234,6 +4255,7 @@
 		.portfolio-filters
 			margin-left: -24px
 			margin-right: -24px
+			margin-bottom: 34px
 			padding: 12px 24px
 			border-left: 0
 			border-right: 0
@@ -4242,6 +4264,7 @@
 				flex-wrap: nowrap
 				width: 100%
 				overflow-x: auto
+				scroll-padding-inline: 24px
 				-webkit-overflow-scrolling: touch
 				scrollbar-width: none
 				&::-webkit-scrollbar
@@ -4250,17 +4273,23 @@
 				font-size: 13px
 		.portfolio-filter
 			flex: 0 0 auto
-			max-width: 280px
-			white-space: normal
+			max-width: none
+			white-space: nowrap
 		.portfolio-section-head
 			margin-bottom: 22px
 			&__title
 				font-size: 32px
-		.portfolio-featured__grid, .portfolio-grid
+		.portfolio-filtered
+			margin-bottom: 48px
+			&__grid
+				&[data-filtered-count="1"], &[data-filtered-count="2"], &[data-filtered-count="3"]
+					max-width: none
+					grid-template-columns: minmax(0, 1fr)
+		.portfolio-featured__grid, .portfolio-grid, .portfolio-filtered__grid
 			grid-template-columns: minmax(0, 1fr)
 			gap: 18px
 		.portfolio-card
-			&--lead, &--medium, &--wide, &--compact, &--compact.portfolio-card--wide, &--wide.portfolio-card--featured
+			&--lead, &--medium, &--wide, &--compact, &--desktop-half, &--compact.portfolio-card--wide, &--wide.portfolio-card--featured
 				grid-column: auto
 			&--lead
 				.portfolio-card__body
@@ -4290,7 +4319,9 @@
 @media (max-width : 390px)
 	.main
 		.portfolio-archive
-			padding-top: 104px
+			padding-top: 96px
+			.breadcrumbs
+				margin-bottom: 22px
 			&__title
 				font-size: 38px
 			&__lead
@@ -4300,7 +4331,6 @@
 			&__cta-title, &__final-title
 				font-size: 24px
 		.portfolio-filter
-			max-width: 244px
 			padding-left: 14px
 			padding-right: 14px
 			font-size: 14px

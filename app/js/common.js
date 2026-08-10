@@ -2050,18 +2050,30 @@ document.addEventListener("DOMContentLoaded", () => {
 		const portfolioFilters = Array.from(portfolioArchive.querySelectorAll('[data-portfolio-filter]'));
 		const portfolioCards = Array.from(portfolioArchive.querySelectorAll('[data-portfolio-card]'));
 		const portfolioLive = portfolioArchive.querySelector('[data-portfolio-live]');
+		const portfolioFiltered = portfolioArchive.querySelector('[data-portfolio-filtered]');
+		const portfolioFilteredGrid = portfolioArchive.querySelector('[data-portfolio-filtered-grid]');
+		const portfolioFilteredTitle = portfolioArchive.querySelector('[data-portfolio-filtered-title]');
+		const portfolioFilteredCount = portfolioArchive.querySelector('[data-portfolio-filtered-count]');
+		const portfolioFeatured = portfolioArchive.querySelector('.portfolio-featured');
+		const portfolioList = portfolioArchive.querySelector('.portfolio-list');
+		const portfolioMidCta = portfolioArchive.querySelector('.portfolio-archive__mid-cta');
 
 		if (portfolioFilters.length && portfolioCards.length) {
 			portfolioArchive.dataset.portfolioInitialized = 'true';
 			portfolioArchive.dataset.portfolioEnhanced = 'true';
 
 			const focusableSelector = 'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
-			const hideTimers = new WeakMap();
 			const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 			const labels = portfolioFilters.reduce((acc, button) => {
 				acc[button.dataset.portfolioFilter || 'all'] = button.textContent.trim();
 				return acc;
 			}, {});
+			const cardSlots = portfolioCards.map(card => ({
+				card,
+				parent: card.parentNode,
+				nextSibling: card.nextSibling
+			}));
+			const editorialSections = [portfolioFeatured, portfolioList, portfolioMidCta].filter(Boolean);
 
 			const getPortfolioDeclension = (count, words) => {
 				const lastTwo = Math.abs(count) % 100;
@@ -2073,8 +2085,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				return words[2];
 			};
 
-			const setCardFocusable = (card, isFocusable) => {
-				const focusableElements = Array.from(card.querySelectorAll(focusableSelector));
+			const getProjectCountText = count => `${count} ${getPortfolioDeclension(count, ['проект', 'проекта', 'проектов'])}`;
+
+			const setFocusableState = (root, isFocusable) => {
+				const focusableElements = Array.from(root.querySelectorAll(focusableSelector));
 				focusableElements.forEach(element => {
 					if (isFocusable) {
 						if (Object.prototype.hasOwnProperty.call(element.dataset, 'portfolioTabindex')) {
@@ -2096,78 +2110,147 @@ document.addEventListener("DOMContentLoaded", () => {
 				});
 			};
 
+			const setElementHidden = (element, isHidden) => {
+				if (!element) return;
+
+				element.hidden = isHidden;
+				if (isHidden) {
+					element.setAttribute('aria-hidden', 'true');
+					element.setAttribute('inert', '');
+					element.inert = true;
+					setFocusableState(element, false);
+					return;
+				}
+
+				element.removeAttribute('aria-hidden');
+				element.removeAttribute('inert');
+				element.inert = false;
+				setFocusableState(element, true);
+			};
+
 			const updateLive = (count, filter) => {
 				if (!portfolioLive) return;
 
 				const filterLabel = labels[filter] || 'проекты';
 				portfolioLive.textContent = filter === 'all'
 					? `Показаны все ${count} проектов`
-					: `${filterLabel}: ${count} ${getPortfolioDeclension(count, ['проект', 'проекта', 'проектов'])}`;
+					: `${filterLabel}: ${getProjectCountText(count)}`;
 			};
 
 			const showCard = card => {
-				const timer = hideTimers.get(card);
-				if (timer) {
-					window.clearTimeout(timer);
-					hideTimers.delete(card);
-				}
-
 				card.hidden = false;
 				card.removeAttribute('aria-hidden');
 				card.removeAttribute('inert');
 				card.inert = false;
-				setCardFocusable(card, true);
+				setFocusableState(card, true);
 				card.classList.remove('is-hiding');
 			};
 
 			const hideCard = card => {
-				setCardFocusable(card, false);
+				setFocusableState(card, false);
 				card.setAttribute('aria-hidden', 'true');
 				card.setAttribute('inert', '');
 				card.inert = true;
-				card.classList.add('is-hiding');
-
-				const completeHide = () => {
-					card.hidden = true;
-					hideTimers.delete(card);
-				};
-
-				if (reducedMotion.matches) {
-					completeHide();
-					return;
-				}
-
-				hideTimers.set(card, window.setTimeout(completeHide, 180));
+				card.hidden = true;
+				card.classList.remove('is-hiding');
 			};
 
-			const applyPortfolioFilter = (filter, shouldAnnounce = true) => {
-				let visibleCount = 0;
+			const restoreEditorialCards = () => {
+				cardSlots.forEach(slot => {
+					showCard(slot.card);
+					if (slot.card.parentNode === slot.parent && slot.card.nextSibling === slot.nextSibling) return;
+
+					if (slot.nextSibling && slot.nextSibling.parentNode === slot.parent) {
+						slot.parent.insertBefore(slot.card, slot.nextSibling);
+						return;
+					}
+
+					slot.parent.appendChild(slot.card);
+				});
+			};
+
+			const updateFilteredHead = (filter, count) => {
+				if (portfolioFilteredTitle) {
+					portfolioFilteredTitle.textContent = labels[filter] || 'Проекты';
+				}
+				if (portfolioFilteredCount) {
+					portfolioFilteredCount.textContent = getProjectCountText(count);
+				}
+				if (portfolioFilteredGrid) {
+					portfolioFilteredGrid.dataset.filteredCount = String(count);
+				}
+			};
+
+			const scrollActiveFilterIntoView = button => {
+				if (!button || typeof button.scrollIntoView !== 'function') return;
+
+				button.scrollIntoView({
+					block: 'nearest',
+					inline: 'nearest',
+					behavior: reducedMotion.matches ? 'auto' : 'smooth'
+				});
+			};
+
+			const applyPortfolioFilter = (requestedFilter, shouldScrollActive = false) => {
+				const filter = labels[requestedFilter] ? requestedFilter : 'all';
+				const isAll = filter === 'all';
+				let activeButton = null;
 
 				portfolioFilters.forEach(button => {
 					const isActive = button.dataset.portfolioFilter === filter;
 					button.classList.toggle('is-active', isActive);
 					button.setAttribute('aria-pressed', String(isActive));
-				});
-
-				portfolioCards.forEach(card => {
-					const categories = (card.dataset.portfolioCategory || '').split(/\s+/).filter(Boolean);
-					const isVisible = filter === 'all' || categories.includes(filter);
-					if (isVisible) {
-						visibleCount += 1;
-						showCard(card);
-					} else {
-						hideCard(card);
+					if (isActive) {
+						activeButton = button;
 					}
 				});
 
-				if (shouldAnnounce) {
-					updateLive(visibleCount, filter);
+				restoreEditorialCards();
+
+				if (isAll || !portfolioFiltered || !portfolioFilteredGrid) {
+					setElementHidden(portfolioFiltered, true);
+					editorialSections.forEach(section => setElementHidden(section, false));
+					updateLive(portfolioCards.length, 'all');
+					portfolioArchive.dataset.portfolioMode = 'all';
+					delete portfolioArchive.dataset.portfolioActiveFilter;
+					if (portfolioFilteredGrid) {
+						portfolioFilteredGrid.removeAttribute('data-filtered-count');
+					}
+					if (shouldScrollActive) {
+						scrollActiveFilterIntoView(activeButton);
+					}
+					return;
+				}
+
+				const visibleCards = portfolioCards.filter(card => {
+					const categories = (card.dataset.portfolioCategory || '').split(/\s+/).filter(Boolean);
+					return categories.includes(filter);
+				});
+
+				portfolioCards.forEach(card => {
+					if (visibleCards.includes(card)) {
+						showCard(card);
+						portfolioFilteredGrid.appendChild(card);
+						return;
+					}
+					hideCard(card);
+				});
+
+				updateFilteredHead(filter, visibleCards.length);
+				setElementHidden(portfolioFiltered, false);
+				editorialSections.forEach(section => setElementHidden(section, true));
+				updateLive(visibleCards.length, filter);
+				portfolioArchive.dataset.portfolioMode = 'filtered';
+				portfolioArchive.dataset.portfolioActiveFilter = filter;
+
+				if (shouldScrollActive) {
+					scrollActiveFilterIntoView(activeButton);
 				}
 			};
 
 			portfolioFilters.forEach((button, index) => {
 				button.addEventListener('click', () => {
-					applyPortfolioFilter(button.dataset.portfolioFilter || 'all');
+					applyPortfolioFilter(button.dataset.portfolioFilter || 'all', true);
 				});
 
 				button.addEventListener('keydown', event => {
