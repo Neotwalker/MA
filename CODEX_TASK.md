@@ -8,23 +8,27 @@
 Branch:
 `redesign-2026`
 
-## Current checkpoint
+## Git checkpoint policy
 
-После текущего документационного commit ожидаемый предыдущий функциональный этап:
+- Exact current HEAD не хранится в этом файле, потому что изменение `CODEX_TASK.md` само создает новый commit.
+- Exact HEAD всегда определяется Git-командами.
+- `CODEX_TASK.md` описывает завершенные этапы, следующий этап и текущие ограничения.
+- Git history является source of truth для конкретных commits.
+- Pushed state можно дополнительно проверить в GitHub:
+  `https://github.com/Neotwalker/MA/tree/redesign-2026`
+
+## Recent milestone commits
 
 ```text
 ff0899649f97f4b50c2416e60249416fbac4a8ca
 Finalize portfolio archive content
-```
 
-Portrait commit:
-
-```text
 77682c629fee529cf084b94de2ac552b8bf56bb5
 Prepare personal portrait assets
-```
 
-Не фиксировать будущий hash документационного commit, так как он пока неизвестен.
+8bf6fb76932e0019ba31ce7ed3a4bcdff3b99784
+Update Codex project workflow
+```
 
 ## Completed
 
