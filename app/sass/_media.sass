@@ -3806,6 +3806,8 @@
 				grid-template-columns: minmax(0, 1fr) minmax(280px, 360px)
 			.about-hero__title
 				font-size: clamp(48px, 7vw, 76px)
+				.about-hero__role
+					white-space: nowrap
 			.about-journey__layout, .about-manifesto__layout, .about-collaboration__layout
 				grid-template-columns: 1fr
 			.about-journey__marker
@@ -3877,7 +3879,6 @@
 			.about-hero__experience
 				left: -78px
 				bottom: 30px
-				grid-template-columns: auto 58px auto
 				max-width: 220px
 			.about-journey, .about-capabilities, .about-manifesto, .about-projects, .about-collaboration
 				padding: 52px 0
@@ -3932,21 +3933,32 @@
 				font-size: clamp(31px, 9vw, 37px)
 				white-space: normal
 				overflow-wrap: break-word
+				.about-hero__role
+					white-space: nowrap
 			.about-hero__lead
 				margin-top: 20px
 			.about-hero__actions
 				width: 100%
 				flex-direction: column
-				align-items: stretch
+				align-items: flex-start
 				gap: 12px
 				margin-top: 26px
-				.button, .about-hero__link
+				.button
 					width: 100%
 					max-width: 100%
 					min-width: 0
 					min-height: 48px
 					justify-content: center
 					text-align: center
+					white-space: normal
+				.about-hero__link
+					width: fit-content
+					max-width: 100%
+					min-width: 0
+					min-height: 44px
+					justify-content: flex-start
+					text-align: left
+					align-self: flex-start
 					white-space: normal
 				.button span
 					white-space: normal
@@ -3957,12 +3969,12 @@
 					inset: 16% -2% 3% 18%
 			.about-hero__portrait-wrap
 				width: 100%
+				&::before
+					opacity: .18
 			.about-hero__experience
 				left: 0
 				bottom: 18px
-				grid-template-columns: auto 48px auto
 				max-width: 190px
-			.about-hero__experience-text
 				font-size: 15px
 			.about-journey__layout
 				padding-top: 34px
@@ -4038,7 +4050,6 @@
 				margin-right: -2vw
 			.about-hero__experience
 				bottom: 14px
-				grid-template-columns: auto 34px auto
 		&.sitemap-page
 			.sitemap-hero__title
 				font-size: 38px
