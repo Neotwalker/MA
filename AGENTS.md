@@ -117,6 +117,8 @@ Git history служит журналом завершенных этапов и
 
 ### Browser QA
 
+#### Interactive QA
+
 - Использовать существующий локальный сервер, если он уже запущен.
 - Не запускать дополнительный сервер без необходимости.
 - Использовать один browser context.
@@ -127,6 +129,17 @@ Git history служит журналом завершенных этапов и
 - После проверки закрывать страницы и contexts, созданные автоматизацией.
 - Не завершать пользовательские процессы Chrome.
 - Не удалять и не изменять пользовательские профили Chrome.
+- Для modal, menu, keyboard, Live Search, console assertions и DOM assertions можно использовать встроенный Codex Browser.
+
+#### Screenshot QA
+
+- Для сохранения визуальных PNG по умолчанию использовать project runner: `npm run qa:screenshots -- --url <url> --task <task-slug>`.
+- Если `npm` отсутствует в `PATH`, использовать bundled/local Node эквивалент: `node scripts/capture-qa-screenshots.mjs --url <url> --task <task-slug>`.
+- Runner запускает отдельный isolated headless Chrome process, использует отдельный profile внутри `.qa-artifacts/` и не подключается к пользовательскому Chrome.
+- Встроенный Browser screenshot API не является обязательным способом сохранения PNG. Если он работает, его можно использовать дополнительно.
+- EPERM или `Page.captureScreenshot` timeout во встроенном Browser plugin не являются причиной отказаться от screenshot QA, если project runner работает.
+- Generated screenshots сохранять до user review согласно QA lifecycle.
+- Runner не должен удалять screenshot folder текущего task.
 
 ### Скриншоты
 

@@ -17,7 +17,8 @@
     "dev": "npm run start",
     "build": "node --no-deprecation ./node_modules/gulp/bin/gulp.js build",
     "verify:dist": "node scripts/verify-dist-assets.js",
-    "lint:project": "node ./scripts/check-project.mjs"
+    "lint:project": "node ./scripts/check-project.mjs",
+    "qa:screenshots": "node scripts/capture-qa-screenshots.mjs"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",

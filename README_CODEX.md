@@ -46,6 +46,24 @@ http://127.0.0.1:8080
 
 Запускать новый dev server только если существующий недоступен и задача действительно требует Browser QA.
 
+## Browser QA
+
+Интерактивные проверки, DOM assertions, console assertions, modal, menu и Live Search проверять через Codex Browser.
+
+Стабильные full-page screenshots сохранять project runner'ом:
+
+```bash
+npm run qa:screenshots -- --url http://127.0.0.1:8080/about.html --task about-final
+```
+
+Если `npm` недоступен в `PATH`, использовать тот же bundled/local Node, которым запускаются остальные project scripts:
+
+```bash
+node scripts/capture-qa-screenshots.mjs --url http://127.0.0.1:8080/about.html --task about-final
+```
+
+Скриншоты сохраняются в `.qa-artifacts/<task-slug>/` и остаются там до пользовательского визуального ревью.
+
 ## Safe start prompt
 
 ```text

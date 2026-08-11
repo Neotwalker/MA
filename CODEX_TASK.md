@@ -50,36 +50,37 @@ Update Codex project workflow
 - cases registry;
 - redesigned `archive-case.html`;
 - responsive/filter/accessibility portfolio work;
-- portrait responsive assets.
+- portrait responsive assets;
+- full redesign `about.html`;
+- reliable QA screenshot runner.
 
 ## Current task
 
-Следующий этап после синхронизации документации:
+Следующий этап:
 
-Полная переработка `about.html` с использованием подготовленного портрета.
+Продолжение и завершение главной страницы `index.html`.
 
-Важно: не начинать `about.html` в рамках текущей документационной задачи.
+Важно: не начинать `index.html` в рамках текущей infrastructure-задачи.
 
 ## Remaining roadmap
 
-1. Полная переработка `about.html`.
-2. Продолжение и завершение главной.
-3. Переработка `brief.html`.
-4. Стоимость после получения реальных цен.
-5. Условия работы.
-6. Редизайн блога и статьи.
-7. Вопрос-ответ.
-8. Ревизия услуг и отраслевых страниц.
-9. Ревизия отдельных кейсов.
-10. Глоссарий.
-11. Внутренняя перелинковка.
-12. Персональная контентная ревизия.
-13. SEO.
-14. Performance.
-15. Accessibility.
-16. WordPress integration.
-17. Rank Math / sitemap / robots / `llms.txt`.
-18. Финальный release.
+1. Продолжение и завершение главной.
+2. Переработка `brief.html`.
+3. Стоимость после получения реальных цен.
+4. Условия работы.
+5. Редизайн блога и статьи.
+6. Вопрос-ответ.
+7. Ревизия услуг и отраслевых страниц.
+8. Ревизия отдельных кейсов.
+9. Глоссарий.
+10. Внутренняя перелинковка.
+11. Персональная контентная ревизия.
+12. SEO.
+13. Performance.
+14. Accessibility.
+15. WordPress integration.
+16. Rank Math / sitemap / robots / `llms.txt`.
+17. Финальный release.
 
 Портрет считается подготовленным этапом и не включается повторно.
 
