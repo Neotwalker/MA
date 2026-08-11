@@ -2113,6 +2113,57 @@ body.cookie-banner-visible
 			&:focus-visible
 				outline: 2px solid color.adjust($orange, $alpha: -.18)
 				outline-offset: 5px
+		&__content
+			min-width: 0
+			display: flex
+			flex-direction: column
+			gap: 16px
+		&__related
+			display: grid
+			grid-template-columns: repeat(2, minmax(0, 1fr))
+			gap: 1px
+			background-color: color.adjust($white, $alpha: -.88)
+			border: 1px solid color.adjust($white, $alpha: -.88)
+		&__related-item
+			position: relative
+			min-height: 150px
+			padding: 22px 48px 22px 22px
+			display: flex
+			flex-direction: column
+			align-items: flex-start
+			background-color: $black
+			transition: background-color .22s ease
+			&:hover
+				background-color: color.adjust($white, $alpha: -.965)
+				.home-insights__related-title
+					color: $white
+				.home-insights__related-arrow
+					transform: translateX(4px)
+			&:focus-visible
+				outline: 2px solid color.adjust($orange, $alpha: -.18)
+				outline-offset: 4px
+		&__related-topic
+			margin-bottom: 28px
+			color: $orange
+			font-size: 13px
+			font-weight: 700
+			line-height: 1.4
+		&__related-title
+			max-width: 360px
+			color: color.adjust($white, $alpha: -.12)
+			font-size: 17px
+			font-weight: 700
+			line-height: 1.24
+			letter-spacing: 0
+			transition: color .22s ease
+		&__related-arrow
+			position: absolute
+			right: 22px
+			bottom: 21px
+			color: $orange
+			font-size: 18px
+			line-height: 1
+			transition: transform .22s ease
 	.home-personal
 		padding: 0 0 12px
 		&__layout
