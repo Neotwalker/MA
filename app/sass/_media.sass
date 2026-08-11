@@ -623,6 +623,36 @@
 				aspect-ratio: 16 / 10
 			&__name
 				font-size: clamp(28px, 3vw, 38px)
+		.home-directions
+			&__layout
+				grid-template-columns: minmax(250px, .74fr) minmax(0, 1.26fr)
+				gap: 42px
+			&__head
+				top: 104px
+			&__item
+				grid-template-columns: 44px minmax(0, 1fr)
+				gap: 18px 24px
+				padding: 30px 0
+			&__link
+				grid-column: 2
+				justify-self: start
+		.home-start
+			&__layout
+				grid-template-columns: 1fr
+				gap: 30px
+			&__steps
+				grid-template-columns: repeat(3, minmax(0, 1fr))
+			&__step
+				min-height: 240px
+				padding: 24px
+		.home-insights
+			&__layout
+				grid-template-columns: minmax(260px, .9fr) minmax(0, 1.1fr)
+				gap: 36px
+		.home-personal
+			&__layout
+				grid-template-columns: minmax(240px, 320px) minmax(0, 1fr)
+				gap: 42px
 		&--brief
 			&__wrapper 
 				gap: 30px
@@ -1348,6 +1378,57 @@
 				font-size: 15px
 			&__archive
 				margin-top: 34px
+		.home-directions
+			&__layout
+				grid-template-columns: 1fr
+				gap: 32px
+			&__head
+				position: static
+				max-width: 620px
+			&__lead
+				max-width: 620px
+				font-size: 17px
+			&__item
+				grid-template-columns: 40px minmax(0, 1fr)
+				padding: 28px 0
+			&__name
+				font-size: clamp(24px, 5vw, 32px)
+			&__text
+				font-size: 16px
+			&__link
+				grid-column: 2
+		.home-start
+			&__steps
+				grid-template-columns: 1fr
+			&__step
+				min-height: 0
+				padding: 24px
+			&__number
+				margin-bottom: 32px
+			&__name
+				margin-top: 0
+		.home-insights
+			&__layout
+				grid-template-columns: 1fr
+				gap: 30px
+			&__archive
+				margin-top: 26px
+				padding-top: 0
+			&__article
+				min-height: 0
+			&__tag
+				margin-bottom: 44px
+			&__name
+				margin-top: 0
+		.home-personal
+			&__layout
+				grid-template-columns: 1fr
+				gap: 30px
+			&__media
+				width: min(72vw, 320px)
+			&__text
+				p
+					font-size: 17px
 		&--header 
 			padding-top: 120px
 			&__info, &__wrapper 
@@ -1713,9 +1794,15 @@
 				gap: 16px
 			&__image
 				aspect-ratio: 16 / 10
-			&__archive
-				width: fit-content
-				max-width: 100%
+		.home-directions
+			&__item
+				grid-template-columns: 1fr
+				gap: 14px
+			&__link
+				grid-column: auto
+		.home-personal
+			&__media
+				width: min(78vw, 300px)
 		&--services 
 			&__wrapper 
 				gap: 30px
@@ -2853,6 +2940,64 @@
 				font-size: 13px
 			&__link
 				padding-top: 20px
+		.home-section-kicker
+			gap: 10px
+			margin-bottom: 14px
+			font-size: 13px
+			&::before
+				width: 28px
+				flex-basis: 28px
+		.home-directions
+			&__lead
+				margin-top: 18px
+				font-size: 15px
+			&__item
+				padding: 24px 0
+			&__name
+				font-size: 22px
+			&__text
+				margin-top: 12px
+				font-size: 14px
+			&__link
+				min-height: 38px
+				font-size: 15px
+		.home-start
+			&__step
+				padding: 22px 18px
+			&__number
+				margin-bottom: 28px
+			&__name
+				font-size: 20px
+			&__text
+				font-size: 14px
+		.home-insights
+			&__layout
+				padding: 32px 0
+			&__lead
+				font-size: 15px
+			&__article
+				padding: 26px 20px
+			&__tag
+				margin-bottom: 34px
+			&__name
+				font-size: 27px
+			&__text
+				font-size: 15px
+			&__link
+				margin-top: 26px
+				font-size: 15px
+		.home-personal
+			&__layout
+				padding: 34px 0
+			&__media
+				width: min(82vw, 280px)
+			&__text
+				margin-top: 20px
+				p
+					font-size: 15px
+			&__link
+				margin-top: 26px
+				font-size: 15px
 		&--faq
 			&__item
 				&--icon
