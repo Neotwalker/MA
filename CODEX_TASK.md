@@ -17,19 +17,6 @@ Branch:
 - Pushed state можно дополнительно проверить в GitHub:
   `https://github.com/Neotwalker/MA/tree/redesign-2026`
 
-## Recent milestone commits
-
-```text
-ff0899649f97f4b50c2416e60249416fbac4a8ca
-Finalize portfolio archive content
-
-77682c629fee529cf084b94de2ac552b8bf56bb5
-Prepare personal portrait assets
-
-8bf6fb76932e0019ba31ce7ed3a4bcdff3b99784
-Update Codex project workflow
-```
-
 ## Completed
 
 - personal header;
