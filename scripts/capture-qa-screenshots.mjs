@@ -10,7 +10,58 @@ const DEFAULT_VIEWPORT_HEIGHT = 1080;
 const READY_TIMEOUT_MS = 15000;
 const CHROME_START_TIMEOUT_MS = 12000;
 const SETTLE_MS = 300;
+const SCREENSHOT_STATE_SETTLE_MS = 150;
 const PNG_SIGNATURE = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+const REVEAL_SELECTORS = [
+	'.main--header',
+	'.taxonomy--header',
+	'.services--stages',
+	'.contacts--header',
+	'.case--header',
+	'.case--client',
+	'.main--faq',
+	'.taxonomy--team',
+	'.main--areas',
+	'.taxonomy--info',
+	'.taxonomy--idea',
+	'.main--stages',
+	'.taxonomy--services',
+	'.main--adv__wrapper .item',
+	'.main--adv',
+	'.main--services',
+	'.main--services__wrapper',
+	'.main--companies',
+	'.main--experts',
+	'.main--cases',
+	'.main--brief',
+	'.main--idea',
+	'.main--articles',
+	'.main--contacts',
+];
+const VISIBLE_ASSERTION_SELECTORS = [
+	'.main--header',
+	'.taxonomy--header',
+	'.services--stages',
+	'.contacts--header',
+	'.case--header',
+	'.case--client',
+	'.main--faq',
+	'.taxonomy--team',
+	'.main--areas',
+	'.taxonomy--info',
+	'.taxonomy--idea',
+	'.main--stages',
+	'.taxonomy--services',
+	'.main--adv',
+	'.main--services',
+	'.main--companies',
+	'.main--experts',
+	'.main--cases',
+	'.main--brief',
+	'.main--idea',
+	'.main--articles',
+	'.main--contacts',
+];
 
 function printUsage() {
 	console.log(`Usage:
@@ -421,6 +472,83 @@ async function prepareUi(cdp) {
 	await delay(SETTLE_MS);
 }
 
+async function prepareScreenshotState(cdp) {
+	const result = await evaluate(cdp, `new Promise((resolve) => {
+		const revealSelectors = ${JSON.stringify(REVEAL_SELECTORS)};
+		const visibleAssertionSelectors = ${JSON.stringify(VISIBLE_ASSERTION_SELECTORS)};
+		const doc = document.documentElement;
+		doc.setAttribute('data-qa-screenshot', 'true');
+
+		let style = document.querySelector('style[data-qa-screenshot-state]');
+		if (!style) {
+			style = document.createElement('style');
+			style.setAttribute('data-qa-screenshot-state', '');
+			style.textContent = \`
+html[data-qa-screenshot="true"] {
+	scroll-behavior: auto !important;
+}
+html[data-qa-screenshot="true"] *,
+html[data-qa-screenshot="true"] *::before,
+html[data-qa-screenshot="true"] *::after {
+	animation-delay: 0s !important;
+	animation-duration: 0s !important;
+	transition-delay: 0s !important;
+	transition-duration: 0s !important;
+}
+\`;
+			document.head.appendChild(style);
+		}
+
+		const revealElements = Array.from(document.querySelectorAll(revealSelectors.join(',')));
+		revealElements.forEach((element) => element.classList.add('visible'));
+
+		const warnings = [];
+		const selectorMatches = visibleAssertionSelectors
+			.map((selector) => ({ selector, count: document.querySelectorAll(selector).length }))
+			.filter((item) => item.count > 0);
+
+		selectorMatches.forEach(({ selector }) => {
+			Array.from(document.querySelectorAll(selector)).forEach((element, index) => {
+				const computed = window.getComputedStyle(element);
+				if (!element.classList.contains('visible')) {
+					warnings.push({ selector, index, reason: 'missing-visible-class' });
+					return;
+				}
+				if (computed.opacity === '0') {
+					warnings.push({ selector, index, reason: 'container-opacity-zero' });
+				}
+			});
+		});
+
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				setTimeout(() => {
+					resolve({
+						captureMode: 'static-final-state',
+						reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+						revealStateForced: true,
+						animationFreeze: true,
+						revealSelectorCount: revealSelectors.length,
+						revealElementCount: revealElements.length,
+						visibleAssertionSelectorCount: visibleAssertionSelectors.length,
+						activeModal: Boolean(document.querySelector('.modal.active')),
+						searchOpen: Boolean(document.querySelector('#header-search-panel.is-open')),
+						mobileMenuOpen: Boolean(document.querySelector('.mobile-navigation.is-open, .mobile-navigation__panel.is-open, .header.open-menu')),
+						openDropdowns: Array.from(document.querySelectorAll('.header-services-menu.is-open, .header-about-menu.is-open')).length,
+						warnings,
+					});
+				}, ${SCREENSHOT_STATE_SETTLE_MS});
+			});
+		});
+	})`);
+
+	if (!result.reducedMotion) {
+		result.warnings.push({ reason: 'reduced-motion-not-active' });
+	}
+
+	return result;
+}
+
 function validatePng(buffer, requestedWidth, viewportHeight, allowShortPage = true) {
 	if (buffer.length <= 0) throw new Error('PNG file is empty.');
 	if (!buffer.subarray(0, 8).equals(PNG_SIGNATURE)) throw new Error('PNG signature is invalid.');
@@ -448,9 +576,15 @@ async function captureWidth(cdp, pageUrl, pageSlug, taskDir, width, viewportHeig
 		screenWidth: width,
 		screenHeight: viewportHeight,
 	});
+	await cdp.send('Emulation.setEmulatedMedia', {
+		features: [
+			{ name: 'prefers-reduced-motion', value: 'reduce' },
+		],
+	});
 	await cdp.send('Page.navigate', { url: pageUrl.href });
 	await waitForPageReady(cdp);
 	await prepareUi(cdp);
+	const screenshotState = await prepareScreenshotState(cdp);
 
 	const dimensions = await evaluate(cdp, `(() => {
 		const doc = document.documentElement;
@@ -508,6 +642,7 @@ async function captureWidth(cdp, pageUrl, pageSlug, taskDir, width, viewportHeig
 		pngWidth,
 		pngHeight,
 		bytes: fileStat.size,
+		screenshotState,
 	};
 }
 
@@ -661,12 +796,17 @@ async function main() {
 				isolatedProfile: 'removed after capture',
 			},
 			viewportHeight,
-			screenshots: screenshots.map(({ width, file, pngWidth, pngHeight, bytes }) => ({
+			captureMode: 'static-final-state',
+			reducedMotion: true,
+			revealStateForced: true,
+			animationFreeze: true,
+			screenshots: screenshots.map(({ width, file, pngWidth, pngHeight, bytes, screenshotState }) => ({
 				width,
 				file,
 				pngWidth,
 				pngHeight,
 				bytes,
+				screenshotState,
 			})),
 			pageErrors: cdp.errors,
 		};
