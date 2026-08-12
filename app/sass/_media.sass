@@ -823,6 +823,27 @@
 			&__content
 				max-width: 720px
 
+@media (hover: none) and (pointer: coarse)
+	.modal
+		background: radial-gradient(50% 50% at 50% 50%, rgba(7, 15, 36, .82) 0, rgba(7, 15, 36, .9) 100%)
+		-webkit-backdrop-filter: blur(4px)
+		backdrop-filter: blur(4px)
+		&--wrapper
+			transform: none
+			transition: opacity .2s ease
+			background-color: rgba(7, 15, 36, .94)
+			-webkit-backdrop-filter: none
+			backdrop-filter: none
+			form
+				input,
+				textarea
+					background-color: rgba(7, 15, 36, .86)
+					-webkit-backdrop-filter: none
+					backdrop-filter: none
+		&.active
+			.modal--wrapper
+				transform: none
+
 /* Medium Devices, Desktops */
 @media (max-width : 992px)
 	.container 
@@ -1274,6 +1295,31 @@
 		display: flex !important
 	.desktop
 		display: none !important
+	.modal
+		padding: calc(18px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(18px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left))
+		background: radial-gradient(50% 50% at 50% 50%, rgba(7, 15, 36, .82) 0, rgba(7, 15, 36, .9) 100%)
+		-webkit-backdrop-filter: blur(4px)
+		backdrop-filter: blur(4px)
+		&--wrapper
+			max-height: calc(100vh - 36px - env(safe-area-inset-top) - env(safe-area-inset-bottom))
+			max-height: calc(100svh - 36px - env(safe-area-inset-top) - env(safe-area-inset-bottom))
+			max-height: calc(var(--modal-visual-height, 100dvh) - 36px - env(safe-area-inset-top) - env(safe-area-inset-bottom))
+			padding: 36px 20px calc(36px + env(safe-area-inset-bottom))
+			transform: none
+			transition: opacity .2s ease
+			background-color: rgba(7, 15, 36, .94)
+			-webkit-backdrop-filter: none
+			backdrop-filter: none
+			scrollbar-gutter: auto
+			form
+				input,
+				textarea
+					background-color: rgba(7, 15, 36, .86)
+					-webkit-backdrop-filter: none
+					backdrop-filter: none
+		&.active
+			.modal--wrapper
+				transform: none
 	.header 
 		&--logo 
 			max-width: 140px
@@ -2460,16 +2506,28 @@
 							font-size: 14px
 	.modal
 		padding: calc(16px + env(safe-area-inset-top)) calc(12px + env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) calc(12px + env(safe-area-inset-left))
+		background: radial-gradient(50% 50% at 50% 50%, rgba(7, 15, 36, .82) 0, rgba(7, 15, 36, .9) 100%)
+		-webkit-backdrop-filter: blur(4px)
+		backdrop-filter: blur(4px)
 		&--wrapper
-			padding: 30px 12px
+			padding: 30px 12px calc(30px + env(safe-area-inset-bottom))
 			max-width: 100%
-			max-height: calc(100vh - 32px)
-			max-height: calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom))
+			max-height: calc(100vh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom))
+			max-height: calc(100svh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom))
+			max-height: calc(var(--modal-visual-height, 100dvh) - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom))
+			transform: none
+			transition: none
+			background-color: rgba(7, 15, 36, .94)
+			-webkit-backdrop-filter: none
+			backdrop-filter: none
 			.title 
 				margin-bottom: 30px
 			form
 				input, textarea
 					border-radius: 30px
+					background-color: rgba(7, 15, 36, .86)
+					-webkit-backdrop-filter: none
+					backdrop-filter: none
 				.wpcf7-form-control-wrap
 					&:not(:last-child)
 						margin-bottom: 20px
@@ -2480,6 +2538,9 @@
 				width: 100%
 				max-width: 100%
 				padding: 30px 12px
+			&.active
+				.modal--wrapper
+					transform: none
 			[data-modal-contact-form]
 				gap: 12px
 				.form-field

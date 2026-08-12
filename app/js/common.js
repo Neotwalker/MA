@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		body: {},
 		headerPaddingRight: '',
 	};
+	const modalMobileViewportQuery = window.matchMedia ? window.matchMedia('(max-width: 768px)') : null;
+	const modalTouchViewportQuery = window.matchMedia ? window.matchMedia('(hover: none) and (pointer: coarse)') : null;
+	let modalViewportRaf = 0;
 	
 	// ---------- COOKIE CONSENT ----------
 	(function () {
@@ -431,6 +434,47 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
+	function shouldSyncModalViewport() {
+		return Boolean(
+			window.visualViewport
+			&& (
+				(modalMobileViewportQuery && modalMobileViewportQuery.matches)
+				|| (modalTouchViewportQuery && modalTouchViewportQuery.matches)
+			)
+		);
+	}
+
+	function clearModalViewportVars() {
+		if (modalViewportRaf) {
+			cancelAnimationFrame(modalViewportRaf);
+			modalViewportRaf = 0;
+		}
+		docEl.style.removeProperty('--modal-visual-height');
+		docEl.style.removeProperty('--modal-visual-offset-top');
+	}
+
+	function syncModalViewportVars() {
+		if (!activeModal || !shouldSyncModalViewport()) {
+			clearModalViewportVars();
+			return;
+		}
+
+		const viewport = window.visualViewport;
+		const height = Math.max(320, Math.round(viewport.height));
+		const offsetTop = Math.max(0, Math.round(viewport.offsetTop));
+		docEl.style.setProperty('--modal-visual-height', `${height}px`);
+		docEl.style.setProperty('--modal-visual-offset-top', `${offsetTop}px`);
+	}
+
+	function queueModalViewportSync() {
+		if (!activeModal) return;
+		if (modalViewportRaf) return;
+		modalViewportRaf = requestAnimationFrame(() => {
+			modalViewportRaf = 0;
+			syncModalViewportVars();
+		});
+	}
+
 	function lockModalScroll() {
 		if (modalScrollState.locked) return;
 		const scrollbarWidth = getScrollbarWidth();
@@ -548,6 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		activeModal = modal;
 		modal.removeAttribute('inert');
 		modal.setAttribute('aria-hidden', 'false');
+		syncModalViewportVars();
 		modal.classList.add('active');
 		focusModalWrapper(modal);
 	}
@@ -565,6 +610,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		modal.setAttribute('inert', '');
 		if (shouldClearActiveModal) {
 			activeModal = null;
+			clearModalViewportVars();
 		}
 		if (unlockScroll) {
 			unlockModalScroll();
@@ -637,6 +683,25 @@ document.addEventListener("DOMContentLoaded", () => {
 				return;
 			}
 			trapModalFocus(e);
+		});
+
+		if (window.visualViewport) {
+			window.visualViewport.addEventListener('resize', queueModalViewportSync);
+			window.visualViewport.addEventListener('scroll', queueModalViewportSync);
+		}
+		modalMobileViewportQuery?.addEventListener?.('change', () => {
+			if (activeModal) {
+				queueModalViewportSync();
+			} else {
+				clearModalViewportVars();
+			}
+		});
+		modalTouchViewportQuery?.addEventListener?.('change', () => {
+			if (activeModal) {
+				queueModalViewportSync();
+			} else {
+				clearModalViewportVars();
+			}
 		});
 	}
 
