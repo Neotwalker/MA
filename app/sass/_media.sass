@@ -4579,3 +4579,215 @@
 					font-size: 28px
 			&__body
 				padding: 20px
+
+@media (max-width : 1680px)
+	.brief-page
+		gap: 72px
+		.brief-hero
+			.breadcrumbs
+				margin-bottom: 46px
+			&__layout
+				grid-template-columns: minmax(0, 1fr) minmax(340px, 430px)
+				gap: 44px
+			&__title
+				font-size: 60px
+			&__lead
+				font-size: 20px
+			&__note
+				padding: 26px
+	.brief-form
+		&__step
+			grid-template-columns: minmax(210px, 280px) minmax(0, 1fr)
+			gap: 34px
+			padding: 30px
+		&__legend
+			font-size: 24px
+
+@media (max-width : 1200px)
+	.brief-page
+		.brief-hero
+			&__layout
+				grid-template-columns: minmax(0, 1fr) minmax(300px, 360px)
+				align-items: stretch
+			&__title
+				font-size: 54px
+			&__note
+				padding: 24px
+	.brief-form
+		&__step
+			grid-template-columns: minmax(190px, 240px) minmax(0, 1fr)
+			gap: 28px
+			padding: 28px
+		&__choice-grid
+			&--three
+				grid-template-columns: repeat(2, minmax(0, 1fr))
+
+@media (max-width : 1024px)
+	.brief-page
+		gap: 64px
+		.brief-hero
+			.breadcrumbs
+				margin-bottom: 38px
+			&__layout
+				grid-template-columns: minmax(0, 1fr) minmax(280px, 330px)
+				gap: 28px
+			&__title
+				font-size: 48px
+			&__lead
+				font-size: 18px
+			&__note
+				p
+					font-size: 17px
+			&__facts
+				li
+					font-size: 14px
+	.brief-form
+		&__description
+			font-size: 16px
+		&__step
+			grid-template-columns: minmax(170px, 220px) minmax(0, 1fr)
+			gap: 24px
+			padding: 24px
+		&__step-number
+			width: 46px
+			height: 46px
+			margin-bottom: 18px
+			border-radius: 14px
+			font-size: 16px
+		&__legend
+			font-size: 21px
+		&__step-description
+			font-size: 14px
+		&__choice-grid
+			&--two,
+			&--three
+				grid-template-columns: 1fr
+	.brief-field
+		input,
+		textarea
+			font-size: 16px
+			padding-left: 22px
+			padding-right: 22px
+
+@media (max-width : 768px)
+	.brief-page
+		gap: 52px
+		background-size: auto
+		.brief-hero
+			padding-bottom: 0
+			.breadcrumbs
+				margin-bottom: 30px
+			&__layout
+				grid-template-columns: 1fr
+				gap: 24px
+			&__title
+				font-size: 42px
+				line-height: 1.08
+			&__lead
+				font-size: 17px
+			&__note
+				padding: 22px
+		.brief-section
+			padding-bottom: 82px
+	.brief-form
+		gap: 20px
+		&__intro
+			margin-bottom: 0
+		&__title
+			font-size: 30px
+		&__error-summary
+			padding: 18px
+			border-radius: 16px
+		&__step
+			grid-template-columns: 1fr
+			grid-template-rows: auto
+			gap: 22px
+			padding: 22px
+			border-radius: 18px
+		&__legend,
+		&__step-head,
+		&__step-body
+			grid-column: 1
+			grid-row: auto
+		&__step-number
+			margin-bottom: 16px
+		&__legend
+			font-size: 22px
+		&__step-body
+			gap: 16px
+		&__field-grid,
+		&__choice-grid,
+		&__choice-grid--two,
+		&__choice-grid--three
+			grid-template-columns: 1fr
+		&__submit
+			width: 100%
+			max-width: 100%
+	.brief-choice
+		span
+			min-height: 56px
+			padding: 13px 14px
+	.brief-file
+		min-height: 128px
+		padding: 20px
+
+@media (max-width : 480px)
+	.brief-page
+		gap: 44px
+		.brief-hero
+			.breadcrumbs
+				margin-bottom: 24px
+			&__eyebrow
+				font-size: 14px
+			&__title
+				font-size: 36px
+			&__lead
+				font-size: 16px
+			&__note
+				padding: 18px
+				border-radius: 16px
+				p
+					font-size: 16px
+		.brief-section
+			padding-bottom: 64px
+	.brief-form
+		&__eyebrow
+			font-size: 12px
+		&__title
+			font-size: 26px
+		&__description
+			font-size: 15px
+		&__step
+			padding: 18px
+			border-radius: 16px
+		&__legend
+			font-size: 20px
+		&__step-number
+			width: 42px
+			height: 42px
+			font-size: 15px
+		&__consent-label
+			padding: 12px
+			font-size: 14px
+	.brief-field
+		&__label
+			font-size: 14px
+		&__required,
+		&__note
+			display: flex
+			width: fit-content
+			margin: 6px 0 0
+		input,
+		textarea
+			min-height: 52px
+			padding: 16px 18px
+			font-size: 15px
+		textarea
+			min-height: 126px
+	.brief-choice
+		span
+			font-size: 14px
+	.brief-file
+		padding: 18px
+		&__label
+			font-size: 16px

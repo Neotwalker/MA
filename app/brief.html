@@ -5,9 +5,8 @@
 
 	<meta charset="utf-8">
 
-	<title>Разработка сайтов Под ключ</title>
-	<meta name="description" content="Компания «WebTech» - создание сайтов в Челябинске и Москве а также по всей России, продвижение сайтов. Обращайтесь к нам, если вам нужно увеличить объемы продаж через Интернет.">
-	<meta name="keywords" content="разработка сайтов, создание сайтов Челябинск, продвижение сайтов в Челябинске, создание сайтов Москва, продвижение сайтов в Москве">
+	<title>Бриф на разработку сайта и продвижение - Марат Абзалов</title>
+	<meta name="description" content="Бриф для разработки, редизайна, доработки и продвижения сайта. Расскажите о задаче, функциональности, материалах, сроках и удобном способе связи.">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
@@ -26,62 +25,13 @@
 
 	<link rel="stylesheet" href="css/main.min.css">
 
-	<style>
-		.main--header{
-			background-image: url(img/circle-bg.svg);
-		}
-		.main--header__wrapper:before{
-			background-image: url(img/main-header.svg);
-		}
-		.main--header__info:before{
-			background-image: url(img/puzzle.png);
-		}
-		.main--services:before{
-			background-image: url(img/line.svg);
-		}
-		.main--experts:before{
-			background-image: url(img/line-horizontal.svg);
-		}
-		.main--projects:before{
-			background-image: url(img/line.svg)
-		}
-		.main--faq:after {
-			background-image: url(img/line-left.svg);
-		}
-		@media (max-width: 992px) {
-			.main--header {
-				background-image: url(img/circle-bg-tab.svg);
-			}
-		}
-		@media (max-width: 768px) {
-			.main--header__info:before{
-				background-image: url(img/puzzle-mob.png);
-			}
-		}
-		@media (max-width: 480px) {
-			.main--header {
-				background-image: url(img/circle-bg-mob.svg);
-			}
-			.main--services::before{
-				background-image: url(img/line-mob.svg);
-			}
-			.main--services:after{
-				background-image: url(img/line-left-mob.svg);
-			}
-			.main--projects:before{
-				background-image: url(img/line-mob.svg);
-			}
-			.main--faq:after{
-				background-image: url(img/line-left-mob.svg);
-			}
-			.main--contacts:after{
-				background-image: url(img/line-mob.svg)
-			}
-			.main--brief::before{
-				background-image: url(img/line-mob.svg)
-			}
-		}
-	</style>
+	<link rel="canonical" href="https://limitlesscreators.ru/brief/">
+	<meta property="og:title" content="Бриф на разработку сайта и продвижение - Марат Абзалов">
+	<meta property="og:description" content="Бриф для разработки, редизайна, доработки и продвижения сайта. Расскажите о задаче, функциональности, материалах, сроках и удобном способе связи.">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://limitlesscreators.ru/brief/">
+	<meta property="og:site_name" content="Марат Абзалов">
+	<meta property="og:locale" content="ru_RU">
 </head>
 
 <body>
@@ -269,8 +219,8 @@
 			</div>
 		</nav>
 	</header>
-	<main class="main brief">
-		<section class="main--brief section">
+	<main class="main brief-page">
+		<section class="section brief-hero" aria-labelledby="brief-title">
 			<div class="container">
 				<div class="row">
 					<div class="breadcrumbs">
@@ -282,7 +232,457 @@
 							<span class="breadcrumb_last">Автомобильные перевозки</span>
 						</span>
 					</div>
-					<h1 class="h1">Бриф</h1>
+					<div class="brief-hero__layout">
+						<div class="brief-hero__content">
+							<p class="brief-hero__eyebrow">Старт проекта</p>
+							<h1 class="brief-hero__title h1" id="brief-title">Бриф на проект</h1>
+							<p class="brief-hero__lead">Одна страница с ключевыми вопросами о задаче, текущем сайте, функциональности, материалах, сроках и удобном способе связи.</p>
+						</div>
+						<aside class="brief-hero__note" aria-label="Как заполнить бриф">
+							<p>Заполните обязательные поля и все, что уже известно. Остальные детали можно обсудить позже.</p>
+							<ul class="brief-hero__facts">
+								<li>Форма находится на одной странице.</li>
+								<li>Черновик сохраняется только в текущей вкладке.</li>
+								<li>Прикрепленные файлы в черновике не сохраняются.</li>
+							</ul>
+						</aside>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="section brief-section" aria-labelledby="brief-form-title">
+			<div class="container">
+				<div class="row">
+					<form class="brief-form wpcf7-form init" action="/brief/#wpcf7-brief" method="post" enctype="multipart/form-data" novalidate data-brief-form aria-labelledby="brief-form-title" aria-busy="false">
+						<div class="brief-form__intro">
+							<p class="brief-form__eyebrow">Grouped one-page brief</p>
+							<h2 class="brief-form__title h2" id="brief-form-title">Расскажите о проекте в удобном объеме</h2>
+							<p class="brief-form__description">Достаточно заполнить обязательные поля. Уточняющие вопросы помогают быстрее разобраться в задаче, но их можно оставить пустыми.</p>
+						</div>
+						<div class="brief-form__error-summary" id="brief-error-summary" role="alert" tabindex="-1" hidden>
+							<p class="brief-form__error-summary-title">Проверьте поля формы</p>
+							<ul class="brief-form__error-summary-list" data-brief-error-summary-list></ul>
+						</div>
+
+						<fieldset class="brief-form__step" aria-describedby="brief-project-type-hint brief-project-type-error">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">01</span> <span>Что нужно сделать</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description" id="brief-project-type-hint">Выберите основной формат задачи. Если точного варианта нет, отметьте «Другое».</p>
+							</div>
+							<div class="brief-form__step-body">
+								<div class="brief-form__choice-grid brief-form__choice-grid--two" data-brief-choice-group>
+									<label class="brief-choice" for="brief-project-type-new">
+										<input id="brief-project-type-new" type="radio" name="project_type" value="Новый сайт" aria-describedby="brief-project-type-hint brief-project-type-error" aria-invalid="false">
+										<span>Новый сайт</span>
+									</label>
+									<label class="brief-choice" for="brief-project-type-redesign">
+										<input id="brief-project-type-redesign" type="radio" name="project_type" value="Редизайн существующего сайта" aria-describedby="brief-project-type-hint brief-project-type-error" aria-invalid="false">
+										<span>Редизайн существующего сайта</span>
+									</label>
+									<label class="brief-choice" for="brief-project-type-improvement">
+										<input id="brief-project-type-improvement" type="radio" name="project_type" value="Доработка или развитие" aria-describedby="brief-project-type-hint brief-project-type-error" aria-invalid="false">
+										<span>Доработка или развитие</span>
+									</label>
+									<label class="brief-choice" for="brief-project-type-seo">
+										<input id="brief-project-type-seo" type="radio" name="project_type" value="SEO и продвижение" aria-describedby="brief-project-type-hint brief-project-type-error" aria-invalid="false">
+										<span>SEO и продвижение</span>
+									</label>
+									<label class="brief-choice" for="brief-project-type-audit">
+										<input id="brief-project-type-audit" type="radio" name="project_type" value="Аудит или консультация" aria-describedby="brief-project-type-hint brief-project-type-error" aria-invalid="false">
+										<span>Аудит или консультация</span>
+									</label>
+									<label class="brief-choice" for="brief-project-type-other">
+										<input id="brief-project-type-other" type="radio" name="project_type" value="Другое" data-brief-toggle="project-type-other" aria-describedby="brief-project-type-hint brief-project-type-error" aria-invalid="false">
+										<span>Другое</span>
+									</label>
+								</div>
+								<span class="brief-form__error" id="brief-project-type-error" aria-live="polite"></span>
+								<div class="brief-form__conditional" data-brief-conditional="project-type-other" hidden aria-hidden="true">
+									<label class="brief-field" for="brief-project-type-other-text">
+										<span class="brief-field__label">Опишите другой формат задачи</span>
+										<input id="brief-project-type-other-text" type="text" name="project_type_other" maxlength="160" aria-describedby="brief-project-type-other-text-error" aria-invalid="false">
+										<span class="brief-form__error" id="brief-project-type-other-text-error" aria-live="polite"></span>
+									</label>
+								</div>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">02</span> <span>О бизнесе и задаче</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description">Коротко опишите контекст: чем занимается проект, какую задачу должен решить сайт и для кого он создается.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<label class="brief-field" for="brief-business-description">
+									<span class="brief-field__label">Чем занимается проект или бизнес? <span class="brief-field__required">Обязательно</span></span>
+									<textarea id="brief-business-description" name="business_description" rows="5" required aria-required="true" aria-describedby="brief-business-description-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-business-description-error" aria-live="polite"></span>
+								</label>
+								<label class="brief-field" for="brief-project-goal">
+									<span class="brief-field__label">Какую задачу должен решить проект? <span class="brief-field__required">Обязательно</span></span>
+									<textarea id="brief-project-goal" name="project_goal" rows="5" required aria-required="true" aria-describedby="brief-project-goal-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-project-goal-error" aria-live="polite"></span>
+								</label>
+								<label class="brief-field" for="brief-target-audience">
+									<span class="brief-field__label">Кто ваша основная аудитория? <span class="brief-field__note">Рекомендуется</span></span>
+									<textarea id="brief-target-audience" name="target_audience" rows="4" aria-describedby="brief-target-audience-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-target-audience-error" aria-live="polite"></span>
+								</label>
+								<label class="brief-field" for="brief-priority-products">
+									<span class="brief-field__label">Какие услуги или продукты нужно показать в первую очередь?</span>
+									<textarea id="brief-priority-products" name="priority_products" rows="4" aria-describedby="brief-priority-products-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-priority-products-error" aria-live="polite"></span>
+								</label>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step" aria-describedby="brief-current-state-hint brief-current-state-error">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">03</span> <span>Текущее состояние</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description" id="brief-current-state-hint">Если сайт уже есть или работа началась, укажите адрес и известную технологию.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<div class="brief-form__choice-grid brief-form__choice-grid--two">
+									<label class="brief-choice" for="brief-current-state-new">
+										<input id="brief-current-state-new" type="radio" name="current_state" value="Проект с нуля" aria-describedby="brief-current-state-hint brief-current-state-error" aria-invalid="false">
+										<span>Проект с нуля</span>
+									</label>
+									<label class="brief-choice" for="brief-current-state-live">
+										<input id="brief-current-state-live" type="radio" name="current_state" value="Есть действующий сайт" data-brief-toggle="current-site" aria-describedby="brief-current-state-hint brief-current-state-error" aria-invalid="false">
+										<span>Есть действующий сайт</span>
+									</label>
+									<label class="brief-choice" for="brief-current-state-development">
+										<input id="brief-current-state-development" type="radio" name="current_state" value="Сайт находится в разработке" data-brief-toggle="current-site" aria-describedby="brief-current-state-hint brief-current-state-error" aria-invalid="false">
+										<span>Сайт находится в разработке</span>
+									</label>
+									<label class="brief-choice" for="brief-current-state-part">
+										<input id="brief-current-state-part" type="radio" name="current_state" value="Нужна доработка отдельной части" data-brief-toggle="current-site" aria-describedby="brief-current-state-hint brief-current-state-error" aria-invalid="false">
+										<span>Нужна доработка отдельной части</span>
+									</label>
+								</div>
+								<span class="brief-form__error" id="brief-current-state-error" aria-live="polite"></span>
+								<div class="brief-form__conditional brief-form__field-grid" data-brief-conditional="current-site" hidden aria-hidden="true">
+									<label class="brief-field" for="brief-current-site-url">
+										<span class="brief-field__label">Адрес сайта</span>
+										<input id="brief-current-site-url" type="url" name="current_site_url" placeholder="https://example.ru" aria-describedby="brief-current-site-url-error" aria-invalid="false">
+										<span class="brief-form__error" id="brief-current-site-url-error" aria-live="polite"></span>
+									</label>
+									<label class="brief-field" for="brief-current-platform">
+										<span class="brief-field__label">CMS или технология, если известна</span>
+										<input id="brief-current-platform" type="text" name="current_platform" maxlength="160" aria-describedby="brief-current-platform-error" aria-invalid="false">
+										<span class="brief-form__error" id="brief-current-platform-error" aria-live="polite"></span>
+									</label>
+								</div>
+								<label class="brief-field" for="brief-current-problems">
+									<span class="brief-field__label">Что сейчас не устраивает или мешает работе?</span>
+									<textarea id="brief-current-problems" name="current_problems" rows="4" aria-describedby="brief-current-problems-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-current-problems-error" aria-live="polite"></span>
+								</label>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step" aria-describedby="brief-site-format-hint brief-site-format-error brief-required-features-error">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">04</span> <span>Структура и функциональность</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description" id="brief-site-format-hint">Отметьте подходящие форматы и функции. Интеграции описывайте названиями систем, без доступов и секретных данных.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<div class="brief-form__group">
+									<p class="brief-form__group-title">Формат сайта</p>
+									<div class="brief-form__choice-grid brief-form__choice-grid--two">
+										<label class="brief-choice" for="brief-site-format-landing"><input id="brief-site-format-landing" type="checkbox" name="site_format[]" value="Лендинг" aria-describedby="brief-site-format-hint brief-site-format-error" aria-invalid="false"><span>Лендинг</span></label>
+										<label class="brief-choice" for="brief-site-format-corporate"><input id="brief-site-format-corporate" type="checkbox" name="site_format[]" value="Корпоративный сайт" aria-describedby="brief-site-format-hint brief-site-format-error" aria-invalid="false"><span>Корпоративный сайт</span></label>
+										<label class="brief-choice" for="brief-site-format-catalog"><input id="brief-site-format-catalog" type="checkbox" name="site_format[]" value="Каталог" aria-describedby="brief-site-format-hint brief-site-format-error" aria-invalid="false"><span>Каталог</span></label>
+										<label class="brief-choice" for="brief-site-format-shop"><input id="brief-site-format-shop" type="checkbox" name="site_format[]" value="Интернет-магазин" aria-describedby="brief-site-format-hint brief-site-format-error" aria-invalid="false"><span>Интернет-магазин</span></label>
+										<label class="brief-choice" for="brief-site-format-service"><input id="brief-site-format-service" type="checkbox" name="site_format[]" value="Веб-сервис или личный кабинет" aria-describedby="brief-site-format-hint brief-site-format-error" aria-invalid="false"><span>Веб-сервис или личный кабинет</span></label>
+										<label class="brief-choice" for="brief-site-format-blog"><input id="brief-site-format-blog" type="checkbox" name="site_format[]" value="Блог или медиа" aria-describedby="brief-site-format-hint brief-site-format-error" aria-invalid="false"><span>Блог или медиа</span></label>
+										<label class="brief-choice" for="brief-site-format-unknown"><input id="brief-site-format-unknown" type="checkbox" name="site_format[]" value="Пока не определено" aria-describedby="brief-site-format-hint brief-site-format-error" aria-invalid="false"><span>Пока не определено</span></label>
+										<label class="brief-choice" for="brief-site-format-other"><input id="brief-site-format-other" type="checkbox" name="site_format[]" value="Другое" aria-describedby="brief-site-format-hint brief-site-format-error" aria-invalid="false"><span>Другое</span></label>
+									</div>
+									<span class="brief-form__error" id="brief-site-format-error" aria-live="polite"></span>
+								</div>
+								<label class="brief-field" for="brief-required-pages">
+									<span class="brief-field__label">Какие страницы или разделы нужны?</span>
+									<textarea id="brief-required-pages" name="required_pages" rows="4" aria-describedby="brief-required-pages-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-required-pages-error" aria-live="polite"></span>
+								</label>
+								<div class="brief-form__group">
+									<p class="brief-form__group-title">Функциональность</p>
+									<div class="brief-form__choice-grid brief-form__choice-grid--two">
+										<label class="brief-choice" for="brief-required-features-forms"><input id="brief-required-features-forms" type="checkbox" name="required_features[]" value="Формы и квизы" aria-describedby="brief-required-features-error" aria-invalid="false"><span>Формы и квизы</span></label>
+										<label class="brief-choice" for="brief-required-features-catalog"><input id="brief-required-features-catalog" type="checkbox" name="required_features[]" value="Каталог, фильтры и поиск" aria-describedby="brief-required-features-error" aria-invalid="false"><span>Каталог, фильтры и поиск</span></label>
+										<label class="brief-choice" for="brief-required-features-cart"><input id="brief-required-features-cart" type="checkbox" name="required_features[]" value="Корзина, оплата и доставка" aria-describedby="brief-required-features-error" aria-invalid="false"><span>Корзина, оплата и доставка</span></label>
+										<label class="brief-choice" for="brief-required-features-account"><input id="brief-required-features-account" type="checkbox" name="required_features[]" value="Личный кабинет" aria-describedby="brief-required-features-error" aria-invalid="false"><span>Личный кабинет</span></label>
+										<label class="brief-choice" for="brief-required-features-calculator"><input id="brief-required-features-calculator" type="checkbox" name="required_features[]" value="Калькулятор" aria-describedby="brief-required-features-error" aria-invalid="false"><span>Калькулятор</span></label>
+										<label class="brief-choice" for="brief-required-features-languages"><input id="brief-required-features-languages" type="checkbox" name="required_features[]" value="Мультиязычность" aria-describedby="brief-required-features-error" aria-invalid="false"><span>Мультиязычность</span></label>
+										<label class="brief-choice" for="brief-required-features-integrations"><input id="brief-required-features-integrations" type="checkbox" name="required_features[]" value="Интеграции с внешними системами" aria-describedby="brief-required-features-error" aria-invalid="false"><span>Интеграции с внешними системами</span></label>
+										<label class="brief-choice" for="brief-required-features-news"><input id="brief-required-features-news" type="checkbox" name="required_features[]" value="Блог или новости" aria-describedby="brief-required-features-error" aria-invalid="false"><span>Блог или новости</span></label>
+										<label class="brief-choice" for="brief-required-features-other"><input id="brief-required-features-other" type="checkbox" name="required_features[]" value="Другое" aria-describedby="brief-required-features-error" aria-invalid="false"><span>Другое</span></label>
+									</div>
+									<span class="brief-form__error" id="brief-required-features-error" aria-live="polite"></span>
+								</div>
+								<label class="brief-field" for="brief-required-integrations">
+									<span class="brief-field__label">Какие интеграции нужны?</span>
+									<span class="brief-field__hint" id="brief-required-integrations-hint">Например: CRM, 1С, телефония, платежный сервис, службы доставки. Не указывайте логины, пароли, ключи API и другие секреты.</span>
+									<textarea id="brief-required-integrations" name="required_integrations" rows="4" aria-describedby="brief-required-integrations-hint brief-required-integrations-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-required-integrations-error" aria-live="polite"></span>
+								</label>
+								<label class="brief-field" for="brief-project-languages">
+									<span class="brief-field__label">Языковые версии</span>
+									<input id="brief-project-languages" type="text" name="project_languages" maxlength="160" aria-describedby="brief-project-languages-error" aria-invalid="false">
+									<span class="brief-form__error" id="brief-project-languages-error" aria-live="polite"></span>
+								</label>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step" aria-describedby="brief-available-materials-hint brief-available-materials-error">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">05</span> <span>Материалы</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description" id="brief-available-materials-hint">Отметьте, что уже есть, и напишите, какие материалы нужно подготовить или доработать.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<div class="brief-form__choice-grid brief-form__choice-grid--two">
+									<label class="brief-choice" for="brief-materials-logo"><input id="brief-materials-logo" type="checkbox" name="available_materials[]" value="Логотип" aria-describedby="brief-available-materials-hint brief-available-materials-error" aria-invalid="false"><span>Логотип</span></label>
+									<label class="brief-choice" for="brief-materials-brandbook"><input id="brief-materials-brandbook" type="checkbox" name="available_materials[]" value="Фирменный стиль или брендбук" aria-describedby="brief-available-materials-hint brief-available-materials-error" aria-invalid="false"><span>Фирменный стиль или брендбук</span></label>
+									<label class="brief-choice" for="brief-materials-texts"><input id="brief-materials-texts" type="checkbox" name="available_materials[]" value="Готовые тексты" aria-describedby="brief-available-materials-hint brief-available-materials-error" aria-invalid="false"><span>Готовые тексты</span></label>
+									<label class="brief-choice" for="brief-materials-media"><input id="brief-materials-media" type="checkbox" name="available_materials[]" value="Фото или видео" aria-describedby="brief-available-materials-hint brief-available-materials-error" aria-invalid="false"><span>Фото или видео</span></label>
+									<label class="brief-choice" for="brief-materials-spec"><input id="brief-materials-spec" type="checkbox" name="available_materials[]" value="Структура, прототип или ТЗ" aria-describedby="brief-available-materials-hint brief-available-materials-error" aria-invalid="false"><span>Структура, прототип или ТЗ</span></label>
+									<label class="brief-choice" for="brief-materials-catalog"><input id="brief-materials-catalog" type="checkbox" name="available_materials[]" value="Каталог товаров или услуг" aria-describedby="brief-available-materials-hint brief-available-materials-error" aria-invalid="false"><span>Каталог товаров или услуг</span></label>
+									<label class="brief-choice" for="brief-materials-none"><input id="brief-materials-none" type="checkbox" name="available_materials[]" value="Материалов пока нет" aria-describedby="brief-available-materials-hint brief-available-materials-error" aria-invalid="false"><span>Материалов пока нет</span></label>
+								</div>
+								<span class="brief-form__error" id="brief-available-materials-error" aria-live="polite"></span>
+								<label class="brief-field" for="brief-materials-comment">
+									<span class="brief-field__label">Что нужно подготовить или доработать?</span>
+									<textarea id="brief-materials-comment" name="materials_comment" rows="4" aria-describedby="brief-materials-comment-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-materials-comment-error" aria-live="polite"></span>
+								</label>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">06</span> <span>Загрузка файлов</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description">Можно приложить ТЗ, брендбук, логотип, тексты, таблицы, фото, референсы и архивы.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<label class="brief-file" for="brief-project-files">
+									<span class="brief-file__label">Выбрать файлы</span>
+									<input id="brief-project-files" class="brief-file__input" type="file" name="project_files[]" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.jpg,.jpeg,.png,.webp,.svg,.zip" aria-describedby="brief-project-files-hint brief-project-files-error" aria-invalid="false">
+									<span class="brief-file__text">PDF, документы, таблицы, презентации, изображения, SVG и ZIP.</span>
+								</label>
+								<p class="brief-field__hint" id="brief-project-files-hint">Не прикладывайте пароли, ключи API и доступы к сервисам. Их можно передать отдельно безопасным способом, когда это потребуется.</p>
+								<div class="brief-file__list" id="brief-project-files-list" aria-live="polite" aria-atomic="true" data-brief-files-list>Файлы не выбраны.</div>
+								<span class="brief-form__error" id="brief-project-files-error" aria-live="polite"></span>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">07</span> <span>Дизайн и визуальные ориентиры</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description">Опишите желаемое впечатление, полезные референсы и визуальные ограничения.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<label class="brief-field" for="brief-visual-direction">
+									<span class="brief-field__label">Какой характер должен быть у сайта?</span>
+									<textarea id="brief-visual-direction" name="visual_direction" rows="4" aria-describedby="brief-visual-direction-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-visual-direction-error" aria-live="polite"></span>
+								</label>
+								<label class="brief-field" for="brief-reference-links">
+									<span class="brief-field__label">Ссылки на сайты или визуальные референсы</span>
+									<textarea id="brief-reference-links" name="reference_links" rows="4" aria-describedby="brief-reference-links-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-reference-links-error" aria-live="polite"></span>
+								</label>
+								<label class="brief-field" for="brief-visual-restrictions">
+									<span class="brief-field__label">Что точно не нравится или не подходит?</span>
+									<textarea id="brief-visual-restrictions" name="visual_restrictions" rows="4" aria-describedby="brief-visual-restrictions-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-visual-restrictions-error" aria-live="polite"></span>
+								</label>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">08</span> <span>Конкуренты</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description">Ссылки и наблюдения помогут понять рынок и избежать нежелательных решений.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<label class="brief-field" for="brief-competitor-links">
+									<span class="brief-field__label">Сайты основных конкурентов</span>
+									<textarea id="brief-competitor-links" name="competitor_links" rows="4" aria-describedby="brief-competitor-links-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-competitor-links-error" aria-live="polite"></span>
+								</label>
+								<label class="brief-field" for="brief-competitor-notes">
+									<span class="brief-field__label">Что у них нравится, а что хотелось бы сделать иначе?</span>
+									<textarea id="brief-competitor-notes" name="competitor_notes" rows="4" aria-describedby="brief-competitor-notes-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-competitor-notes-error" aria-live="polite"></span>
+								</label>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step" aria-describedby="brief-seo-plan-hint brief-seo-plan-error">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">09</span> <span>SEO и развитие</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description" id="brief-seo-plan-hint">Отметьте, когда понадобится SEO, и опишите приоритетные направления развития.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<div class="brief-form__choice-grid brief-form__choice-grid--two">
+									<label class="brief-choice" for="brief-seo-plan-development"><input id="brief-seo-plan-development" type="radio" name="seo_plan" value="SEO нужно на этапе разработки" aria-describedby="brief-seo-plan-hint brief-seo-plan-error" aria-invalid="false"><span>SEO нужно на этапе разработки</span></label>
+									<label class="brief-choice" for="brief-seo-plan-after"><input id="brief-seo-plan-after" type="radio" name="seo_plan" value="Продвижение понадобится после запуска" aria-describedby="brief-seo-plan-hint brief-seo-plan-error" aria-invalid="false"><span>Продвижение понадобится после запуска</span></label>
+									<label class="brief-choice" for="brief-seo-plan-none"><input id="brief-seo-plan-none" type="radio" name="seo_plan" value="SEO пока не планируется" aria-describedby="brief-seo-plan-hint brief-seo-plan-error" aria-invalid="false"><span>SEO пока не планируется</span></label>
+									<label class="brief-choice" for="brief-seo-plan-recommendation"><input id="brief-seo-plan-recommendation" type="radio" name="seo_plan" value="Нужна рекомендация" aria-describedby="brief-seo-plan-hint brief-seo-plan-error" aria-invalid="false"><span>Нужна рекомендация</span></label>
+								</div>
+								<span class="brief-form__error" id="brief-seo-plan-error" aria-live="polite"></span>
+								<label class="brief-field" for="brief-promotion-regions">
+									<span class="brief-field__label">Приоритетные города или регионы</span>
+									<input id="brief-promotion-regions" type="text" name="promotion_regions" maxlength="180" aria-describedby="brief-promotion-regions-error" aria-invalid="false">
+									<span class="brief-form__error" id="brief-promotion-regions-error" aria-live="polite"></span>
+								</label>
+								<label class="brief-field" for="brief-priority-directions">
+									<span class="brief-field__label">Какие услуги, товары или направления важнее продвигать?</span>
+									<textarea id="brief-priority-directions" name="priority_directions" rows="4" aria-describedby="brief-priority-directions-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-priority-directions-error" aria-live="polite"></span>
+								</label>
+								<label class="brief-field" for="brief-development-plan">
+									<span class="brief-field__label">Что планируется после запуска?</span>
+									<span class="brief-field__hint" id="brief-development-plan-hint">SEO, реклама, контент, техническая поддержка, развитие функциональности.</span>
+									<textarea id="brief-development-plan" name="development_plan" rows="4" aria-describedby="brief-development-plan-hint brief-development-plan-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-development-plan-error" aria-live="polite"></span>
+								</label>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">10</span> <span>Сроки</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description">Можно указать ориентир, сезон, событие или просто оставить поле пустым.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<label class="brief-field" for="brief-desired-launch">
+									<span class="brief-field__label">Когда желательно запустить проект?</span>
+									<input id="brief-desired-launch" type="text" name="desired_launch" maxlength="180" aria-describedby="brief-desired-launch-error" aria-invalid="false">
+									<span class="brief-form__error" id="brief-desired-launch-error" aria-live="polite"></span>
+								</label>
+								<label class="brief-field" for="brief-deadline-context">
+									<span class="brief-field__label">Есть ли событие или причина, к которой привязан срок?</span>
+									<textarea id="brief-deadline-context" name="deadline_context" rows="4" aria-describedby="brief-deadline-context-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-deadline-context-error" aria-live="polite"></span>
+								</label>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">11</span> <span>Бюджет</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description">Если есть ориентир, он поможет подобрать формат работ.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<label class="brief-field" for="brief-budget">
+									<span class="brief-field__label">Ориентир по бюджету</span>
+									<span class="brief-field__hint" id="brief-budget-hint">Можно указать ориентир или оставить поле пустым.</span>
+									<input id="brief-budget" type="text" name="budget" maxlength="180" aria-describedby="brief-budget-hint brief-budget-error" aria-invalid="false">
+									<span class="brief-form__error" id="brief-budget-error" aria-live="polite"></span>
+								</label>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">12</span> <span>Дополнительные комментарии</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description">Любые детали, которые не попали в предыдущие группы.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<label class="brief-field" for="brief-additional-comments">
+									<span class="brief-field__label">Что еще важно учесть?</span>
+									<textarea id="brief-additional-comments" name="additional_comments" rows="5" aria-describedby="brief-additional-comments-error" aria-invalid="false"></textarea>
+									<span class="brief-form__error" id="brief-additional-comments-error" aria-live="polite"></span>
+								</label>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step" aria-describedby="brief-contact-channel-hint brief-contact-channel-error">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">13</span> <span>Контакты</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description" id="brief-contact-channel-hint">Укажите имя и удобный канал связи. Обязательным станет только выбранное контактное поле.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<div class="brief-form__field-grid">
+									<label class="brief-field" for="brief-client-name">
+										<span class="brief-field__label">Как к вам обращаться? <span class="brief-field__required">Обязательно</span></span>
+										<input id="brief-client-name" type="text" name="client_name" autocomplete="name" maxlength="120" required aria-required="true" aria-describedby="brief-client-name-error" aria-invalid="false">
+										<span class="brief-form__error" id="brief-client-name-error" aria-live="polite"></span>
+									</label>
+									<label class="brief-field" for="brief-company-name">
+										<span class="brief-field__label">Компания или проект</span>
+										<input id="brief-company-name" type="text" name="company_name" maxlength="160" aria-describedby="brief-company-name-error" aria-invalid="false">
+										<span class="brief-form__error" id="brief-company-name-error" aria-live="polite"></span>
+									</label>
+								</div>
+								<div class="brief-form__group">
+									<p class="brief-form__group-title">Удобный канал связи <span class="brief-field__required">Обязательно</span></p>
+									<div class="brief-form__choice-grid brief-form__choice-grid--three">
+										<label class="brief-choice" for="brief-contact-phone-choice">
+											<input id="brief-contact-phone-choice" type="radio" name="contact_channel" value="Телефон" data-brief-toggle="contact-phone" aria-describedby="brief-contact-channel-hint brief-contact-channel-error" aria-invalid="false">
+											<span>Телефон</span>
+										</label>
+										<label class="brief-choice" for="brief-contact-email-choice">
+											<input id="brief-contact-email-choice" type="radio" name="contact_channel" value="E-mail" data-brief-toggle="contact-email" aria-describedby="brief-contact-channel-hint brief-contact-channel-error" aria-invalid="false">
+											<span>E-mail</span>
+										</label>
+										<label class="brief-choice" for="brief-contact-telegram-choice">
+											<input id="brief-contact-telegram-choice" type="radio" name="contact_channel" value="Telegram" data-brief-toggle="contact-telegram" aria-describedby="brief-contact-channel-hint brief-contact-channel-error" aria-invalid="false">
+											<span>Telegram</span>
+										</label>
+									</div>
+									<span class="brief-form__error" id="brief-contact-channel-error" aria-live="polite"></span>
+								</div>
+								<div class="brief-form__conditional" data-brief-conditional="contact-phone" hidden aria-hidden="true">
+									<label class="brief-field" for="brief-client-phone">
+										<span class="brief-field__label">Телефон</span>
+										<input id="brief-client-phone" class="wpcf7-tel" type="tel" name="client_phone" autocomplete="tel" inputmode="tel" maxlength="18" aria-describedby="brief-client-phone-error" aria-invalid="false">
+										<span class="brief-form__error" id="brief-client-phone-error" aria-live="polite"></span>
+									</label>
+								</div>
+								<div class="brief-form__conditional" data-brief-conditional="contact-email" hidden aria-hidden="true">
+									<label class="brief-field" for="brief-client-email">
+										<span class="brief-field__label">E-mail</span>
+										<input id="brief-client-email" type="email" name="client_email" autocomplete="email" inputmode="email" maxlength="180" aria-describedby="brief-client-email-error" aria-invalid="false">
+										<span class="brief-form__error" id="brief-client-email-error" aria-live="polite"></span>
+									</label>
+								</div>
+								<div class="brief-form__conditional" data-brief-conditional="contact-telegram" hidden aria-hidden="true">
+									<label class="brief-field" for="brief-client-telegram">
+										<span class="brief-field__label">Telegram</span>
+										<input id="brief-client-telegram" type="text" name="client_telegram" autocomplete="off" maxlength="120" aria-describedby="brief-client-telegram-error" aria-invalid="false">
+										<span class="brief-form__error" id="brief-client-telegram-error" aria-live="polite"></span>
+									</label>
+								</div>
+								<label class="brief-field" for="brief-contact-time">
+									<span class="brief-field__label">Когда удобнее связаться?</span>
+									<input id="brief-contact-time" type="text" name="contact_time" maxlength="160" aria-describedby="brief-contact-time-error" aria-invalid="false">
+									<span class="brief-form__error" id="brief-contact-time-error" aria-live="polite"></span>
+								</label>
+							</div>
+						</fieldset>
+
+						<fieldset class="brief-form__step brief-form__step--submit">
+							<legend class="brief-form__legend"><span class="brief-form__step-number">14</span> <span>Consent и отправка</span></legend>
+							<div class="brief-form__step-head">
+								<p class="brief-form__step-description">Перед отправкой подтвердите согласие на обработку персональных данных.</p>
+							</div>
+							<div class="brief-form__step-body">
+								<div class="brief-form__consent">
+									<input id="brief-privacy-consent" class="custom--check" type="checkbox" name="privacy_consent" required aria-required="true" aria-describedby="brief-privacy-consent-error" aria-invalid="false">
+									<label class="brief-form__consent-label" for="brief-privacy-consent">Я соглашаюсь с обработкой персональных данных и принимаю <a href="https://limitlesscreators.ru/privacy-policy/" target="_blank" rel="noopener">Политику конфиденциальности</a>.</label>
+								</div>
+								<span class="brief-form__error" id="brief-privacy-consent-error" aria-live="polite"></span>
+								<button class="brief-form__submit button button--primary button--gradient wpcf7-submit" type="submit">
+									<span>Отправить бриф</span>
+								</button>
+								<div class="brief-form__status form-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1" data-brief-status></div>
+								<div class="wpcf7-response-output" aria-hidden="true"></div>
+							</div>
+						</fieldset>
+					</form>
 				</div>
 			</div>
 		</section>

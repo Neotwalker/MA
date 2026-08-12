@@ -3919,6 +3919,542 @@ body.cookie-banner-visible
 			opacity: 1
 			transform: translateY(0)
 			transition-delay: .3s
+
+.brief-page
+	gap: 84px
+	background-image: linear-gradient(135deg, color.adjust($red, $alpha: -.94) 0%, color.adjust($black, $alpha: -1) 42%), repeating-linear-gradient(90deg, color.adjust($white, $alpha: -.97) 0 1px, transparent 1px 160px)
+	background-position: center top
+	.brief-hero
+		padding-bottom: 6px
+		.breadcrumbs
+			margin-bottom: 56px
+		&__layout
+			display: grid
+			grid-template-columns: minmax(0, 1fr) minmax(360px, 480px)
+			align-items: end
+			gap: 56px
+		&__content
+			min-width: 0
+			max-width: 900px
+		&__eyebrow
+			display: flex
+			align-items: center
+			gap: 14px
+			margin: 0 0 18px
+			color: color.adjust($white, $alpha: -.18)
+			font-size: 16px
+			font-weight: 600
+			line-height: 1.4
+			&::before
+				content: ''
+				width: 42px
+				height: 2px
+				flex: 0 0 42px
+				background-image: $gradient
+		&__title
+			max-width: 820px
+			margin-bottom: 24px
+			font-size: 72px
+			line-height: 1.02
+			letter-spacing: 0
+		&__lead
+			max-width: 760px
+			margin: 0
+			color: color.adjust($white, $alpha: -.14)
+			font-size: 22px
+			line-height: 1.5
+		&__note
+			position: relative
+			overflow: hidden
+			padding: 30px
+			border: 1px solid color.adjust($white, $alpha: -.82)
+			border-radius: 20px
+			background: color.adjust($blockGlass, $alpha: -.02)
+			box-shadow: 0 24px 80px color.adjust($black, $alpha: -.55)
+			backdrop-filter: blur(16px)
+			&::before
+				content: ''
+				position: absolute
+				inset: 0
+				border-radius: inherit
+				background: linear-gradient(135deg, color.adjust($red, $alpha: -.82), transparent 42%, color.adjust($orange, $alpha: -.9))
+				opacity: .72
+				pointer-events: none
+			> *
+				position: relative
+				z-index: 1
+			p
+				margin: 0 0 20px
+				color: $white
+				font-size: 19px
+				font-weight: 600
+				line-height: 1.45
+		&__facts
+			display: flex
+			flex-direction: column
+			gap: 12px
+			margin: 0
+			padding: 0
+			list-style: none
+			li
+				position: relative
+				padding-left: 22px
+				color: color.adjust($white, $alpha: -.18)
+				font-size: 15px
+				line-height: 1.45
+				&::before
+					content: ''
+					position: absolute
+					top: .62em
+					left: 0
+					width: 8px
+					height: 8px
+					border-radius: 50%
+					background-image: $gradient
+	.brief-section
+		padding-bottom: 120px
+
+.brief-form
+	display: flex
+	flex-direction: column
+	gap: 26px
+	width: 100%
+	&__intro
+		max-width: 960px
+		margin-bottom: 6px
+	&__eyebrow
+		margin: 0 0 12px
+		color: $accent
+		font-size: 13px
+		font-weight: 700
+		line-height: 1.35
+		letter-spacing: .08em
+		text-transform: uppercase
+	&__title
+		max-width: 860px
+		margin-bottom: 16px
+	&__description
+		max-width: 780px
+		margin: 0
+		color: color.adjust($white, $alpha: -.2)
+		font-size: 18px
+		line-height: 1.5
+	&__error-summary
+		padding: 22px 24px
+		border: 1px solid color.adjust($red, $alpha: -.22)
+		border-radius: 18px
+		background: color.adjust($red, $alpha: -.88)
+		color: $white
+		box-shadow: 0 18px 60px color.adjust($black, $alpha: -.62)
+		&:focus-visible
+			outline: none
+			box-shadow: 0 0 0 3px color.adjust($red, $alpha: -.55), 0 18px 60px color.adjust($black, $alpha: -.62)
+		&[hidden]
+			display: none !important
+	&__error-summary-title
+		margin: 0 0 10px
+		font-size: 18px
+		font-weight: 700
+		line-height: 1.35
+	&__error-summary-list
+		display: flex
+		flex-direction: column
+		gap: 8px
+		margin: 0
+		padding-left: 20px
+		a
+			color: $white
+			text-decoration: underline
+			text-decoration-thickness: 1px
+			text-underline-offset: 3px
+			&:focus-visible
+				outline: none
+				box-shadow: 0 2px 0 $white
+	&__step
+		display: grid
+		grid-template-columns: minmax(220px, 320px) minmax(0, 1fr)
+		grid-template-rows: auto 1fr
+		gap: 46px
+		width: 100%
+		margin: 0
+		padding: 34px
+		border: 1px solid color.adjust($white, $alpha: -.86)
+		border-radius: 20px
+		background: color.adjust($blockGlass, $alpha: -.02)
+		box-shadow: inset 0 1px 0 color.adjust($white, $alpha: -.9), 0 22px 70px color.adjust($black, $alpha: -.66)
+		backdrop-filter: blur(14px)
+	&__step-head
+		grid-column: 1
+		grid-row: 2
+		min-width: 0
+	&__step-number
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		width: 52px
+		height: 52px
+		margin-bottom: 24px
+		border: 1px solid color.adjust($white, $alpha: -.78)
+		border-radius: 16px
+		background-image: $gradient
+		color: $white
+		font-size: 18px
+		font-weight: 800
+		line-height: 1
+		box-shadow: 0 12px 34px color.adjust($red, $alpha: -.74)
+	&__legend
+		grid-column: 1
+		grid-row: 1
+		display: flex
+		flex-direction: column
+		align-items: flex-start
+		max-width: 100%
+		margin: 0
+		padding: 0
+		color: $white
+		font-size: 26px
+		font-weight: 700
+		line-height: 1.2
+		> span:not(.brief-form__step-number)
+			display: block
+	&__step-description
+		margin: 0
+		color: color.adjust($white, $alpha: -.28)
+		font-size: 15px
+		line-height: 1.55
+	&__step-body
+		grid-column: 2
+		grid-row: 1 / span 2
+		display: flex
+		flex-direction: column
+		gap: 18px
+		min-width: 0
+	&__field-grid
+		display: grid
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+		gap: 18px
+		min-width: 0
+		&[hidden]
+			display: none !important
+	&__group
+		display: flex
+		flex-direction: column
+		gap: 12px
+		min-width: 0
+	&__group-title
+		margin: 0
+		color: $white
+		font-size: 16px
+		font-weight: 700
+		line-height: 1.4
+	&__choice-grid
+		display: grid
+		grid-template-columns: 1fr
+		gap: 12px
+		min-width: 0
+		&--two
+			grid-template-columns: repeat(2, minmax(0, 1fr))
+		&--three
+			grid-template-columns: repeat(3, minmax(0, 1fr))
+	&__conditional
+		display: flex
+		flex-direction: column
+		gap: 18px
+		min-width: 0
+		&[hidden]
+			display: none !important
+	&__error
+		min-height: 18px
+		color: $red
+		font-size: 13px
+		line-height: 1.35
+	&__consent
+		position: relative
+		display: flex
+		align-items: flex-start
+		gap: 12px
+		min-width: 0
+		.custom--check
+			position: absolute
+			width: 1px
+			height: 1px
+			margin: 0
+			overflow: hidden
+			clip: rect(0 0 0 0)
+			clip-path: inset(50%)
+			&:focus-visible
+				+ label
+					&::before
+						border-color: $accent
+						box-shadow: 0 0 0 3px color.adjust($accent, $alpha: -.72)
+			&[aria-invalid="true"]
+				+ label
+					&::before
+						border-color: $red
+						box-shadow: 0 0 0 2px color.adjust($red, $alpha: -.72)
+	&__consent-label
+		position: relative
+		display: flex
+		align-items: flex-start
+		gap: 12px
+		min-height: 48px
+		padding: 12px 14px
+		border: 1px solid color.adjust($white, $alpha: -.84)
+		border-radius: 16px
+		background: color.adjust($blockHover, $alpha: -.12)
+		color: color.adjust($white, $alpha: -.16)
+		font-size: 15px
+		line-height: 1.45
+		cursor: pointer
+		&::before
+			content: ''
+			width: 22px
+			min-width: 22px
+			height: 22px
+			margin-top: 1px
+			border: 1px solid color.adjust($white, $alpha: -.52)
+			border-radius: 7px
+			background-color: color.adjust($black, $alpha: -.28)
+			transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease
+		&::after
+			content: ''
+			position: absolute
+			top: 22px
+			left: 22px
+			width: 10px
+			height: 6px
+			border-left: 2px solid $white
+			border-bottom: 2px solid $white
+			opacity: 0
+			transform: rotate(-45deg)
+			transition: opacity .2s ease
+		a
+			color: $white
+			text-decoration: underline
+			text-decoration-thickness: 1px
+			text-underline-offset: 3px
+			&:hover
+				color: $accent
+			&:focus-visible
+				outline: none
+				box-shadow: 0 2px 0 $accent
+		.custom--check:checked + &
+			&::before
+				border-color: $accent
+				background-image: $gradient
+			&::after
+				opacity: 1
+	&__submit
+		align-self: flex-start
+		margin-top: 4px
+		min-width: 220px
+		transition: opacity .2s ease, box-shadow .2s ease
+		&:focus-visible
+			outline: none
+			box-shadow: inset 0 0 0 2px color.adjust($accent, $alpha: -.15)
+		&:disabled
+			opacity: .7
+	&__status
+		min-height: 22px
+		color: color.adjust($white, $alpha: -.16)
+		font-size: 15px
+		line-height: 1.45
+		&:focus-visible
+			outline: none
+			box-shadow: inset 0 0 0 2px color.adjust($accent, $alpha: -.2)
+		&[data-status="success"]
+			color: color.adjust($white, $alpha: -.04)
+		&[data-status="error"]
+			color: $red
+		&[data-status="info"]
+			color: color.adjust($white, $alpha: -.2)
+
+.brief-field
+	display: flex
+	flex-direction: column
+	gap: 8px
+	min-width: 0
+	&__label
+		color: $white
+		font-size: 15px
+		font-weight: 700
+		line-height: 1.35
+	&__required,
+	&__note
+		display: inline-flex
+		margin-left: 8px
+		color: $accent
+		font-size: 12px
+		font-weight: 700
+		line-height: 1.35
+		text-transform: uppercase
+		letter-spacing: .04em
+	&__note
+		color: color.adjust($orange, $alpha: -.08)
+	&__hint
+		margin: 0
+		color: color.adjust($white, $alpha: -.32)
+		font-size: 13px
+		line-height: 1.45
+	input,
+	textarea
+		width: 100%
+		min-height: 56px
+		font-size: 17px
+		font-weight: 500
+		line-height: 1.4
+		transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease
+		&:focus-visible
+			outline: none
+			border-color: color.adjust($accent, $alpha: -.18)
+			box-shadow: inset 0 0 0 1px color.adjust($accent, $alpha: -.18)
+		&[aria-invalid="true"]
+			border-color: color.adjust($red, $alpha: -.1)
+			box-shadow: inset 0 0 0 1px color.adjust($red, $alpha: -.2)
+	textarea
+		min-height: 136px
+		max-height: none
+		padding-top: 18px
+		padding-bottom: 18px
+		resize: vertical
+
+.brief-choice
+	position: relative
+	display: block
+	min-width: 0
+	cursor: pointer
+	input
+		position: absolute
+		width: 1px
+		height: 1px
+		margin: 0
+		overflow: hidden
+		clip: rect(0 0 0 0)
+		clip-path: inset(50%)
+		&:focus-visible
+			+ span
+				border-color: color.adjust($accent, $alpha: -.18)
+				box-shadow: 0 0 0 3px color.adjust($accent, $alpha: -.72)
+		&[aria-invalid="true"]
+			+ span
+				border-color: color.adjust($red, $alpha: -.14)
+		&:checked
+			+ span
+				border-color: color.adjust($accent, $alpha: -.1)
+				background: linear-gradient(135deg, color.adjust($red, $alpha: -.82), color.adjust($blockHover, $alpha: -.12))
+				color: $white
+				&::before
+					border-color: $accent
+					background-image: $gradient
+				&::after
+					opacity: 1
+	span
+		position: relative
+		display: flex
+		align-items: center
+		gap: 12px
+		min-height: 58px
+		padding: 14px 16px
+		border: 1px solid color.adjust($white, $alpha: -.84)
+		border-radius: 16px
+		background: color.adjust($blockHover, $alpha: -.14)
+		color: color.adjust($white, $alpha: -.14)
+		font-size: 15px
+		font-weight: 600
+		line-height: 1.35
+		transition: border-color .2s ease, background-color .2s ease, color .2s ease, box-shadow .2s ease
+		&::before
+			content: ''
+			width: 22px
+			min-width: 22px
+			height: 22px
+			border: 1px solid color.adjust($white, $alpha: -.52)
+			border-radius: 50%
+			background-color: color.adjust($black, $alpha: -.28)
+			transition: border-color .2s ease, background .2s ease
+		&::after
+			content: ''
+			position: absolute
+			top: 50%
+			left: 23px
+			width: 8px
+			height: 8px
+			border-radius: 50%
+			background: $white
+			opacity: 0
+			transform: translateY(-50%)
+			transition: opacity .2s ease
+	input[type="checkbox"] + span
+		&::before
+			border-radius: 7px
+		&::after
+			left: 22px
+			width: 10px
+			height: 6px
+			border-left: 2px solid $white
+			border-bottom: 2px solid $white
+			border-radius: 0
+			background: transparent
+			transform: translateY(-62%) rotate(-45deg)
+
+.brief-file
+	position: relative
+	display: flex
+	flex-direction: column
+	gap: 8px
+	min-height: 138px
+	padding: 24px
+	border: 1px dashed color.adjust($white, $alpha: -.66)
+	border-radius: 18px
+	background: color.adjust($blockHover, $alpha: -.12)
+	cursor: pointer
+	transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease
+	&:focus-within
+		border-color: color.adjust($accent, $alpha: -.18)
+		box-shadow: 0 0 0 3px color.adjust($accent, $alpha: -.72)
+	&__label
+		color: $white
+		font-size: 18px
+		font-weight: 700
+		line-height: 1.35
+	&__input
+		position: absolute
+		inset: 0
+		z-index: 2
+		width: 100%
+		height: 100%
+		opacity: 0
+		cursor: pointer
+	&__text
+		max-width: 620px
+		color: color.adjust($white, $alpha: -.28)
+		font-size: 14px
+		line-height: 1.45
+	&__list
+		padding: 14px 16px
+		border: 1px solid color.adjust($white, $alpha: -.9)
+		border-radius: 14px
+		background: color.adjust($black, $alpha: -.36)
+		color: color.adjust($white, $alpha: -.18)
+		font-size: 14px
+		line-height: 1.45
+		ul
+			display: flex
+			flex-direction: column
+			gap: 6px
+			margin: 8px 0 0
+			padding-left: 20px
+
+@media (prefers-reduced-motion: reduce)
+	.brief-form,
+	.brief-choice span,
+	.brief-field input,
+	.brief-field textarea,
+	.brief-file,
+	.brief-form__consent-label
+		transition: none
+
+.main
 	&--faq
 		position: relative
 		.h2, .main--faq__wrapper 

@@ -1542,7 +1542,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Input Name Validation
 	const fioInputs = document.querySelectorAll('input[name="fio"], input[name="fio1"]');
 	fioInputs.forEach(input => {
-		if (input.closest('[data-development-contact-form], [data-modal-contact-form]')) return;
+		if (input.closest('[data-development-contact-form], [data-modal-contact-form], [data-brief-form]')) return;
 		input.addEventListener('keyup', () => {
 			input.value = input.value.replace(/http|https|url|www|\.net|\.ru|\.com|[0-9]/gi, '');
 		});
@@ -1551,7 +1551,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const phoneInputs = document.querySelectorAll('.wpcf7-tel');
 	const applyPhoneMask = (e) => {
 		const el = e.target;
-		if (el.closest('[data-development-contact-form], [data-modal-contact-form]')) return;
+		if (el.closest('[data-development-contact-form], [data-modal-contact-form], [data-brief-form]')) return;
 		const clearVal = el.dataset.phoneClear;
 		const pattern = el.dataset.phonePattern || '+_(___) ___-__-__';
 		const def = pattern.replace(/\D/g, '');
@@ -1672,6 +1672,394 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (unit?.matches?.('form')) return unit;
 		return unit?.querySelector?.('form') || null;
 	};
+	// Project Brief Form
+	const briefForm = document.querySelector('[data-brief-form]');
+	if (briefForm) {
+		const BRIEF_DRAFT_KEY = 'maratProjectBriefDraftV1';
+		const formStatus = briefForm.querySelector('[data-brief-status]');
+		const errorSummary = briefForm.querySelector('#brief-error-summary');
+		const errorSummaryList = briefForm.querySelector('[data-brief-error-summary-list]');
+		const submitButton = briefForm.querySelector('.wpcf7-submit');
+		const submitText = submitButton?.querySelector('span');
+		const defaultSubmitText = submitText?.textContent || '';
+		const fileInput = briefForm.querySelector('#brief-project-files');
+		const fileList = briefForm.querySelector('[data-brief-files-list]');
+		const fields = {
+			businessDescription: briefForm.querySelector('#brief-business-description'),
+			projectGoal: briefForm.querySelector('#brief-project-goal'),
+			clientName: briefForm.querySelector('#brief-client-name'),
+			contactPhone: briefForm.querySelector('#brief-client-phone'),
+			contactEmail: briefForm.querySelector('#brief-client-email'),
+			contactTelegram: briefForm.querySelector('#brief-client-telegram'),
+			privacyConsent: briefForm.querySelector('#brief-privacy-consent'),
+		};
+		const contactFieldByTarget = {
+			'contact-phone': fields.contactPhone,
+			'contact-email': fields.contactEmail,
+			'contact-telegram': fields.contactTelegram,
+		};
+		let isBriefLoading = false;
+		let draftTimer = null;
+
+		const hasBriefForm7Context = () => {
+			const hasCf7Api = typeof window.wpcf7 === 'object' && typeof window.wpcf7.submit === 'function';
+			const hasCf7Unit = Boolean(briefForm.querySelector('input[name="_wpcf7"], input[name="_wpcf7_unit_tag"]'));
+			return hasCf7Api && hasCf7Unit;
+		};
+		const setStatus = (message = '', type = '') => {
+			if (!formStatus) return;
+			formStatus.textContent = message;
+			formStatus.dataset.status = type;
+		};
+		const setLoading = (isLoading) => {
+			isBriefLoading = Boolean(isLoading);
+			briefForm.setAttribute('aria-busy', isBriefLoading ? 'true' : 'false');
+			if (submitButton) {
+				submitButton.toggleAttribute('disabled', isBriefLoading);
+				submitButton.classList.toggle('button--loading', isBriefLoading);
+				submitButton.setAttribute('aria-busy', isBriefLoading ? 'true' : 'false');
+			}
+			if (submitText) {
+				submitText.textContent = isBriefLoading ? 'Отправляю...' : defaultSubmitText;
+			}
+		};
+		const getErrorId = (field) => {
+			const describedBy = field?.getAttribute('aria-describedby') || '';
+			return describedBy.split(/\s+/).find(id => id.endsWith('-error')) || '';
+		};
+		const getErrorElement = (id) => id ? document.getElementById(id) : null;
+		const setFieldError = (field, message = '') => {
+			if (!field) return;
+			const error = getErrorElement(getErrorId(field));
+			field.setAttribute('aria-invalid', message ? 'true' : 'false');
+			field.closest('.brief-field, .brief-form__consent')?.classList.toggle('brief-form__field--error', Boolean(message));
+			if (error) {
+				error.textContent = message;
+			}
+		};
+		const getGroupInputs = (name) => Array.from(briefForm.querySelectorAll(`input[name="${name}"]`));
+		const getCheckedGroupInput = (name) => getGroupInputs(name).find(input => input.checked) || null;
+		const setGroupError = (name, errorId, message = '') => {
+			getGroupInputs(name).forEach(input => {
+				input.setAttribute('aria-invalid', message ? 'true' : 'false');
+			});
+			const error = getErrorElement(errorId);
+			if (error) {
+				error.textContent = message;
+			}
+		};
+		const hideErrorSummary = () => {
+			if (!errorSummary || !errorSummaryList) return;
+			errorSummary.hidden = true;
+			errorSummaryList.textContent = '';
+		};
+		const showErrorSummary = (errors) => {
+			if (!errorSummary || !errorSummaryList) return;
+			errorSummaryList.textContent = '';
+			errors.forEach(({ target, label, message }) => {
+				const item = document.createElement('li');
+				const link = document.createElement('a');
+				link.href = target?.id ? `#${target.id}` : '#brief-form-title';
+				link.textContent = `${label}: ${message}`;
+				item.append(link);
+				errorSummaryList.append(item);
+			});
+			errorSummary.hidden = false;
+			focusAfterPaint(errorSummary);
+		};
+		const clearAllErrors = () => {
+			briefForm.querySelectorAll('[aria-invalid="true"]').forEach(field => {
+				field.setAttribute('aria-invalid', 'false');
+			});
+			briefForm.querySelectorAll('.brief-form__error').forEach(error => {
+				error.textContent = '';
+			});
+			briefForm.querySelectorAll('.brief-form__field--error').forEach(field => {
+				field.classList.remove('brief-form__field--error');
+			});
+			hideErrorSummary();
+		};
+		const updateConditional = (targetName, isVisible) => {
+			briefForm.querySelectorAll(`[data-brief-conditional="${targetName}"]`).forEach(block => {
+				block.hidden = !isVisible;
+				block.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+			});
+		};
+		const updateProjectTypeOther = () => {
+			const selected = getCheckedGroupInput('project_type');
+			updateConditional('project-type-other', selected?.dataset.briefToggle === 'project-type-other');
+		};
+		const updateCurrentSiteFields = () => {
+			const selected = getCheckedGroupInput('current_state');
+			updateConditional('current-site', selected?.dataset.briefToggle === 'current-site');
+		};
+		const updateContactFields = () => {
+			const selected = getCheckedGroupInput('contact_channel');
+			const activeTarget = selected?.dataset.briefToggle || '';
+			Object.entries(contactFieldByTarget).forEach(([target, field]) => {
+				const isActive = target === activeTarget;
+				updateConditional(target, isActive);
+				if (field) {
+					field.toggleAttribute('required', isActive);
+					if (isActive) {
+						field.setAttribute('aria-required', 'true');
+					} else {
+						field.removeAttribute('aria-required');
+						setFieldError(field);
+					}
+				}
+			});
+		};
+		const updateConditionals = () => {
+			updateProjectTypeOther();
+			updateCurrentSiteFields();
+			updateContactFields();
+		};
+		const updateFileList = () => {
+			if (!fileList) return;
+			const files = Array.from(fileInput?.files || []);
+			fileList.textContent = '';
+			if (!files.length) {
+				fileList.textContent = 'Файлы не выбраны.';
+				return;
+			}
+			const count = document.createElement('p');
+			count.textContent = `Выбрано файлов: ${files.length}`;
+			const list = document.createElement('ul');
+			files.forEach(file => {
+				const item = document.createElement('li');
+				item.textContent = file.name;
+				list.append(item);
+			});
+			fileList.append(count, list);
+		};
+		const getDraftControls = () => Array.from(briefForm.querySelectorAll('input, select, textarea')).filter((field) => {
+			const type = (field.type || '').toLowerCase();
+			return field.name && !field.name.startsWith('_wpcf7') && !['file', 'submit', 'button', 'reset'].includes(type);
+		});
+		const readDraft = () => {
+			try {
+				const raw = sessionStorage.getItem(BRIEF_DRAFT_KEY);
+				return raw ? JSON.parse(raw) : null;
+			} catch (e) {
+				return null;
+			}
+		};
+		const writeDraft = () => {
+			const data = {};
+			getDraftControls().forEach(field => {
+				const type = (field.type || '').toLowerCase();
+				if (type === 'checkbox') {
+					if (!Array.isArray(data[field.name])) {
+						data[field.name] = [];
+					}
+					if (field.checked) {
+						data[field.name].push(field.value);
+					}
+					return;
+				}
+				if (type === 'radio') {
+					if (!Object.prototype.hasOwnProperty.call(data, field.name)) {
+						data[field.name] = '';
+					}
+					if (field.checked) {
+						data[field.name] = field.value;
+					}
+					return;
+				}
+				data[field.name] = field.value;
+			});
+			try {
+				sessionStorage.setItem(BRIEF_DRAFT_KEY, JSON.stringify(data));
+			} catch (e) {}
+		};
+		const scheduleDraftSave = () => {
+			window.clearTimeout(draftTimer);
+			draftTimer = window.setTimeout(writeDraft, 250);
+		};
+		const restoreDraft = () => {
+			const draft = readDraft();
+			if (!draft || typeof draft !== 'object') return;
+			getDraftControls().forEach(field => {
+				if (!Object.prototype.hasOwnProperty.call(draft, field.name)) return;
+				const type = (field.type || '').toLowerCase();
+				if (type === 'checkbox') {
+					field.checked = Array.isArray(draft[field.name]) && draft[field.name].includes(field.value);
+					return;
+				}
+				if (type === 'radio') {
+					field.checked = draft[field.name] === field.value;
+					return;
+				}
+				field.value = draft[field.name] || '';
+			});
+		};
+		const clearDraft = () => {
+			try {
+				sessionStorage.removeItem(BRIEF_DRAFT_KEY);
+			} catch (e) {}
+		};
+		const applyBriefPhoneMask = initScopedPhoneMask(fields.contactPhone, () => {
+			setFieldError(fields.contactPhone);
+			hideErrorSummary();
+		});
+		const validateBriefForm = () => {
+			clearAllErrors();
+			setStatus('');
+			updateConditionals();
+			applyBriefPhoneMask();
+			const errors = [];
+			const pushFieldError = (field, label, message) => {
+				setFieldError(field, message);
+				errors.push({ target: field, label, message });
+			};
+			const projectType = getCheckedGroupInput('project_type');
+			const contactChannel = getCheckedGroupInput('contact_channel');
+
+			if (!projectType) {
+				const target = getGroupInputs('project_type')[0];
+				const message = 'Выберите, что нужно сделать.';
+				setGroupError('project_type', 'brief-project-type-error', message);
+				errors.push({ target, label: 'Что нужно сделать', message });
+			}
+			if (!fields.businessDescription?.value.trim()) {
+				pushFieldError(fields.businessDescription, 'Чем занимается проект или бизнес', 'Заполните это поле.');
+			}
+			if (!fields.projectGoal?.value.trim()) {
+				pushFieldError(fields.projectGoal, 'Какую задачу должен решить проект', 'Заполните это поле.');
+			}
+			if (!fields.clientName?.value.trim()) {
+				pushFieldError(fields.clientName, 'Как к вам обращаться', 'Заполните это поле.');
+			}
+			if (!contactChannel) {
+				const target = getGroupInputs('contact_channel')[0];
+				const message = 'Выберите удобный канал связи.';
+				setGroupError('contact_channel', 'brief-contact-channel-error', message);
+				errors.push({ target, label: 'Удобный канал связи', message });
+			} else {
+				const activeContactField = contactFieldByTarget[contactChannel.dataset.briefToggle || ''];
+				if (activeContactField === fields.contactPhone) {
+					const phoneDigits = getScopedPhoneDigitCount(fields.contactPhone?.value || '');
+					if (!phoneDigits) {
+						pushFieldError(fields.contactPhone, 'Телефон', 'Укажите номер телефона.');
+					} else if (phoneDigits !== scopedPhoneMaxDigits) {
+						pushFieldError(fields.contactPhone, 'Телефон', 'Введите номер телефона полностью.');
+					}
+				}
+				if (activeContactField === fields.contactEmail) {
+					const emailValue = fields.contactEmail?.value.trim() || '';
+					if (!emailValue) {
+						pushFieldError(fields.contactEmail, 'E-mail', 'Укажите адрес электронной почты.');
+					} else if (fields.contactEmail && !fields.contactEmail.validity.valid) {
+						pushFieldError(fields.contactEmail, 'E-mail', 'Проверьте адрес электронной почты.');
+					}
+				}
+				if (activeContactField === fields.contactTelegram && !fields.contactTelegram?.value.trim()) {
+					pushFieldError(fields.contactTelegram, 'Telegram', 'Укажите Telegram.');
+				}
+			}
+			if (fields.privacyConsent && !fields.privacyConsent.checked) {
+				pushFieldError(fields.privacyConsent, 'Согласие на обработку данных', 'Подтвердите согласие.');
+			}
+
+			if (errors.length) {
+				showErrorSummary(errors);
+				return false;
+			}
+			hideErrorSummary();
+			return true;
+		};
+
+		restoreDraft();
+		updateConditionals();
+		applyBriefPhoneMask();
+		updateFileList();
+
+		getGroupInputs('project_type').forEach(input => {
+			input.addEventListener('change', () => {
+				setGroupError('project_type', 'brief-project-type-error');
+				updateProjectTypeOther();
+				hideErrorSummary();
+				scheduleDraftSave();
+			});
+		});
+		getGroupInputs('current_state').forEach(input => {
+			input.addEventListener('change', () => {
+				updateCurrentSiteFields();
+				hideErrorSummary();
+				scheduleDraftSave();
+			});
+		});
+		getGroupInputs('contact_channel').forEach(input => {
+			input.addEventListener('change', () => {
+				setGroupError('contact_channel', 'brief-contact-channel-error');
+				updateContactFields();
+				hideErrorSummary();
+				scheduleDraftSave();
+			});
+		});
+		getDraftControls().forEach(field => {
+			const type = (field.type || '').toLowerCase();
+			const eventNames = ['checkbox', 'radio'].includes(type) ? ['change'] : ['input', 'change'];
+			eventNames.forEach(eventName => {
+				field.addEventListener(eventName, () => {
+					setFieldError(field);
+					hideErrorSummary();
+					scheduleDraftSave();
+				});
+			});
+		});
+		fileInput?.addEventListener('change', () => {
+			updateFileList();
+			setFieldError(fileInput);
+		});
+
+		briefForm.addEventListener('submit', (e) => {
+			if (isBriefLoading || submitButton?.disabled) {
+				e.preventDefault();
+				return;
+			}
+			if (!validateBriefForm()) {
+				e.preventDefault();
+				return;
+			}
+			if (!hasBriefForm7Context()) {
+				e.preventDefault();
+				setLoading(false);
+				setStatus('Форма готова к подключению. Отправка будет доступна после интеграции с WordPress', 'info');
+				formStatus?.focus();
+				return;
+			}
+			setLoading(true);
+		});
+
+		document.addEventListener('wpcf7mailsent', (e) => {
+			const eventForm = getCf7EventForm(e);
+			if (eventForm !== briefForm) return;
+			briefForm.querySelector('.cf7sg-response-output')?.style.setProperty('display', 'none');
+			clearDraft();
+			clearAllErrors();
+			briefForm.reset();
+			updateConditionals();
+			applyBriefPhoneMask();
+			updateFileList();
+			setLoading(false);
+			setStatus('Бриф отправлен. Спасибо - данные проекта получены', 'success');
+			formStatus?.focus();
+		});
+
+		const handleBriefCf7Failure = (message) => (e) => {
+			const eventForm = getCf7EventForm(e);
+			if (eventForm !== briefForm) return;
+			setLoading(false);
+			setStatus(message, 'error');
+			formStatus?.focus();
+		};
+
+		document.addEventListener('wpcf7invalid', handleBriefCf7Failure('Проверьте выделенные поля.'));
+		document.addEventListener('wpcf7mailfailed', handleBriefCf7Failure('Не удалось отправить бриф. Попробуйте ещё раз или свяжитесь со мной другим способом.'));
+		document.addEventListener('wpcf7spam', handleBriefCf7Failure('Бриф не отправлен. Проверьте данные и попробуйте ещё раз.'));
+	}
 	// Modal Contact Form
 	const modalContactForms = document.querySelectorAll('[data-modal-contact-form]');
 	const modalContactFormState = new Map();
@@ -2007,7 +2395,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.addEventListener('wpcf7mailsent', (e) => {
 		const form = getCf7EventForm(e);
 		if (!form) return;
-		if (form?.matches?.('[data-development-contact-form], [data-modal-contact-form]')) return;
+		if (form?.matches?.('[data-development-contact-form], [data-modal-contact-form], [data-brief-form]')) return;
 		const sourceModal = form.closest('.modal');
 		if (!sourceModal || activeModal !== sourceModal) return;
 
