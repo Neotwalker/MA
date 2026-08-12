@@ -9,6 +9,7 @@ const DEFAULT_WIDTHS = [1920, 1440, 1024, 768, 390];
 const DEFAULT_VIEWPORT_HEIGHT = 1080;
 const READY_TIMEOUT_MS = 15000;
 const CHROME_START_TIMEOUT_MS = 12000;
+const CDP_COMMAND_TIMEOUT_MS = 15000;
 const SETTLE_MS = 300;
 const SCREENSHOT_STATE_SETTLE_MS = 150;
 const PNG_SIGNATURE = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
@@ -236,21 +237,33 @@ async function fetchJson(url, timeoutMs = 2000) {
 async function waitForDevTools(port, chromeProcess) {
 	const endpoint = `http://127.0.0.1:${port}`;
 	const startedAt = Date.now();
+	let processError;
+	const onProcessError = (error) => {
+		processError = error;
+	};
+	chromeProcess.once('error', onProcessError);
 
-	while (Date.now() - startedAt < CHROME_START_TIMEOUT_MS) {
-		if (chromeProcess.exitCode !== null) {
-			throw new Error(`Chrome exited before DevTools became available. Exit code: ${chromeProcess.exitCode}`);
+	try {
+		while (Date.now() - startedAt < CHROME_START_TIMEOUT_MS) {
+			if (processError) {
+				throw new Error(`Chrome failed to start: ${processError.message}`);
+			}
+			if (chromeProcess.exitCode !== null) {
+				throw new Error(`Chrome exited before DevTools became available. Exit code: ${chromeProcess.exitCode}`);
+			}
+
+			try {
+				await fetchJson(`${endpoint}/json/version`);
+				return endpoint;
+			} catch {
+				await delay(150);
+			}
 		}
 
-		try {
-			await fetchJson(`${endpoint}/json/version`);
-			return endpoint;
-		} catch {
-			await delay(150);
-		}
+		throw new Error('Timed out waiting for Chrome DevTools endpoint.');
+	} finally {
+		chromeProcess.removeListener('error', onProcessError);
 	}
-
-	throw new Error('Timed out waiting for Chrome DevTools endpoint.');
 }
 
 async function getPageWebSocketUrl(endpoint) {
@@ -288,6 +301,8 @@ class CdpClient {
 		});
 
 		this.ws.addEventListener('message', (event) => this.handleMessage(event));
+		this.ws.addEventListener('error', () => this.rejectPending(new Error('Chrome DevTools WebSocket failed.')));
+		this.ws.addEventListener('close', () => this.rejectPending(new Error('Chrome DevTools WebSocket closed.')));
 	}
 
 	handleMessage(event) {
@@ -328,15 +343,51 @@ class CdpClient {
 		}
 	}
 
-	send(method, params = {}) {
+	rejectPending(error) {
+		for (const [id, pending] of this.pending.entries()) {
+			this.pending.delete(id);
+			pending.reject(error);
+		}
+	}
+
+	send(method, params = {}, options = {}) {
 		const id = this.nextId;
 		this.nextId += 1;
+		const timeoutMs = options.timeoutMs || CDP_COMMAND_TIMEOUT_MS;
 
 		const promise = new Promise((resolve, reject) => {
-			this.pending.set(id, { resolve, reject });
+			const timer = setTimeout(() => {
+				this.pending.delete(id);
+				reject(new Error(`Timed out waiting for CDP response: ${method}`));
+			}, timeoutMs);
+
+			this.pending.set(id, {
+				resolve: (value) => {
+					clearTimeout(timer);
+					resolve(value);
+				},
+				reject: (error) => {
+					clearTimeout(timer);
+					reject(error);
+				},
+			});
 		});
 
-		this.ws.send(JSON.stringify({ id, method, params }));
+		if (this.ws.readyState !== WebSocket.OPEN) {
+			const pending = this.pending.get(id);
+			this.pending.delete(id);
+			pending?.reject(new Error(`Cannot send CDP command after WebSocket closed: ${method}`));
+			return promise;
+		}
+
+		try {
+			this.ws.send(JSON.stringify({ id, method, params }));
+		} catch (error) {
+			const pending = this.pending.get(id);
+			this.pending.delete(id);
+			pending?.reject(error);
+		}
+
 		return promise;
 	}
 
@@ -734,6 +785,11 @@ async function main() {
 	const port = await getFreePort();
 	const chromeArgs = [
 		'--headless=new',
+		'--no-sandbox',
+		'--disable-gpu',
+		'--disable-gpu-sandbox',
+		'--disable-features=RendererCodeIntegrity',
+		'--remote-allow-origins=*',
 		'--remote-debugging-address=127.0.0.1',
 		`--remote-debugging-port=${port}`,
 		`--user-data-dir=${profileDir}`,
