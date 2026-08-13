@@ -834,12 +834,25 @@
 			background-color: rgba(7, 15, 36, .94)
 			-webkit-backdrop-filter: none
 			backdrop-filter: none
+			scrollbar-width: none
+			-ms-overflow-style: none
+			scrollbar-gutter: auto
+			&::-webkit-scrollbar
+				display: none
+				width: 0
+				height: 0
 			form
 				input,
 				textarea
 					background-color: rgba(7, 15, 36, .86)
 					-webkit-backdrop-filter: none
 					backdrop-filter: none
+		&--general
+			[data-modal-contact-form]
+				input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):not([type="hidden"]):not([type="file"]),
+				textarea,
+				select
+					font-size: 16px
 		&.active
 			.modal--wrapper
 				transform: none
@@ -1311,12 +1324,24 @@
 			-webkit-backdrop-filter: none
 			backdrop-filter: none
 			scrollbar-gutter: auto
+			scrollbar-width: none
+			-ms-overflow-style: none
+			&::-webkit-scrollbar
+				display: none
+				width: 0
+				height: 0
 			form
 				input,
 				textarea
 					background-color: rgba(7, 15, 36, .86)
 					-webkit-backdrop-filter: none
 					backdrop-filter: none
+		&--general
+			[data-modal-contact-form]
+				input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):not([type="hidden"]):not([type="file"]),
+				textarea,
+				select
+					font-size: 16px
 		&.active
 			.modal--wrapper
 				transform: none
