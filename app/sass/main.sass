@@ -395,29 +395,18 @@ body.cookie-banner-visible
 	&--primary,
 	&--gradient
 		overflow: hidden
-		background-image: $gradient
+		isolation: isolate
+		background-image: linear-gradient(90deg, #E3255E 0%, #FF2323 22.25%, #E2CC00 50%, #FF2323 72.25%, #E3255E 100%)
+		background-size: 200% 100%
+		background-position: 0 0
 		color: $white
-		&::before
-			content: ''
-			position: absolute
-			width: 100%
-			height: 100%
-			background-image: $gradienthover
-			z-index: 1
-			border-radius: 40px
-			left: 0
-			opacity: 0
-			transition: opacity .5s ease
+		transition: color .2s ease, background-position .45s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, opacity .2s ease, transform .2s ease
 		span
-			z-index: 2
 			position: relative
-			transition: opacity .2s ease
 		&:hover
-			&::before
-				opacity: 1
+			background-position: 100% 0
 		&:focus-visible
-			&::before
-				opacity: .55
+			background-position: 50% 0
 	&--secondary,
 	&--white 
 		border: 2px solid $white
@@ -4281,14 +4270,23 @@ body.cookie-banner-visible
 		line-height: 1.35
 	&__required,
 	&__note
-		display: inline-flex
-		margin-left: 8px
-		color: $accent
+		display: inline
+		margin-left: 6px
+		color: color.adjust($white, $alpha: -.34)
 		font-size: 12px
-		font-weight: 700
-		line-height: 1.35
-		text-transform: uppercase
-		letter-spacing: .04em
+		font-weight: 600
+		line-height: 1.2
+		text-transform: none
+		letter-spacing: 0
+		white-space: nowrap
+	&__required
+		&::before
+			content: '*'
+			margin-right: 4px
+			color: $accent
+			font-size: 13px
+			font-weight: 800
+			line-height: 1
 	&__note
 		color: color.adjust($orange, $alpha: -.08)
 	&__hint
@@ -4443,9 +4441,46 @@ body.cookie-banner-visible
 		ul
 			display: flex
 			flex-direction: column
-			gap: 6px
+			gap: 8px
 			margin: 8px 0 0
-			padding-left: 20px
+			padding-left: 0
+			list-style: none
+		li
+			display: grid
+			grid-template-columns: minmax(0, 1fr) auto
+			align-items: center
+			gap: 10px
+			min-width: 0
+			padding: 8px 10px
+			border: 1px solid color.adjust($white, $alpha: -.9)
+			border-radius: 10px
+			background: color.adjust($white, $alpha: -.97)
+	&__name
+		min-width: 0
+		overflow-wrap: anywhere
+		word-break: break-word
+	&__remove
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		min-width: 78px
+		min-height: 36px
+		padding: 8px 12px
+		border: 1px solid color.adjust($white, $alpha: -.84)
+		border-radius: 999px
+		color: color.adjust($white, $alpha: -.12)
+		font-size: 13px
+		font-weight: 700
+		line-height: 1
+		transition: color .2s ease, border-color .2s ease, background-color .2s ease, box-shadow .2s ease
+		&:hover
+			border-color: color.adjust($accent, $alpha: -.28)
+			color: $white
+			background: color.adjust($accent, $alpha: -.9)
+		&:focus-visible
+			outline: none
+			border-color: color.adjust($accent, $alpha: -.12)
+			box-shadow: 0 0 0 3px color.adjust($accent, $alpha: -.72)
 
 @media (prefers-reduced-motion: reduce)
 	.brief-form,
@@ -4453,7 +4488,9 @@ body.cookie-banner-visible
 	.brief-field input,
 	.brief-field textarea,
 	.brief-file,
-	.brief-form__consent-label
+	.brief-file__remove,
+	.form-consent,
+	.form-consent__toggle
 		transition: none
 
 .main
@@ -6647,6 +6684,118 @@ figure
 		&.active
 			.modal--wrapper
 				transform: none
+
+.form-consent
+	display: grid
+	grid-template-columns: auto minmax(0, 1fr)
+	align-items: start
+	gap: 10px
+	min-width: 0
+	max-width: 100%
+	padding: 12px 14px
+	border: 1px solid color.adjust($white, $alpha: -.84)
+	border-radius: 16px
+	background: color.adjust($blockHover, $alpha: -.12)
+	color: color.adjust($white, $alpha: -.16)
+	font-size: 14px
+	line-height: 1.45
+	transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease
+	&:hover
+		border-color: color.adjust($white, $alpha: -.72)
+		background: color.adjust($blockHover, $alpha: -.08)
+	&.form-field--error,
+	&.brief-form__field--error
+		border-color: color.adjust($red, $alpha: -.18)
+		box-shadow: 0 0 0 2px color.adjust($red, $alpha: -.78)
+	.form-consent__control
+		position: relative
+		display: inline-flex
+		align-items: flex-start
+		width: auto
+		min-width: 24px
+		margin: 0
+		padding: 0
+		line-height: 1
+	.form-consent__input
+		position: absolute
+		width: 1px
+		height: 1px
+		min-height: 0
+		margin: 0
+		padding: 0
+		border: 0
+		overflow: hidden
+		clip: rect(0 0 0 0)
+		clip-path: inset(50%)
+		background: transparent
+		opacity: 0
+	.form-consent__toggle
+		position: relative
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		width: 24px
+		height: 24px
+		margin: 0
+		padding: 0
+		border: 1px solid color.adjust($white, $alpha: -.5)
+		border-radius: 7px
+		background: color.adjust($black, $alpha: -.3)
+		cursor: pointer
+		transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease
+		&::before
+			content: none
+		&::after
+			content: ''
+			width: 11px
+			height: 7px
+			border-left: 2px solid $white
+			border-bottom: 2px solid $white
+			opacity: 0
+			transform: translateY(-1px) rotate(-45deg)
+			transition: opacity .2s ease
+	.form-consent__input:checked + .form-consent__toggle
+		border-color: $accent
+		background-image: $gradient
+		&::after
+			opacity: 1
+	.form-consent__input:focus-visible + .form-consent__toggle
+		border-color: $accent
+		box-shadow: 0 0 0 3px color.adjust($accent, $alpha: -.72)
+	.form-consent__input[aria-invalid="true"] + .form-consent__toggle
+		border-color: $red
+		box-shadow: 0 0 0 2px color.adjust($red, $alpha: -.72)
+	.form-consent__input:disabled + .form-consent__toggle,
+	.form-consent__input:disabled ~ .form-consent__text
+		opacity: .58
+		cursor: not-allowed
+	.form-consent__text
+		min-width: 0
+		margin: 0
+		color: inherit
+		font-size: inherit
+		line-height: inherit
+	.form-consent__label
+		display: inline
+		color: inherit
+		cursor: pointer
+	.form-consent__link
+		display: inline
+		color: $white
+		text-decoration: underline
+		text-decoration-thickness: 1px
+		text-underline-offset: 3px
+		overflow-wrap: anywhere
+		transition: color .2s ease, box-shadow .2s ease
+		&:hover
+			color: $accent
+		&:focus-visible
+			outline: none
+			box-shadow: 0 2px 0 $accent
+	.form-field__error,
+	.brief-form__error
+		grid-column: 1 / -1
+		margin-top: -2px
 
 .form 
 	&--check

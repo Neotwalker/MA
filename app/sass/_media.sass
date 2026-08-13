@@ -4852,17 +4852,12 @@
 			width: 42px
 			height: 42px
 			font-size: 15px
-		&__consent-label
-			padding: 12px
-			font-size: 14px
 	.brief-field
 		&__label
 			font-size: 14px
 		&__required,
 		&__note
-			display: flex
-			width: fit-content
-			margin: 6px 0 0
+			font-size: 11px
 		input,
 		textarea
 			min-height: 52px
@@ -4877,3 +4872,19 @@
 		padding: 18px
 		&__label
 			font-size: 16px
+		&__list
+			li
+				grid-template-columns: 1fr
+				align-items: stretch
+		&__remove
+			width: 100%
+	.form-consent
+		grid-template-columns: auto minmax(0, 1fr)
+		gap: 9px
+		padding: 12px
+		font-size: 13px
+		.custom--check + .form-consent__toggle
+			width: 24px
+			height: 24px
+			font-size: 0
+			line-height: 1

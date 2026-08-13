@@ -1891,12 +1891,42 @@ document.addEventListener("DOMContentLoaded", () => {
 			const count = document.createElement('p');
 			count.textContent = `Выбрано файлов: ${files.length}`;
 			const list = document.createElement('ul');
-			files.forEach(file => {
+			files.forEach((file, index) => {
 				const item = document.createElement('li');
-				item.textContent = file.name;
+				const name = document.createElement('span');
+				const removeButton = document.createElement('button');
+				name.className = 'brief-file__name';
+				name.textContent = file.name;
+				removeButton.className = 'brief-file__remove';
+				removeButton.type = 'button';
+				removeButton.textContent = 'Удалить';
+				removeButton.setAttribute('aria-label', `Удалить файл ${file.name}`);
+				removeButton.addEventListener('click', () => {
+					removeFileAt(index);
+				});
+				item.append(name, removeButton);
 				list.append(item);
 			});
 			fileList.append(count, list);
+		};
+		const setFileInputFiles = (files) => {
+			if (!fileInput || typeof DataTransfer !== 'function') return false;
+			const transfer = new DataTransfer();
+			files.forEach(file => {
+				transfer.items.add(file);
+			});
+			fileInput.files = transfer.files;
+			return true;
+		};
+		const removeFileAt = (index) => {
+			const files = Array.from(fileInput?.files || []);
+			if (!files[index]) return;
+			files.splice(index, 1);
+			if (!setFileInputFiles(files)) {
+				setStatus('Не удалось удалить файл в этом браузере. Выберите файлы заново.', 'error');
+				return;
+			}
+			fileInput.dispatchEvent(new Event('change', { bubbles: true }));
 		};
 		const getDraftControls = () => Array.from(briefForm.querySelectorAll('input, select, textarea')).filter((field) => {
 			const type = (field.type || '').toLowerCase();

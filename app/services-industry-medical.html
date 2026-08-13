@@ -849,8 +849,9 @@
 					<span class="wpcf7-form-control-wrap" data-name="message"><textarea id="modal-contact-message-services-industry-medical" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" aria-describedby="modal-contact-message-services-industry-medical-error" placeholder="Например: нужен корпоративный сайт с каталогом услуг" name="message" rows="5" maxlength="2000"></textarea></span>
 					<span class="form-field__error" id="modal-contact-message-services-industry-medical-error" aria-live="polite"></span>
 				</div>
-				<div class="form-field form-field--consent">
-					<span class="wpcf7-form-control-wrap" data-name="check"><input class="custom--check wpcf7-form-control" type="checkbox" id="modal-contact-consent" name="check" required aria-required="true" aria-invalid="false" aria-describedby="modal-contact-consent-error"><label class="form-field__consent" for="modal-contact-consent"><span>Я соглашаюсь с обработкой персональных данных и принимаю <a href="/privacy-policy/" target="_blank" rel="noopener">Политику конфиденциальности</a>.</span></label></span>
+				<div class="form-field form-field--consent form-consent">
+					<span class="wpcf7-form-control-wrap form-consent__control" data-name="check"><input class="custom--check wpcf7-form-control form-consent__input" type="checkbox" id="modal-contact-consent" name="check" required aria-required="true" aria-invalid="false" aria-describedby="modal-contact-consent-error"><label class="form-consent__toggle" for="modal-contact-consent" aria-label="Подтвердить согласие"></label></span>
+					<p class="form-consent__text"><label class="form-consent__label" for="modal-contact-consent">Я соглашаюсь с обработкой персональных данных и принимаю</label> <a class="form-consent__link" href="https://limitlesscreators.ru/privacy-policy/" target="_blank" rel="noopener">Политику конфиденциальности</a>.</p>
 					<span class="form-field__error" id="modal-contact-consent-error" aria-live="polite"></span>
 				</div>
 				<button class="button button--primary button--gradient wpcf7-form-control wpcf7-submit" type="submit">
