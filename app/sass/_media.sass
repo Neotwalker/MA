@@ -4888,3 +4888,313 @@
 			height: 24px
 			font-size: 0
 			line-height: 1
+
+@media (max-width : 1680px)
+	.case-study-hero
+		padding-top: 132px
+		padding-bottom: 72px
+		&__grid
+			grid-template-columns: minmax(0, .94fr) minmax(460px, 1.06fr)
+			gap: 44px
+		&__title
+			font-size: 62px
+		&__lead
+			font-size: 20px
+	.case-study-story
+		padding-top: 68px
+		&__layout
+			gap: 56px
+	.case-chapter
+		grid-template-columns: 80px minmax(0, 1fr)
+		gap: 30px
+		&__title
+			font-size: 44px
+	.case-study-decision
+		grid-template-columns: minmax(150px, .28fr) minmax(0, 1fr) minmax(190px, .36fr)
+		gap: 22px
+
+@media (max-width : 1440px)
+	.case-study-page
+		.breadcrumbs
+			margin-bottom: 38px
+	.case-study-hero
+		padding-bottom: 64px
+		&__grid
+			grid-template-columns: minmax(0, .96fr) minmax(420px, 1.04fr)
+			gap: 36px
+		&__title
+			font-size: 56px
+		&__lead
+			font-size: 19px
+		&__meta
+			dd
+				font-size: 16px
+	.case-study-story
+		&__layout
+			grid-template-columns: minmax(160px, 210px) minmax(0, 1fr)
+			gap: 44px
+	.case-chapter
+		grid-template-columns: 68px minmax(0, 1fr)
+		padding: 64px 0
+		&__marker
+			font-size: 48px
+		&__title
+			font-size: 40px
+		&__lead,
+		&__text
+			font-size: 19px
+	.case-study-decision
+		grid-template-columns: minmax(140px, .28fr) minmax(0, 1fr)
+		span
+			grid-column: 2
+	.case-study-next
+		&__layout
+			grid-template-columns: minmax(0, .42fr) minmax(390px, .58fr)
+		&__title
+			font-size: 40px
+
+@media (max-width : 1199px)
+	.case-study-hero
+		&__grid
+			grid-template-columns: minmax(0, 1fr)
+			align-items: start
+		&__content
+			padding-bottom: 0
+		&__title
+			max-width: 980px
+		&__lead
+			max-width: 850px
+		&__visual
+			max-width: 940px
+	.case-study-story
+		&__layout
+			grid-template-columns: minmax(150px, 190px) minmax(0, 1fr)
+			gap: 36px
+	.case-study-facts
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+	.case-study-scope
+		grid-template-columns: minmax(0, 1fr)
+	.case-study-screenwalk
+		grid-template-columns: minmax(250px, .4fr) minmax(0, .6fr)
+		gap: 30px
+	.case-study-detail
+		grid-template-columns: minmax(240px, .48fr) minmax(0, .52fr)
+		gap: 26px
+	.case-study-result
+		grid-template-columns: minmax(0, 1fr)
+	.case-study-next
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+		&__content
+			padding-bottom: 0
+		&__media
+			img
+				min-height: 300px
+	.case-study-cta
+		align-items: flex-start
+		flex-direction: column
+
+@media (max-width : 1023px)
+	.case-study-story
+		padding-top: 56px
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+	.case-study-rail
+		display: none
+	.case-chapter
+		grid-template-columns: 58px minmax(0, 1fr)
+		gap: 22px
+		padding: 56px 0
+		&__title
+			font-size: 36px
+	.case-study-decision
+		grid-template-columns: minmax(0, 1fr)
+		gap: 10px
+		span
+			grid-column: auto
+	.case-study-screenwalk
+		grid-template-columns: minmax(0, 1fr)
+		&__note
+			position: relative
+			top: auto
+		&__image
+			max-width: 720px
+	.case-study-detail
+		grid-template-columns: minmax(0, 1fr)
+
+@media (max-width : 767px)
+	.case-study-page
+		overflow-x: hidden
+		background-image: linear-gradient(120deg, color.adjust($red, $alpha: -.96), color.adjust($black, $alpha: -1) 46%)
+		.breadcrumbs
+			margin-bottom: 26px
+	.case-study-hero
+		padding-top: 104px
+		padding-bottom: 52px
+		&__grid
+			gap: 30px
+		&__eyebrow
+			margin-bottom: 14px
+			font-size: 13px
+		&__title
+			margin-bottom: 20px
+			font-size: 42px
+			line-height: 1.08
+		&__lead
+			margin-bottom: 24px
+			font-size: 17px
+			line-height: 1.5
+		&__meta
+			grid-template-columns: minmax(0, 1fr)
+			margin-bottom: 26px
+			div
+				padding: 16px 18px
+		&__actions
+			align-items: stretch
+			flex-direction: column
+			.button
+				width: 100%
+		&__archive-link
+			align-self: flex-start
+		&__visual
+			padding: 10px
+			&::before
+				inset: 10px
+				transform: translate(10px, 10px)
+			figcaption
+				font-size: 12px
+	.case-study-story
+		padding: 46px 0 34px
+	.case-chapter
+		grid-template-columns: minmax(0, 1fr)
+		gap: 14px
+		scroll-margin-top: 92px
+		padding: 48px 0
+		&__marker
+			font-size: 38px
+		&__kicker
+			font-size: 13px
+		&__title
+			font-size: 32px
+			line-height: 1.14
+		&__lead,
+		&__text
+			font-size: 17px
+			line-height: 1.54
+	.case-study-facts
+		grid-template-columns: minmax(0, 1fr)
+		margin-top: 26px
+	.case-study-scope
+		gap: 12px
+		li
+			padding: 15px 16px 15px 38px
+			font-size: 16px
+			&::before
+				left: 16px
+	.case-study-decision
+		padding: 22px 0
+		h3
+			font-size: 22px
+		p
+			font-size: 16px
+		span
+			font-size: 14px
+	.case-study-screenwalk
+		gap: 24px
+		&__note
+			font-size: 16px
+		&__image
+			padding: 8px
+	.case-study-checklist
+		li
+			font-size: 15px
+	.case-study-detail
+		margin-top: 30px
+		padding: 20px
+		&__content
+			h3
+				font-size: 25px
+			p
+				font-size: 16px
+	.case-study-result
+		gap: 14px
+		margin: 24px 0
+		&__item
+			padding: 20px
+			p
+				font-size: 16px
+	.case-study-tech
+		span
+			font-size: 12px
+	.case-study-next
+		padding-top: 26px
+		padding-bottom: 72px
+		&__layout
+			gap: 24px
+			margin-bottom: 34px
+			padding-top: 36px
+		&__content
+			padding: 0
+		&__title
+			font-size: 32px
+		&__text
+			font-size: 16px
+		&__actions
+			align-items: flex-start
+			flex-direction: column
+			gap: 12px
+		&__media
+			img
+				min-height: 220px
+	.case-study-cta
+		gap: 24px
+		padding: 24px
+		.button
+			width: 100%
+		&__title
+			font-size: 27px
+		&__text
+			font-size: 16px
+
+@media (max-width : 560px)
+	.case-study-hero
+		&__visual
+			picture
+				aspect-ratio: 437 / 729
+				overflow: hidden
+				border-radius: 6px
+			img
+				height: 100%
+				object-fit: cover
+				object-position: center top
+
+@media (max-width : 390px)
+	.case-study-page
+		.breadcrumbs
+			margin-bottom: 22px
+	.case-study-hero
+		padding-top: 96px
+		&__title
+			font-size: 36px
+		&__lead
+			font-size: 16px
+		&__meta
+			dd
+				font-size: 15px
+	.case-chapter
+		padding: 42px 0
+		&__title
+			font-size: 29px
+	.case-study-facts
+		li
+			padding: 18px
+	.case-study-detail,
+	.case-study-result__item,
+	.case-study-cta
+		padding: 18px
+	.case-study-next
+		&__title
+			font-size: 29px
+		&__media
+			img
+				min-height: 190px

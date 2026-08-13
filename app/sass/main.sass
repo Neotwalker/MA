@@ -7068,6 +7068,570 @@ figure
 				opacity: 1
 				transition-delay: .3s
 
+.case-study-page
+	gap: 0
+	overflow: visible
+	background-image: linear-gradient(115deg, color.adjust($red, $alpha: -.94) 0%, color.adjust($black, $alpha: -1) 34%), repeating-linear-gradient(90deg, color.adjust($white, $alpha: -.975) 0 1px, transparent 1px 180px)
+	background-position: center top
+	.breadcrumbs
+		margin-bottom: 46px
+
+.case-study-hero
+	position: relative
+	padding: 144px 0 82px
+	overflow: hidden
+	&::before
+		content: ''
+		position: absolute
+		inset: auto 0 0
+		height: 1px
+		background-image: linear-gradient(90deg, transparent, color.adjust($white, $alpha: -.82), transparent)
+		pointer-events: none
+	.row
+		display: block
+	&__grid
+		display: grid
+		grid-template-columns: minmax(0, .92fr) minmax(500px, 1.08fr)
+		gap: 54px
+		align-items: end
+	&__content
+		min-width: 0
+		padding-bottom: 8px
+	&__eyebrow
+		margin-bottom: 18px
+		color: $accent
+		font-size: 15px
+		font-weight: 800
+		line-height: 1.25
+		text-transform: uppercase
+	&__title
+		max-width: 860px
+		margin-bottom: 24px
+		font-size: 70px
+		font-weight: 800
+		line-height: 1.03
+	&__lead
+		max-width: 760px
+		margin-bottom: 30px
+		color: color.adjust($white, $alpha: -.16)
+		font-size: 21px
+		line-height: 1.55
+	&__meta
+		display: grid
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+		gap: 0
+		max-width: 760px
+		margin-bottom: 34px
+		border-top: 1px solid color.adjust($white, $alpha: -.84)
+		border-left: 1px solid color.adjust($white, $alpha: -.9)
+		div
+			min-width: 0
+			padding: 18px 20px
+			border-right: 1px solid color.adjust($white, $alpha: -.9)
+			border-bottom: 1px solid color.adjust($white, $alpha: -.84)
+		dt
+			margin-bottom: 7px
+			color: color.adjust($white, $alpha: -.46)
+			font-size: 12px
+			font-weight: 800
+			line-height: 1.25
+			text-transform: uppercase
+		dd
+			margin: 0
+			color: $white
+			font-size: 17px
+			font-weight: 700
+			line-height: 1.35
+	&__actions
+		display: flex
+		align-items: center
+		flex-wrap: wrap
+		gap: 18px
+	&__archive-link
+		color: $white
+		font-size: 16px
+		font-weight: 800
+		line-height: 1.35
+		text-decoration: none
+		border-bottom: 1px solid color.adjust($white, $alpha: -.58)
+		transition: color .3s ease, border-color .3s ease
+		&:hover,
+		&:focus-visible
+			color: $accent
+			border-color: $accent
+		&:focus-visible
+			outline: 2px solid color.adjust($accent, $alpha: -.16)
+			outline-offset: 4px
+	&__visual
+		position: relative
+		margin: 0
+		padding: 16px
+		background-color: color.adjust($blockGlass, $alpha: -.03)
+		border: 1px solid color.adjust($white, $alpha: -.82)
+		border-radius: 8px
+		backdrop-filter: blur(9px)
+		overflow: hidden
+		isolation: isolate
+		&::before
+			content: ''
+			position: absolute
+			inset: 16px
+			z-index: -1
+			background-image: linear-gradient(135deg, color.adjust(#F4B000, $alpha: -.72), color.adjust(#7B4DFF, $alpha: -.8))
+			transform: translate(18px, 18px)
+			opacity: .68
+		picture,
+		img
+			display: block
+			width: 100%
+		img
+			border-radius: 6px
+			background-color: color.adjust($black, $lightness: 3%)
+			box-shadow: 0 28px 80px color.adjust($black, $alpha: -.35)
+		figcaption
+			margin-top: 12px
+			color: color.adjust($white, $alpha: -.38)
+			font-size: 13px
+			line-height: 1.45
+
+.case-study-story
+	padding: 76px 0 50px
+	.row
+		display: block
+	&__layout
+		display: grid
+		grid-template-columns: minmax(180px, 240px) minmax(0, 1fr)
+		gap: 74px
+		align-items: start
+	&__content
+		min-width: 0
+
+.case-study-rail
+	position: sticky
+	top: 112px
+	align-self: start
+	padding: 18px 0 20px 24px
+	&::before
+		content: ''
+		position: absolute
+		top: 58px
+		left: 6px
+		bottom: 22px
+		width: 1px
+		background-image: linear-gradient(180deg, $accent, color.adjust(#F4B000, $alpha: -.15), color.adjust($white, $alpha: -.88))
+	&__label
+		margin-bottom: 16px
+		color: color.adjust($white, $alpha: -.42)
+		font-size: 12px
+		font-weight: 800
+		line-height: 1.25
+		text-transform: uppercase
+	&__list
+		display: flex
+		flex-direction: column
+		gap: 8px
+		padding: 0
+		list-style: none
+		li
+			position: relative
+			&::before
+				content: ''
+				position: absolute
+				top: 20px
+				left: -22px
+				width: 9px
+				height: 9px
+				background-color: $accent
+				border: 2px solid $black
+				border-radius: 50%
+				box-shadow: 0 0 0 1px color.adjust($white, $alpha: -.78)
+		a
+			display: grid
+			grid-template-columns: 34px minmax(0, 1fr)
+			gap: 10px
+			align-items: center
+			min-height: 46px
+			padding: 8px 10px
+			color: color.adjust($white, $alpha: -.22)
+			font-size: 15px
+			font-weight: 700
+			line-height: 1.25
+			border-radius: 8px
+			text-decoration: none
+			transition: color .3s ease, background-color .3s ease
+			span
+				color: color.adjust($white, $alpha: -.5)
+				font-size: 12px
+				font-weight: 800
+			&:hover,
+			&:focus-visible
+				color: $white
+				background-color: color.adjust($white, $alpha: -.94)
+			&:focus-visible
+				outline: 2px solid color.adjust($accent, $alpha: -.2)
+				outline-offset: 3px
+
+.case-chapter
+	display: grid
+	grid-template-columns: 92px minmax(0, 1fr)
+	gap: 36px
+	scroll-margin-top: 120px
+	padding: 72px 0
+	border-top: 1px solid color.adjust($white, $alpha: -.86)
+	&:first-child
+		padding-top: 0
+		border-top: 0
+	&__marker
+		color: transparent
+		font-size: 58px
+		font-weight: 800
+		line-height: .95
+		-webkit-text-stroke: 1px color.adjust($white, $alpha: -.62)
+	&__body
+		min-width: 0
+	&__kicker
+		margin-bottom: 13px
+		color: $accent
+		font-size: 14px
+		font-weight: 800
+		line-height: 1.25
+		text-transform: uppercase
+	&__title
+		max-width: 860px
+		margin-bottom: 22px
+		font-size: 48px
+		font-weight: 800
+		line-height: 1.1
+	&__lead,
+	&__text
+		max-width: 860px
+		color: color.adjust($white, $alpha: -.16)
+		font-size: 20px
+		line-height: 1.6
+		p
+			&:not(:last-child)
+				margin-bottom: 16px
+	&__lead
+		margin-bottom: 28px
+
+.case-study-facts
+	display: grid
+	grid-template-columns: repeat(4, minmax(0, 1fr))
+	gap: 0
+	margin-top: 34px
+	padding: 0
+	list-style: none
+	border-top: 1px solid color.adjust($white, $alpha: -.84)
+	border-left: 1px solid color.adjust($white, $alpha: -.9)
+	li
+		min-width: 0
+		padding: 20px
+		color: $white
+		font-size: 17px
+		font-weight: 700
+		line-height: 1.35
+		border-right: 1px solid color.adjust($white, $alpha: -.9)
+		border-bottom: 1px solid color.adjust($white, $alpha: -.84)
+	span
+		display: block
+		margin-bottom: 8px
+		color: color.adjust($white, $alpha: -.48)
+		font-size: 12px
+		font-weight: 800
+		text-transform: uppercase
+
+.case-study-scope
+	display: grid
+	grid-template-columns: repeat(2, minmax(0, 1fr))
+	gap: 14px
+	max-width: 900px
+	padding: 0
+	list-style: none
+	li
+		position: relative
+		min-width: 0
+		padding: 16px 18px 16px 42px
+		color: color.adjust($white, $alpha: -.12)
+		font-size: 17px
+		font-weight: 600
+		line-height: 1.45
+		background-color: color.adjust($blockGlass, $alpha: -.04)
+		border: 1px solid color.adjust($white, $alpha: -.86)
+		border-radius: 8px
+		&::before
+			content: ''
+			position: absolute
+			top: 21px
+			left: 18px
+			width: 9px
+			height: 9px
+			background-image: $gradient
+			border-radius: 50%
+
+.case-study-decisions
+	display: flex
+	flex-direction: column
+	border-top: 1px solid color.adjust($white, $alpha: -.84)
+
+.case-study-decision
+	display: grid
+	grid-template-columns: minmax(160px, .28fr) minmax(0, 1fr) minmax(210px, .38fr)
+	gap: 26px
+	align-items: start
+	padding: 24px 0
+	border-bottom: 1px solid color.adjust($white, $alpha: -.88)
+	h3
+		margin: 0
+		color: $white
+		font-size: 24px
+		font-weight: 800
+		line-height: 1.18
+	p
+		margin: 0
+		color: color.adjust($white, $alpha: -.15)
+		font-size: 18px
+		line-height: 1.55
+	span
+		display: block
+		color: color.adjust($white, $alpha: -.36)
+		font-size: 15px
+		font-weight: 700
+		line-height: 1.45
+
+.case-study-screenwalk
+	display: grid
+	grid-template-columns: minmax(280px, .42fr) minmax(0, .58fr)
+	gap: 42px
+	align-items: start
+	&__note
+		position: sticky
+		top: 112px
+		color: color.adjust($white, $alpha: -.16)
+		font-size: 18px
+		line-height: 1.58
+		p
+			margin-bottom: 22px
+	&__image
+		margin: 0
+		padding: 12px
+		background-color: color.adjust($blockGlass, $alpha: -.03)
+		border: 1px solid color.adjust($white, $alpha: -.84)
+		border-radius: 8px
+		backdrop-filter: blur(8px)
+		img
+			width: 100%
+			border-radius: 6px
+			box-shadow: 0 24px 70px color.adjust($black, $alpha: -.38)
+
+.case-study-checklist
+	display: flex
+	flex-direction: column
+	gap: 12px
+	padding: 0
+	list-style: none
+	li
+		position: relative
+		padding-left: 24px
+		color: color.adjust($white, $alpha: -.24)
+		font-size: 16px
+		line-height: 1.48
+		&::before
+			content: ''
+			position: absolute
+			left: 0
+			top: 10px
+			width: 10px
+			height: 2px
+			background-color: $accent
+
+.case-study-detail
+	display: grid
+	grid-template-columns: minmax(280px, .52fr) minmax(0, .48fr)
+	gap: 34px
+	align-items: center
+	margin-top: 42px
+	padding: 28px
+	background-color: color.adjust($blockGlass, $alpha: -.05)
+	border: 1px solid color.adjust($white, $alpha: -.86)
+	border-radius: 8px
+	&__media
+		margin: 0
+		img
+			width: 100%
+			border-radius: 8px
+	&__content
+		h3
+			margin-bottom: 14px
+			font-size: 30px
+			font-weight: 800
+			line-height: 1.15
+		p
+			color: color.adjust($white, $alpha: -.18)
+			font-size: 18px
+			line-height: 1.55
+
+.case-study-result
+	display: grid
+	grid-template-columns: repeat(3, minmax(0, 1fr))
+	gap: 18px
+	margin: 30px 0
+	&__item
+		min-width: 0
+		padding: 24px
+		background-color: color.adjust($blockGlass, $alpha: -.04)
+		border: 1px solid color.adjust($white, $alpha: -.86)
+		border-radius: 8px
+		span
+			display: block
+			margin-bottom: 22px
+			color: $accent
+			font-size: 13px
+			font-weight: 900
+			line-height: 1
+		p
+			margin: 0
+			color: color.adjust($white, $alpha: -.12)
+			font-size: 17px
+			line-height: 1.5
+
+.case-study-tech
+	display: flex
+	flex-wrap: wrap
+	gap: 10px
+	max-width: 920px
+	span
+		display: inline-flex
+		align-items: center
+		min-height: 34px
+		padding: 7px 12px
+		color: $black
+		font-size: 13px
+		font-weight: 800
+		line-height: 1.2
+		background-color: #F4B000
+		border-radius: 999px
+
+.case-study-next
+	padding: 40px 0 110px
+	.row
+		display: block
+	&__layout
+		display: grid
+		grid-template-columns: minmax(0, .44fr) minmax(420px, .56fr)
+		gap: 42px
+		align-items: stretch
+		margin-bottom: 46px
+		padding-top: 46px
+		border-top: 1px solid color.adjust($white, $alpha: -.86)
+	&__content
+		display: flex
+		flex-direction: column
+		justify-content: center
+		min-width: 0
+		padding: 30px 0
+	&__kicker,
+	&__all,
+	&__link
+		font-size: 14px
+		font-weight: 800
+		line-height: 1.35
+		text-transform: uppercase
+	&__kicker
+		margin-bottom: 14px
+		color: $accent
+	&__title
+		margin-bottom: 16px
+		font-size: 46px
+		font-weight: 800
+		line-height: 1.08
+	&__text
+		max-width: 620px
+		margin-bottom: 24px
+		color: color.adjust($white, $alpha: -.18)
+		font-size: 19px
+		line-height: 1.55
+	&__actions
+		display: flex
+		flex-wrap: wrap
+		gap: 18px
+		align-items: center
+	&__all,
+	&__link
+		color: $white
+		text-decoration: none
+		border-bottom: 1px solid color.adjust($white, $alpha: -.62)
+		transition: color .3s ease, border-color .3s ease
+		&:hover,
+		&:focus-visible
+			color: $accent
+			border-color: $accent
+		&:focus-visible
+			outline: 2px solid color.adjust($accent, $alpha: -.16)
+			outline-offset: 4px
+	&__media
+		display: block
+		min-width: 0
+		overflow: hidden
+		background-color: color.adjust($blockGlass, $alpha: -.04)
+		border: 1px solid color.adjust($white, $alpha: -.84)
+		border-radius: 8px
+		text-decoration: none
+		img
+			width: 100%
+			height: 100%
+			min-height: 360px
+			object-fit: cover
+			object-position: center top
+			transition: transform .45s ease
+		&:hover,
+		&:focus-visible
+			img
+				transform: scale(1.04)
+		&:focus-visible
+			outline: 2px solid color.adjust($accent, $alpha: -.18)
+			outline-offset: 4px
+
+.case-study-cta
+	display: flex
+	align-items: center
+	justify-content: space-between
+	gap: 34px
+	padding: 34px
+	background-color: color.adjust($blockGlass, $alpha: -.04)
+	border: 1px solid color.adjust($white, $alpha: -.84)
+	border-radius: 8px
+	backdrop-filter: blur(9px)
+	&__kicker
+		margin-bottom: 10px
+		color: $accent
+		font-size: 14px
+		font-weight: 800
+		line-height: 1.25
+		text-transform: uppercase
+	&__title
+		margin-bottom: 12px
+		font-size: 34px
+		font-weight: 800
+		line-height: 1.14
+	&__text
+		max-width: 680px
+		color: color.adjust($white, $alpha: -.2)
+		font-size: 18px
+		line-height: 1.55
+
+@media (prefers-reduced-motion: reduce)
+	.case-study-hero__archive-link,
+	.case-study-rail__list a,
+	.case-study-next__all,
+	.case-study-next__link,
+	.case-study-next__media img
+		transition: none
+	.case-study-next__media
+		&:hover,
+		&:focus-visible
+			img
+				transform: none
+
 .redaktor
 	h1, h2, h3, h4, h5, h6 
 		&:not(:last-child)
