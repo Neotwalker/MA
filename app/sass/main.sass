@@ -84,6 +84,9 @@ body
 	*
 		font-family: $default-font
 
+body.case-study-document:not(.overflow)
+	overflow: visible
+
 input, textarea, button, select, option
 	transition: color .3s ease, background-color .3s ease, border-color .3s ease, box-shadow .3s ease, opacity .3s ease
 
@@ -6537,6 +6540,26 @@ figure
 				display: flex
 				flex-direction: column
 				gap: 7px
+			.form-field--consent.form-consent
+				display: grid
+				grid-template-columns: auto minmax(0, 1fr)
+				align-items: start
+				gap: 8px 10px
+				.form-consent__control
+					grid-column: 1
+					grid-row: 1
+					align-items: flex-start
+				.form-consent__text
+					grid-column: 2
+					grid-row: 1
+					min-width: 0
+					color: color.adjust($white, $alpha: -.18)
+					font-size: 14px
+					line-height: 1.45
+				.form-consent__toggle
+					margin-top: 1px
+				.form-field__error
+					grid-column: 1 / -1
 			.form-field__label
 				color: $white
 				font-size: 15px
@@ -6571,39 +6594,6 @@ figure
 				line-height: 1.45
 				resize: vertical
 				white-space: normal
-			.form-field--consent
-				gap: 8px
-				.wpcf7-form-control-wrap
-					position: relative
-				.custom--check
-					&:focus-visible
-						+ label
-							&::before
-								border-color: $accent
-								box-shadow: 0 0 0 3px color.adjust($accent, $alpha: -.72)
-					&[aria-invalid="true"]
-						+ label
-							&::before
-								border-color: $red
-								box-shadow: 0 0 0 2px color.adjust($red, $alpha: -.72)
-					+ label
-						align-items: flex-start
-						color: color.adjust($white, $alpha: -.18)
-						font-size: 14px
-						line-height: 1.45
-						&::before
-							margin-top: 1px
-						a
-							color: $white
-							text-decoration: underline
-							text-decoration-thickness: 1px
-							text-underline-offset: 3px
-							transition: color .2s ease, box-shadow .2s ease
-							&:hover
-								color: $accent
-							&:focus-visible
-								outline: none
-								box-shadow: 0 2px 0 $accent
 			.wpcf7-submit
 				margin: 8px auto 0
 				transition: opacity .2s ease, box-shadow .2s ease
@@ -6684,6 +6674,14 @@ figure
 		&.active
 			.modal--wrapper
 				transform: none
+	.case-study-rail
+		&__list
+			li
+				&::before
+					transition: none
+			a,
+			a span
+				transition: none
 
 .form-consent
 	display: grid
@@ -6700,9 +6698,6 @@ figure
 	font-size: 14px
 	line-height: 1.45
 	transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease
-	&:hover
-		border-color: color.adjust($white, $alpha: -.72)
-		background: color.adjust($blockHover, $alpha: -.08)
 	&.form-field--error,
 	&.brief-form__field--error
 		border-color: color.adjust($red, $alpha: -.18)
@@ -7069,10 +7064,18 @@ figure
 				transition-delay: .3s
 
 .case-study-page
+	--case-page-gutter: clamp(32px, 4.16vw, 80px)
+	--case-layout-gap: clamp(42px, 3.8vw, 74px)
+	--case-rail-width: clamp(188px, 12vw, 240px)
 	gap: 0
 	overflow: visible
 	background-image: linear-gradient(115deg, color.adjust($red, $alpha: -.94) 0%, color.adjust($black, $alpha: -1) 34%), repeating-linear-gradient(90deg, color.adjust($white, $alpha: -.975) 0 1px, transparent 1px 180px)
 	background-position: center top
+	.container
+		max-width: min(100%, 1920px)
+		.row
+			padding-left: var(--case-page-gutter)
+			padding-right: var(--case-page-gutter)
 	.breadcrumbs
 		margin-bottom: 46px
 
@@ -7091,9 +7094,9 @@ figure
 		display: block
 	&__grid
 		display: grid
-		grid-template-columns: minmax(0, .92fr) minmax(500px, 1.08fr)
-		gap: 54px
-		align-items: end
+		grid-template-columns: minmax(660px, .96fr) minmax(560px, 1.04fr)
+		gap: clamp(42px, 3vw, 54px)
+		align-items: center
 	&__content
 		min-width: 0
 		padding-bottom: 8px
@@ -7105,22 +7108,22 @@ figure
 		line-height: 1.25
 		text-transform: uppercase
 	&__title
-		max-width: 860px
+		max-width: 940px
 		margin-bottom: 24px
-		font-size: 70px
+		font-size: clamp(54px, 3.65vw, 70px)
 		font-weight: 800
 		line-height: 1.03
 	&__lead
-		max-width: 760px
+		max-width: 820px
 		margin-bottom: 30px
 		color: color.adjust($white, $alpha: -.16)
-		font-size: 21px
+		font-size: clamp(19px, 1.1vw, 21px)
 		line-height: 1.55
 	&__meta
 		display: grid
 		grid-template-columns: repeat(2, minmax(0, 1fr))
 		gap: 0
-		max-width: 760px
+		max-width: 820px
 		margin-bottom: 34px
 		border-top: 1px solid color.adjust($white, $alpha: -.84)
 		border-left: 1px solid color.adjust($white, $alpha: -.9)
@@ -7175,11 +7178,15 @@ figure
 		&::before
 			content: ''
 			position: absolute
-			inset: 16px
-			z-index: -1
+			inset: 0
+			z-index: 0
 			background-image: linear-gradient(135deg, color.adjust(#F4B000, $alpha: -.72), color.adjust(#7B4DFF, $alpha: -.8))
-			transform: translate(18px, 18px)
-			opacity: .68
+			opacity: .44
+			pointer-events: none
+		picture,
+		figcaption
+			position: relative
+			z-index: 1
 		picture,
 		img
 			display: block
@@ -7200,10 +7207,13 @@ figure
 		display: block
 	&__layout
 		display: grid
-		grid-template-columns: minmax(180px, 240px) minmax(0, 1fr)
-		gap: 74px
-		align-items: start
+		grid-template-columns: minmax(176px, var(--case-rail-width)) minmax(0, 1fr)
+		gap: var(--case-layout-gap)
+		align-items: stretch
+	&__sidebar
+		min-width: 0
 	&__content
+		align-self: start
 		min-width: 0
 
 .case-study-rail
@@ -7245,6 +7255,14 @@ figure
 				border: 2px solid $black
 				border-radius: 50%
 				box-shadow: 0 0 0 1px color.adjust($white, $alpha: -.78)
+				transition: width .2s ease, height .2s ease, transform .2s ease, background-color .2s ease, box-shadow .2s ease
+			&.is-active
+				&::before
+					width: 13px
+					height: 13px
+					background-image: $gradient
+					box-shadow: 0 0 0 3px color.adjust($accent, $alpha: -.78), 0 0 18px color.adjust($accent, $alpha: -.45)
+					transform: translate(-2px, -2px)
 		a
 			display: grid
 			grid-template-columns: 34px minmax(0, 1fr)
@@ -7263,6 +7281,13 @@ figure
 				color: color.adjust($white, $alpha: -.5)
 				font-size: 12px
 				font-weight: 800
+				transition: color .3s ease
+			&[aria-current="location"]
+				color: $white
+				background-color: color.adjust($white, $alpha: -.94)
+				box-shadow: inset 2px 0 0 $accent
+				span
+					color: $accent
 			&:hover,
 			&:focus-visible
 				color: $white
@@ -7273,8 +7298,8 @@ figure
 
 .case-chapter
 	display: grid
-	grid-template-columns: 92px minmax(0, 1fr)
-	gap: 36px
+	grid-template-columns: clamp(64px, 4.8vw, 92px) minmax(0, 1fr)
+	gap: clamp(24px, 2vw, 36px)
 	scroll-margin-top: 120px
 	padding: 72px 0
 	border-top: 1px solid color.adjust($white, $alpha: -.86)
@@ -7297,14 +7322,14 @@ figure
 		line-height: 1.25
 		text-transform: uppercase
 	&__title
-		max-width: 860px
+		max-width: 980px
 		margin-bottom: 22px
-		font-size: 48px
+		font-size: clamp(40px, 2.5vw, 48px)
 		font-weight: 800
 		line-height: 1.1
 	&__lead,
 	&__text
-		max-width: 860px
+		max-width: 980px
 		color: color.adjust($white, $alpha: -.16)
 		font-size: 20px
 		line-height: 1.6
@@ -7316,7 +7341,7 @@ figure
 
 .case-study-facts
 	display: grid
-	grid-template-columns: repeat(4, minmax(0, 1fr))
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
 	gap: 0
 	margin-top: 34px
 	padding: 0
@@ -7342,9 +7367,9 @@ figure
 
 .case-study-scope
 	display: grid
-	grid-template-columns: repeat(2, minmax(0, 1fr))
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))
 	gap: 14px
-	max-width: 900px
+	max-width: 1060px
 	padding: 0
 	list-style: none
 	li
@@ -7375,17 +7400,23 @@ figure
 
 .case-study-decision
 	display: grid
-	grid-template-columns: minmax(160px, .28fr) minmax(0, 1fr) minmax(210px, .38fr)
+	grid-template-columns: minmax(190px, .25fr) minmax(420px, 1fr) minmax(260px, .36fr)
 	gap: 26px
 	align-items: start
 	padding: 24px 0
 	border-bottom: 1px solid color.adjust($white, $alpha: -.88)
+	&:last-child
+		border-bottom: 0
+	> *
+		min-width: 0
 	h3
 		margin: 0
 		color: $white
 		font-size: 24px
 		font-weight: 800
 		line-height: 1.18
+		overflow-wrap: anywhere
+		word-break: break-word
 	p
 		margin: 0
 		color: color.adjust($white, $alpha: -.15)
@@ -7400,7 +7431,7 @@ figure
 
 .case-study-screenwalk
 	display: grid
-	grid-template-columns: minmax(280px, .42fr) minmax(0, .58fr)
+	grid-template-columns: minmax(320px, .34fr) minmax(620px, .66fr)
 	gap: 42px
 	align-items: start
 	&__note
@@ -7444,35 +7475,9 @@ figure
 			height: 2px
 			background-color: $accent
 
-.case-study-detail
-	display: grid
-	grid-template-columns: minmax(280px, .52fr) minmax(0, .48fr)
-	gap: 34px
-	align-items: center
-	margin-top: 42px
-	padding: 28px
-	background-color: color.adjust($blockGlass, $alpha: -.05)
-	border: 1px solid color.adjust($white, $alpha: -.86)
-	border-radius: 8px
-	&__media
-		margin: 0
-		img
-			width: 100%
-			border-radius: 8px
-	&__content
-		h3
-			margin-bottom: 14px
-			font-size: 30px
-			font-weight: 800
-			line-height: 1.15
-		p
-			color: color.adjust($white, $alpha: -.18)
-			font-size: 18px
-			line-height: 1.55
-
 .case-study-result
 	display: grid
-	grid-template-columns: repeat(3, minmax(0, 1fr))
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))
 	gap: 18px
 	margin: 30px 0
 	&__item
@@ -7503,13 +7508,25 @@ figure
 		display: inline-flex
 		align-items: center
 		min-height: 34px
-		padding: 7px 12px
-		color: $black
+		padding: 7px 13px 7px 26px
+		position: relative
+		color: color.adjust($white, $alpha: -.12)
 		font-size: 13px
 		font-weight: 800
 		line-height: 1.2
-		background-color: #F4B000
+		background-color: color.adjust($blockGlass, $alpha: -.08)
+		border: 1px solid color.adjust($white, $alpha: -.82)
 		border-radius: 999px
+		&::before
+			content: ''
+			position: absolute
+			left: 12px
+			top: 50%
+			width: 6px
+			height: 6px
+			background-image: $gradient
+			border-radius: 50%
+			transform: translateY(-50%)
 
 .case-study-next
 	padding: 40px 0 110px
@@ -7517,7 +7534,7 @@ figure
 		display: block
 	&__layout
 		display: grid
-		grid-template-columns: minmax(0, .44fr) minmax(420px, .56fr)
+		grid-template-columns: minmax(380px, .36fr) minmax(620px, .64fr)
 		gap: 42px
 		align-items: stretch
 		margin-bottom: 46px

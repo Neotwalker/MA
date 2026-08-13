@@ -705,6 +705,84 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
+	// Case study sticky rail active state
+	(function () {
+		const rail = document.querySelector('.case-study-rail');
+		if (!rail) return;
+
+		const links = Array.from(rail.querySelectorAll('a[href^="#"]'));
+		const entries = links
+			.map(link => {
+				const id = decodeURIComponent(link.getAttribute('href') || '').replace(/^#/, '');
+				const section = id ? document.getElementById(id) : null;
+				return section ? { id, link, item: link.closest('li'), section } : null;
+			})
+			.filter(Boolean);
+		if (!entries.length) return;
+
+		let activeId = '';
+		let activeRaf = 0;
+
+		const setActive = (id) => {
+			if (!id || activeId === id) return;
+			activeId = id;
+			entries.forEach(entry => {
+				const isActive = entry.id === id;
+				entry.item?.classList.toggle('is-active', isActive);
+				if (isActive) {
+					entry.link.setAttribute('aria-current', 'location');
+				} else {
+					entry.link.removeAttribute('aria-current');
+				}
+			});
+		};
+
+		const getActivationLine = () => {
+			const headerHeight = header?.getBoundingClientRect().height || 0;
+			return headerHeight + Math.min(window.innerHeight * 0.32, 280);
+		};
+
+		const updateActiveFromPosition = () => {
+			activeRaf = 0;
+			const activationLine = getActivationLine();
+			let current = entries[0];
+
+			for (const entry of entries) {
+				const rect = entry.section.getBoundingClientRect();
+				if (rect.top <= activationLine) {
+					current = entry;
+				}
+			}
+
+			setActive(current.id);
+		};
+
+		const queueActiveUpdate = () => {
+			if (activeRaf) return;
+			activeRaf = window.requestAnimationFrame(updateActiveFromPosition);
+		};
+
+		if ('IntersectionObserver' in window) {
+			const observer = new IntersectionObserver(queueActiveUpdate, {
+				root: null,
+				rootMargin: '-20% 0px -55% 0px',
+				threshold: [0, 0.1, 0.35, 0.65],
+			});
+			entries.forEach(entry => observer.observe(entry.section));
+		}
+
+		links.forEach(link => {
+			link.addEventListener('click', () => {
+				const id = decodeURIComponent(link.getAttribute('href') || '').replace(/^#/, '');
+				setActive(id);
+				window.setTimeout(queueActiveUpdate, 450);
+			});
+		});
+		window.addEventListener('scroll', queueActiveUpdate, { passive: true });
+		window.addEventListener('resize', queueActiveUpdate);
+		queueActiveUpdate();
+	}());
+
 	function closeServicesDropdown() {
 		if (!servicesToggle || !servicesMenu) return;
 		servicesToggle.setAttribute('aria-expanded', 'false');
