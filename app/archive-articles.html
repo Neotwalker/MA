@@ -5,9 +5,15 @@
 
 	<meta charset="utf-8">
 
-	<title>Блог — Марат Абзалов</title>
-	<meta name="description" content="Материалы о дизайне, разработке сайтов, интерфейсах и развитии digital-проектов.">
-	<meta name="keywords" content="разработка сайтов, создание сайтов Челябинск, продвижение сайтов в Челябинске, создание сайтов Москва, продвижение сайтов в Москве">
+	<title>Статьи о сайтах, SEO и продвижении - Марат Абзалов</title>
+	<meta name="description" content="Статьи о разработке сайтов, SEO, контенте, интерфейсах, интернет-магазинах и развитии digital-проектов.">
+	<link rel="canonical" href="https://limitlesscreators.ru/articles/">
+	<meta property="og:title" content="Статьи о сайтах, SEO и продвижении - Марат Абзалов">
+	<meta property="og:description" content="Статьи о разработке сайтов, SEO, контенте, интерфейсах, интернет-магазинах и развитии digital-проектов.">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://limitlesscreators.ru/articles/">
+	<meta property="og:site_name" content="Марат Абзалов">
+	<meta property="og:locale" content="ru_RU">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
@@ -25,61 +31,42 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="#070F24">
 
 	<link rel="stylesheet" href="css/main.min.css">
-
-	<style>
-		.main--header{
-			background-image: url(img/circle-bg.svg);
-		}
-		.main--header::before{
-			background-image: url(img/line.svg)
-		}
-		.main--services:before{
-			background-image: url(img/line.svg);
-		}
-		.main--services::after{
-			background-image: url(img/line-left.svg);
-		}
-		.main--experts:before{
-			background-image: url(img/line-horizontal.svg);
-		}
-		.main--projects:before{
-			background-image: url(img/line.svg)
-		}
-		.main--faq:after {
-			background-image: url(img/line-left.svg);
-		}
-		@media (max-width: 992px) {
-			.main--header {
-				background-image: url(img/circle-bg-tab.svg);
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CollectionPage",
+				"@id": "https://limitlesscreators.ru/articles/#collection",
+				"url": "https://limitlesscreators.ru/articles/",
+				"name": "Статьи о сайтах, SEO и продвижении",
+				"description": "Статьи о разработке сайтов, SEO, контенте, интерфейсах, интернет-магазинах и развитии digital-проектов.",
+				"inLanguage": "ru-RU"
+			},
+			{
+				"@type": "BreadcrumbList",
+				"@id": "https://limitlesscreators.ru/articles/#breadcrumb",
+				"itemListElement": [
+					{
+						"@type": "ListItem",
+						"position": 1,
+						"name": "Главная",
+						"item": "https://limitlesscreators.ru/"
+					},
+					{
+						"@type": "ListItem",
+						"position": 2,
+						"name": "Статьи",
+						"item": "https://limitlesscreators.ru/articles/"
+					}
+				]
 			}
-		}
-		@media (max-width: 480px) {
-			.main--header {
-				background-image: url(img/circle-bg-mob.svg);
-			}
-			.main--services::before{
-				background-image: url(img/line-mob.svg);
-			}
-			.main--services:after{
-				background-image: url(img/line-left-mob.svg);
-			}
-			.main--projects:before{
-				background-image: url(img/line-mob.svg);
-			}
-			.main--faq:after{
-				background-image: url(img/line-left-mob.svg);
-			}
-			.main--contacts:after{
-				background-image: url(img/line-mob.svg)
-			}
-			.main--brief::before{
-				background-image: url(img/line-mob.svg)
-			}
-		}
-	</style>
+		]
+	}
+	</script>
 </head>
 
-<body class="archive">
+<body class="archive archive-articles-page">
 	<header class="header">
 		<div class="container">
 			<div class="row">
@@ -264,106 +251,245 @@
 			</div>
 		</nav>
 	</header>
-	<main class="main archive--articles">
-		<section class="section main--articles">
+	<main class="main articles-archive">
+		<section class="section articles-archive__hero" aria-labelledby="articles-archive-title">
 			<div class="container">
 				<div class="row">
-					<div class="main--articles__title">
-						<h1 class="h2">Блог</h1>
+					<nav class="breadcrumbs" aria-label="Хлебные крошки">
+						<span>
+							<span><a href="index.html">Главная</a></span>
+							-
+							<span class="breadcrumb_last">Статьи</span>
+						</span>
+					</nav>
+					<div class="articles-archive__hero-grid">
+						<div class="articles-archive__hero-content">
+							<p class="articles-archive__eyebrow">Блог / заметки</p>
+							<h1 class="articles-archive__title h1" id="articles-archive-title">Статьи о сайтах, SEO и продвижении</h1>
+							<p class="articles-archive__lead">Разборы о структуре сайта, поисковом продвижении, контенте, интерфейсах, интернет-магазинах и связке каналов вокруг digital-проекта.</p>
+						</div>
+						<aside class="articles-archive__summary" aria-label="Темы раздела">
+							<p class="articles-archive__summary-title">В разделе</p>
+							<ul class="articles-archive__topics">
+								<li>SEO</li>
+								<li>контент</li>
+								<li>интерфейсы</li>
+								<li>интернет-магазины</li>
+								<li>автоматизация</li>
+							</ul>
+							<p class="articles-archive__summary-note">15 материалов из текущего архива. Без дополнительных фильтров: рубрики в источнике не заданы, все статьи доступны на одной странице.</p>
+						</aside>
 					</div>
-					<div class="main--articles__wrapper">
-						<div class="main--articles__item">
-							<h2 class="h3">Почему дизайн решает?</h2>
-							<div class="main--articles__dates">
-								<div class="time">
-									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M9.99517 20C15.4761 20 20 15.4739 20 10C20 4.52611 15.4664 0 9.9855 0C4.51426 0 0 4.52611 0 10C0 15.4739 4.52392 20 9.99517 20ZM9.99517 18.0077C5.55824 18.0077 2.01063 14.4391 2.01063 10C2.01063 5.56093 5.55824 2.00193 9.9855 2.00193C14.4224 2.00193 17.9894 5.56093 17.999 10C18.0087 14.4391 14.4321 18.0077 9.99517 18.0077ZM5.12325 11.2186H9.9855C10.4302 11.2186 10.7685 10.8801 10.7685 10.4449V4.11992C10.7685 3.68472 10.4302 3.34623 9.9855 3.34623C9.56017 3.34623 9.22185 3.68472 9.22185 4.11992V9.67118H5.12325C4.68825 9.67118 4.34993 10.0097 4.34993 10.4449C4.34993 10.8801 4.68825 11.2186 5.12325 11.2186Z"
-											fill="white" />
-									</svg>
-									<span>5 минут</span>
-								</div>
-								<div class="time--when">
-									<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M3.23183 18H16.7584C18.89 18 20 16.9213 20 14.8604V3.13965C20 1.07865 18.89 0 16.7584 0H3.23183C1.11002 0 0 1.06902 0 3.13965V14.8604C0 16.9213 1.11002 18 3.23183 18ZM3.222 16.0835C2.40668 16.0835 1.95481 15.6693 1.95481 14.8218V5.96148C1.95481 5.11396 2.40668 4.69984 3.222 4.69984H16.7682C17.5835 4.69984 18.0354 5.11396 18.0354 5.96148V14.8218C18.0354 15.6693 17.5835 16.0835 16.7682 16.0835H3.222ZM8.10413 8.02247H8.68369C9.03733 8.02247 9.15521 7.91653 9.15521 7.57945V7.01124C9.15521 6.66453 9.03733 6.55859 8.68369 6.55859H8.10413C7.75049 6.55859 7.63261 6.66453 7.63261 7.01124V7.57945C7.63261 7.91653 7.75049 8.02247 8.10413 8.02247ZM11.3163 8.02247H11.8959C12.2397 8.02247 12.3576 7.91653 12.3576 7.57945V7.01124C12.3576 6.66453 12.2397 6.55859 11.8959 6.55859H11.3163C10.9627 6.55859 10.8448 6.66453 10.8448 7.01124V7.57945C10.8448 7.91653 10.9627 8.02247 11.3163 8.02247ZM14.5187 8.02247H15.0982C15.4519 8.02247 15.5697 7.91653 15.5697 7.57945V7.01124C15.5697 6.66453 15.4519 6.55859 15.0982 6.55859H14.5187C14.1749 6.55859 14.057 6.66453 14.057 7.01124V7.57945C14.057 7.91653 14.1749 8.02247 14.5187 8.02247ZM4.90177 11.1236H5.47151C5.82515 11.1236 5.94303 11.0177 5.94303 10.6709V10.1027C5.94303 9.76565 5.82515 9.65971 5.47151 9.65971H4.90177C4.54813 9.65971 4.43026 9.76565 4.43026 10.1027V10.6709C4.43026 11.0177 4.54813 11.1236 4.90177 11.1236ZM8.10413 11.1236H8.68369C9.03733 11.1236 9.15521 11.0177 9.15521 10.6709V10.1027C9.15521 9.76565 9.03733 9.65971 8.68369 9.65971H8.10413C7.75049 9.65971 7.63261 9.76565 7.63261 10.1027V10.6709C7.63261 11.0177 7.75049 11.1236 8.10413 11.1236ZM11.3163 11.1236H11.8959C12.2397 11.1236 12.3576 11.0177 12.3576 10.6709V10.1027C12.3576 9.76565 12.2397 9.65971 11.8959 9.65971H11.3163C10.9627 9.65971 10.8448 9.76565 10.8448 10.1027V10.6709C10.8448 11.0177 10.9627 11.1236 11.3163 11.1236ZM14.5187 11.1236H15.0982C15.4519 11.1236 15.5697 11.0177 15.5697 10.6709V10.1027C15.5697 9.76565 15.4519 9.65971 15.0982 9.65971H14.5187C14.1749 9.65971 14.057 9.76565 14.057 10.1027V10.6709C14.057 11.0177 14.1749 11.1236 14.5187 11.1236ZM4.90177 14.2151H5.47151C5.82515 14.2151 5.94303 14.1091 5.94303 13.7721V13.2039C5.94303 12.8571 5.82515 12.7512 5.47151 12.7512H4.90177C4.54813 12.7512 4.43026 12.8571 4.43026 13.2039V13.7721C4.43026 14.1091 4.54813 14.2151 4.90177 14.2151ZM8.10413 14.2151H8.68369C9.03733 14.2151 9.15521 14.1091 9.15521 13.7721V13.2039C9.15521 12.8571 9.03733 12.7512 8.68369 12.7512H8.10413C7.75049 12.7512 7.63261 12.8571 7.63261 13.2039V13.7721C7.63261 14.1091 7.75049 14.2151 8.10413 14.2151ZM11.3163 14.2151H11.8959C12.2397 14.2151 12.3576 14.1091 12.3576 13.7721V13.2039C12.3576 12.8571 12.2397 12.7512 11.8959 12.7512H11.3163C10.9627 12.7512 10.8448 12.8571 10.8448 13.2039V13.7721C10.8448 14.1091 10.9627 14.2151 11.3163 14.2151Z" fill="white"/>
-									</svg>
-									<span>02.10.2024</span>
-								</div>
-							</div>
-							<p>
-								В современном мире, где конкуренция за внимание потребителя достигла пика, дизайн становится мощным инструментом для
-								успеха бренда ....
-							</p>
-							<a href="single-articles.html" class="button button--secondary button--white">Читать полностью</a>
+				</div>
+			</div>
+		</section>
+		<section class="section articles-featured" aria-labelledby="articles-featured-title">
+			<div class="container">
+				<div class="row">
+					<div class="articles-section-head">
+						<p class="articles-section-head__eyebrow">С чего начать</p>
+						<h2 class="articles-section-head__title h2" id="articles-featured-title">Ведущий материал</h2>
+					</div>
+					<article class="articles-featured__article">
+						<a class="articles-featured__link" href="https://limitlesscreators.ru/articles/osnovy-seo-prodvizheniya/">
+							<span class="articles-featured__media">
+								<img src="img/articles/seo-prodvizhenie-saita-2025.png" alt="Иллюстрация к статье об основах SEO-продвижения сайта" width="1024" height="1024" decoding="async">
+							</span>
+							<span class="articles-featured__body">
+								<span class="articles-featured__label">Опорный материал</span>
+								<span class="articles-featured__meta">
+									<time datetime="2025-05-29">29.05.2025</time>
+									<span>4 минуты</span>
+								</span>
+								<span class="articles-featured__title h2">Основы SEO-продвижения: пошаговое руководство для бизнеса</span>
+								<span class="articles-featured__text">Базовый материал о том, как поисковые системы находят страницы, какие задачи решает оптимизация и почему продвижение начинается со структуры, а не с набора приёмов.</span>
+								<span class="articles-featured__read">Перейти к статье <span aria-hidden="true">→</span></span>
+							</span>
+						</a>
+					</article>
+				</div>
+			</div>
+		</section>
+		<section class="section articles-index" aria-labelledby="articles-index-title">
+			<div class="container">
+				<div class="row">
+					<div class="articles-section-head articles-section-head--index">
+						<p class="articles-section-head__eyebrow">Индекс</p>
+						<h2 class="articles-section-head__title h2" id="articles-index-title">Все материалы</h2>
+						<p class="articles-section-head__text">Нумерация помогает быстро просканировать раздел; статьи остаются обычными ссылками и доступны без JavaScript.</p>
+					</div>
+					<div class="articles-index__list">
+						<article class="articles-index__item">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/kak-prodvigat-tovary-i-uslugi-v-internete/">
+								<span class="articles-index__number" aria-hidden="true">01</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2026-07-10">10.07.2026</time><span>6 минут</span></span>
+									<span class="articles-index__title">Как продвигать товары и услуги в интернете: чем отличаются стратегии</span>
+									<span class="articles-index__excerpt">Товар и услуга требуют разных сценариев продвижения: у товара важны цена, наличие и доставка, у услуги - доверие, процесс, примеры и ограничения.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item articles-index__item--wide">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/kontent-marketing-dlya-biznesa/">
+								<span class="articles-index__number" aria-hidden="true">02</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2026-07-03">03.07.2026</time><span>9 минут</span></span>
+									<span class="articles-index__title">Контент-маркетинг для бизнеса: как статьи приводят трафик и заявки</span>
+									<span class="articles-index__excerpt">Материал связывает поисковый спрос, статьи, внутренние ссылки, страницы услуг и аналитику, чтобы блог работал как часть системы, а не отдельная лента.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/prodvizhenie-biznesa-v-internete/">
+								<span class="articles-index__number" aria-hidden="true">03</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2026-06-26">26.06.2026</time><span>10 минут</span></span>
+									<span class="articles-index__title">Продвижение бизнеса в интернете: как выбрать каналы и составить план</span>
+									<span class="articles-index__excerpt">SEO, реклама, карты, соцсети и контент работают по-разному. Статья помогает сопоставить канал с тем, как люди ищут продукт и принимают решение.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item articles-index__item--visual">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/kak-svyazat-sajt-reklamu-i-socseti/">
+								<span class="articles-index__number" aria-hidden="true">04</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2025-12-19">19.12.2025</time><span>5 минут</span></span>
+									<span class="articles-index__title">Как объединить сайт, рекламу и соцсети в единую систему продаж в 2026 году</span>
+									<span class="articles-index__excerpt">Разбор связки, в которой сайт, рекламные площадки и соцсети не спорят за внимание, а поддерживают один маршрут пользователя.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/chto-rabotaet-v-seo/">
+								<span class="articles-index__number" aria-hidden="true">05</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2025-12-19">19.12.2025</time><span>13 минут</span></span>
+									<span class="articles-index__title">SEO в 2026 году: что работает, а какие методы больше не дают устойчивого результата</span>
+									<span class="articles-index__excerpt">Материал о том, почему SEO остается системной работой со структурой, контентом, технической доступностью и качеством коммерческих страниц.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item articles-index__item--wide">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/ux-protiv-ui/">
+								<span class="articles-index__number" aria-hidden="true">06</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2025-12-19">19.12.2025</time><span>14 минут</span></span>
+									<span class="articles-index__title">UX против UI — в чём разница и почему это важно для бизнеса</span>
+									<span class="articles-index__excerpt">UX отвечает за сценарии и структуру, UI - за визуальное оформление. Материал помогает проверить оба уровня до старта разработки.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/7-oshibok-pri-zakaze-sajta/">
+								<span class="articles-index__number" aria-hidden="true">07</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2025-12-19">19.12.2025</time><span>21 минута</span></span>
+									<span class="articles-index__title">7 ошибок при заказе сайта — как не потерять деньги и время</span>
+									<span class="articles-index__excerpt">Разбор типичных решений, из-за которых сайт получается красивым, но не помогает продаже, коммуникации с клиентами и продвижению бренда.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/marketplejs-ili-internet-magazin-chto-luchshe-dlya-vashego-biznesa/">
+								<span class="articles-index__number" aria-hidden="true">08</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2025-12-19">19.12.2025</time><span>9 минут</span></span>
+									<span class="articles-index__title">Маркетплейс или интернет-магазин: что выбрать бизнесу</span>
+									<span class="articles-index__excerpt">Сравнение каналов с разной степенью контроля над брендом, клиентской базой, расходами, рисками и экономикой продаж.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/chto-takoe-crm-i-erp/">
+								<span class="articles-index__number" aria-hidden="true">09</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2025-12-19">19.12.2025</time><span>10 минут</span></span>
+									<span class="articles-index__title">CRM и ERP: как автоматизация процессов спасает бизнес?</span>
+									<span class="articles-index__excerpt">Материал о том, где таблицы и ручная обработка начинают мешать заказам, учету и коммуникации с клиентами.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item articles-index__item--wide">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/kak-internet-magazin-mozhet-uvelichit-vashi-prodazhi/">
+								<span class="articles-index__number" aria-hidden="true">10</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2025-12-19">19.12.2025</time><span>11 минут</span></span>
+									<span class="articles-index__title">Как увеличить продажи интернет-магазина: 9 точек роста</span>
+									<span class="articles-index__excerpt">В материале разобраны точки потерь в воронке: каталог, карточки товаров, оформление заказа, средний чек и повторные покупки.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/pochemu-lending-idealnyj-start/">
+								<span class="articles-index__number" aria-hidden="true">11</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2025-12-19">19.12.2025</time><span>10 минут</span></span>
+									<span class="articles-index__title">Лендинг для нового бизнеса: когда он подходит и чем отличается от многостраничного сайта</span>
+									<span class="articles-index__excerpt">Лендинг помогает проверить предложение и запустить рекламу, но не заменяет многостраничный сайт, когда нужны разделы, доверие и SEO-структура.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/kak-povysit-konversiyu-sajta-za-schyot-dizajna/">
+								<span class="articles-index__number" aria-hidden="true">12</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2025-05-25">25.05.2025</time><span>3 минуты</span></span>
+									<span class="articles-index__title">Как повысить конверсию сайта за счёт дизайна?</span>
+									<span class="articles-index__excerpt">Короткий материал о том, как удобство, визуальная логика и понятный путь пользователя влияют на целевые действия на сайте.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/top-5-trendov-veb-dizajna-2025-goda-kak-sdelat-sajt-sovremennym/">
+								<span class="articles-index__number" aria-hidden="true">13</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2025-05-19">19.05.2025</time><span>3 минуты</span></span>
+									<span class="articles-index__title">ТОП-5 трендов веб-дизайна 2025 года: как сделать сайт современным</span>
+									<span class="articles-index__excerpt">Обзор визуальных приёмов 2025 года через призму сайта, который должен выглядеть современно и оставаться понятным для пользователя.</span>
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+						<article class="articles-index__item articles-index__item--visual">
+							<a class="articles-index__link" href="https://limitlesscreators.ru/articles/pochemu-dizajn-reshaet/">
+								<span class="articles-index__number" aria-hidden="true">14</span>
+								<span class="articles-index__content">
+									<span class="articles-index__meta"><time datetime="2025-05-17">17.05.2025</time><span>3 минуты</span></span>
+									<span class="articles-index__title">Почему веб-дизайн решает</span>
+									<span class="articles-index__excerpt">Веб-дизайн здесь рассматривается не как украшение, а как способ удержать внимание, объяснить пользу и довести человека до следующего шага.</span>
+								</span>
+								<span class="articles-index__media" aria-hidden="true">
+									<img src="img/articles/image.png" alt="" width="353" height="220" loading="lazy" decoding="async">
+								</span>
+								<span class="articles-index__arrow" aria-hidden="true">→</span>
+							</a>
+						</article>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="section articles-archive-cta" aria-labelledby="articles-archive-cta-title">
+			<div class="container">
+				<div class="row">
+					<div class="articles-archive-cta__layout">
+						<div class="articles-archive-cta__content">
+							<p class="articles-archive-cta__eyebrow">Практический следующий шаг</p>
+							<h2 class="articles-archive-cta__title h2" id="articles-archive-cta-title">Есть задача по сайту или продвижению?</h2>
+							<p class="articles-archive-cta__text">Опишите проект в брифе: так проще понять контекст, текущее состояние сайта, материалы и удобный формат связи.</p>
 						</div>
-						<div class="main--articles__item">
-							<h2 class="h3">Почему дизайн решает?</h2>
-							<div class="main--articles__dates">
-								<div class="time">
-									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M9.99517 20C15.4761 20 20 15.4739 20 10C20 4.52611 15.4664 0 9.9855 0C4.51426 0 0 4.52611 0 10C0 15.4739 4.52392 20 9.99517 20ZM9.99517 18.0077C5.55824 18.0077 2.01063 14.4391 2.01063 10C2.01063 5.56093 5.55824 2.00193 9.9855 2.00193C14.4224 2.00193 17.9894 5.56093 17.999 10C18.0087 14.4391 14.4321 18.0077 9.99517 18.0077ZM5.12325 11.2186H9.9855C10.4302 11.2186 10.7685 10.8801 10.7685 10.4449V4.11992C10.7685 3.68472 10.4302 3.34623 9.9855 3.34623C9.56017 3.34623 9.22185 3.68472 9.22185 4.11992V9.67118H5.12325C4.68825 9.67118 4.34993 10.0097 4.34993 10.4449C4.34993 10.8801 4.68825 11.2186 5.12325 11.2186Z"
-											fill="white" />
-									</svg>
-									<span>5 минут</span>
-								</div>
-								<div class="time--when">
-									<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M3.23183 18H16.7584C18.89 18 20 16.9213 20 14.8604V3.13965C20 1.07865 18.89 0 16.7584 0H3.23183C1.11002 0 0 1.06902 0 3.13965V14.8604C0 16.9213 1.11002 18 3.23183 18ZM3.222 16.0835C2.40668 16.0835 1.95481 15.6693 1.95481 14.8218V5.96148C1.95481 5.11396 2.40668 4.69984 3.222 4.69984H16.7682C17.5835 4.69984 18.0354 5.11396 18.0354 5.96148V14.8218C18.0354 15.6693 17.5835 16.0835 16.7682 16.0835H3.222ZM8.10413 8.02247H8.68369C9.03733 8.02247 9.15521 7.91653 9.15521 7.57945V7.01124C9.15521 6.66453 9.03733 6.55859 8.68369 6.55859H8.10413C7.75049 6.55859 7.63261 6.66453 7.63261 7.01124V7.57945C7.63261 7.91653 7.75049 8.02247 8.10413 8.02247ZM11.3163 8.02247H11.8959C12.2397 8.02247 12.3576 7.91653 12.3576 7.57945V7.01124C12.3576 6.66453 12.2397 6.55859 11.8959 6.55859H11.3163C10.9627 6.55859 10.8448 6.66453 10.8448 7.01124V7.57945C10.8448 7.91653 10.9627 8.02247 11.3163 8.02247ZM14.5187 8.02247H15.0982C15.4519 8.02247 15.5697 7.91653 15.5697 7.57945V7.01124C15.5697 6.66453 15.4519 6.55859 15.0982 6.55859H14.5187C14.1749 6.55859 14.057 6.66453 14.057 7.01124V7.57945C14.057 7.91653 14.1749 8.02247 14.5187 8.02247ZM4.90177 11.1236H5.47151C5.82515 11.1236 5.94303 11.0177 5.94303 10.6709V10.1027C5.94303 9.76565 5.82515 9.65971 5.47151 9.65971H4.90177C4.54813 9.65971 4.43026 9.76565 4.43026 10.1027V10.6709C4.43026 11.0177 4.54813 11.1236 4.90177 11.1236ZM8.10413 11.1236H8.68369C9.03733 11.1236 9.15521 11.0177 9.15521 10.6709V10.1027C9.15521 9.76565 9.03733 9.65971 8.68369 9.65971H8.10413C7.75049 9.65971 7.63261 9.76565 7.63261 10.1027V10.6709C7.63261 11.0177 7.75049 11.1236 8.10413 11.1236ZM11.3163 11.1236H11.8959C12.2397 11.1236 12.3576 11.0177 12.3576 10.6709V10.1027C12.3576 9.76565 12.2397 9.65971 11.8959 9.65971H11.3163C10.9627 9.65971 10.8448 9.76565 10.8448 10.1027V10.6709C10.8448 11.0177 10.9627 11.1236 11.3163 11.1236ZM14.5187 11.1236H15.0982C15.4519 11.1236 15.5697 11.0177 15.5697 10.6709V10.1027C15.5697 9.76565 15.4519 9.65971 15.0982 9.65971H14.5187C14.1749 9.65971 14.057 9.76565 14.057 10.1027V10.6709C14.057 11.0177 14.1749 11.1236 14.5187 11.1236ZM4.90177 14.2151H5.47151C5.82515 14.2151 5.94303 14.1091 5.94303 13.7721V13.2039C5.94303 12.8571 5.82515 12.7512 5.47151 12.7512H4.90177C4.54813 12.7512 4.43026 12.8571 4.43026 13.2039V13.7721C4.43026 14.1091 4.54813 14.2151 4.90177 14.2151ZM8.10413 14.2151H8.68369C9.03733 14.2151 9.15521 14.1091 9.15521 13.7721V13.2039C9.15521 12.8571 9.03733 12.7512 8.68369 12.7512H8.10413C7.75049 12.7512 7.63261 12.8571 7.63261 13.2039V13.7721C7.63261 14.1091 7.75049 14.2151 8.10413 14.2151ZM11.3163 14.2151H11.8959C12.2397 14.2151 12.3576 14.1091 12.3576 13.7721V13.2039C12.3576 12.8571 12.2397 12.7512 11.8959 12.7512H11.3163C10.9627 12.7512 10.8448 12.8571 10.8448 13.2039V13.7721C10.8448 14.1091 10.9627 14.2151 11.3163 14.2151Z" fill="white"/>
-									</svg>
-									<span>02.10.2024</span>
-								</div>
-							</div>
-							<p>
-								В современном мире, где конкуренция за внимание потребителя достигла пика, дизайн становится мощным инструментом для
-								успеха бренда ....
-							</p>
-							<a href="single-articles.html" class="button button--secondary button--white">Читать полностью</a>
-						</div>
-						<div class="main--articles__item">
-							<h2 class="h3">Почему дизайн решает?</h2>
-							<div class="main--articles__dates">
-								<div class="time">
-									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M9.99517 20C15.4761 20 20 15.4739 20 10C20 4.52611 15.4664 0 9.9855 0C4.51426 0 0 4.52611 0 10C0 15.4739 4.52392 20 9.99517 20ZM9.99517 18.0077C5.55824 18.0077 2.01063 14.4391 2.01063 10C2.01063 5.56093 5.55824 2.00193 9.9855 2.00193C14.4224 2.00193 17.9894 5.56093 17.999 10C18.0087 14.4391 14.4321 18.0077 9.99517 18.0077ZM5.12325 11.2186H9.9855C10.4302 11.2186 10.7685 10.8801 10.7685 10.4449V4.11992C10.7685 3.68472 10.4302 3.34623 9.9855 3.34623C9.56017 3.34623 9.22185 3.68472 9.22185 4.11992V9.67118H5.12325C4.68825 9.67118 4.34993 10.0097 4.34993 10.4449C4.34993 10.8801 4.68825 11.2186 5.12325 11.2186Z"
-											fill="white" />
-									</svg>
-									<span>5 минут</span>
-								</div>
-								<div class="time--when">
-									<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M3.23183 18H16.7584C18.89 18 20 16.9213 20 14.8604V3.13965C20 1.07865 18.89 0 16.7584 0H3.23183C1.11002 0 0 1.06902 0 3.13965V14.8604C0 16.9213 1.11002 18 3.23183 18ZM3.222 16.0835C2.40668 16.0835 1.95481 15.6693 1.95481 14.8218V5.96148C1.95481 5.11396 2.40668 4.69984 3.222 4.69984H16.7682C17.5835 4.69984 18.0354 5.11396 18.0354 5.96148V14.8218C18.0354 15.6693 17.5835 16.0835 16.7682 16.0835H3.222ZM8.10413 8.02247H8.68369C9.03733 8.02247 9.15521 7.91653 9.15521 7.57945V7.01124C9.15521 6.66453 9.03733 6.55859 8.68369 6.55859H8.10413C7.75049 6.55859 7.63261 6.66453 7.63261 7.01124V7.57945C7.63261 7.91653 7.75049 8.02247 8.10413 8.02247ZM11.3163 8.02247H11.8959C12.2397 8.02247 12.3576 7.91653 12.3576 7.57945V7.01124C12.3576 6.66453 12.2397 6.55859 11.8959 6.55859H11.3163C10.9627 6.55859 10.8448 6.66453 10.8448 7.01124V7.57945C10.8448 7.91653 10.9627 8.02247 11.3163 8.02247ZM14.5187 8.02247H15.0982C15.4519 8.02247 15.5697 7.91653 15.5697 7.57945V7.01124C15.5697 6.66453 15.4519 6.55859 15.0982 6.55859H14.5187C14.1749 6.55859 14.057 6.66453 14.057 7.01124V7.57945C14.057 7.91653 14.1749 8.02247 14.5187 8.02247ZM4.90177 11.1236H5.47151C5.82515 11.1236 5.94303 11.0177 5.94303 10.6709V10.1027C5.94303 9.76565 5.82515 9.65971 5.47151 9.65971H4.90177C4.54813 9.65971 4.43026 9.76565 4.43026 10.1027V10.6709C4.43026 11.0177 4.54813 11.1236 4.90177 11.1236ZM8.10413 11.1236H8.68369C9.03733 11.1236 9.15521 11.0177 9.15521 10.6709V10.1027C9.15521 9.76565 9.03733 9.65971 8.68369 9.65971H8.10413C7.75049 9.65971 7.63261 9.76565 7.63261 10.1027V10.6709C7.63261 11.0177 7.75049 11.1236 8.10413 11.1236ZM11.3163 11.1236H11.8959C12.2397 11.1236 12.3576 11.0177 12.3576 10.6709V10.1027C12.3576 9.76565 12.2397 9.65971 11.8959 9.65971H11.3163C10.9627 9.65971 10.8448 9.76565 10.8448 10.1027V10.6709C10.8448 11.0177 10.9627 11.1236 11.3163 11.1236ZM14.5187 11.1236H15.0982C15.4519 11.1236 15.5697 11.0177 15.5697 10.6709V10.1027C15.5697 9.76565 15.4519 9.65971 15.0982 9.65971H14.5187C14.1749 9.65971 14.057 9.76565 14.057 10.1027V10.6709C14.057 11.0177 14.1749 11.1236 14.5187 11.1236ZM4.90177 14.2151H5.47151C5.82515 14.2151 5.94303 14.1091 5.94303 13.7721V13.2039C5.94303 12.8571 5.82515 12.7512 5.47151 12.7512H4.90177C4.54813 12.7512 4.43026 12.8571 4.43026 13.2039V13.7721C4.43026 14.1091 4.54813 14.2151 4.90177 14.2151ZM8.10413 14.2151H8.68369C9.03733 14.2151 9.15521 14.1091 9.15521 13.7721V13.2039C9.15521 12.8571 9.03733 12.7512 8.68369 12.7512H8.10413C7.75049 12.7512 7.63261 12.8571 7.63261 13.2039V13.7721C7.63261 14.1091 7.75049 14.2151 8.10413 14.2151ZM11.3163 14.2151H11.8959C12.2397 14.2151 12.3576 14.1091 12.3576 13.7721V13.2039C12.3576 12.8571 12.2397 12.7512 11.8959 12.7512H11.3163C10.9627 12.7512 10.8448 12.8571 10.8448 13.2039V13.7721C10.8448 14.1091 10.9627 14.2151 11.3163 14.2151Z" fill="white"/>
-									</svg>
-									<span>02.10.2024</span>
-								</div>
-							</div>
-							<p>
-								В современном мире, где конкуренция за внимание потребителя достигла пика, дизайн становится мощным инструментом для
-								успеха бренда ....
-							</p>
-							<a href="single-articles.html" class="button button--secondary button--white">Читать полностью</a>
-						</div>
-						<div class="main--articles__item">
-							<h2 class="h3">Почему дизайн решает?</h2>
-							<div class="main--articles__dates">
-								<div class="time">
-									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M9.99517 20C15.4761 20 20 15.4739 20 10C20 4.52611 15.4664 0 9.9855 0C4.51426 0 0 4.52611 0 10C0 15.4739 4.52392 20 9.99517 20ZM9.99517 18.0077C5.55824 18.0077 2.01063 14.4391 2.01063 10C2.01063 5.56093 5.55824 2.00193 9.9855 2.00193C14.4224 2.00193 17.9894 5.56093 17.999 10C18.0087 14.4391 14.4321 18.0077 9.99517 18.0077ZM5.12325 11.2186H9.9855C10.4302 11.2186 10.7685 10.8801 10.7685 10.4449V4.11992C10.7685 3.68472 10.4302 3.34623 9.9855 3.34623C9.56017 3.34623 9.22185 3.68472 9.22185 4.11992V9.67118H5.12325C4.68825 9.67118 4.34993 10.0097 4.34993 10.4449C4.34993 10.8801 4.68825 11.2186 5.12325 11.2186Z"
-											fill="white" />
-									</svg>
-									<span>5 минут</span>
-								</div>
-								<div class="time--when">
-									<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M3.23183 18H16.7584C18.89 18 20 16.9213 20 14.8604V3.13965C20 1.07865 18.89 0 16.7584 0H3.23183C1.11002 0 0 1.06902 0 3.13965V14.8604C0 16.9213 1.11002 18 3.23183 18ZM3.222 16.0835C2.40668 16.0835 1.95481 15.6693 1.95481 14.8218V5.96148C1.95481 5.11396 2.40668 4.69984 3.222 4.69984H16.7682C17.5835 4.69984 18.0354 5.11396 18.0354 5.96148V14.8218C18.0354 15.6693 17.5835 16.0835 16.7682 16.0835H3.222ZM8.10413 8.02247H8.68369C9.03733 8.02247 9.15521 7.91653 9.15521 7.57945V7.01124C9.15521 6.66453 9.03733 6.55859 8.68369 6.55859H8.10413C7.75049 6.55859 7.63261 6.66453 7.63261 7.01124V7.57945C7.63261 7.91653 7.75049 8.02247 8.10413 8.02247ZM11.3163 8.02247H11.8959C12.2397 8.02247 12.3576 7.91653 12.3576 7.57945V7.01124C12.3576 6.66453 12.2397 6.55859 11.8959 6.55859H11.3163C10.9627 6.55859 10.8448 6.66453 10.8448 7.01124V7.57945C10.8448 7.91653 10.9627 8.02247 11.3163 8.02247ZM14.5187 8.02247H15.0982C15.4519 8.02247 15.5697 7.91653 15.5697 7.57945V7.01124C15.5697 6.66453 15.4519 6.55859 15.0982 6.55859H14.5187C14.1749 6.55859 14.057 6.66453 14.057 7.01124V7.57945C14.057 7.91653 14.1749 8.02247 14.5187 8.02247ZM4.90177 11.1236H5.47151C5.82515 11.1236 5.94303 11.0177 5.94303 10.6709V10.1027C5.94303 9.76565 5.82515 9.65971 5.47151 9.65971H4.90177C4.54813 9.65971 4.43026 9.76565 4.43026 10.1027V10.6709C4.43026 11.0177 4.54813 11.1236 4.90177 11.1236ZM8.10413 11.1236H8.68369C9.03733 11.1236 9.15521 11.0177 9.15521 10.6709V10.1027C9.15521 9.76565 9.03733 9.65971 8.68369 9.65971H8.10413C7.75049 9.65971 7.63261 9.76565 7.63261 10.1027V10.6709C7.63261 11.0177 7.75049 11.1236 8.10413 11.1236ZM11.3163 11.1236H11.8959C12.2397 11.1236 12.3576 11.0177 12.3576 10.6709V10.1027C12.3576 9.76565 12.2397 9.65971 11.8959 9.65971H11.3163C10.9627 9.65971 10.8448 9.76565 10.8448 10.1027V10.6709C10.8448 11.0177 10.9627 11.1236 11.3163 11.1236ZM14.5187 11.1236H15.0982C15.4519 11.1236 15.5697 11.0177 15.5697 10.6709V10.1027C15.5697 9.76565 15.4519 9.65971 15.0982 9.65971H14.5187C14.1749 9.65971 14.057 9.76565 14.057 10.1027V10.6709C14.057 11.0177 14.1749 11.1236 14.5187 11.1236ZM4.90177 14.2151H5.47151C5.82515 14.2151 5.94303 14.1091 5.94303 13.7721V13.2039C5.94303 12.8571 5.82515 12.7512 5.47151 12.7512H4.90177C4.54813 12.7512 4.43026 12.8571 4.43026 13.2039V13.7721C4.43026 14.1091 4.54813 14.2151 4.90177 14.2151ZM8.10413 14.2151H8.68369C9.03733 14.2151 9.15521 14.1091 9.15521 13.7721V13.2039C9.15521 12.8571 9.03733 12.7512 8.68369 12.7512H8.10413C7.75049 12.7512 7.63261 12.8571 7.63261 13.2039V13.7721C7.63261 14.1091 7.75049 14.2151 8.10413 14.2151ZM11.3163 14.2151H11.8959C12.2397 14.2151 12.3576 14.1091 12.3576 13.7721V13.2039C12.3576 12.8571 12.2397 12.7512 11.8959 12.7512H11.3163C10.9627 12.7512 10.8448 12.8571 10.8448 13.2039V13.7721C10.8448 14.1091 10.9627 14.2151 11.3163 14.2151Z" fill="white"/>
-									</svg>
-									<span>02.10.2024</span>
-								</div>
-							</div>
-							<p>
-								В современном мире, где конкуренция за внимание потребителя достигла пика, дизайн становится мощным инструментом для
-								успеха бренда ....
-							</p>
-							<a href="single-articles.html" class="button button--secondary button--white">Читать полностью</a>
-						</div>
+						<a class="articles-archive-cta__button button button--primary button--gradient" href="brief.html"><span>Заполнить бриф</span></a>
 					</div>
 				</div>
 			</div>

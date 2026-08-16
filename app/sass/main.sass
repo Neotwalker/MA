@@ -6925,6 +6925,332 @@ figure
 	&--cases
 		margin-bottom: 80px
 
+.articles-archive
+	position: relative
+	overflow-x: hidden
+	padding-bottom: 96px
+	.breadcrumbs
+		margin-bottom: 46px
+	&__hero
+		padding-top: calc(var(--header-height, 88px) + 72px)
+		padding-bottom: 56px
+	&__hero-grid
+		display: grid
+		grid-template-columns: minmax(0, 1fr) minmax(320px, 430px)
+		align-items: end
+		gap: clamp(42px, 5vw, 96px)
+	&__hero-content,
+	&__summary
+		min-width: 0
+	&__eyebrow
+		margin-bottom: 18px
+		color: color.adjust($white, $alpha: -.42)
+		font-size: 14px
+		font-weight: 800
+		line-height: 1
+		text-transform: uppercase
+	&__title
+		max-width: 980px
+		margin-bottom: 24px
+		font-size: 68px
+		line-height: 1.08
+		overflow-wrap: break-word
+	&__lead
+		max-width: 820px
+		color: color.adjust($white, $alpha: -.18)
+		font-size: 22px
+		line-height: 1.5
+	&__summary
+		position: relative
+		padding: 28px
+		border: 1px solid color.adjust($white, $alpha: -.84)
+		border-radius: 20px
+		background-color: color.adjust($blockGlass, $alpha: -.1)
+		backdrop-filter: blur(9px)
+		overflow: hidden
+		&:before
+			content: ""
+			position: absolute
+			top: 0
+			right: 0
+			left: 0
+			height: 2px
+			background-image: $gradient
+	&__summary-title
+		margin-bottom: 16px
+		color: color.adjust($white, $alpha: -.28)
+		font-size: 13px
+		font-weight: 800
+		line-height: 1
+		text-transform: uppercase
+	&__topics
+		display: flex
+		flex-wrap: wrap
+		gap: 8px
+		margin-bottom: 20px
+		padding: 0
+		list-style: none
+		li
+			padding: 9px 12px
+			border: 1px solid color.adjust($white, $alpha: -.84)
+			border-radius: 999px
+			color: color.adjust($white, $alpha: -.1)
+			font-size: 14px
+			font-weight: 700
+			line-height: 1
+			background-color: color.adjust($white, $alpha: -.96)
+	&__summary-note
+		color: color.adjust($white, $alpha: -.36)
+		font-size: 15px
+		line-height: 1.55
+
+.articles-section-head
+	display: grid
+	grid-template-columns: minmax(180px, .22fr) minmax(0, 1fr)
+	align-items: end
+	gap: clamp(24px, 4vw, 72px)
+	margin-bottom: 30px
+	&--index
+		margin-bottom: 24px
+	&__eyebrow
+		color: $orange
+		font-size: 13px
+		font-weight: 800
+		line-height: 1
+		text-transform: uppercase
+	&__title
+		min-width: 0
+		font-size: 42px
+		line-height: 1.16
+		overflow-wrap: break-word
+	&__text
+		grid-column: 2
+		max-width: 760px
+		color: color.adjust($white, $alpha: -.34)
+		font-size: 17px
+		line-height: 1.55
+
+.articles-featured
+	padding-top: 34px
+	padding-bottom: 64px
+	&__article
+		min-width: 0
+	&__link
+		position: relative
+		display: grid
+		grid-template-columns: minmax(320px, .4fr) minmax(0, .6fr)
+		gap: clamp(30px, 4.4vw, 84px)
+		min-width: 0
+		padding: 26px 0 34px
+		border-top: 1px solid color.adjust($white, $alpha: -.82)
+		border-bottom: 1px solid color.adjust($white, $alpha: -.9)
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.16)
+			outline-offset: 6px
+		&:hover
+			.articles-featured__media img
+				transform: scale(1.018)
+			.articles-featured__read span
+				transform: translateX(6px)
+	&__media
+		display: block
+		min-width: 0
+		aspect-ratio: 1
+		border-radius: 18px
+		overflow: hidden
+		background-color: color.adjust($white, $alpha: -.96)
+		img
+			width: 100%
+			height: 100%
+			object-fit: cover
+			transition: transform .35s ease
+	&__body
+		display: flex
+		min-width: 0
+		flex-direction: column
+		justify-content: center
+		align-items: flex-start
+	&__label
+		display: inline-flex
+		margin-bottom: 20px
+		padding: 8px 12px
+		border: 1px solid color.adjust($orange, $alpha: -.58)
+		border-radius: 999px
+		color: color.adjust($white, $alpha: -.12)
+		font-size: 13px
+		font-weight: 800
+		line-height: 1
+		text-transform: uppercase
+		background-color: color.adjust($orange, $alpha: -.9)
+	&__meta
+		display: flex
+		flex-wrap: wrap
+		gap: 10px 18px
+		margin-bottom: 18px
+		color: color.adjust($white, $alpha: -.44)
+		font-size: 15px
+		font-weight: 700
+		line-height: 1.25
+	&__title
+		min-width: 0
+		max-width: 980px
+		margin-bottom: 20px
+		font-size: 46px
+		line-height: 1.13
+		overflow-wrap: break-word
+	&__text
+		max-width: 820px
+		margin-bottom: 30px
+		color: color.adjust($white, $alpha: -.22)
+		font-size: 20px
+		line-height: 1.55
+	&__read
+		display: inline-flex
+		align-items: center
+		gap: 10px
+		color: $white
+		font-size: 17px
+		font-weight: 800
+		line-height: 1.2
+		span
+			display: inline-block
+			color: $orange
+			transition: transform .25s ease
+
+.articles-index
+	padding-top: 18px
+	padding-bottom: 72px
+	&__list
+		display: grid
+		grid-template-columns: minmax(0, 1fr)
+		border-top: 1px solid color.adjust($white, $alpha: -.84)
+	&__item
+		min-width: 0
+		border-bottom: 1px solid color.adjust($white, $alpha: -.88)
+	&__link
+		display: grid
+		grid-template-columns: 76px minmax(0, 1fr) 32px
+		align-items: center
+		gap: clamp(20px, 3vw, 56px)
+		min-width: 0
+		padding: 26px 0
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.16)
+			outline-offset: -2px
+			background-color: color.adjust($white, $alpha: -.97)
+		&:hover
+			background-color: color.adjust($white, $alpha: -.975)
+			.articles-index__title
+				color: $orange
+			.articles-index__arrow
+				transform: translateX(6px)
+	&__number
+		color: color.adjust($white, $alpha: -.62)
+		font-size: 30px
+		font-weight: 300
+		line-height: 1
+		font-variant-numeric: tabular-nums
+	&__content
+		display: grid
+		grid-template-columns: minmax(170px, .22fr) minmax(0, .43fr) minmax(260px, .35fr)
+		align-items: start
+		gap: clamp(18px, 2.4vw, 44px)
+		min-width: 0
+	&__meta
+		display: flex
+		flex-wrap: wrap
+		gap: 6px 12px
+		min-width: 0
+		color: color.adjust($white, $alpha: -.5)
+		font-size: 14px
+		font-weight: 700
+		line-height: 1.35
+	&__title
+		min-width: 0
+		color: $white
+		font-size: 25px
+		font-weight: 700
+		line-height: 1.22
+		overflow-wrap: break-word
+		transition: color .22s ease
+	&__excerpt
+		min-width: 0
+		color: color.adjust($white, $alpha: -.34)
+		font-size: 16px
+		line-height: 1.5
+		overflow-wrap: break-word
+	&__arrow
+		justify-self: end
+		color: $orange
+		font-size: 24px
+		line-height: 1
+		transition: transform .22s ease
+	&__item--wide
+		.articles-index__link
+			padding-top: 34px
+			padding-bottom: 34px
+		.articles-index__title
+			font-size: 30px
+			line-height: 1.18
+	&__item--visual
+		.articles-index__link
+			grid-template-columns: 76px minmax(0, 1fr) minmax(160px, 220px) 32px
+		.articles-index__content
+			grid-template-columns: minmax(160px, .24fr) minmax(0, .76fr)
+		.articles-index__excerpt
+			grid-column: 2
+	&__media
+		display: block
+		min-width: 0
+		aspect-ratio: 16 / 10
+		border-radius: 14px
+		overflow: hidden
+		background-color: color.adjust($white, $alpha: -.96)
+		img
+			width: 100%
+			height: 100%
+			object-fit: cover
+
+.articles-archive-cta
+	padding-top: 10px
+	padding-bottom: 8px
+	&__layout
+		display: grid
+		grid-template-columns: minmax(0, 1fr) auto
+		align-items: center
+		gap: 32px
+		min-width: 0
+		padding: 34px 0 0
+		border-top: 1px solid color.adjust($white, $alpha: -.84)
+	&__content
+		min-width: 0
+	&__eyebrow
+		margin-bottom: 12px
+		color: $orange
+		font-size: 13px
+		font-weight: 800
+		line-height: 1
+		text-transform: uppercase
+	&__title
+		margin-bottom: 14px
+		font-size: 40px
+		line-height: 1.18
+		overflow-wrap: break-word
+	&__text
+		max-width: 760px
+		color: color.adjust($white, $alpha: -.28)
+		font-size: 18px
+		line-height: 1.55
+	&__button
+		min-width: 220px
+
+@media (prefers-reduced-motion: reduce)
+	.articles-featured__media img,
+	.articles-featured__read span,
+	.articles-index__title,
+	.articles-index__arrow
+		transition: none
+
 .single
 	&--case
 		.case
