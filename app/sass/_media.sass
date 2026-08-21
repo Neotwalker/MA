@@ -5653,3 +5653,194 @@
 		grid-template-columns: minmax(0, 1fr)
 		&__media
 			grid-column: 1
+
+@media (max-width : 1680px)
+	.contacts-hero
+		padding-top: 38px
+		&__title
+			font-size: 62px
+		&__lead
+			font-size: 20px
+	.contacts-index
+		&__layout
+			grid-template-columns: minmax(210px, .26fr) minmax(0, 860px)
+	.contacts-list
+		&__value
+			font-size: clamp(24px, 2.1vw, 36px)
+
+@media (max-width : 1440px)
+	.contacts-page
+		padding-bottom: 78px
+	.contacts-hero
+		padding-bottom: 52px
+		&__grid
+			grid-template-columns: minmax(0, 1fr) minmax(300px, 400px)
+		&__title
+			font-size: 56px
+		&__note
+			padding: 24px
+	.contacts-index
+		padding-bottom: 64px
+		&__layout
+			grid-template-columns: minmax(190px, .24fr) minmax(0, 820px)
+	.contacts-list
+		&__item
+			grid-template-columns: 66px minmax(0, 1fr) minmax(116px, auto)
+		&__value
+			font-size: clamp(24px, 2vw, 34px)
+	.contacts-brief
+		&__title
+			font-size: 34px
+
+@media (max-width : 1280px)
+	.contacts-hero
+		&__grid
+			align-items: start
+			grid-template-columns: minmax(0, 1fr)
+			gap: 28px
+		&__note
+			max-width: 720px
+	.contacts-index
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			max-width: 980px
+		&__intro
+			position: static
+			max-width: 720px
+	.contacts-list
+		&__item
+			grid-template-columns: 64px minmax(0, 1fr) minmax(116px, auto)
+
+@media (max-width : 1024px)
+	.contacts-page
+		padding-bottom: 68px
+	.contacts-hero
+		padding-top: 34px
+		padding-bottom: 44px
+		&__title
+			font-size: 50px
+		&__lead
+			font-size: 18px
+	.contacts-index
+		padding-top: 18px
+		padding-bottom: 56px
+		&__title
+			font-size: 32px
+	.contacts-list
+		&__item
+			min-height: 98px
+			padding: 22px 0
+		&__value
+			font-size: clamp(23px, 3.2vw, 32px)
+	.contacts-brief
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			align-items: start
+		&__button
+			width: fit-content
+
+@media (max-width : 834px)
+	.contacts-list
+		&__item
+			grid-template-columns: 52px minmax(0, 1fr)
+			gap: 14px 18px
+		&__action
+			grid-column: 2
+			justify-self: start
+	.contacts-brief
+		&__layout
+			padding-top: 28px
+
+@media (max-width : 768px)
+	.contacts-page
+		padding-bottom: 58px
+	.contacts-hero
+		padding-top: 28px
+		padding-bottom: 36px
+		.breadcrumbs
+			margin-bottom: 22px
+		&__eyebrow
+			font-size: 13px
+		&__title
+			font-size: 42px
+			line-height: 1.1
+		&__lead
+			font-size: 17px
+		&__note
+			border-radius: 16px
+			padding: 20px
+			p
+				font-size: 15px
+	.contacts-index
+		padding-bottom: 46px
+		&__layout
+			gap: 28px
+		&__title
+			font-size: 30px
+		&__text
+			font-size: 16px
+	.contacts-list
+		&__item
+			min-height: 92px
+			padding: 20px 0
+		&__number
+			font-size: 22px
+		&__value
+			font-size: 24px
+	.contacts-brief
+		&__title
+			font-size: 30px
+		&__text
+			font-size: 16px
+		&__button
+			width: 100%
+
+@media (max-width : 480px)
+	.contacts-hero
+		padding-top: 24px
+		&__title
+			font-size: 36px
+		&__lead
+			font-size: 16px
+	.contacts-list
+		&__item
+			grid-template-columns: minmax(0, 1fr)
+			gap: 12px
+			min-height: 0
+		&__number
+			font-size: 20px
+		&__action
+			grid-column: auto
+			min-height: 44px
+	.contacts-brief
+		&__title
+			font-size: 27px
+
+@media (max-width : 390px)
+	.contacts-hero
+		&__title
+			font-size: 33px
+		&__note
+			padding: 18px
+	.contacts-index
+		padding-bottom: 40px
+		&__title
+			font-size: 27px
+	.contacts-list
+		&__value
+			font-size: 22px
+	.contacts-brief
+		&__layout
+			gap: 22px
+		&__title
+			font-size: 25px
+
+@media (max-width : 340px)
+	.contacts-hero
+		&__title
+			font-size: 31px
+	.contacts-list
+		&__value
+			font-size: 20px
+		&__action
+			font-size: 14px

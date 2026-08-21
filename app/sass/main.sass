@@ -6107,6 +6107,219 @@ body.cookie-banner-visible
 	.main--contacts__wrapper
 		flex-direction: row-reverse
 
+.contacts-template:not(.overflow)
+	overflow: visible
+
+.contacts-page
+	position: relative
+	gap: 0
+	overflow-x: hidden
+	padding-top: var(--header-height, 88px)
+	padding-bottom: 88px
+	> *:first-child
+		padding-top: 0
+
+.contacts-hero
+	padding: 40px 0 58px
+	.breadcrumbs
+		margin-bottom: 28px
+	&__grid
+		display: grid
+		grid-template-columns: minmax(0, 1fr) minmax(320px, 460px)
+		align-items: end
+		gap: clamp(42px, 5vw, 104px)
+		max-width: 1420px
+	&__content,
+	&__note
+		min-width: 0
+	&__eyebrow
+		margin-bottom: 14px
+		color: color.adjust($white, $alpha: -.42)
+		font-size: 14px
+		font-weight: 800
+		line-height: 1
+		text-transform: uppercase
+	&__title
+		max-width: 860px
+		margin-bottom: 22px
+		font-size: 68px
+		line-height: 1.08
+		overflow-wrap: break-word
+	&__lead
+		max-width: 760px
+		color: color.adjust($white, $alpha: -.18)
+		font-size: 22px
+		line-height: 1.5
+	&__note
+		position: relative
+		padding: 28px
+		border: 1px solid color.adjust($white, $alpha: -.84)
+		border-radius: 20px
+		background-color: color.adjust($blockGlass, $alpha: -.08)
+		backdrop-filter: blur(9px)
+		overflow: hidden
+		&::before
+			content: ""
+			position: absolute
+			top: 0
+			right: 0
+			left: 0
+			height: 2px
+			background-image: $gradient
+		p
+			color: color.adjust($white, $alpha: -.2)
+			font-size: 17px
+			line-height: 1.58
+
+.contacts-index
+	padding: 24px 0 74px
+	&__layout
+		display: grid
+		grid-template-columns: minmax(220px, .28fr) minmax(0, 920px)
+		align-items: start
+		gap: clamp(36px, 5vw, 96px)
+		max-width: 1380px
+	&__intro
+		position: sticky
+		top: calc(var(--header-height, 88px) + 28px)
+		min-width: 0
+	&__eyebrow
+		margin-bottom: 14px
+		color: $orange
+		font-size: 13px
+		font-weight: 800
+		line-height: 1
+		text-transform: uppercase
+	&__title
+		margin-bottom: 18px
+		font-size: 34px
+		line-height: 1.16
+	&__text
+		color: color.adjust($white, $alpha: -.34)
+		font-size: 17px
+		line-height: 1.55
+
+.contacts-list
+	display: flex
+	flex-direction: column
+	min-width: 0
+	font-style: normal
+	border-top: 1px solid color.adjust($white, $alpha: -.82)
+	&__item
+		position: relative
+		display: grid
+		grid-template-columns: 72px minmax(0, 1fr) minmax(124px, auto)
+		align-items: center
+		gap: clamp(18px, 2.4vw, 42px)
+		min-width: 0
+		min-height: 108px
+		padding: 24px 0
+		color: $white
+		text-decoration: none
+		border-bottom: 1px solid color.adjust($white, $alpha: -.88)
+		transition: border-color .22s ease, background-color .22s ease, color .22s ease
+		&::before
+			content: ""
+			position: absolute
+			inset: 0
+			background-image: linear-gradient(90deg, color.adjust($red, $alpha: -.94), transparent 58%)
+			opacity: 0
+			pointer-events: none
+			transition: opacity .22s ease
+		&:hover,
+		&:focus-visible
+			color: $white
+			border-bottom-color: color.adjust($orange, $alpha: -.42)
+			&::before
+				opacity: 1
+			.contacts-list__action
+				color: $orange
+				span
+					transform: translateX(6px)
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.16)
+			outline-offset: 6px
+	&__number,
+	&__body,
+	&__action
+		position: relative
+		z-index: 1
+	&__number
+		color: color.adjust($white, $alpha: -.5)
+		font-size: 24px
+		font-weight: 800
+		line-height: 1
+	&__body
+		display: flex
+		flex-direction: column
+		gap: 8px
+		min-width: 0
+	&__label
+		color: color.adjust($white, $alpha: -.44)
+		font-size: 13px
+		font-weight: 800
+		line-height: 1
+		text-transform: uppercase
+	&__value
+		min-width: 0
+		color: color.adjust($white, $alpha: -.08)
+		font-size: clamp(25px, 2.2vw, 40px)
+		font-weight: 700
+		line-height: 1.12
+		overflow-wrap: anywhere
+	&__action
+		justify-self: end
+		display: inline-flex
+		align-items: center
+		gap: 8px
+		min-height: 44px
+		color: color.adjust($white, $alpha: -.34)
+		font-size: 15px
+		font-weight: 800
+		line-height: 1
+		white-space: nowrap
+		span
+			display: inline-block
+			transition: transform .22s ease
+
+.contacts-brief
+	padding: 0 0 16px
+	&__layout
+		position: relative
+		display: grid
+		grid-template-columns: minmax(0, 1fr) auto
+		align-items: center
+		gap: 30px
+		max-width: 1180px
+		padding: 34px 0 0
+		border-top: 1px solid color.adjust($white, $alpha: -.84)
+	&__content
+		min-width: 0
+	&__eyebrow
+		margin-bottom: 12px
+		color: $orange
+		font-size: 13px
+		font-weight: 800
+		line-height: 1
+		text-transform: uppercase
+	&__title
+		margin-bottom: 14px
+		font-size: 36px
+		line-height: 1.16
+	&__text
+		max-width: 760px
+		color: color.adjust($white, $alpha: -.28)
+		font-size: 18px
+		line-height: 1.55
+	&__button
+		width: fit-content
+
+@media (prefers-reduced-motion: reduce)
+	.contacts-list__item,
+	.contacts-list__item::before,
+	.contacts-list__action span
+		transition-duration: .01ms !important
+
 table
 	th, td 
 		border: 1px solid $white
