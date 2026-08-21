@@ -5222,6 +5222,9 @@
 			padding: 24px
 	.articles-section-head
 		grid-template-columns: minmax(150px, .2fr) minmax(0, 1fr)
+		&--index
+			grid-template-columns: minmax(0, 740px)
+			padding-left: calc(66px + clamp(18px, 2.6vw, 46px))
 	.articles-featured
 		&__link
 			grid-template-columns: minmax(280px, .38fr) minmax(0, .62fr)
@@ -5245,6 +5248,9 @@
 			max-width: 760px
 	.articles-section-head
 		grid-template-columns: minmax(130px, .18fr) minmax(0, 1fr)
+		&--index
+			grid-template-columns: minmax(0, 720px)
+			padding-left: calc(66px + clamp(18px, 2.6vw, 46px))
 	.articles-featured
 		padding-bottom: 52px
 		&__link
@@ -5280,6 +5286,11 @@
 		grid-template-columns: 1fr
 		gap: 12px
 		margin-bottom: 24px
+		&--index
+			grid-template-columns: minmax(0, 720px)
+			gap: 10px
+			margin-bottom: 14px
+			padding-left: calc(58px + clamp(18px, 2.6vw, 46px))
 		&__text
 			grid-column: 1
 	.articles-featured
@@ -5333,6 +5344,9 @@
 		&__summary-note
 			font-size: 14px
 	.articles-section-head
+		&--index
+			max-width: none
+			padding-left: 0
 		&__title
 			font-size: 32px
 	.articles-featured

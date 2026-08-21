@@ -7011,7 +7011,18 @@ figure
 	gap: clamp(24px, 4vw, 72px)
 	margin-bottom: 30px
 	&--index
-		margin-bottom: 24px
+		grid-template-columns: minmax(0, 760px)
+		align-items: start
+		gap: 10px
+		max-width: 980px
+		margin-bottom: 14px
+		padding-left: calc(76px + clamp(18px, 2.6vw, 46px))
+		.articles-section-head__eyebrow,
+		.articles-section-head__title,
+		.articles-section-head__text
+			grid-column: 1
+		.articles-section-head__text
+			max-width: 760px
 	&__eyebrow
 		color: $orange
 		font-size: 13px
@@ -7118,7 +7129,7 @@ figure
 			transition: transform .25s ease
 
 .articles-index
-	padding-top: 18px
+	padding-top: 10px
 	padding-bottom: 72px
 	&__list
 		display: grid
