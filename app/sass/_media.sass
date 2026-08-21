@@ -13,8 +13,9 @@
 				width: 150px
 	.main
 		gap: 80px
-		> :first-child
-			padding-top: 130px
+		&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page))
+			> :first-child
+				padding-top: 130px
 		&--header
 			&__wrapper, &__info
 				min-height: 485px
@@ -352,9 +353,10 @@
 			.menu
 				gap: 25px
 	.main
-		> * 
-			&:first-child
-				padding-top: 140px
+		&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page))
+			> *
+				&:first-child
+					padding-top: 140px
 		> .home-hero
 			min-height: 600px
 			padding: 120px 0 12px
@@ -581,9 +583,10 @@
 
 @media (max-width : 1200px)
 	.main
-		> * 
-			&:first-child
-				padding-top: 120px
+		&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page))
+			> *
+				&:first-child
+					padding-top: 120px
 		> .home-hero
 			padding-top: 112px
 			.home-hero
@@ -2036,8 +2039,13 @@
 		gap: 60px
 		> * 
 			z-index: 2
-			&:first-child
-				padding-top: 80px
+		&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page))
+			> *
+				&:first-child
+					padding-top: 80px
+		&.services
+			> :first-child
+				padding-top: 106px
 		> .home-hero
 			padding: 92px 0 0
 			background-image: linear-gradient(120deg, color.adjust($red, $alpha: -.9) 0%, color.adjust($black, $alpha: -1) 44%), linear-gradient(180deg, color.adjust($white, $alpha: -.985) 0, color.adjust($white, $alpha: -1) 52%)
@@ -3563,6 +3571,8 @@
 	.industry-page
 		.breadcrumbs
 			margin-bottom: 28px
+		> .industry-hero
+			padding-top: 116px
 	.industry-hero
 		padding: 108px 0 50px
 		h1
@@ -3787,6 +3797,9 @@
 				font-size: 13px
 
 @media (max-width : 390px)
+	.industry-page
+		> .industry-hero
+			padding-top: 106px
 	.industry-hero
 		padding: 100px 0 44px
 		h1
@@ -4049,7 +4062,7 @@
 	.main
 		&.about-page
 			.about-hero
-				padding-top: 138px
+				padding-top: 118px
 			.about-hero__layout
 				grid-template-columns: minmax(0, 1.12fr) minmax(320px, .88fr)
 				gap: 34px
@@ -4061,7 +4074,7 @@
 				font-size: clamp(34px, 4.8vw, 50px)
 		&.sitemap-page
 			.sitemap-hero
-				padding-top: 142px
+				padding-top: 118px
 
 @media (max-width : 1024px)
 	.main
@@ -4650,6 +4663,9 @@
 
 @media (max-width : 390px)
 	.main
+		&.portfolio-page
+			> .portfolio-archive
+				padding-top: 128px
 		.portfolio-archive
 			padding-top: 96px
 			.breadcrumbs
@@ -4698,6 +4714,8 @@
 
 @media (max-width : 1200px)
 	.brief-page
+		> .brief-hero
+			padding-top: 120px
 		.brief-hero
 			&__layout
 				grid-template-columns: minmax(0, 1fr) minmax(300px, 360px)
@@ -4827,6 +4845,8 @@
 @media (max-width : 480px)
 	.brief-page
 		gap: 44px
+		> .brief-hero
+			padding-top: 133px
 		.brief-hero
 			.breadcrumbs
 				margin-bottom: 24px
@@ -5166,8 +5186,9 @@
 	.case-study-page
 		.breadcrumbs
 			margin-bottom: 22px
+		> .case-study-hero
+			padding-top: 104px
 	.case-study-hero
-		padding-top: 96px
 		&__title
 			font-size: 36px
 		&__lead
@@ -5655,6 +5676,9 @@
 			grid-column: 1
 
 @media (max-width : 1680px)
+	.contacts-page
+		> .contacts-hero
+			padding-top: 38px
 	.contacts-hero
 		padding-top: 38px
 		&__title
@@ -5714,6 +5738,8 @@
 @media (max-width : 1024px)
 	.contacts-page
 		padding-bottom: 68px
+		> .contacts-hero
+			padding-top: 34px
 	.contacts-hero
 		padding-top: 34px
 		padding-bottom: 44px
@@ -5754,6 +5780,8 @@
 @media (max-width : 768px)
 	.contacts-page
 		padding-bottom: 58px
+		> .contacts-hero
+			padding-top: 28px
 	.contacts-hero
 		padding-top: 28px
 		padding-bottom: 36px
@@ -5796,6 +5824,9 @@
 			width: 100%
 
 @media (max-width : 480px)
+	.contacts-page
+		> .contacts-hero
+			padding-top: 24px
 	.contacts-hero
 		padding-top: 24px
 		&__title
