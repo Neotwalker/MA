@@ -5372,7 +5372,20 @@
 		&__number
 			font-size: 24px
 		&__arrow
+			display: inline-flex
+			align-items: center
+			justify-content: flex-start
+			gap: 10px
+			min-height: 44px
+			max-width: 100%
 			justify-self: start
+			color: $orange
+			font-size: 16px
+			font-weight: 800
+			line-height: 1
+			&::before
+				content: "Читать статью"
+				color: color.adjust($white, $alpha: -.12)
 		&__meta
 			font-size: 14px
 		&__title
@@ -5382,6 +5395,14 @@
 		&__media
 			max-width: none
 			margin-top: 2px
+	.articles-pagination
+		justify-content: flex-start
+		gap: 8px
+		margin-top: 24px
+		padding-top: 24px
+		&__control
+			min-width: 106px
+			padding: 0 14px
 	.articles-archive-cta
 		&__layout
 			padding-top: 28px
@@ -5414,6 +5435,22 @@
 	.articles-index
 		&__title
 			font-size: 21px
+	.articles-pagination
+		justify-content: center
+		&__control
+			min-width: 44px
+		&__text
+			position: absolute
+			width: 1px
+			height: 1px
+			margin: -1px
+			padding: 0
+			border: 0
+			overflow: hidden
+			clip: rect(0 0 0 0)
+			white-space: nowrap
+		&__slash
+			display: inline-flex
 	.articles-archive-cta
 		&__title
 			font-size: 27px
@@ -5434,6 +5471,14 @@
 			padding: 20px 0
 		&__title
 			font-size: 20px
+		&__arrow
+			font-size: 15px
+	.articles-pagination
+		&__control,
+		&__page
+			min-height: 44px
+		&__page
+			min-width: 42px
 	.articles-archive-cta
 		&__title
 			font-size: 25px

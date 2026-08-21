@@ -6934,6 +6934,12 @@ figure
 	&__hero
 		padding-top: calc(var(--header-height, 88px) + 72px)
 		padding-bottom: 56px
+	&__hero--compact
+		padding-bottom: 42px
+		.articles-archive__hero-grid
+			max-width: 820px
+			grid-template-columns: minmax(0, 1fr)
+			align-items: start
 	&__hero-grid
 		display: grid
 		grid-template-columns: minmax(0, 1fr) minmax(320px, 430px)
@@ -7149,14 +7155,15 @@ figure
 			outline: 2px solid color.adjust($orange, $alpha: -.16)
 			outline-offset: -2px
 			background-color: color.adjust($white, $alpha: -.97)
-		&:hover
-			background-color: color.adjust($white, $alpha: -.975)
-			.articles-index__title
-				color: $orange
-			.articles-index__media img
-				transform: scale(1.025)
-			.articles-index__arrow
-				transform: translateX(6px)
+		@media (hover: hover) and (pointer: fine)
+			&:hover
+				background-color: color.adjust($white, $alpha: -.975)
+				.articles-index__title
+					color: $orange
+				.articles-index__media img
+					transform: scale(1.025)
+				.articles-index__arrow
+					transform: translateX(6px)
 	&__number
 		color: color.adjust($white, $alpha: -.48)
 		font-size: 30px
@@ -7194,6 +7201,9 @@ figure
 		line-height: 1.5
 		overflow-wrap: break-word
 	&__arrow
+		display: inline-flex
+		align-items: center
+		justify-content: center
 		justify-self: end
 		color: $orange
 		font-size: 24px
@@ -7212,6 +7222,67 @@ figure
 			height: 100%
 			object-fit: cover
 			transition: transform .28s ease
+
+.articles-pagination
+	display: flex
+	flex-wrap: wrap
+	align-items: center
+	justify-content: center
+	gap: 10px
+	margin-top: 30px
+	padding-top: 28px
+	border-top: 1px solid color.adjust($white, $alpha: -.9)
+	&__pages
+		display: inline-flex
+		align-items: center
+		gap: 8px
+	&__control,
+	&__page
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		min-height: 44px
+		border: 1px solid color.adjust($white, $alpha: -.84)
+		color: color.adjust($white, $alpha: -.16)
+		font-size: 15px
+		font-weight: 800
+		line-height: 1
+		background-color: color.adjust($white, $alpha: -.97)
+		transition: border-color .22s ease, color .22s ease, background-color .22s ease
+	&__control
+		gap: 8px
+		min-width: 112px
+		padding: 0 16px
+		border-radius: 999px
+		span[aria-hidden="true"]
+			color: $orange
+	&__page
+		min-width: 44px
+		padding: 0 12px
+		border-radius: 14px
+	&__slash
+		display: none
+		color: color.adjust($white, $alpha: -.56)
+		font-size: 15px
+		font-weight: 800
+		line-height: 1
+	&__control.is-disabled
+		border-color: color.adjust($white, $alpha: -.92)
+		color: color.adjust($white, $alpha: -.64)
+		background-color: color.adjust($white, $alpha: -.99)
+	&__page.is-current
+		border-color: color.adjust($orange, $alpha: -.38)
+		color: $orange
+		background-color: color.adjust($orange, $alpha: -.9)
+	a
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.16)
+			outline-offset: 3px
+		@media (hover: hover) and (pointer: fine)
+			&:hover
+				border-color: color.adjust($orange, $alpha: -.42)
+				color: $white
+				background-color: color.adjust($orange, $alpha: -.88)
 
 .articles-archive-cta
 	padding-top: 10px
@@ -7251,7 +7322,9 @@ figure
 	.articles-index__media img,
 	.articles-featured__read span,
 	.articles-index__title,
-	.articles-index__arrow
+	.articles-index__arrow,
+	.articles-pagination__control,
+	.articles-pagination__page
 		transition: none
 
 .single
