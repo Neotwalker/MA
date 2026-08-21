@@ -7346,11 +7346,12 @@ figure
 
 .article-single
 	position: relative
+	padding-top: var(--header-height, 88px)
 	color: $white
 
 .article-hero
 	position: relative
-	padding: calc(var(--header-height, 88px) + 38px) 0 44px
+	padding: 38px 0 44px
 	overflow: hidden
 	border-bottom: 1px solid color.adjust($white, $alpha: -.88)
 	.row
@@ -7634,7 +7635,7 @@ figure
 		padding-top: 16px
 		font-size: clamp(32px, 3.1vw, 46px)
 		line-height: 1.08
-		scroll-margin-top: calc(var(--header-height, 88px) + 30px)
+		scroll-margin-top: calc(var(--header-height, 88px) + 28px)
 		&::before
 			content: ''
 			position: absolute
