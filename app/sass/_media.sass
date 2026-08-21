@@ -5192,10 +5192,18 @@
 			img
 				min-height: 190px
 
+@media (max-width : 1920px)
+	.main
+		&.articles-archive,
+		> .article-single
+			padding-top: var(--header-height, 88px)
+		&.articles-archive
+			> .articles-archive__hero
+				padding-top: var(--blog-archive-hero-top, 40px)
+
 @media (max-width : 1680px)
 	.articles-archive
-		&__hero
-			padding-top: calc(var(--header-height, 88px) + 64px)
+		--blog-archive-hero-top: 38px
 		&__title
 			font-size: 62px
 		&__lead
@@ -5213,7 +5221,7 @@
 	.articles-archive
 		padding-bottom: 82px
 		.breadcrumbs
-			margin-bottom: 38px
+			margin-bottom: 28px
 		&__hero-grid
 			grid-template-columns: minmax(0, 1fr) minmax(300px, 380px)
 		&__title
@@ -5275,9 +5283,9 @@
 @media (max-width : 1024px)
 	.articles-archive
 		padding-bottom: 72px
+		--blog-archive-hero-top: 34px
 		&__hero
-			padding-top: calc(var(--header-height, 88px) + 72px)
-			padding-bottom: 46px
+			padding-bottom: 42px
 		&__title
 			font-size: 50px
 		&__lead
@@ -5326,11 +5334,11 @@
 @media (max-width : 768px)
 	.articles-archive
 		padding-bottom: 58px
+		--blog-archive-hero-top: 28px
 		.breadcrumbs
-			margin-bottom: 28px
+			margin-bottom: 22px
 		&__hero
-			padding-top: calc(var(--header-height, 88px) + 42px)
-			padding-bottom: 36px
+			padding-bottom: 34px
 		&__eyebrow
 			font-size: 13px
 		&__title
@@ -5423,10 +5431,9 @@
 
 @media (max-width : 480px)
 	.articles-archive
-		.breadcrumbs
-			margin-bottom: 24px
+		--blog-archive-hero-top: 24px
 		&__hero
-			padding-top: calc(var(--header-height, 88px) + 34px)
+			padding-top: var(--blog-archive-hero-top, 24px)
 		&__title
 			font-size: 36px
 		&__lead

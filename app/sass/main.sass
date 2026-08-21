@@ -6929,20 +6929,30 @@ figure
 				&:not(:last-child)
 					margin-bottom: 10px
 
+.main
+	&.articles-archive,
+	> .article-single
+		padding-top: var(--header-height, 88px)
+	&.articles-archive
+		> .articles-archive__hero
+			padding-top: var(--blog-archive-hero-top, 40px)
+
 .archive
 	&--articles,
 	&--cases
 		margin-bottom: 80px
 
 .articles-archive
+	--blog-archive-hero-top: 40px
 	position: relative
 	overflow-x: hidden
+	padding-top: var(--header-height, 88px)
 	padding-bottom: 96px
 	.breadcrumbs
-		margin-bottom: 46px
+		margin-bottom: 28px
 	&__hero
-		padding-top: calc(var(--header-height, 88px) + 72px)
-		padding-bottom: 56px
+		padding-top: var(--blog-archive-hero-top, 40px)
+		padding-bottom: 48px
 	&__hero--compact
 		padding-bottom: 42px
 		.articles-archive__hero-grid
@@ -6958,7 +6968,7 @@ figure
 	&__summary
 		min-width: 0
 	&__eyebrow
-		margin-bottom: 18px
+		margin-bottom: 14px
 		color: color.adjust($white, $alpha: -.42)
 		font-size: 14px
 		font-weight: 800
@@ -6966,7 +6976,7 @@ figure
 		text-transform: uppercase
 	&__title
 		max-width: 980px
-		margin-bottom: 24px
+		margin-bottom: 22px
 		font-size: 68px
 		line-height: 1.08
 		overflow-wrap: break-word
