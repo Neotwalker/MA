@@ -371,6 +371,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (topButton) {
 			const topSafetyTargets = Array.from(document.querySelectorAll([
 				'.articles-archive-cta',
+				'.article-related',
+				'.article-cta',
 				'.case-study-cta',
 				'.industry-cta',
 				'.site-footer__cta',
@@ -838,6 +840,88 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 		window.addEventListener('scroll', queueActiveUpdate, { passive: true });
 		window.addEventListener('resize', queueActiveUpdate);
+		queueActiveUpdate();
+	}());
+
+	// Article table of contents active state
+	(function () {
+		const toc = document.querySelector('[data-article-toc]');
+		const article = document.querySelector('[data-article-single]');
+		if (!toc || !article) return;
+
+		const links = Array.from(document.querySelectorAll('.article-toc a[href^="#"], .article-toc-mobile a[href^="#"]'));
+		const entries = links
+			.map(link => {
+				const id = decodeURIComponent(link.getAttribute('href') || '').replace(/^#/, '');
+				const section = id ? document.getElementById(id) : null;
+				return section ? { id, link, section } : null;
+			})
+			.filter(Boolean);
+		if (!entries.length) return;
+
+		const sections = Array.from(new Map(entries.map(entry => [entry.id, entry.section])).entries())
+			.map(([id, section]) => ({ id, section }));
+		const mobileToc = document.querySelector('.article-toc-mobile');
+		let activeId = '';
+		let activeRaf = 0;
+
+		const setActive = (id) => {
+			if (!id) return;
+			activeId = id;
+			entries.forEach(entry => {
+				const isVisible = Boolean(entry.link.offsetWidth || entry.link.offsetHeight || entry.link.getClientRects().length);
+				if (entry.id === id && isVisible) {
+					entry.link.setAttribute('aria-current', 'true');
+				} else {
+					entry.link.removeAttribute('aria-current');
+				}
+			});
+		};
+
+		const getActivationLine = () => {
+			const headerHeight = header?.getBoundingClientRect().height || 0;
+			return headerHeight + Math.min(window.innerHeight * 0.28, 240);
+		};
+
+		const updateActiveFromPosition = () => {
+			activeRaf = 0;
+			const activationLine = getActivationLine();
+			let current = sections[0];
+
+			for (const entry of sections) {
+				const rect = entry.section.getBoundingClientRect();
+				if (rect.top <= activationLine) {
+					current = entry;
+				}
+			}
+
+			setActive(current.id);
+		};
+
+		const queueActiveUpdate = () => {
+			if (activeRaf) return;
+			activeRaf = window.requestAnimationFrame(updateActiveFromPosition);
+		};
+
+		if ('IntersectionObserver' in window) {
+			const observer = new IntersectionObserver(queueActiveUpdate, {
+				root: null,
+				rootMargin: '-18% 0px -62% 0px',
+				threshold: [0, 0.1, 0.35],
+			});
+			sections.forEach(entry => observer.observe(entry.section));
+		}
+
+		links.forEach(link => {
+			link.addEventListener('click', () => {
+				const id = decodeURIComponent(link.getAttribute('href') || '').replace(/^#/, '');
+				setActive(id);
+				window.setTimeout(queueActiveUpdate, 450);
+			});
+		});
+		window.addEventListener('scroll', queueActiveUpdate, { passive: true });
+		window.addEventListener('resize', queueActiveUpdate);
+		mobileToc?.addEventListener('toggle', queueActiveUpdate);
 		queueActiveUpdate();
 	}());
 
