@@ -368,6 +368,64 @@ document.addEventListener("DOMContentLoaded", () => {
 		window.addEventListener('pageshow', updateScrollState);
 		window.addEventListener('scroll', requestScrollStateUpdate, { passive: true });
 
+		if (topButton) {
+			const topSafetyTargets = Array.from(document.querySelectorAll([
+				'.articles-archive-cta',
+				'.case-study-cta',
+				'.industry-cta',
+				'.site-footer__cta',
+			].join(',')));
+
+			if (topSafetyTargets.length) {
+				let isTopSafetyTicking = false;
+				const isTopOverSafetyTarget = () => {
+					const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+					return topSafetyTargets.some((target) => {
+						const rect = target.getBoundingClientRect();
+						return rect.top < viewportHeight * 0.92 && rect.bottom > viewportHeight * 0.08;
+					});
+				};
+				const setTopSafetyState = (isUnsafe) => {
+					topButton.classList.toggle('top--safe-hidden', isUnsafe);
+				};
+				const updateTopSafetyState = () => {
+					setTopSafetyState(isTopOverSafetyTarget());
+					isTopSafetyTicking = false;
+				};
+				const requestTopSafetyStateUpdate = () => {
+					if (isTopSafetyTicking) return;
+					isTopSafetyTicking = true;
+					requestAnimationFrame(updateTopSafetyState);
+				};
+
+				if ('IntersectionObserver' in window) {
+					const visibleSafetyTargets = new Set();
+					const topSafetyObserver = new IntersectionObserver((entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								visibleSafetyTargets.add(entry.target);
+							} else {
+								visibleSafetyTargets.delete(entry.target);
+							}
+						});
+						setTopSafetyState(visibleSafetyTargets.size > 0 || isTopOverSafetyTarget());
+					}, {
+						root: null,
+						rootMargin: '0px 0px -8% 0px',
+						threshold: 0.01,
+					});
+
+					topSafetyTargets.forEach((target) => topSafetyObserver.observe(target));
+				}
+
+				updateTopSafetyState();
+				window.addEventListener('load', updateTopSafetyState);
+				window.addEventListener('pageshow', updateTopSafetyState);
+				window.addEventListener('scroll', requestTopSafetyStateUpdate, { passive: true });
+				window.addEventListener('resize', requestTopSafetyStateUpdate);
+			}
+		}
+
 		topButton?.addEventListener('click', () => {
 			window.scrollTo({ top: 0, behavior: 'smooth' });
 		});

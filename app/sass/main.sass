@@ -296,7 +296,8 @@ textarea
 	opacity: 0
 	visibility: hidden
 	pointer-events: none
-	transition: opacity .3s ease, visibility .3s ease, background .3s ease
+	transform: translateY(8px)
+	transition: opacity .3s ease, visibility .3s ease, background .3s ease, transform .3s ease
 	cursor: pointer
 	overflow: hidden
 	// &::before
@@ -330,6 +331,12 @@ textarea
 		opacity: 1
 		visibility: visible
 		pointer-events: auto
+		transform: translateY(0)
+	&.top--safe-hidden
+		opacity: 0
+		visibility: hidden
+		pointer-events: none
+		transform: translateY(8px)
 
 body.cookie-banner-visible
 	padding-bottom: calc(var(--cookie-consent-height, 0px) + 16px)
@@ -675,6 +682,7 @@ body.cookie-banner-visible
 		box-shadow: 0 12px 32px rgba(0, 0, 0, .18)
 
 @media (prefers-reduced-motion: reduce)
+	.top,
 	.header
 		transition-duration: .01ms
 
@@ -7136,7 +7144,7 @@ figure
 
 .articles-index
 	padding-top: 10px
-	padding-bottom: 72px
+	padding-bottom: 30px
 	&__list
 		display: grid
 		grid-template-columns: minmax(0, 1fr)

@@ -5302,7 +5302,7 @@
 		&__body
 			justify-content: flex-start
 	.articles-index
-		padding-bottom: 58px
+		padding-bottom: 20px
 		&__link
 			grid-template-columns: 58px minmax(0, 1fr) minmax(150px, 180px) 26px
 			align-items: start
@@ -5365,6 +5365,7 @@
 		&__text
 			font-size: 16px
 	.articles-index
+		padding-bottom: 24px
 		&__link
 			grid-template-columns: minmax(0, 1fr)
 			gap: 14px
@@ -5405,13 +5406,20 @@
 			padding: 0 14px
 	.articles-archive-cta
 		&__layout
-			padding-top: 28px
+			padding-top: 24px
 		&__title
 			font-size: 30px
 		&__text
 			font-size: 16px
 		&__button
 			width: 100%
+
+@media (min-width : 600px) and (max-width : 768px)
+	.articles-index
+		&__media
+			width: 100%
+			max-width: min(580px, calc(100% - 28px))
+			justify-self: start
 
 @media (max-width : 480px)
 	.articles-archive
