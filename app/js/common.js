@@ -372,7 +372,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			const topSafetyTargets = Array.from(document.querySelectorAll([
 				'.articles-archive-cta',
 				'.article-related',
-				'.article-cta',
 				'.case-study-cta',
 				'.industry-cta',
 				'.site-footer__cta',
@@ -862,12 +861,10 @@ document.addEventListener("DOMContentLoaded", () => {
 		const sections = Array.from(new Map(entries.map(entry => [entry.id, entry.section])).entries())
 			.map(([id, section]) => ({ id, section }));
 		const mobileToc = document.querySelector('.article-toc-mobile');
-		let activeId = '';
 		let activeRaf = 0;
 
 		const setActive = (id) => {
 			if (!id) return;
-			activeId = id;
 			entries.forEach(entry => {
 				const isVisible = Boolean(entry.link.offsetWidth || entry.link.offsetHeight || entry.link.getClientRects().length);
 				if (entry.id === id && isVisible) {
@@ -880,17 +877,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		const getActivationLine = () => {
 			const headerHeight = header?.getBoundingClientRect().height || 0;
-			return headerHeight + Math.min(window.innerHeight * 0.28, 240);
+			return headerHeight + Math.min(Math.max(window.innerHeight * 0.12, 56), 120);
+		};
+
+		const getSectionHeadingTop = (entry) => {
+			const heading = entry.section.querySelector('h2, h3, h4') || entry.section;
+			return heading.getBoundingClientRect().top;
 		};
 
 		const updateActiveFromPosition = () => {
 			activeRaf = 0;
 			const activationLine = getActivationLine();
 			let current = sections[0];
+			const maxScroll = Math.max(
+				document.documentElement.scrollHeight,
+				document.body?.scrollHeight || 0
+			) - window.innerHeight;
+
+			if (window.scrollY >= maxScroll - 4) {
+				setActive(sections[sections.length - 1].id);
+				return;
+			}
 
 			for (const entry of sections) {
-				const rect = entry.section.getBoundingClientRect();
-				if (rect.top <= activationLine) {
+				if (getSectionHeadingTop(entry) <= activationLine) {
 					current = entry;
 				}
 			}
@@ -906,8 +916,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		if ('IntersectionObserver' in window) {
 			const observer = new IntersectionObserver(queueActiveUpdate, {
 				root: null,
-				rootMargin: '-18% 0px -62% 0px',
-				threshold: [0, 0.1, 0.35],
+				rootMargin: '0px 0px -70% 0px',
+				threshold: [0, 1],
 			});
 			sections.forEach(entry => observer.observe(entry.section));
 		}
