@@ -842,6 +842,71 @@ document.addEventListener("DOMContentLoaded", () => {
 		queueActiveUpdate();
 	}());
 
+	// Article share actions
+	(function () {
+		const share = document.querySelector('[data-article-share]');
+		if (!share) return;
+
+		const pageUrl = window.location.href.split('#')[0];
+		const pageTitle = document.querySelector('.article-hero__title')?.textContent?.trim() || document.title;
+		const encodedUrl = encodeURIComponent(pageUrl);
+		const encodedTitle = encodeURIComponent(pageTitle);
+		const status = share.querySelector('[data-share-status]');
+		const copyButton = share.querySelector('[data-share-copy]');
+		const copyLabel = share.querySelector('[data-share-copy-label]');
+		const initialCopyText = copyLabel?.textContent || 'Ссылка';
+		let statusTimer = 0;
+
+		const telegram = share.querySelector('[data-share-action="telegram"]');
+		const vk = share.querySelector('[data-share-action="vk"]');
+		if (telegram) {
+			telegram.href = `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`;
+		}
+		if (vk) {
+			vk.href = `https://vk.com/share.php?url=${encodedUrl}&title=${encodedTitle}`;
+		}
+
+		const setStatus = (message, isSuccess = true) => {
+			if (!status) return;
+			window.clearTimeout(statusTimer);
+			status.textContent = message;
+			if (copyLabel) {
+				copyLabel.textContent = isSuccess ? 'Скопировано' : initialCopyText;
+			}
+			statusTimer = window.setTimeout(() => {
+				status.textContent = '';
+				if (copyLabel) copyLabel.textContent = initialCopyText;
+			}, 2200);
+		};
+
+		const fallbackCopy = () => {
+			const textarea = document.createElement('textarea');
+			textarea.value = pageUrl;
+			textarea.setAttribute('readonly', '');
+			textarea.style.position = 'fixed';
+			textarea.style.left = '-9999px';
+			textarea.style.top = '0';
+			document.body.appendChild(textarea);
+			textarea.select();
+			const copied = document.execCommand('copy');
+			textarea.remove();
+			if (!copied) throw new Error('Copy command failed');
+		};
+
+		copyButton?.addEventListener('click', async () => {
+			try {
+				if (navigator.clipboard?.writeText && window.isSecureContext) {
+					await navigator.clipboard.writeText(pageUrl);
+				} else {
+					fallbackCopy();
+				}
+				setStatus('Ссылка скопирована');
+			} catch (error) {
+				setStatus('Не удалось скопировать', false);
+			}
+		});
+	}());
+
 	// Article table of contents active state
 	(function () {
 		const toc = document.querySelector('[data-article-toc]');
@@ -881,7 +946,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		};
 
 		const getSectionHeadingTop = (entry) => {
-			const heading = entry.section.querySelector('h2, h3, h4') || entry.section;
+			const heading = entry.section.querySelector('h2') || entry.section;
 			return heading.getBoundingClientRect().top;
 		};
 

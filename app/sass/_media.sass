@@ -5493,17 +5493,17 @@
 
 @media (max-width : 1440px)
 	.article-hero
-		padding-top: calc(var(--header-height, 88px) + 44px)
+		padding-top: calc(var(--header-height, 88px) + 34px)
 	.article-hero__title
 		font-size: clamp(46px, 5.4vw, 78px)
 	.article-body__layout
-		grid-template-columns: minmax(160px, 210px) minmax(0, 740px)
+		grid-template-columns: minmax(160px, 210px) minmax(0, 790px)
 	.article-author
-		margin-left: calc(210px + clamp(36px, 4vw, 70px))
+		margin-left: calc(210px + clamp(32px, 3.5vw, 56px))
 
 @media (max-width : 1366px)
 	.article-body__layout
-		grid-template-columns: minmax(0, 760px)
+		grid-template-columns: minmax(0, 790px)
 		max-width: 900px
 	.article-toc
 		display: none
@@ -5517,20 +5517,22 @@
 		grid-template-columns: minmax(0, 1fr) minmax(150px, 220px)
 		align-items: center
 		border-right: 0
+		&__cta
+			display: inline-flex
 		&__media
 			grid-column: 2
 			grid-row: 1
 
 @media (max-width : 1199px)
 	.article-hero
-		padding: calc(var(--header-height, 78px) + 36px) 0 50px
+		padding: calc(var(--header-height, 78px) + 30px) 0 40px
 	.article-hero__grid
 		grid-template-columns: minmax(0, 1fr)
 		align-items: start
 	.article-hero__media
 		width: min(560px, 100%)
 	.article-body
-		padding-top: 52px
+		padding-top: 42px
 	.article-body__layout
 		max-width: 780px
 	.article-figure--wide
@@ -5538,9 +5540,9 @@
 
 @media (max-width : 768px)
 	.article-hero
-		padding: calc(var(--header-height, 72px) + 30px) 0 42px
+		padding: calc(var(--header-height, 72px) + 26px) 0 34px
 	.article-breadcrumbs
-		margin-bottom: 26px
+		margin-bottom: 22px
 		ol
 			gap: 6px
 		li
@@ -5554,11 +5556,11 @@
 		font-size: clamp(40px, 9vw, 58px)
 		line-height: 1.02
 	.article-hero__lead
-		margin-top: 20px
+		margin-top: 18px
 		font-size: 18px
 		line-height: 1.58
 	.article-hero__meta
-		margin-top: 22px
+		margin-top: 20px
 		gap: 8px 16px
 		font-size: 14px
 		span, time
@@ -5566,25 +5568,31 @@
 				margin-left: 16px
 	.article-hero__media
 		width: 100%
+	.article-share
+		margin-top: 16px
+	.article-share__action
+		min-height: 44px
+		padding-inline: 13px
 	.article-body
-		padding: 42px 0 34px
+		padding: 34px 0 28px
 	.article-content
 		font-size: 18px
 		line-height: 1.76
 		p
-			margin-bottom: 22px
+			margin-bottom: 20px
 		h2
-			margin-top: 58px
+			margin-top: 48px
 			font-size: clamp(29px, 7vw, 38px)
 		h3
-			margin-top: 34px
+			margin-top: 30px
 			font-size: 24px
 		blockquote
 			font-size: 19px
 	.article-figure
-		margin: 38px 0
+		margin: 32px 0 30px
 	.article-footer
-		padding-bottom: 74px
+		padding-top: 16px
+		padding-bottom: 62px
 	.article-related__head
 		grid-template-columns: minmax(0, 1fr)
 	.article-related-card
@@ -5596,7 +5604,7 @@
 
 @media (max-width : 480px)
 	.article-hero
-		padding-top: calc(var(--header-height, 68px) + 24px)
+		padding-top: calc(var(--header-height, 68px) + 22px)
 	.article-hero__title
 		font-size: 36px
 	.article-hero__lead
@@ -5607,8 +5615,14 @@
 		span, time
 			&:not(:last-child)::after
 				display: none
+	.article-share
+		align-items: flex-start
+	.article-share__label
+		width: 100%
+	.article-share__status
+		width: 100%
 	.article-toc-mobile
-		margin-bottom: 28px
+		margin-bottom: 24px
 	.article-content
 		font-size: 17px
 		line-height: 1.74
@@ -5619,7 +5633,7 @@
 		ul, ol
 			gap: 10px
 	.article-related-card
-		padding: 22px 0
+		padding: 20px 0
 	.article-related__title
 		font-size: 28px
 
