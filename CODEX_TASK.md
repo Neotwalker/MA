@@ -50,7 +50,8 @@ Branch:
 - Global page top spacing fix across static pages.
 - Redesigned and polished `contacts.html`.
 - Article archive view counts metadata.
-- Redesigned work conditions page in `faq.html`.
+- Redesigned work conditions page in `conditions.html`.
+- Restored `faq.html` as the separate legacy FAQ page pending a future redesign.
 
 ## Current task
 
