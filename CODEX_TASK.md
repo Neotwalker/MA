@@ -13,72 +13,84 @@ Branch:
 - Exact current HEAD не хранится в этом файле, потому что изменение `CODEX_TASK.md` само создает новый commit.
 - Exact HEAD всегда определяется Git-командами.
 - `CODEX_TASK.md` описывает завершенные этапы, следующий этап и текущие ограничения.
-- Git history является source of truth для конкретных commits.
+- Git history является source of truth для конкретных commits и фактического состояния проекта.
 - Pushed state можно дополнительно проверить в GitHub:
   `https://github.com/Neotwalker/MA/tree/redesign-2026`
 
 ## Completed
 
-- personal header;
-- footer;
-- cookie consent;
-- hero главной;
-- логотип;
-- buttons;
-- modal textarea;
-- navigation;
-- `about.html` initial version;
-- `sitemap.html`;
-- GitHub Pages Actions;
-- Live Search;
-- `search.html`;
-- 404 search;
-- portfolio architecture;
-- cases registry;
-- redesigned `archive-case.html`;
-- responsive/filter/accessibility portfolio work;
-- portrait responsive assets;
-- full redesign `about.html`;
-- reliable QA screenshot runner.
+- Personal global header and industry navigation.
+- Global footer for personal brand.
+- Cookie consent and preferences.
+- Global buttons, modal forms, textarea states, validation and accessibility improvements.
+- Development contact form, development services catalog and development page content stages.
+- GitHub Pages deployment workflow.
+- Utility pages and navigation links.
+- Live Search, `search.html` and 404 search integration.
+- `sitemap.html`.
+- Portfolio architecture and cases registry.
+- Redesigned `archive-case.html`.
+- Portfolio archive responsive/filter/accessibility polish.
+- Portrait responsive assets.
+- Full redesign and polish of `about.html`.
+- Reliable QA screenshot runner and QA artifact lifecycle documentation.
+- Complete personal homepage redesign for `index.html`.
+- Homepage expert content and article metadata.
+- Complete grouped one-page project brief in `brief.html`.
+- iOS Safari modal layout fix.
+- Mobile modal input zoom and scrollbar fix.
+- Brief form interaction and final QA fixes.
+- Redesigned Funtech single case page `single-case.html`.
+- Single case responsive polish.
+- Editorial article archive `archive-articles.html`.
+- Article archive media system, index heading polish, pagination and responsive UX polish.
+- Single article long-read page `single-articles.html`.
+- Single article TOC, sharing, bottom blocks, hero spacing and anchor offset polish.
+- Unified blog page vertical rhythm.
+- Global page top spacing fix across static pages.
+- Redesigned and polished `contacts.html`.
 
 ## Current task
 
-Следующий этап:
+Следующий фактический этап:
 
-Продолжение и завершение главной страницы `index.html`.
-
-Важно: не начинать `index.html` в рамках текущей infrastructure-задачи.
+Доработка архива блога: добавить количество просмотров каждой статьи рядом с датой публикации и временем чтения в `archive-articles.html` и связанных элементах пагинации архива.
 
 ## Remaining roadmap
 
-1. Продолжение и завершение главной.
-2. Переработка `brief.html`.
+1. Доработка архива блога: просмотры статей рядом с датой и временем чтения.
+2. Заполнение контентом страниц направлений услуг:
+   - `services-taxonomy-seo.html`;
+   - `services-taxonomy-branding.html`;
+   - `services-taxonomy-reklama.html`;
+   - `services-taxonomy-readysites.html`.
 3. Стоимость после получения реальных цен.
 4. Условия работы.
-5. Редизайн блога и статьи.
-6. Вопрос-ответ.
-7. Ревизия услуг и отраслевых страниц.
-8. Ревизия отдельных кейсов.
-9. Глоссарий.
-10. Внутренняя перелинковка.
-11. Персональная контентная ревизия.
-12. SEO.
-13. Performance.
-14. Accessibility.
-15. WordPress integration.
-16. Rank Math / sitemap / robots / `llms.txt`.
-17. Финальный release.
+5. Вопрос-ответ.
+6. Ревизия услуг и отраслевых страниц.
+7. Ревизия отдельных кейсов.
+8. Глоссарий.
+9. Внутренняя перелинковка.
+10. Персональная контентная ревизия.
+11. SEO.
+12. Performance.
+13. Accessibility.
+14. WordPress integration.
+15. Rank Math / sitemap / robots / `llms.txt`.
+16. Финальный release.
 
 Портрет считается подготовленным этапом и не включается повторно.
 
 ## Important current constraints
 
+- Рабочая ветка: только `redesign-2026`.
 - `origin/main` не изменять.
 - Source of truth по портфолио: `_reference/portfolio/`.
 - Static breadcrumbs не перерабатывать без отдельного задания.
 - В WordPress breadcrumbs выводятся через `rank_math_the_breadcrumbs()`.
 - Portrait face/appearance нельзя изменять.
-- QA artifacts сохранять до user review.
+- Не считать существование файла признаком завершенности этапа: сверяться с Git history и фактическим состоянием.
+- QA artifacts сохранять до user review, кроме папок, которые пользователь явно разрешил удалить.
 
 ## Portrait assets
 
