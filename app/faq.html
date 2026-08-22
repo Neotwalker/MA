@@ -5,9 +5,15 @@
 
 	<meta charset="utf-8">
 
-	<title>Вопрос-ответ — Марат Абзалов</title>
-	<meta name="description" content="Ответы на частые вопросы о разработке сайтов, продвижении, сроках, формате работы и подготовке проекта.">
-	<meta name="keywords" content="разработка сайтов, создание сайтов Челябинск, продвижение сайтов в Челябинске, создание сайтов Москва, продвижение сайтов в Москве">
+	<title>Условия работы — Марат Абзалов</title>
+	<meta name="description" content="Как проходит работа над сайтом или продвижением: старт с вводных, разбор задачи, структура, совместные решения и следующий шаг через бриф или обсуждение проекта.">
+	<link rel="canonical" href="https://limitlesscreators.ru/faq/">
+	<meta property="og:title" content="Условия работы — Марат Абзалов">
+	<meta property="og:description" content="Маршрут совместной работы над сайтом или продвижением: что подготовить, как обсуждается задача и какие детали фиксируются отдельно.">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://limitlesscreators.ru/faq/">
+	<meta property="og:site_name" content="Марат Абзалов">
+	<meta property="og:locale" content="ru_RU">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
@@ -26,62 +32,6 @@
 
 	<link rel="stylesheet" href="css/main.min.css">
 
-	<style>
-		.main--header{
-			background-image: url(img/circle-bg.svg);
-		}
-		.main--header__wrapper:before{
-			background-image: url(img/main-header.svg);
-		}
-		.main--header__info:before{
-			background-image: url(img/puzzle.png);
-		}
-		.main--services:before{
-			background-image: url(img/line.svg);
-		}
-		.main--experts:before{
-			background-image: url(img/line-horizontal.svg);
-		}
-		.main--projects:before{
-			background-image: url(img/line.svg)
-		}
-		.main--faq:after {
-			background-image: url(img/line-left.svg);
-		}
-		@media (max-width: 992px) {
-			.main--header {
-				background-image: url(img/circle-bg-tab.svg);
-			}
-		}
-		@media (max-width: 768px) {
-			.main--header__info:before{
-				background-image: url(img/puzzle-mob.png);
-			}
-		}
-		@media (max-width: 480px) {
-			.main--header {
-				background-image: url(img/circle-bg-mob.svg);
-			}
-			.main--services::before{
-				background-image: url(img/line-mob.svg);
-			}
-			.main--services:after{
-				background-image: url(img/line-left-mob.svg);
-			}
-			.main--projects:before{
-				background-image: url(img/line-mob.svg);
-			}
-			.main--faq:after{
-				background-image: url(img/line-left-mob.svg);
-			}
-			.main--contacts:after{
-				background-image: url(img/line-mob.svg)
-			}
-			.main--brief::before{
-				background-image: url(img/line-mob.svg)
-			}
-		}
-	</style>
 </head>
 
 <body>
@@ -104,7 +54,7 @@
 							</li>
 							<li class="header-nav__item"><a class="header-nav__link" href="archive-case.html">Портфолио</a></li>
 							<li class="header-nav__item"><a class="header-nav__link" href="archive-articles.html">Блог</a></li>
-							<li class="header-nav__item"><a class="header-nav__link" href="faq.html" aria-current="page">Вопрос-ответ</a></li>
+							<li class="header-nav__item"><a class="header-nav__link" href="faq.html" aria-current="page">Условия работы</a></li>
 							<li class="header-nav__item header-nav__item--about">
 								<button class="header-nav__link header-nav__about-toggle" type="button" aria-expanded="false" aria-controls="header-about-menu">
 									<span>Информация</span>
@@ -242,7 +192,7 @@
 					</li>
 					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="archive-case.html">Портфолио</a></li>
 					<li class="mobile-navigation__item"><a class="mobile-navigation__link" href="archive-articles.html">Блог</a></li>
-					<li class="mobile-navigation__item"><a class="mobile-navigation__link is-active" href="faq.html">Вопрос-ответ</a></li>
+					<li class="mobile-navigation__item"><a class="mobile-navigation__link is-active" href="faq.html">Условия работы</a></li>
 					<li class="mobile-navigation__item mobile-navigation__item--about">
 						<button class="mobile-navigation__link mobile-navigation__about-toggle" type="button" aria-expanded="false" aria-controls="mobile-about-list">
 							<span>Информация</span>
@@ -269,174 +219,152 @@
 			</div>
 		</nav>
 	</header>
-	<main class="main">
-		<section id="faq" class="section main--faq">
+	<main class="main work-conditions-page">
+		<section class="work-conditions-hero" aria-labelledby="work-conditions-title">
 			<div class="container">
 				<div class="row">
-					<h1 class="h2">Вопрос-ответ</h1>
-					<div class="main--faq__wrapper">
-						<div class="main--faq__item">
-							<div class="main--faq__item--button">
-								<span>Могу ли я заказать сайт, похожий на другой?</span>
-								<div class="main--faq__item--icon">
-									<div class="main--faq__item--icon__lines">
-										<span></span>
-										<span></span>
-									</div>
-								</div>
-							</div>
-							<div class="main--faq__item--answer">
-								<p>
-									Да, вы можете вдохновиться другими сайтами для создания своего проекта. Если у вас есть техническое задание или
-									прототип, это поможет определить направление работы. Однако следует помнить, что каждый проект уникален, и мы не создаем
-									прямые копии других сайтов.
-								</p>
-							</div>
+					<nav class="breadcrumbs work-conditions-breadcrumbs" aria-label="Хлебные крошки">
+						<span>
+							<span><a href="index.html">Главная</a></span>
+							-
+							<span class="breadcrumb_last">Условия работы</span>
+						</span>
+					</nav>
+					<div class="work-conditions-hero__layout">
+						<div class="work-conditions-hero__content">
+							<p class="work-conditions-hero__eyebrow">Условия работы</p>
+							<h1 class="work-conditions-hero__title h1" id="work-conditions-title">Как проходит работа над проектом</h1>
+							<p class="work-conditions-hero__lead">Эта страница помогает понять маршрут совместной работы: с чего начинается диалог, какие вводные нужны, как обсуждаются решения и куда перейти дальше.</p>
 						</div>
-						<div class="main--faq__item">
-							<div class="main--faq__item--button">
-								<span>Какие типы сайтов существуют?</span>
-								<div class="main--faq__item--icon">
-									<div class="main--faq__item--icon__lines">
-										<span></span>
-										<span></span>
-									</div>
-								</div>
+						<aside class="work-conditions-hero__note" aria-label="Что важно знать до обращения">
+							<p>Здесь нет цен, сроков, гарантий и юридических условий: такие детали зависят от конкретной задачи и фиксируются отдельно после обсуждения.</p>
+						</aside>
+					</div>
+					<nav class="work-conditions-nav" aria-label="Разделы страницы">
+						<a href="#work-route">Маршрут</a>
+						<a href="#work-organization">Организация</a>
+						<a href="#work-client-input">Что подготовить</a>
+						<a href="#work-next-step">Следующий шаг</a>
+					</nav>
+				</div>
+			</div>
+		</section>
+		<section class="work-route" id="work-route" aria-labelledby="work-route-title">
+			<div class="container">
+				<div class="row">
+					<div class="work-section-head">
+						<p class="work-section-head__eyebrow">Маршрут совместной работы</p>
+						<h2 class="work-section-head__title h2" id="work-route-title">От первых вводных к понятному следующему шагу</h2>
+						<p class="work-section-head__text">Последовательность ниже описывает общую логику. Конкретный состав работ определяется задачей, текущим состоянием проекта и доступными материалами.</p>
+					</div>
+					<ol class="work-route__list">
+						<li class="work-route__item">
+							<span class="work-route__number" aria-hidden="true">01</span>
+							<div class="work-route__content">
+								<p class="work-route__kicker">Старт</p>
+								<h3 class="work-route__title">Вы описываете задачу</h3>
+								<p class="work-route__text">Работа начинается с обращения, брифа, технического задания, прототипа или короткого описания. Чем понятнее исходные вводные, тем проще определить направление работы.</p>
 							</div>
-							<div class="main--faq__item--answer">
-								<p>
-									Существует множество различных типов сайтов, и выбор зависит от целей и направления вашего бизнеса. Вот некоторые из них:
-								</p>
-								<ul>
-									<li>
-										Лендинг или одностраничный сайт: это страница, которая обычно используется для продажи конкретных товаров или услуг. Он
-										может быть эффективным инструментом интернет-маркетинга и подходит для новых бизнесов, но не предназначен для большого
-										объема информации.
-									</li>
-									<li>
-										Создание интернет-магазина дает компаниям возможность продажи своих товаров и услуг через онлайн-платформу, расширяя
-										доступность их продукции для клиентов, облегчая процесс покупки и предоставляя гибкость в управлении бизнесом без
-										привязки к конкретному месту и времени.
-									</li>
-									<li>
-										Корпоративный сайт играет ключевую роль для предприятия, предоставляя информацию о компании, ее продукции и услугах.
-										Разработка такого сайта может быть сложной и включает множество страниц.
-									</li>
-									<li>
-										Информационный портал - это онлайн-платформа, которая предоставляет разнообразные услуги и призвана привлекать и
-										удерживать широкую аудиторию. Эти порталы регулярно обновляются контентом и имеют сложную структуру, включающую
-										множество разделов и категорий.
-									</li>
-								</ul>
+						</li>
+						<li class="work-route__item">
+							<span class="work-route__number" aria-hidden="true">02</span>
+							<div class="work-route__content">
+								<p class="work-route__kicker">Разбор</p>
+								<h3 class="work-route__title">Проясняется контекст проекта</h3>
+								<p class="work-route__text">На раннем этапе важно понять задачу, потребности и ожидания. Поэтому вопросы о целях, аудитории, текущем сайте, материалах и ограничениях являются нормальной частью процесса.</p>
 							</div>
+						</li>
+						<li class="work-route__item">
+							<span class="work-route__number" aria-hidden="true">03</span>
+							<div class="work-route__content">
+								<p class="work-route__kicker">Структура</p>
+								<h3 class="work-route__title">Фиксируются требования и логика страниц</h3>
+								<p class="work-route__text">Техническое задание или согласованный список требований помогает обеим сторонам понимать, что именно нужно сделать: от структуры и адаптивности до форм, админ-панели и возможных дополнений.</p>
+							</div>
+						</li>
+						<li class="work-route__item">
+							<span class="work-route__number" aria-hidden="true">04</span>
+							<div class="work-route__content">
+								<p class="work-route__kicker">Решения</p>
+								<h3 class="work-route__title">Важные решения принимаются совместно</h3>
+								<p class="work-route__text">Качество результата зависит от диалога. Если в процессе возникают варианты по структуре, содержанию или интерфейсу, я объясняю логику решения, а финальное направление согласуется с задачей проекта.</p>
+							</div>
+						</li>
+						<li class="work-route__item">
+							<span class="work-route__number" aria-hidden="true">05</span>
+							<div class="work-route__content">
+								<p class="work-route__kicker">Дальше</p>
+								<h3 class="work-route__title">Определяется следующий практический шаг</h3>
+								<p class="work-route__text">Если формат подходит, удобнее перейти к брифу или обсуждению проекта. Если вводных пока мало, можно начать с короткого сообщения и постепенно собрать недостающие детали.</p>
+							</div>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</section>
+		<section class="work-organization" id="work-organization" aria-labelledby="work-organization-title">
+			<div class="container">
+				<div class="row">
+					<div class="work-organization__layout">
+						<div class="work-organization__intro">
+							<p class="work-section-head__eyebrow">Организационные моменты</p>
+							<h2 class="work-section-head__title h2" id="work-organization-title">Что можно понять заранее</h2>
+							<p class="work-section-head__text">Эти принципы подтверждены текущими материалами сайта. Подробные коммерческие условия не подставляются заранее, потому что без задачи они будут неточными.</p>
 						</div>
-						<div class="main--faq__item">
-							<div class="main--faq__item--button">
-								<span>Какой сайт выбрать?</span>
-								<div class="main--faq__item--icon">
-									<div class="main--faq__item--icon__lines">
-										<span></span>
-										<span></span>
-									</div>
-								</div>
-							</div>
-							<div class="main--faq__item--answer">
-								<p>
-									В первую очередь это зависит от поставленных задач, целей и бюджета. Решение всегда уникально и зависит от
-									потребностей клиента. Некоторые предпочитают сэкономить. В таком случае имеет смысл рассмотреть вариант с использованием
-									конструктора. Это быстро, недорого и без лишних сложностей. Однако в дальнейшем возможны сложности при внесении
-									изменений в такой сайт.
-								</p>
-								<p>
-									На начальных этапах проекта крайне важно понять клиента, определить его потребности и ожидания. Если становится
-									очевидным, что подходит стандартное решение, мы предлагаем шаблон и объясняем его преимущества по сравнению с более
-									затратным и сложным проектом, разрабатываемым с нуля.
-								</p>
-								<p>
-									Допустим, вы осуществляете запуск интернет-магазина и не требуете сложных инструментов. Тогда разумным выбором будет использование конструктора с возможностью покупки трафика.
-								</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<div class="main--faq__item--button">
-								<span>Зачем заморачиваться с техническим заданием?</span>
-								<div class="main--faq__item--icon">
-									<div class="main--faq__item--icon__lines">
-										<span></span>
-										<span></span>
-									</div>
-								</div>
-							</div>
-							<div class="main--faq__item--answer">
-								<p>
-									Техническое задание (ТЗ) - это подробный документ, содержащий все требования к сайту. Его основная цель -
-									убедиться, что обе стороны понимают друг друга. Исполнителю необходимо разъяснить процесс разработки, а заказчику - понять, что происходит.
-								</p>
-								<p>
-									Чем подробнее описаны все желания к сайту, тем проще сторонам разобраться в задачах и процессе. В результате сайт
-									соответствует ожиданиям заказчика, и все остаются довольны. В документе может быть прописана вся информация о
-									работе: от каруселей и адаптивности до кнопок, административной панели, возможных дополнений и прочего.
-								</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<div class="main--faq__item--button">
-								<span>Как вникнуть в процесс, если я в этом не разбираюсь?</span>
-								<div class="main--faq__item--icon">
-									<div class="main--faq__item--icon__lines">
-										<span></span>
-										<span></span>
-									</div>
-								</div>
-							</div>
-							<div class="main--faq__item--answer">
-								<p>
-									Все зависит от профессионализма исполнителя и вашего участия в проекте. Разработчик легко сможет провести вас через
-									этапы, пояснить, что, как и для чего. Важно, чтобы специалисты проявляли интерес, чтобы избежать неприятных ситуаций,
-									которые потребуется исправлять позже. Не стесняйтесь задавать вопросы о процессе разработке - ответственный исполнитель
-									всегда готов объяснить все детали.
-								</p>
-								<p>
-									Не пугайтесь, если вас часто вовлекают в совместную работу. Это важно на ранних этапах и нужно для того, чтобы окончательный результат соответствовал вашим ожиданиям.
-								</p>
-								<p>
-									Очевидно, что качество сайта прямо зависит от проработанного диалога между заказчиком и исполнителем.
-								</p>
-							</div>
+						<div class="work-organization__grid">
+							<article class="work-organization__item">
+								<h3>Копии чужих сайтов не делаются</h3>
+								<p>Референсы можно использовать как ориентир, но проект должен решать собственную задачу и не быть прямой копией другого сайта.</p>
+							</article>
+							<article class="work-organization__item">
+								<h3>Формат зависит от цели</h3>
+								<p>Лендинг, корпоративный сайт, каталог, интернет-магазин или другой формат выбираются после понимания задачи, а не по названию услуги.</p>
+							</article>
+							<article class="work-organization__item">
+								<h3>Вопросы помогают избежать ошибок</h3>
+								<p>Уточнения на старте нужны, чтобы не строить сайт на догадках и не возвращаться к базовым решениям слишком поздно.</p>
+							</article>
+							<article class="work-organization__item">
+								<h3>Неподтверждённые условия не публикуются</h3>
+								<p>Сроки, стоимость, порядок оплаты, гарантии, поддержка и юридические детали не указаны на этой странице без отдельного подтверждения.</p>
+							</article>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		<section id="contacts" class="section main--contacts">
+		<section class="work-client-input" id="work-client-input" aria-labelledby="work-client-input-title">
 			<div class="container">
 				<div class="row">
-					<div class="main--contacts__wrapper">
-						<div class="main--contacts__left">
-							<h2 class="h2">Оставить заявку</h2>
-							<form action="/#wpcf7-f8-o1" method="post" class="wpcf7-form init" aria-label="Контактная форма" novalidate="novalidate" data-status="init">
-								<div style="display: none;">
-								<input type="hidden" name="_wpcf7" value="8">
-								<input type="hidden" name="_wpcf7_version" value="5.9.3">
-								<input type="hidden" name="_wpcf7_locale" value="ru_RU">
-								<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f8-o1">
-								<input type="hidden" name="_wpcf7_container_post" value="0">
-								<input type="hidden" name="_wpcf7_posted_data_hash" value="">
-								</div>
-								<span class="wpcf7-form-control-wrap" data-name="fio1"><input size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="ФИО" value="" type="text" name="fio1"></span>
-								<span class="wpcf7-form-control-wrap" data-name="tel"><input size="40" class="wpcf7-form-control wpcf7-tel wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-tel" aria-required="true" aria-invalid="false" placeholder="Телефон" value="" type="tel" name="tel"></span>
-								<span class="wpcf7-form-control-wrap" data-name="email"><input size="40" class="wpcf7-form-control wpcf7-email wpcf7-text wpcf7-validates-as-email" aria-invalid="false" placeholder="E-mail" value="" type="email" name="email"></span>
-								<div class="radio--button form-consent">
-									<span class="form-consent__control"><input class="custom--check form-consent__input" type="checkbox" id="check1" name="check1"><label class="form-consent__toggle" for="check1" aria-label="Подтвердить согласие"></label></span>
-									<p class="form-consent__text"><label class="form-consent__label" for="check1">Отправляя заявку, Вы принимаете и соглашаетесь с</label> <a class="form-consent__link" href="https://limitlesscreators.ru/privacy-policy/" target="_blank" rel="noopener">Политикой конфиденциальности</a>.</p>
-								</div>
-								<button class="button button--primary button--gradient wpcf7-form-control wpcf7-submit" type="submit" disabled="">
-								 <span>Отправить</span>
-								</button><div class="wpcf7-response-output" aria-hidden="true"></div>
-							</form>
+					<div class="work-client-input__layout">
+						<div class="work-client-input__content">
+							<p class="work-section-head__eyebrow">Что подготовить</p>
+							<h2 class="work-section-head__title h2" id="work-client-input-title">Материалы, которые ускоряют первый разговор</h2>
+							<p class="work-section-head__text">Не обязательно собирать всё сразу. Достаточно того, что уже известно: задачу, текущий сайт, материалы, референсы или вопросы, которые нужно разобрать.</p>
 						</div>
-						<div class="main--contacts__right">
-							<img src="img/img-contacts.webp" alt="Limitless Creators - оставить заявку">
+						<ul class="work-client-input__list">
+							<li>Короткое описание проекта или бизнеса.</li>
+							<li>Цель: что должен изменить сайт, доработка или продвижение.</li>
+							<li>Ссылка на текущий сайт, если он уже есть.</li>
+							<li>Готовые тексты, фото, структура, прототип или техническое задание, если они подготовлены.</li>
+							<li>Примеры сайтов, которые помогают объяснить направление, без задачи копировать их напрямую.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="work-next-step" id="work-next-step" aria-labelledby="work-next-step-title">
+			<div class="container">
+				<div class="row">
+					<div class="work-next-step__layout">
+						<div>
+							<p class="work-next-step__eyebrow">Следующий шаг</p>
+							<h2 class="work-next-step__title h2" id="work-next-step-title">Если формат понятен, начните с брифа</h2>
+							<p class="work-next-step__text">Бриф собирает вводные о задаче, текущем состоянии, материалах, функциональности и удобном способе связи. Если задача пока сформулирована коротко, можно просто обсудить проект.</p>
+						</div>
+						<div class="work-next-step__actions">
+							<a class="button button--primary button--gradient" href="brief.html"><span>Заполнить бриф</span></a>
+							<a class="work-next-step__link modal--open" href="#modal_general" data-modal-target="#modal_general">Обсудить проект <span aria-hidden="true">→</span></a>
 						</div>
 					</div>
 				</div>
@@ -487,7 +415,7 @@
 						<ul class="site-footer__list">
 							<li><a href="archive-case.html">Портфолио</a></li>
 							<li><a href="archive-articles.html">Блог</a></li>
-							<li><a href="faq.html">Вопрос-ответ</a></li>
+							<li><a href="faq.html">Условия работы</a></li>
 							<li><a href="about.html">Обо мне</a></li>
 							<li><a href="contacts.html">Контакты</a></li>
 							<li><a href="brief.html">Бриф</a></li>

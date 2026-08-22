@@ -49,35 +49,40 @@ Branch:
 - Unified blog page vertical rhythm.
 - Global page top spacing fix across static pages.
 - Redesigned and polished `contacts.html`.
+- Article archive view counts metadata.
+- Redesigned work conditions page in `faq.html`.
 
 ## Current task
 
 Следующий фактический этап:
 
-Доработка архива блога: добавить количество просмотров каждой статьи рядом с датой публикации и временем чтения в `archive-articles.html` и связанных элементах пагинации архива.
+Заполнение контентом страниц направлений услуг:
+
+- `services-taxonomy-seo.html`;
+- `services-taxonomy-branding.html`;
+- `services-taxonomy-reklama.html`;
+- `services-taxonomy-readysites.html`.
 
 ## Remaining roadmap
 
-1. Доработка архива блога: просмотры статей рядом с датой и временем чтения.
-2. Заполнение контентом страниц направлений услуг:
+1. Заполнение контентом страниц направлений услуг:
    - `services-taxonomy-seo.html`;
    - `services-taxonomy-branding.html`;
    - `services-taxonomy-reklama.html`;
    - `services-taxonomy-readysites.html`.
-3. Стоимость после получения реальных цен.
-4. Условия работы.
-5. Вопрос-ответ.
-6. Ревизия услуг и отраслевых страниц.
-7. Ревизия отдельных кейсов.
-8. Глоссарий.
-9. Внутренняя перелинковка.
-10. Персональная контентная ревизия.
-11. SEO.
-12. Performance.
-13. Accessibility.
-14. WordPress integration.
-15. Rank Math / sitemap / robots / `llms.txt`.
-16. Финальный release.
+2. Стоимость после получения реальных цен.
+3. Вопрос-ответ.
+4. Ревизия услуг и отраслевых страниц.
+5. Ревизия отдельных кейсов.
+6. Глоссарий.
+7. Внутренняя перелинковка.
+8. Персональная контентная ревизия.
+9. SEO.
+10. Performance.
+11. Accessibility.
+12. WordPress integration.
+13. Rank Math / sitemap / robots / `llms.txt`.
+14. Финальный release.
 
 Портрет считается подготовленным этапом и не включается повторно.
 

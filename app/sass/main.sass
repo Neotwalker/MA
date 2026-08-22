@@ -1417,7 +1417,7 @@ body.cookie-banner-visible
 	> * 
 		position: relative
 		z-index: 1
-	&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page))
+	&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page):not(.work-conditions-page))
 		> *
 			&:first-child
 				padding-top: 180px
@@ -6322,7 +6322,476 @@ body.cookie-banner-visible
 	&__button
 		width: fit-content
 
+.work-conditions-page
+	position: relative
+	gap: 0
+	overflow-x: hidden
+	padding-top: var(--header-height, 88px)
+	padding-bottom: 90px
+	background-image: linear-gradient(112deg, color.adjust($red, $alpha: -.94), transparent 36%), repeating-linear-gradient(90deg, color.adjust($white, $alpha: -.975) 0 1px, transparent 1px 180px)
+	> *:first-child
+		padding-top: 0
+
+.work-conditions-hero
+	padding: 40px 0 70px
+	.row
+		display: flex
+		flex-direction: column
+	.breadcrumbs
+		width: 100%
+		margin: 0 0 34px
+		color: color.adjust($white, $alpha: -.44)
+		font-size: 14px
+		line-height: 1.4
+		a
+			color: color.adjust($white, $alpha: -.26)
+			&:hover
+				color: $orange
+			&:focus-visible
+				outline: 2px solid color.adjust($orange, $alpha: -.16)
+				outline-offset: 4px
+	&__layout
+		display: grid
+		grid-template-columns: minmax(0, 1fr) minmax(320px, 440px)
+		align-items: end
+		gap: 80px
+		width: 100%
+		max-width: 1420px
+	&__content,
+	&__note
+		min-width: 0
+	&__eyebrow
+		margin-bottom: 16px
+		color: $orange
+		font-size: 14px
+		font-weight: 800
+		line-height: 1
+		text-transform: uppercase
+	&__title
+		max-width: 920px
+		margin-bottom: 24px
+		font-size: 72px
+		line-height: 1.02
+		overflow-wrap: break-word
+	&__lead
+		max-width: 760px
+		margin: 0
+		color: color.adjust($white, $alpha: -.16)
+		font-size: 22px
+		line-height: 1.55
+	&__note
+		position: relative
+		padding: 28px
+		border: 1px solid color.adjust($white, $alpha: -.84)
+		border-radius: 20px
+		background-color: color.adjust($blockGlass, $alpha: -.08)
+		backdrop-filter: blur(9px)
+		overflow: hidden
+		&::before
+			content: ""
+			position: absolute
+			top: 0
+			right: 0
+			left: 0
+			height: 2px
+			background-image: $gradient
+		p
+			margin: 0
+			color: color.adjust($white, $alpha: -.2)
+			font-size: 17px
+			line-height: 1.58
+
+.work-conditions-nav
+	display: flex
+	flex-wrap: wrap
+	gap: 12px
+	width: 100%
+	max-width: 1420px
+	margin-top: 50px
+	padding-top: 22px
+	border-top: 1px solid color.adjust($white, $alpha: -.84)
+	a
+		display: inline-flex
+		align-items: center
+		min-height: 44px
+		padding: 0 18px
+		border: 1px solid color.adjust($white, $alpha: -.84)
+		border-radius: 999px
+		color: color.adjust($white, $alpha: -.22)
+		font-size: 14px
+		font-weight: 800
+		line-height: 1
+		text-decoration: none
+		transition: color .22s ease, border-color .22s ease, background-color .22s ease
+		&:hover
+			color: $white
+			border-color: color.adjust($orange, $alpha: -.35)
+			background-color: color.adjust($orange, $alpha: -.9)
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.16)
+			outline-offset: 4px
+
+.work-section-head
+	display: grid
+	grid-template-columns: minmax(220px, .32fr) minmax(0, 780px)
+	align-items: start
+	gap: 70px
+	width: 100%
+	max-width: 1280px
+	margin-bottom: 42px
+	&__eyebrow
+		margin: 0
+		color: $orange
+		font-size: 13px
+		font-weight: 800
+		line-height: 1.2
+		text-transform: uppercase
+	&__title
+		margin: 0
+		font-size: 46px
+		line-height: 1.12
+	&__text
+		grid-column: 2
+		max-width: 760px
+		margin: -20px 0 0
+		color: color.adjust($white, $alpha: -.3)
+		font-size: 18px
+		line-height: 1.58
+
+.work-route,
+.work-organization,
+.work-client-input,
+.work-next-step
+	scroll-margin-top: calc(var(--header-height, 88px) + 28px)
+
+.work-route
+	padding: 28px 0 88px
+	.row
+		display: flex
+		flex-direction: column
+	&__list
+		position: relative
+		display: flex
+		flex-direction: column
+		width: 100%
+		max-width: 1320px
+		margin: 0
+		padding: 0
+		list-style: none
+		border-top: 1px solid color.adjust($white, $alpha: -.84)
+		&::before
+			content: ""
+			position: absolute
+			top: 0
+			bottom: 0
+			left: 110px
+			width: 1px
+			background-image: linear-gradient(180deg, color.adjust($orange, $alpha: -.5), color.adjust($white, $alpha: -.9))
+			pointer-events: none
+	&__item
+		position: relative
+		display: grid
+		grid-template-columns: 220px minmax(0, 760px)
+		gap: 58px
+		padding: 34px 0 38px
+		border-bottom: 1px solid color.adjust($white, $alpha: -.88)
+		&::before
+			content: ""
+			position: absolute
+			top: 50px
+			left: 105px
+			width: 11px
+			height: 11px
+			border-radius: 50%
+			background-image: $gradient
+			box-shadow: 0 0 0 9px color.adjust($orange, $alpha: -.9)
+	&__number
+		color: color.adjust($white, $alpha: -.56)
+		font-size: 48px
+		font-weight: 800
+		line-height: .9
+	&__content
+		min-width: 0
+	&__kicker
+		margin: 0 0 10px
+		color: color.adjust($white, $alpha: -.5)
+		font-size: 13px
+		font-weight: 800
+		line-height: 1
+		text-transform: uppercase
+	&__title
+		margin: 0 0 14px
+		font-size: 30px
+		line-height: 1.18
+	&__text
+		max-width: 720px
+		margin: 0
+		color: color.adjust($white, $alpha: -.26)
+		font-size: 18px
+		line-height: 1.62
+
+.work-organization
+	padding: 0 0 88px
+	&__layout
+		display: grid
+		grid-template-columns: minmax(260px, .34fr) minmax(0, 1fr)
+		align-items: start
+		gap: 78px
+		max-width: 1360px
+	&__intro
+		position: sticky
+		top: calc(var(--header-height, 88px) + 28px)
+		min-width: 0
+		.work-section-head__title
+			margin-bottom: 18px
+		.work-section-head__text
+			grid-column: auto
+			margin: 0
+	&__grid
+		display: grid
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+		gap: 0 38px
+		min-width: 0
+		border-top: 1px solid color.adjust($white, $alpha: -.84)
+	&__item
+		min-width: 0
+		padding: 28px 0 30px
+		border-bottom: 1px solid color.adjust($white, $alpha: -.88)
+		h3
+			margin: 0 0 14px
+			font-size: 24px
+			line-height: 1.2
+		p
+			margin: 0
+			color: color.adjust($white, $alpha: -.3)
+			font-size: 17px
+			line-height: 1.58
+
+.work-client-input
+	padding: 0 0 88px
+	&__layout
+		display: grid
+		grid-template-columns: minmax(0, .92fr) minmax(340px, .72fr)
+		align-items: start
+		gap: 76px
+		max-width: 1320px
+		padding-top: 42px
+		border-top: 1px solid color.adjust($white, $alpha: -.84)
+	&__content
+		min-width: 0
+		.work-section-head__title
+			margin-bottom: 18px
+		.work-section-head__text
+			grid-column: auto
+			margin: 0
+	&__list
+		display: flex
+		flex-direction: column
+		gap: 0
+		min-width: 0
+		margin: 0
+		padding: 0
+		list-style: none
+		counter-reset: work-input
+		border-top: 1px solid color.adjust($white, $alpha: -.84)
+		li
+			position: relative
+			min-width: 0
+			padding: 20px 0 20px 48px
+			color: color.adjust($white, $alpha: -.18)
+			font-size: 18px
+			line-height: 1.55
+			border-bottom: 1px solid color.adjust($white, $alpha: -.9)
+			&::before
+				counter-increment: work-input
+				content: counter(work-input, decimal-leading-zero)
+				position: absolute
+				left: 0
+				top: 24px
+				color: $orange
+				font-size: 13px
+				font-weight: 800
+				line-height: 1
+
+.work-next-step
+	padding: 0 0 10px
+	&__layout
+		display: grid
+		grid-template-columns: minmax(0, 1fr) auto
+		align-items: center
+		gap: 34px
+		max-width: 1240px
+		padding: 38px 0 0
+		border-top: 1px solid color.adjust($white, $alpha: -.84)
+	&__eyebrow
+		margin: 0 0 12px
+		color: $orange
+		font-size: 13px
+		font-weight: 800
+		line-height: 1
+		text-transform: uppercase
+	&__title
+		margin: 0 0 16px
+		font-size: 40px
+		line-height: 1.14
+	&__text
+		max-width: 760px
+		margin: 0
+		color: color.adjust($white, $alpha: -.28)
+		font-size: 18px
+		line-height: 1.56
+	&__actions
+		display: flex
+		align-items: center
+		gap: 22px
+		min-width: 0
+	&__link
+		display: inline-flex
+		align-items: center
+		gap: 8px
+		min-height: 44px
+		color: color.adjust($white, $alpha: -.18)
+		font-size: 16px
+		font-weight: 800
+		line-height: 1.2
+		text-decoration: none
+		border-bottom: 1px solid color.adjust($orange, $alpha: -.28)
+		transition: color .22s ease, border-color .22s ease
+		span
+			display: inline-block
+			color: $orange
+			transition: transform .22s ease
+		&:hover
+			color: $orange
+			border-color: color.adjust($orange, $alpha: -.58)
+			span
+				transform: translateX(4px)
+		&:focus-visible
+			outline: 2px solid color.adjust($orange, $alpha: -.16)
+			outline-offset: 5px
+
+@media (max-width: 1199px)
+	.work-conditions-hero
+		padding-bottom: 62px
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 34px
+		&__title
+			font-size: 58px
+		&__note
+			max-width: 760px
+	.work-section-head
+		grid-template-columns: minmax(0, 1fr)
+		gap: 18px
+		&__text
+			grid-column: auto
+			margin: 0
+	.work-organization
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 36px
+		&__intro
+			position: static
+	.work-client-input
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 36px
+
+@media (max-width: 768px)
+	.work-conditions-page
+		padding-bottom: 70px
+		background-image: linear-gradient(150deg, color.adjust($red, $alpha: -.95), transparent 42%)
+	.work-conditions-hero
+		padding: 30px 0 54px
+		.breadcrumbs
+			margin-bottom: 26px
+		&__title
+			font-size: 44px
+			line-height: 1.06
+		&__lead
+			font-size: 19px
+		&__note
+			padding: 22px
+			border-radius: 16px
+	.work-conditions-nav
+		margin-top: 34px
+		a
+			flex: 1 1 calc(50% - 12px)
+			justify-content: center
+			text-align: center
+	.work-section-head
+		margin-bottom: 30px
+		&__title
+			font-size: 34px
+		&__text
+			font-size: 17px
+	.work-route
+		padding-bottom: 68px
+		&__list
+			&::before
+				left: 22px
+		&__item
+			grid-template-columns: minmax(0, 1fr)
+			gap: 14px
+			padding: 28px 0 32px 54px
+			&::before
+				top: 34px
+				left: 17px
+		&__number
+			font-size: 34px
+		&__title
+			font-size: 25px
+		&__text
+			font-size: 17px
+	.work-organization
+		padding-bottom: 68px
+		&__grid
+			grid-template-columns: minmax(0, 1fr)
+	.work-client-input
+		padding-bottom: 68px
+		&__layout
+			padding-top: 34px
+		&__list li
+			font-size: 17px
+	.work-next-step
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			align-items: start
+		&__actions
+			flex-wrap: wrap
+		&__title
+			font-size: 32px
+
+@media (max-width: 480px)
+	.work-conditions-hero
+		&__title
+			font-size: 37px
+		&__lead
+			font-size: 18px
+	.work-conditions-nav
+		a
+			flex-basis: 100%
+	.work-route
+		&__item
+			padding-left: 46px
+		&__list::before
+			left: 18px
+		&__item::before
+			left: 13px
+	.work-next-step
+		&__actions
+			align-items: stretch
+			flex-direction: column
+		.button
+			width: 100%
+			justify-content: center
+		&__link
+			width: fit-content
+
 @media (prefers-reduced-motion: reduce)
+	.work-conditions-nav a,
+	.work-next-step__link,
+	.work-next-step__link span,
 	.contacts-list__item,
 	.contacts-list__item::before,
 	.contacts-list__action span
