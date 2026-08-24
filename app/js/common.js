@@ -2617,16 +2617,22 @@ document.addEventListener("DOMContentLoaded", () => {
 		document.addEventListener('wpcf7spam', handleModalCf7Failure('Заявка не отправлена. Проверьте данные и попробуйте ещё раз.'));
 	}
 	// Development Contact Form
-	const developmentContactForm = document.querySelector('[data-development-contact-form]');
-	if (developmentContactForm) {
+	const developmentContactForms = document.querySelectorAll('[data-development-contact-form]');
+	developmentContactForms.forEach(developmentContactForm => {
 		const formStatus = developmentContactForm.querySelector('.form-status');
 		const submitButton = developmentContactForm.querySelector('.wpcf7-submit');
 		const submitText = submitButton?.querySelector('span');
 		const defaultSubmitText = submitText?.textContent || '';
 		const fields = {
-			phone: developmentContactForm.querySelector('#development-contact-phone'),
-			email: developmentContactForm.querySelector('#development-contact-email'),
-			consent: developmentContactForm.querySelector('#development-contact-consent'),
+			phone: developmentContactForm.querySelector('input[name="tel"]'),
+			email: developmentContactForm.querySelector('input[name="email"]'),
+			consent: developmentContactForm.querySelector('input[name="check1"]'),
+		};
+		const channelError = developmentContactForm.querySelector('.main--contacts__contact-group > .form-field__error');
+		const errorIds = {
+			phone: fields.phone?.id ? `${fields.phone.id}-error` : '',
+			email: fields.email?.id ? `${fields.email.id}-error` : '',
+			consent: fields.consent?.id ? `${fields.consent.id}-error` : '',
 		};
 
 		const hasContactForm7Context = () => {
@@ -2653,7 +2659,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		};
 
-		const getErrorElement = (id) => document.getElementById(id);
+		const getErrorElement = (id) => id ? document.getElementById(id) : null;
 
 		const setFieldError = (field, errorId, message = '') => {
 			if (!field) return;
@@ -2666,9 +2672,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		};
 
 		const setChannelError = (message = '') => {
-			const error = getErrorElement('development-contact-channel-error');
-			if (error) {
-				error.textContent = message;
+			if (channelError) {
+				channelError.textContent = message;
 			}
 			fields.phone?.setAttribute('aria-invalid', message ? 'true' : 'false');
 			fields.email?.setAttribute('aria-invalid', message ? 'true' : 'false');
@@ -2678,17 +2683,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		const clearErrors = () => {
 			setChannelError('');
-			setFieldError(fields.phone, 'development-contact-phone-error');
-			setFieldError(fields.email, 'development-contact-email-error');
-			setFieldError(fields.consent, 'development-contact-consent-error');
+			setFieldError(fields.phone, errorIds.phone);
+			setFieldError(fields.email, errorIds.email);
+			setFieldError(fields.consent, errorIds.consent);
 			developmentContactForm.querySelectorAll('.form-field__error').forEach(error => {
 				error.textContent = '';
 			});
 		};
 		const clearDevelopmentContactErrors = () => {
 			setChannelError('');
-			setFieldError(fields.phone, 'development-contact-phone-error');
-			setFieldError(fields.email, 'development-contact-email-error');
+			setFieldError(fields.phone, errorIds.phone);
+			setFieldError(fields.email, errorIds.email);
 		};
 		const applyDevelopmentPhoneMask = initScopedPhoneMask(fields.phone, clearDevelopmentContactErrors);
 
@@ -2708,18 +2713,18 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (phoneValue) {
 				const digitsCount = phoneValue.replace(/\D/g, '').length;
 				if (digitsCount !== scopedPhoneMaxDigits) {
-					setFieldError(fields.phone, 'development-contact-phone-error', 'Введите номер телефона полностью.');
+					setFieldError(fields.phone, errorIds.phone, 'Введите номер телефона полностью.');
 					errors.push(fields.phone);
 				}
 			}
 
 			if (emailValue && fields.email && !fields.email.validity.valid) {
-				setFieldError(fields.email, 'development-contact-email-error', 'Проверьте адрес электронной почты.');
+				setFieldError(fields.email, errorIds.email, 'Проверьте адрес электронной почты.');
 				errors.push(fields.email);
 			}
 
 			if (fields.consent && !fields.consent.checked) {
-				setFieldError(fields.consent, 'development-contact-consent-error', 'Подтвердите согласие на обработку данных.');
+				setFieldError(fields.consent, errorIds.consent, 'Подтвердите согласие на обработку данных.');
 				errors.push(fields.consent);
 			}
 
@@ -2736,7 +2741,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				clearDevelopmentContactErrors();
 			});
 			fields.consent?.addEventListener(eventName, () => {
-				setFieldError(fields.consent, 'development-contact-consent-error');
+				setFieldError(fields.consent, errorIds.consent);
 			});
 		});
 
@@ -2780,7 +2785,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		document.addEventListener('wpcf7invalid', handleCf7Failure('Проверьте выделенные поля.'));
 		document.addEventListener('wpcf7mailfailed', handleCf7Failure('Не удалось отправить сообщение. Попробуйте ещё раз или свяжитесь со мной другим способом.'));
 		document.addEventListener('wpcf7spam', handleCf7Failure('Сообщение не отправлено. Проверьте данные и попробуйте ещё раз.'));
-	}
+	});
 	// Form Submission
 	document.addEventListener('wpcf7mailsent', (e) => {
 		const form = getCf7EventForm(e);
