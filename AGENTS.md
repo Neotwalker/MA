@@ -72,6 +72,7 @@ node scripts/verify-dist-assets.js
 9. Не обещать рост заявок, продаж, трафика или позиций без подтвержденных данных.
 10. Не изменять внешность человека на портретах: лицо, черты, глаза, очки, волосы, бороду, кожу, возраст, одежду, пропорции и выражение лица.
 11. Не использовать image generation, AI face enhancement или generative fill для портретов.
+12. `#bg_container.bg_container` и `canvas#gradient-canvas` - часть утвержденной арт-системы redesign: при redesign/refactor существующих страниц не удалять, не заменять и не отключать без отдельной явной команды; переиспользовать текущую реализацию, не создавать дополнительные canvas без необходимости, сохранять performance, mobile behavior, `prefers-reduced-motion`, accessibility и interaction.
 
 ## Git workflow
 
