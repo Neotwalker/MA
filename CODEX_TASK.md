@@ -52,38 +52,33 @@ Branch:
 - Article archive view counts metadata.
 - Redesigned work conditions page in `conditions.html`.
 - Restored `faq.html` as the separate legacy FAQ page pending a future redesign.
+- Filled content for services taxonomy pages:
+  - `services-taxonomy-seo.html`;
+  - `services-taxonomy-branding.html`;
+  - `services-taxonomy-reklama.html`;
+  - `services-taxonomy-readysites.html`.
 
 ## Current task
 
 Следующий фактический этап:
 
-Заполнение контентом страниц направлений услуг:
-
-- `services-taxonomy-seo.html`;
-- `services-taxonomy-branding.html`;
-- `services-taxonomy-reklama.html`;
-- `services-taxonomy-readysites.html`.
+Стоимость после получения реальных цен.
 
 ## Remaining roadmap
 
-1. Заполнение контентом страниц направлений услуг:
-   - `services-taxonomy-seo.html`;
-   - `services-taxonomy-branding.html`;
-   - `services-taxonomy-reklama.html`;
-   - `services-taxonomy-readysites.html`.
-2. Стоимость после получения реальных цен.
-3. Вопрос-ответ.
-4. Ревизия услуг и отраслевых страниц.
-5. Ревизия отдельных кейсов.
-6. Глоссарий.
-7. Внутренняя перелинковка.
-8. Персональная контентная ревизия.
-9. SEO.
-10. Performance.
-11. Accessibility.
-12. WordPress integration.
-13. Rank Math / sitemap / robots / `llms.txt`.
-14. Финальный release.
+1. Стоимость после получения реальных цен.
+2. Вопрос-ответ.
+3. Ревизия услуг и отраслевых страниц.
+4. Ревизия отдельных кейсов.
+5. Глоссарий.
+6. Внутренняя перелинковка.
+7. Персональная контентная ревизия.
+8. SEO.
+9. Performance.
+10. Accessibility.
+11. WordPress integration.
+12. Rank Math / sitemap / robots / `llms.txt`.
+13. Финальный release.
 
 Портрет считается подготовленным этапом и не включается повторно.
 
