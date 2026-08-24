@@ -162,6 +162,7 @@
 						line-height: 1
 		&--brief
 			&__wrapper 
+				align-items: center
 				gap: 50px
 			&__text
 				flex-direction: column
@@ -2335,6 +2336,14 @@
 				background: rgba(7, 15, 36, .2)
 				border: .5px solid color.adjust($white, $alpha: -.8)
 				border-radius: 12px
+				.button
+					width: 100%
+					min-width: 0
+					max-width: 100%
+					white-space: normal
+					span
+						justify-content: center
+						text-align: center
 			&__text 
 				align-items: center
 				text-align: center
@@ -4906,7 +4915,8 @@
 		&__remove
 			width: 100%
 	.form-consent
-		grid-template-columns: auto minmax(0, 1fr)
+		flex-direction: row
+		align-items: center
 		gap: 9px
 		padding: 12px
 		font-size: 13px

@@ -3909,12 +3909,17 @@ body.cookie-banner-visible
 		&__text
 			display: flex
 			align-items: center
+			min-width: 0
+			flex: 1 1 auto
 			gap: 100px
 			position: relative
 			z-index: 1
 			p
 				font-size: 20px
 		.button
+			flex: 0 0 auto
+			width: auto
+			min-width: max-content
 			text-transform: uppercase
 			position: relative
 			z-index: 1
@@ -4175,7 +4180,7 @@ body.cookie-banner-visible
 	&__consent
 		position: relative
 		display: flex
-		align-items: flex-start
+		align-items: center
 		gap: 12px
 		min-width: 0
 		.custom--check
@@ -4199,8 +4204,9 @@ body.cookie-banner-visible
 	&__consent-label
 		position: relative
 		display: flex
-		align-items: flex-start
+		align-items: center
 		gap: 12px
+		min-width: 0
 		min-height: 48px
 		padding: 12px 14px
 		border: 1px solid color.adjust($white, $alpha: -.84)
@@ -4213,9 +4219,9 @@ body.cookie-banner-visible
 		&::before
 			content: ''
 			width: 22px
-			min-width: 22px
+			flex: 0 0 22px
 			height: 22px
-			margin-top: 1px
+			margin-top: 0
 			border: 1px solid color.adjust($white, $alpha: -.52)
 			border-radius: 7px
 			background-color: color.adjust($black, $alpha: -.28)
@@ -5463,7 +5469,11 @@ body.cookie-banner-visible
 				min-height: 150px
 				resize: vertical
 			.form-field--consent
-				gap: 8px
+				display: flex
+				flex-direction: row
+				flex-wrap: wrap
+				align-items: center
+				gap: 8px 10px
 				.custom--check
 					z-index: auto
 					width: 1px
@@ -7245,25 +7255,24 @@ figure
 				flex-direction: column
 				gap: 7px
 			.form-field--consent.form-consent
-				display: grid
-				grid-template-columns: auto minmax(0, 1fr)
-				align-items: start
+				display: flex
+				flex-direction: row
+				flex-wrap: wrap
+				align-items: center
 				gap: 8px 10px
 				.form-consent__control
-					grid-column: 1
-					grid-row: 1
-					align-items: flex-start
+					flex: 0 0 auto
+					align-items: center
 				.form-consent__text
-					grid-column: 2
-					grid-row: 1
+					flex: 1 1 0
 					min-width: 0
 					color: color.adjust($white, $alpha: -.18)
 					font-size: 14px
 					line-height: 1.45
 				.form-consent__toggle
-					margin-top: 1px
+					margin-top: 0
 				.form-field__error
-					grid-column: 1 / -1
+					flex: 1 0 100%
 			.form-field__label
 				color: $white
 				font-size: 15px
@@ -7388,10 +7397,11 @@ figure
 				transition: none
 
 .form-consent
-	display: grid
-	grid-template-columns: auto minmax(0, 1fr)
-	align-items: start
-	gap: 10px
+	display: flex
+	flex-direction: row
+	flex-wrap: wrap
+	align-items: center
+	gap: 8px 10px
 	min-width: 0
 	max-width: 100%
 	padding: 12px 14px
@@ -7409,7 +7419,8 @@ figure
 	.form-consent__control
 		position: relative
 		display: inline-flex
-		align-items: flex-start
+		align-items: center
+		flex: 0 0 auto
 		width: auto
 		min-width: 24px
 		margin: 0
@@ -7442,6 +7453,9 @@ figure
 		background: color.adjust($black, $alpha: -.3)
 		cursor: pointer
 		transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease
+		flex: 0 0 auto
+		font-size: 0
+		line-height: 1
 		&::before
 			content: none
 		&::after
@@ -7469,6 +7483,7 @@ figure
 		opacity: .58
 		cursor: not-allowed
 	.form-consent__text
+		flex: 1 1 0
 		min-width: 0
 		margin: 0
 		color: inherit
@@ -7493,7 +7508,7 @@ figure
 			box-shadow: 0 2px 0 $accent
 	.form-field__error,
 	.brief-form__error
-		grid-column: 1 / -1
+		flex: 1 0 100%
 		margin-top: -2px
 
 .form 
