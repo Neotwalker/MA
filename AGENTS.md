@@ -184,6 +184,18 @@ Git history служит журналом завершенных этапов и
 9. Не править плагины и ядро WordPress.
 10. Изменения ACF оформлять управляемо: через PHP-регистрацию полей или синхронизируемый `acf-json`, в зависимости от текущей архитектуры темы.
 
+### Архитектура услуг в WordPress
+
+- Услуги должны быть реализованы через Custom Post Type услуг.
+- Точные slugs брать из существующей WordPress-архитектуры, если она доступна. На текущем production REST подтверждены taxonomy slugs `service_category` и `service_tag`; taxonomy `service_category` и `service_tag` привязаны к типу `services`. REST collection самого CPT `services` может быть закрыт, поэтому не придумывать альтернативный slug без проверки темы.
+- `services.html` в статическом redesign является визуальным прототипом будущего archive template CPT услуг.
+- `services-taxonomy-dev.html`, `services-taxonomy-seo.html`, `services-taxonomy-branding.html`, `services-taxonomy-reklama.html` и `services-taxonomy-readysites.html` являются визуальными и контентными reference для taxonomy archive templates направлений услуг.
+- Individual service pages в WordPress должны формироваться из записей CPT услуг.
+- Списки услуг внутри taxonomy pages должны формироваться динамически по принадлежности записи CPT к соответствующему taxonomy term.
+- Ссылки на individual services должны строиться через WordPress permalink, а ссылки на taxonomy archives - через term links.
+- Добавление новой услуги в админке не должно требовать ручного изменения taxonomy template.
+- Не переносить эти технические термины в публичный текст статического redesign, если они не относятся к содержанию конкретной технической услуги.
+
 ## Формат работы
 
 Перед крупным изменением:

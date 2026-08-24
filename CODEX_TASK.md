@@ -89,6 +89,7 @@ Branch:
 - Source of truth по портфолио: `_reference/portfolio/`.
 - Static breadcrumbs не перерабатывать без отдельного задания.
 - В WordPress breadcrumbs выводятся через `rank_math_the_breadcrumbs()`.
+- Future services WordPress architecture: услуги реализуются через CPT услуг, `services.html` становится reference для archive template, taxonomy prototype pages становятся reference для taxonomy archive templates, списки услуг выводятся динамически по taxonomy term. Точные post type / taxonomy slugs брать из существующей WordPress-архитектуры, не придумывать.
 - Portrait face/appearance нельзя изменять.
 - Не считать существование файла признаком завершенности этапа: сверяться с Git history и фактическим состоянием.
 - QA artifacts сохранять до user review, кроме папок, которые пользователь явно разрешил удалить.
