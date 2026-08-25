@@ -3355,6 +3355,105 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	})();
 
+	// Scoped FAQ topic navigation active state
+	(() => {
+		const nav = document.querySelector('.faq-nav__list');
+		const content = document.querySelector('.faq-content');
+		if (!nav || !content) return;
+
+		const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+		const entries = links
+			.map(link => {
+				const id = decodeURIComponent(link.getAttribute('href') || '').replace(/^#/, '');
+				const section = id ? document.getElementById(id) : null;
+				return section && content.contains(section) ? { id, link, section } : null;
+			})
+			.filter(Boolean);
+		if (!entries.length) return;
+
+		let activeId = '';
+		let activeRaf = 0;
+
+		const setActive = (id) => {
+			if (!id || activeId === id) return;
+			activeId = id;
+			entries.forEach(entry => {
+				const isActive = entry.id === id;
+				entry.link.classList.toggle('is-active', isActive);
+				if (isActive) {
+					entry.link.setAttribute('aria-current', 'location');
+				} else {
+					entry.link.removeAttribute('aria-current');
+				}
+			});
+		};
+
+		const getActivationLine = () => {
+			const headerHeight = header?.getBoundingClientRect().height || 0;
+			return headerHeight + Math.min(Math.max(window.innerHeight * 0.2, 96), 220);
+		};
+
+		const getSectionTop = (entry) => {
+			const heading = entry.section.querySelector('.faq-section__head') || entry.section;
+			return heading.getBoundingClientRect().top;
+		};
+
+		const updateActiveFromPosition = () => {
+			activeRaf = 0;
+			const activationLine = getActivationLine();
+			let current = entries[0];
+			const maxScroll = Math.max(
+				document.documentElement.scrollHeight,
+				document.body ? document.body.scrollHeight : 0
+			) - window.innerHeight;
+
+			if (window.scrollY >= maxScroll - 4) {
+				setActive(entries[entries.length - 1].id);
+				return;
+			}
+
+			for (const entry of entries) {
+				if (getSectionTop(entry) <= activationLine) {
+					current = entry;
+				}
+			}
+
+			setActive(current.id);
+		};
+
+		const queueActiveUpdate = () => {
+			if (activeRaf) return;
+			activeRaf = window.requestAnimationFrame(updateActiveFromPosition);
+		};
+
+		if ('IntersectionObserver' in window) {
+			const observer = new IntersectionObserver(queueActiveUpdate, {
+				root: null,
+				rootMargin: '-18% 0px -62% 0px',
+				threshold: [0, 0.1, 0.35, 0.65, 1],
+			});
+			entries.forEach(entry => observer.observe(entry.section));
+		}
+
+		links.forEach(link => {
+			link.addEventListener('click', () => {
+				const id = decodeURIComponent(link.getAttribute('href') || '').replace(/^#/, '');
+				setActive(id);
+				window.setTimeout(queueActiveUpdate, 450);
+				window.setTimeout(queueActiveUpdate, 900);
+			});
+		});
+
+		window.addEventListener('hashchange', () => {
+			const id = decodeURIComponent(window.location.hash || '').replace(/^#/, '');
+			setActive(id);
+			queueActiveUpdate();
+		});
+		window.addEventListener('scroll', queueActiveUpdate, { passive: true });
+		window.addEventListener('resize', queueActiveUpdate);
+		queueActiveUpdate();
+	})();
+
 	// Smooth Height for FAQ
 	const smoothHeight = (itemSelector, buttonSelector, contentSelector) => {
 		const items = document.querySelectorAll(itemSelector);

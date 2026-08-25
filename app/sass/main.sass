@@ -6,6 +6,30 @@
 @use "libs"
 @use "vars" as *
 
+@mixin local-dark-scrollbar
+	scrollbar-width: thin
+	scrollbar-color: color.adjust($orange, $alpha: -.48) color.adjust($black, $alpha: -.64)
+	&::-webkit-scrollbar
+		width: 10px
+		height: 10px
+	&::-webkit-scrollbar-track
+		border-radius: 999px
+		background-color: color.adjust($black, $alpha: -.64)
+	&::-webkit-scrollbar-thumb
+		border: 2px solid color.adjust($black, $alpha: -.64)
+		border-radius: 999px
+		background-color: color.adjust($orange, $alpha: -.52)
+	&::-webkit-scrollbar-thumb:hover
+		background-color: color.adjust($orange, $alpha: -.34)
+
+@mixin hide-local-scrollbar
+	scrollbar-width: none
+	-ms-overflow-style: none
+	&::-webkit-scrollbar
+		display: none
+		width: 0
+		height: 0
+
 *
 	-webkit-box-sizing: border-box
 	-moz-box-sizing: border-box
@@ -207,6 +231,10 @@ form
 textarea
 	resize: none
 	max-height: 200px
+	overflow-y: auto
+
+form textarea
+	@include local-dark-scrollbar
 
 .mobile 
 	display: none !important
@@ -4336,7 +4364,7 @@ body.cookie-banner-visible
 		max-height: none
 		padding-top: 18px
 		padding-bottom: 18px
-		resize: vertical
+		resize: none
 
 .brief-choice
 	position: relative
@@ -5468,7 +5496,7 @@ body.cookie-banner-visible
 					box-shadow: inset 0 0 0 1px color.adjust($red, $alpha: -.2)
 			textarea
 				min-height: 150px
-				resize: vertical
+				resize: none
 			.form-field--consent
 				display: flex
 				flex-direction: row
@@ -6910,19 +6938,33 @@ body.cookie-banner-visible
 		flex-direction: column
 		border-top: 1px solid color.adjust($white, $alpha: -.84)
 		a
+			position: relative
 			display: flex
 			align-items: center
 			justify-content: space-between
 			gap: 16px
 			min-height: 54px
-			padding: 0
+			padding: 0 0 0 14px
 			border-bottom: 1px solid color.adjust($white, $alpha: -.9)
 			color: color.adjust($white, $alpha: -.24)
 			font-size: 15px
 			font-weight: 800
 			line-height: 1.2
 			text-decoration: none
-			transition: color .22s ease, border-color .22s ease
+			transition: color .22s ease, border-color .22s ease, background-color .22s ease
+			&::before
+				content: ""
+				position: absolute
+				top: 50%
+				left: 0
+				width: 2px
+				height: 24px
+				border-radius: 999px
+				background-color: $orange
+				opacity: 0
+				transform: translateY(-50%) scaleY(.45)
+				transform-origin: center
+				transition: opacity .18s ease, transform .22s ease
 			span:last-child
 				color: color.adjust($white, $alpha: -.56)
 				font-size: 12px
@@ -6936,6 +6978,18 @@ body.cookie-banner-visible
 			&:focus-visible
 				outline: 2px solid color.adjust($orange, $alpha: -.16)
 				outline-offset: 5px
+			&.is-active,
+			&[aria-current="location"]
+				color: $white
+				border-color: color.adjust($orange, $alpha: -.42)
+				background-color: color.adjust($white, $alpha: -.98)
+				&::before
+					opacity: 1
+					transform: translateY(-50%) scaleY(1)
+				span:first-child
+					font-weight: 900
+				span:last-child
+					color: $orange
 
 .faq-content
 	min-width: 0
@@ -7066,11 +7120,10 @@ body.cookie-banner-visible
 			border-radius: 999px
 			background-color: $white
 			transform: translate(-50%, -50%)
-			transition: transform .22s ease, opacity .18s ease, background-color .22s ease
+			transition: transform .22s ease
 			transform-origin: center
-			opacity: 1
 		&::after
-			transform: translate(-50%, -50%) rotate(90deg)
+			transform: translate(-50%, -50%) rotate(90deg) scaleY(1)
 	&__answer
 		display: grid
 		grid-template-rows: 0fr
@@ -7116,8 +7169,7 @@ body.cookie-banner-visible
 				&::after
 					background-color: $white
 				&::after
-					opacity: 0
-					transform: translate(-50%, -50%) rotate(90deg)
+					transform: translate(-50%, -50%) rotate(90deg) scaleY(0)
 			&__answer
 				grid-template-rows: 1fr
 				opacity: 1
@@ -7275,6 +7327,7 @@ body.cookie-banner-visible
 	.work-next-step__link,
 	.work-next-step__link span,
 	.faq-nav__list a,
+	.faq-nav__list a::before,
 	.faq-nav__list a span,
 	.faq-item,
 	.faq-item::before,
@@ -7683,6 +7736,7 @@ figure
 		overscroll-behavior: contain
 		-webkit-overflow-scrolling: touch
 		scrollbar-gutter: stable
+		@include local-dark-scrollbar
 		position: relative
 		z-index: 1
 		outline: none
@@ -7782,7 +7836,7 @@ figure
 				padding-top: 17px
 				padding-bottom: 17px
 				line-height: 1.45
-				resize: vertical
+				resize: none
 				white-space: normal
 			.wpcf7-submit
 				margin: 8px auto 0
@@ -7872,6 +7926,14 @@ figure
 			a,
 			a span
 				transition: none
+
+@media (hover: none), (pointer: coarse)
+	.modal
+		&--wrapper
+			scrollbar-gutter: auto
+			@include hide-local-scrollbar
+	form textarea
+		@include hide-local-scrollbar
 
 .form-consent
 	display: flex
