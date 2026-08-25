@@ -33,7 +33,7 @@
 	<link rel="stylesheet" href="css/main.min.css">
 </head>
 
-<body>
+<body class="faq-document">
 	<header class="header">
 		<div class="container">
 			<div class="row">
@@ -258,7 +258,7 @@
 								<a href="#faq-process"><span>Процесс и связь</span><span aria-hidden="true">02</span></a>
 							</nav>
 						</aside>
-						<div class="faq-content" data-faq-accordion data-faq-single>
+						<div class="faq-content" data-faq-accordion>
 							<section class="faq-section" id="faq-start" aria-labelledby="faq-start-title">
 								<div class="faq-section__head">
 									<span class="faq-section__number" aria-hidden="true">01</span>
@@ -471,17 +471,9 @@
 									</div>
 								</div>
 							</section>
-							<section class="faq-next" aria-labelledby="faq-next-title">
-								<div class="faq-next__content">
-									<p class="faq-next__eyebrow">Следующий шаг</p>
-									<h2 class="faq-next__title h2" id="faq-next-title">Не нашли точный ответ?</h2>
-									<p class="faq-next__text">Опишите задачу в брифе или напишите напрямую. Так проще понять контекст и выбрать подходящий формат обсуждения.</p>
-								</div>
-								<div class="faq-next__actions">
-									<a class="button button--primary button--gradient" href="brief.html"><span>Заполнить бриф</span></a>
-									<a class="faq-next__link modal--open" href="#modal_general" data-modal-target="#modal_general">Обсудить проект <span aria-hidden="true">→</span></a>
-								</div>
-							</section>
+							<div class="faq-next">
+								<a class="faq-next__link modal--open" href="#modal_general" data-modal-target="#modal_general">Обсудить проект <span aria-hidden="true">→</span></a>
+							</div>
 						</div>
 					</div>
 				</div>

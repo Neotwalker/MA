@@ -3287,17 +3287,48 @@ document.addEventListener("DOMContentLoaded", () => {
 		const accordions = document.querySelectorAll('[data-faq-accordion]');
 		if (!accordions.length) return;
 
+		const closeDelay = 320;
+
 		const setState = (item, isOpen) => {
 			const button = item.querySelector('[data-faq-toggle]');
 			const panel = item.querySelector('[data-faq-panel]');
 			if (!button || !panel) return;
 
+			const wasOpen = item.dataset.open === 'true';
+
+			if (panel.faqCloseTimer) {
+				clearTimeout(panel.faqCloseTimer);
+				panel.faqCloseTimer = null;
+			}
+
+			if (!isOpen && panel.contains(document.activeElement)) {
+				button.focus({ preventScroll: true });
+			}
+
 			item.classList.toggle('is-open', isOpen);
 			item.dataset.open = isOpen ? 'true' : 'false';
 			button.setAttribute('aria-expanded', String(isOpen));
-			panel.setAttribute('aria-hidden', String(!isOpen));
-			panel.inert = !isOpen;
-			panel.toggleAttribute('inert', !isOpen);
+
+			if (isOpen) {
+				panel.setAttribute('aria-hidden', 'false');
+				panel.inert = false;
+				panel.removeAttribute('inert');
+				return;
+			}
+
+			const hidePanel = () => {
+				if (item.dataset.open === 'true') return;
+				panel.setAttribute('aria-hidden', 'true');
+				panel.inert = true;
+				panel.setAttribute('inert', '');
+				panel.faqCloseTimer = null;
+			};
+
+			if (wasOpen) {
+				panel.faqCloseTimer = setTimeout(hidePanel, closeDelay);
+			} else {
+				hidePanel();
+			}
 		};
 
 		accordions.forEach(accordion => {
@@ -3311,20 +3342,12 @@ document.addEventListener("DOMContentLoaded", () => {
 				const panel = item.querySelector('[data-faq-panel]');
 				if (!button || !panel) return;
 
-				const shouldOpen = item.hasAttribute('data-faq-open') && (!accordion.hasAttribute('data-faq-single') || !hasOpenItem);
+				const shouldOpen = item.hasAttribute('data-faq-open') && !hasOpenItem;
 				setState(item, shouldOpen);
 				hasOpenItem = hasOpenItem || shouldOpen;
 
 				button.addEventListener('click', () => {
 					const isOpen = item.dataset.open === 'true';
-
-					if (!isOpen && accordion.hasAttribute('data-faq-single')) {
-						items.forEach(otherItem => {
-							if (otherItem !== item) {
-								setState(otherItem, false);
-							}
-						});
-					}
 
 					setState(item, !isOpen);
 				});

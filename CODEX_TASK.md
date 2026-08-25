@@ -51,7 +51,7 @@ Branch:
 - Redesigned and polished `contacts.html`.
 - Article archive view counts metadata.
 - Redesigned work conditions page in `conditions.html`.
-- Redesigned standalone `faq.html` as the separate “Вопрос-ответ” page.
+- Initial redesign of standalone `faq.html` as the separate “Вопрос-ответ” page; final FAQ completion depends on the current follow-up UI/UX correction.
 - Filled content for services taxonomy pages:
   - `services-taxonomy-seo.html`;
   - `services-taxonomy-branding.html`;
@@ -60,9 +60,9 @@ Branch:
 
 ## Current task
 
-Следующий фактический этап:
+FAQ follow-up UI/UX correction over commit `1fb9e15ef2685b3f44635a5e89bdd53aed5a3a24`.
 
-Стоимость после получения реальных цен.
+Текущую реализацию `faq.html` пользователь не принял. FAQ считать окончательно completed только после этой correction, финального интерактивного browser review, проверок, commit и push. После завершения остановиться и не начинать pricing, services phase или другие roadmap stages без отдельной команды.
 
 ## Remaining roadmap
 

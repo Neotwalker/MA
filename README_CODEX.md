@@ -50,7 +50,11 @@ http://127.0.0.1:8080
 
 Интерактивные проверки, DOM assertions, console assertions, modal, menu и Live Search проверять через Codex Browser.
 
-Стабильные full-page screenshots сохранять project runner'ом:
+Основной visual QA workflow - интерактивный browser review. После первой реализации пройти страницу как пользователь и UI/UX reviewer, проверить responsive behavior, sticky, overflow, hover/focus, keyboard, console и релевантные пользовательские сценарии; найденные дефекты исправить и повторить review до финальных проверок.
+
+Скриншоты больше не создаются автоматически и не являются обязательным deliverable. Делать PNG только если пользователь явно попросил, если нужно зафиксировать конкретную найденную визуальную проблему или если screenshot полезен для диагностики.
+
+Если PNG действительно нужен, сохранять его project runner'ом:
 
 ```bash
 npm run qa:screenshots -- --url http://127.0.0.1:8080/about.html --task about-final
@@ -62,7 +66,7 @@ npm run qa:screenshots -- --url http://127.0.0.1:8080/about.html --task about-fi
 node scripts/capture-qa-screenshots.mjs --url http://127.0.0.1:8080/about.html --task about-final
 ```
 
-Скриншоты сохраняются в `.qa-artifacts/<task-slug>/` и остаются там до пользовательского визуального ревью.
+Созданные screenshots и другие QA-артефакты сохраняются в `.qa-artifacts/<task-slug>/` и остаются там до пользовательского ревью, если пользователь попросил их проверить. Не очищать всю `.qa-artifacts/` автоматически.
 
 ## Safe start prompt
 

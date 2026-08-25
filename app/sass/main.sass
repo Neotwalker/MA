@@ -85,7 +85,8 @@ body
 		font-family: $default-font
 
 body.case-study-document:not(.overflow),
-body.article-document:not(.overflow)
+body.article-document:not(.overflow),
+body.faq-document:not(.overflow)
 	overflow: visible
 
 input, textarea, button, select, option
@@ -6806,7 +6807,7 @@ body.cookie-banner-visible
 .faq-page
 	position: relative
 	gap: 0
-	overflow-x: hidden
+	overflow: visible
 	padding-top: var(--header-height, 88px)
 	padding-bottom: 90px
 	background-image: linear-gradient(118deg, color.adjust($red, $alpha: -.95), transparent 34%), repeating-linear-gradient(90deg, color.adjust($white, $alpha: -.98) 0 1px, transparent 1px 178px)
@@ -6992,12 +6993,12 @@ body.cookie-banner-visible
 		line-height: inherit
 	&__button
 		display: grid
-		grid-template-columns: 64px minmax(0, 1fr) 42px
+		grid-template-columns: 76px minmax(0, 1fr) 42px
 		align-items: center
-		gap: 22px
+		gap: 24px
 		width: 100%
 		min-height: 82px
-		padding: 22px 0
+		padding: 22px 22px 22px 28px
 		color: $white
 		text-align: left
 		transition: color .22s ease, background-color .22s ease
@@ -7008,13 +7009,21 @@ body.cookie-banner-visible
 			outline: 2px solid color.adjust($orange, $alpha: -.16)
 			outline-offset: 5px
 	&__number
-		color: color.adjust($white, $alpha: -.58)
+		display: inline-flex
+		align-items: center
+		justify-content: flex-start
+		min-width: 44px
+		color: color.adjust($white, $alpha: -.5)
 		font-size: 13px
 		font-weight: 800
 		line-height: 1
 		transition: color .22s ease
 	&__question
 		min-width: 0
+		background-image: none
+		-webkit-background-clip: border-box
+		-webkit-text-fill-color: currentColor
+		color: color.adjust($white, $alpha: -.08)
 		font-size: 22px
 		font-weight: 800
 		line-height: 1.32
@@ -7027,17 +7036,18 @@ body.cookie-banner-visible
 		border-radius: 50%
 		border: 1px solid color.adjust($white, $alpha: -.76)
 		background-color: color.adjust($black, $alpha: -.3)
-		transition: border-color .22s ease, background-color .22s ease
+		color: $white
+		transition: border-color .22s ease, background-color .22s ease, color .22s ease
 		span
 			position: absolute
 			top: 50%
 			left: 50%
-			width: 15px
+			width: 14px
 			height: 2px
 			border-radius: 999px
-			background-color: currentColor
+			background-color: $white
 			transform: translate(-50%, -50%)
-			transition: transform .22s ease
+			transition: transform .22s ease, opacity .18s ease, background-color .22s ease
 			&:last-child
 				transform: translate(-50%, -50%) rotate(90deg)
 	&__answer
@@ -7070,11 +7080,17 @@ body.cookie-banner-visible
 		.faq-item
 			&__number
 				color: $orange
+			&__question
+				color: $white
 			&__icon
 				border-color: color.adjust($orange, $alpha: -.35)
-				background-color: color.adjust($orange, $alpha: -.9)
+				background-color: color.adjust($orange, $alpha: -.82)
+				color: $white
+				span
+					background-color: $white
 				span:last-child
-					transform: translate(-50%, -50%) rotate(0)
+					opacity: 0
+					transform: translate(-50%, -50%) rotate(90deg)
 			&__answer
 				grid-template-rows: 1fr
 				opacity: 1
@@ -7082,54 +7098,32 @@ body.cookie-banner-visible
 				padding-bottom: 28px
 
 .faq-next
-	margin-top: 74px
-	padding-top: 34px
+	margin-top: 54px
+	padding-top: 26px
 	border-top: 1px solid color.adjust($white, $alpha: -.84)
-	display: grid
-	grid-template-columns: minmax(0, 1fr) auto
-	align-items: center
-	gap: 28px
-	&__content
-		min-width: 0
-	&__eyebrow
-		margin: 0 0 12px
-		color: $orange
-		font-size: 13px
-		font-weight: 800
-		line-height: 1
-		text-transform: uppercase
-	&__title
-		margin: 0 0 14px
-		font-size: 38px
-		line-height: 1.14
-	&__text
-		max-width: 720px
-		margin: 0
-		color: color.adjust($white, $alpha: -.28)
-		font-size: 18px
-		line-height: 1.56
-	&__actions
-		display: flex
-		align-items: center
-		gap: 22px
+	display: flex
+	justify-content: flex-start
 	&__link
 		display: inline-flex
 		align-items: center
 		gap: 8px
-		min-height: 44px
-		color: color.adjust($white, $alpha: -.18)
+		min-height: 46px
+		padding: 0 18px
+		border: 1px solid color.adjust($white, $alpha: -.8)
+		border-radius: 999px
+		color: color.adjust($white, $alpha: -.12)
 		font-size: 16px
 		font-weight: 800
 		line-height: 1.2
 		text-decoration: none
-		border-bottom: 1px solid color.adjust($orange, $alpha: -.28)
-		transition: color .22s ease, border-color .22s ease
+		transition: color .22s ease, border-color .22s ease, background-color .22s ease
 		span
 			color: $orange
 			transition: transform .22s ease
 		&:hover
-			color: $orange
-			border-color: color.adjust($orange, $alpha: -.58)
+			color: $white
+			border-color: color.adjust($orange, $alpha: -.35)
+			background-color: color.adjust($orange, $alpha: -.9)
 			span
 				transform: translateX(4px)
 		&:focus-visible
@@ -7160,9 +7154,9 @@ body.cookie-banner-visible
 			font-size: 36px
 	.faq-item
 		&__button
-			grid-template-columns: 48px minmax(0, 1fr) 40px
+			grid-template-columns: 60px minmax(0, 1fr) 40px
 		&__answer-inner
-			padding-left: 70px
+			padding-left: 90px
 			padding-right: 62px
 
 @media (max-width: 960px)
@@ -7223,29 +7217,21 @@ body.cookie-banner-visible
 			font-size: 32px
 	.faq-item
 		&__button
-			grid-template-columns: 42px minmax(0, 1fr) 38px
+			grid-template-columns: 52px minmax(0, 1fr) 38px
 			gap: 16px
 			min-height: 72px
-			padding: 20px 0
+			padding: 20px 14px 20px 20px
 		&__question
 			font-size: 18px
 		&__answer-inner
-			padding-left: 58px
+			padding-left: 72px
 			padding-right: 0
 			font-size: 17px
 		&.is-open
 			.faq-item__answer-inner
 				padding-bottom: 24px
 	.faq-next
-		grid-template-columns: minmax(0, 1fr)
-		align-items: start
 		margin-top: 60px
-		&__eyebrow
-			margin-bottom: 10px
-		&__title
-			font-size: 32px
-		&__actions
-			flex-wrap: wrap
 
 @media (max-width: 480px)
 	.faq-hero
@@ -7263,10 +7249,10 @@ body.cookie-banner-visible
 			font-size: 28px
 	.faq-item
 		&__button
-			grid-template-columns: 34px minmax(0, 1fr) 34px
-			gap: 12px
+			grid-template-columns: 42px minmax(0, 1fr) 34px
+			gap: 10px
 			min-height: 68px
-			padding: 18px 0
+			padding: 18px 10px 18px 16px
 		&__question
 			font-size: 16px
 			line-height: 1.36
@@ -7274,16 +7260,10 @@ body.cookie-banner-visible
 			width: 30px
 			height: 30px
 		&__answer-inner
-			padding-left: 46px
+			padding-left: 58px
 			font-size: 16px
 			line-height: 1.58
 	.faq-next
-		&__actions
-			align-items: stretch
-			flex-direction: column
-		.button
-			width: 100%
-			justify-content: center
 		&__link
 			width: fit-content
 
