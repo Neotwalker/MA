@@ -6974,6 +6974,11 @@ body.cookie-banner-visible
 
 .faq-item
 	position: relative
+	--faq-item-number-column: 76px
+	--faq-item-toggle-column: 42px
+	--faq-item-column-gap: 24px
+	--faq-item-pad-left: 28px
+	--faq-item-pad-right: 22px
 	border-bottom: 1px solid color.adjust($white, $alpha: -.9)
 	&::before
 		content: ""
@@ -6993,12 +6998,12 @@ body.cookie-banner-visible
 		line-height: inherit
 	&__button
 		display: grid
-		grid-template-columns: 76px minmax(0, 1fr) 42px
+		grid-template-columns: var(--faq-item-number-column) minmax(0, 1fr) var(--faq-item-toggle-column)
 		align-items: center
-		gap: 24px
+		gap: var(--faq-item-column-gap)
 		width: 100%
 		min-height: 82px
-		padding: 22px 22px 22px 28px
+		padding: 22px var(--faq-item-pad-right) 22px var(--faq-item-pad-left)
 		color: $white
 		text-align: left
 		transition: color .22s ease, background-color .22s ease
@@ -7013,6 +7018,9 @@ body.cookie-banner-visible
 		align-items: center
 		justify-content: flex-start
 		min-width: 44px
+		background-image: none
+		-webkit-background-clip: border-box
+		-webkit-text-fill-color: currentColor
 		color: color.adjust($white, $alpha: -.5)
 		font-size: 13px
 		font-weight: 800
@@ -7030,15 +7038,26 @@ body.cookie-banner-visible
 		overflow-wrap: anywhere
 	&__icon
 		position: relative
+		display: inline-flex
+		align-items: center
+		justify-content: center
 		width: 34px
 		height: 34px
 		justify-self: end
 		border-radius: 50%
 		border: 1px solid color.adjust($white, $alpha: -.76)
+		background-image: none
 		background-color: color.adjust($black, $alpha: -.3)
+		-webkit-background-clip: border-box
+		-webkit-text-fill-color: currentColor
 		color: $white
+		overflow: hidden
 		transition: border-color .22s ease, background-color .22s ease, color .22s ease
 		span
+			display: none
+		&::before,
+		&::after
+			content: ""
 			position: absolute
 			top: 50%
 			left: 50%
@@ -7048,20 +7067,27 @@ body.cookie-banner-visible
 			background-color: $white
 			transform: translate(-50%, -50%)
 			transition: transform .22s ease, opacity .18s ease, background-color .22s ease
-			&:last-child
-				transform: translate(-50%, -50%) rotate(90deg)
+			transform-origin: center
+			opacity: 1
+		&::after
+			transform: translate(-50%, -50%) rotate(90deg)
 	&__answer
 		display: grid
 		grid-template-rows: 0fr
 		opacity: 0
 		transition: grid-template-rows .28s ease, opacity .22s ease
 	&__answer-inner
+		display: grid
+		grid-template-columns: var(--faq-item-number-column) minmax(0, 1fr) var(--faq-item-toggle-column)
+		column-gap: var(--faq-item-column-gap)
 		min-height: 0
 		overflow: hidden
-		padding: 0 98px 0 86px
+		padding: 0 var(--faq-item-pad-right) 0 var(--faq-item-pad-left)
 		color: color.adjust($white, $alpha: -.22)
 		font-size: 18px
 		line-height: 1.62
+		> *
+			grid-column: 2
 		p
 			margin: 0 0 18px
 			&:last-child
@@ -7086,9 +7112,10 @@ body.cookie-banner-visible
 				border-color: color.adjust($orange, $alpha: -.35)
 				background-color: color.adjust($orange, $alpha: -.82)
 				color: $white
-				span
+				&::before,
+				&::after
 					background-color: $white
-				span:last-child
+				&::after
 					opacity: 0
 					transform: translate(-50%, -50%) rotate(90deg)
 			&__answer
@@ -7097,38 +7124,13 @@ body.cookie-banner-visible
 			&__answer-inner
 				padding-bottom: 28px
 
+.faq-content > .faq-section:last-of-type .faq-list .faq-item:last-child
+	border-bottom: 0
+
 .faq-next
-	margin-top: 54px
-	padding-top: 26px
-	border-top: 1px solid color.adjust($white, $alpha: -.84)
+	margin-top: 34px
 	display: flex
 	justify-content: flex-start
-	&__link
-		display: inline-flex
-		align-items: center
-		gap: 8px
-		min-height: 46px
-		padding: 0 18px
-		border: 1px solid color.adjust($white, $alpha: -.8)
-		border-radius: 999px
-		color: color.adjust($white, $alpha: -.12)
-		font-size: 16px
-		font-weight: 800
-		line-height: 1.2
-		text-decoration: none
-		transition: color .22s ease, border-color .22s ease, background-color .22s ease
-		span
-			color: $orange
-			transition: transform .22s ease
-		&:hover
-			color: $white
-			border-color: color.adjust($orange, $alpha: -.35)
-			background-color: color.adjust($orange, $alpha: -.9)
-			span
-				transform: translateX(4px)
-		&:focus-visible
-			outline: 2px solid color.adjust($orange, $alpha: -.16)
-			outline-offset: 5px
 
 @media (max-width: 1199px)
 	.faq-hero
@@ -7153,11 +7155,10 @@ body.cookie-banner-visible
 		&__title
 			font-size: 36px
 	.faq-item
+		--faq-item-number-column: 60px
+		--faq-item-toggle-column: 40px
 		&__button
-			grid-template-columns: 60px minmax(0, 1fr) 40px
-		&__answer-inner
-			padding-left: 90px
-			padding-right: 62px
+			min-height: 80px
 
 @media (max-width: 960px)
 	.faq-panel
@@ -7216,22 +7217,24 @@ body.cookie-banner-visible
 		&__title
 			font-size: 32px
 	.faq-item
+		--faq-item-number-column: 52px
+		--faq-item-toggle-column: 38px
+		--faq-item-column-gap: 16px
+		--faq-item-pad-left: 20px
+		--faq-item-pad-right: 14px
 		&__button
-			grid-template-columns: 52px minmax(0, 1fr) 38px
-			gap: 16px
 			min-height: 72px
-			padding: 20px 14px 20px 20px
+			padding-top: 20px
+			padding-bottom: 20px
 		&__question
 			font-size: 18px
 		&__answer-inner
-			padding-left: 72px
-			padding-right: 0
 			font-size: 17px
 		&.is-open
 			.faq-item__answer-inner
 				padding-bottom: 24px
 	.faq-next
-		margin-top: 60px
+		margin-top: 36px
 
 @media (max-width: 480px)
 	.faq-hero
@@ -7248,11 +7251,15 @@ body.cookie-banner-visible
 		&__title
 			font-size: 28px
 	.faq-item
+		--faq-item-number-column: 42px
+		--faq-item-toggle-column: 34px
+		--faq-item-column-gap: 10px
+		--faq-item-pad-left: 16px
+		--faq-item-pad-right: 10px
 		&__button
-			grid-template-columns: 42px minmax(0, 1fr) 34px
-			gap: 10px
 			min-height: 68px
-			padding: 18px 10px 18px 16px
+			padding-top: 18px
+			padding-bottom: 18px
 		&__question
 			font-size: 16px
 			line-height: 1.36
@@ -7260,12 +7267,8 @@ body.cookie-banner-visible
 			width: 30px
 			height: 30px
 		&__answer-inner
-			padding-left: 58px
 			font-size: 16px
 			line-height: 1.58
-	.faq-next
-		&__link
-			width: fit-content
 
 @media (prefers-reduced-motion: reduce)
 	.work-conditions-nav a,
@@ -7278,10 +7281,9 @@ body.cookie-banner-visible
 	.faq-item__button,
 	.faq-item__number,
 	.faq-item__icon,
-	.faq-item__icon span,
+	.faq-item__icon::before,
+	.faq-item__icon::after,
 	.faq-item__answer,
-	.faq-next__link,
-	.faq-next__link span,
 	.contacts-list__item,
 	.contacts-list__item::before,
 	.contacts-list__action span

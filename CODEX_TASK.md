@@ -60,9 +60,11 @@ Branch:
 
 ## Current task
 
-FAQ follow-up UI/UX correction over commit `1fb9e15ef2685b3f44635a5e89bdd53aed5a3a24`.
+FAQ final UI details follow-up over current pushed FAQ redesign state.
 
-Текущую реализацию `faq.html` пользователь не принял. FAQ считать окончательно completed только после этой correction, финального интерактивного browser review, проверок, commit и push. После завершения остановиться и не начинать pricing, services phase или другие roadmap stages без отдельной команды.
+Status after this follow-up is pushed: `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
+
+Текущую реализацию `faq.html` пользователь не принял окончательно. FAQ не считать `USER APPROVED`, пока пользователь отдельно не посмотрит живой результат и явно не подтвердит приемку. После реализации, финального интерактивного browser review, проверок, commit и push остановиться и не начинать pricing, services phase или другие roadmap stages без отдельной команды.
 
 ## Remaining roadmap
 
