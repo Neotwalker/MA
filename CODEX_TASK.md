@@ -51,20 +51,26 @@ Branch:
 - Redesigned and polished `contacts.html`.
 - Article archive view counts metadata.
 - Redesigned work conditions page in `conditions.html`.
-- Initial redesign of standalone `faq.html` as the separate “Вопрос-ответ” page; final FAQ completion depends on the current follow-up UI/UX correction.
+- Redesigned standalone `faq.html` as the separate “Вопрос-ответ” page.
+- Final FAQ UI/UX polish: transform-only icons, active navigation state, mobile overflow checks, modal and textarea scrollbar behavior.
+- Shared header-to-breadcrumb spacing normalization for FAQ, work conditions, services taxonomy pages, service single page and services archive.
 - Filled content for services taxonomy pages:
   - `services-taxonomy-seo.html`;
   - `services-taxonomy-branding.html`;
   - `services-taxonomy-reklama.html`;
   - `services-taxonomy-readysites.html`.
+- Redesigned `services.html` as the services archive / top-level services map.
 
 ## Current task
 
-FAQ final UI details follow-up over current pushed FAQ redesign state.
+Current redesign checkpoint:
 
-Status after this follow-up is pushed: `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
+- FAQ: `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
+- SERVICES ARCHIVE: `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
 
-Текущую реализацию `faq.html` пользователь не принял окончательно. FAQ не считать `USER APPROVED`, пока пользователь отдельно не посмотрит живой результат и явно не подтвердит приемку. После реализации, финального интерактивного browser review, проверок, commit и push остановиться и не начинать pricing, services phase или другие roadmap stages без отдельной команды.
+FAQ and services archive should not be marked `USER APPROVED` until the user reviews the live result and explicitly confirms acceptance.
+
+Stop after this checkpoint. Do not start individual service pages, industry pages, pricing or other roadmap stages without a separate user command.
 
 ## Remaining roadmap
 

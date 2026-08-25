@@ -5886,3 +5886,244 @@
 			font-size: 20px
 		&__action
 			font-size: 14px
+
+@media (max-width : 1440px)
+	.services-archive-hero
+		&__layout
+			grid-template-columns: minmax(0, 1fr) minmax(330px, 430px)
+			gap: 56px
+		h1
+			font-size: 64px
+		&__lead
+			font-size: 20px
+	.services-archive-direction
+		grid-template-columns: 68px minmax(0, 1fr) minmax(210px, .62fr) minmax(190px, .46fr)
+		gap: 22px
+		&__title
+			font-size: 28px
+
+@media (max-width : 1200px)
+	.services-archive-page
+		.main--services
+			padding-bottom: 84px
+	.services-archive-hero
+		&__layout
+			grid-template-columns: minmax(0, 1fr) minmax(300px, 360px)
+			gap: 42px
+		h1
+			font-size: 56px
+	.services-archive-signal
+		min-height: 360px
+		padding-left: 26px
+		&::before
+			width: 150px
+			height: 150px
+	.services-archive-direction
+		grid-template-columns: 58px minmax(0, 1fr) minmax(190px, .58fr)
+		&__links
+			grid-column: 2 / -1
+			flex-direction: row
+			flex-wrap: wrap
+	.services-archive-choose,
+	.services-archive-system
+		&__layout
+			gap: 48px
+
+@media (max-width : 1024px)
+	.services-archive-hero
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 42px
+			align-items: start
+		&__content
+			max-width: 820px
+		h1
+			font-size: 52px
+	.services-archive-signal
+		min-height: 0
+		max-width: 100%
+		padding: 22px 0 0
+		border-left: 0
+		&::before
+			right: 0
+			bottom: 0
+			width: 96px
+			height: 96px
+			opacity: .28
+		&__label
+			margin-bottom: 14px
+		&__list
+			grid-template-columns: repeat(5, minmax(0, 1fr))
+			max-width: none
+			gap: 0
+			li
+				grid-template-columns: minmax(0, 1fr)
+				padding: 14px 12px 14px 0
+				strong
+					font-size: 17px
+				small
+					grid-column: auto
+	.services-archive-map,
+	.services-archive-choose,
+	.services-archive-system,
+	.services-archive-next
+		padding: 72px 0
+	.services-archive-map
+		padding-top: 0
+	.services-archive-direction
+		grid-template-columns: 58px minmax(0, 1fr)
+		gap: 18px 22px
+		&__tasks,
+		&__links
+			grid-column: 2
+		&__tasks
+			grid-template-columns: repeat(2, minmax(0, 1fr))
+	.services-archive-choose
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 34px
+	.services-archive-section-head
+		&--compact
+			max-width: 780px
+	.services-archive-system
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 34px
+	.services-archive-flow
+		li
+			padding-right: 20px
+	.services-archive-next
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 28px
+		&__actions
+			justify-content: flex-start
+
+@media (max-width : 768px)
+	.services-archive-page
+		.main--services
+			padding-bottom: 72px
+		.breadcrumbs
+			margin-bottom: 25px
+	.services-archive-hero
+		h1
+			margin-bottom: 20px
+			font-size: 44px
+			line-height: 1.08
+		&__eyebrow
+			margin-bottom: 14px
+			font-size: 14px
+		&__lead
+			font-size: 18px
+		&__actions
+			margin-top: 30px
+	.services-archive-signal
+		padding-left: 20px
+		&__list
+			grid-template-columns: repeat(2, minmax(0, 1fr))
+			li
+				grid-template-columns: 36px minmax(0, 1fr)
+				gap: 8px 14px
+				padding: 14px 0
+				strong
+					font-size: 18px
+				small
+					grid-column: 2
+	.services-archive-map,
+	.services-archive-choose,
+	.services-archive-system,
+	.services-archive-next
+		padding: 62px 0
+	.services-archive-map
+		padding-top: 0
+	.services-archive-section-head
+		margin-bottom: 34px
+		p
+			font-size: 16px
+	.services-archive-direction
+		grid-template-columns: 48px minmax(0, 1fr)
+		padding: 28px 0 30px
+		&__number
+			font-size: 19px
+		&__title
+			font-size: 26px
+		&__text
+			font-size: 16px
+		&__tasks
+			grid-template-columns: minmax(0, 1fr)
+	.services-archive-scenarios
+		li
+			grid-template-columns: minmax(0, 1fr)
+			gap: 10px
+			min-height: 0
+			span
+				font-size: 16px
+			a
+				justify-self: start
+	.services-archive-flow
+		grid-template-columns: minmax(0, 1fr)
+		li
+			padding: 24px 0
+			border-right: 0
+			border-bottom: 1px solid color.adjust($white, $alpha: -.88)
+			&:last-child
+				border-bottom: 0
+			span
+				margin-bottom: 16px
+	.services-archive-next
+		&__layout
+			padding: 34px 0
+		&__text
+			p:last-child
+				font-size: 16px
+
+@media (max-width : 480px)
+	.services-archive-page
+		.main--services
+			padding-bottom: 58px
+	.services-archive-hero
+		h1
+			font-size: 36px
+		&__lead
+			font-size: 16px
+		&__actions
+			align-items: stretch
+			.button
+				width: 100%
+				justify-content: center
+	.services-archive-signal
+		display: none
+	.services-archive-direction
+		grid-template-columns: minmax(0, 1fr)
+		gap: 14px
+		padding: 26px 0 28px
+		&__tasks,
+		&__links
+			grid-column: auto
+		&__links
+			align-items: stretch
+		&__main-link,
+		&__service-link
+			width: 100%
+	.services-archive-next
+		&__actions
+			align-items: stretch
+			flex-direction: column
+			.button
+				width: 100%
+				justify-content: center
+
+@media (max-width : 360px)
+	.services-archive-hero
+		h1
+			font-size: 32px
+	.services-archive-direction
+		&__title
+			font-size: 24px
+		&__main-link,
+		&__service-link
+			font-size: 14px
+	.services-archive-flow
+		li
+			h3
+				font-size: 22px
