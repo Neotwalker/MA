@@ -3282,6 +3282,56 @@ document.addEventListener("DOMContentLoaded", () => {
 		requestAnimationFrame(animate);
 	});
 
+	// Scoped FAQ page accordion
+	(() => {
+		const accordions = document.querySelectorAll('[data-faq-accordion]');
+		if (!accordions.length) return;
+
+		const setState = (item, isOpen) => {
+			const button = item.querySelector('[data-faq-toggle]');
+			const panel = item.querySelector('[data-faq-panel]');
+			if (!button || !panel) return;
+
+			item.classList.toggle('is-open', isOpen);
+			item.dataset.open = isOpen ? 'true' : 'false';
+			button.setAttribute('aria-expanded', String(isOpen));
+			panel.setAttribute('aria-hidden', String(!isOpen));
+			panel.inert = !isOpen;
+			panel.toggleAttribute('inert', !isOpen);
+		};
+
+		accordions.forEach(accordion => {
+			const items = Array.from(accordion.querySelectorAll('[data-faq-item]'));
+			if (!items.length) return;
+
+			let hasOpenItem = false;
+
+			items.forEach(item => {
+				const button = item.querySelector('[data-faq-toggle]');
+				const panel = item.querySelector('[data-faq-panel]');
+				if (!button || !panel) return;
+
+				const shouldOpen = item.hasAttribute('data-faq-open') && (!accordion.hasAttribute('data-faq-single') || !hasOpenItem);
+				setState(item, shouldOpen);
+				hasOpenItem = hasOpenItem || shouldOpen;
+
+				button.addEventListener('click', () => {
+					const isOpen = item.dataset.open === 'true';
+
+					if (!isOpen && accordion.hasAttribute('data-faq-single')) {
+						items.forEach(otherItem => {
+							if (otherItem !== item) {
+								setState(otherItem, false);
+							}
+						});
+					}
+
+					setState(item, !isOpen);
+				});
+			});
+		});
+	})();
+
 	// Smooth Height for FAQ
 	const smoothHeight = (itemSelector, buttonSelector, contentSelector) => {
 		const items = document.querySelectorAll(itemSelector);

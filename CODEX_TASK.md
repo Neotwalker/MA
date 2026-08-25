@@ -51,7 +51,7 @@ Branch:
 - Redesigned and polished `contacts.html`.
 - Article archive view counts metadata.
 - Redesigned work conditions page in `conditions.html`.
-- Restored `faq.html` as the separate legacy FAQ page pending a future redesign.
+- Redesigned standalone `faq.html` as the separate “Вопрос-ответ” page.
 - Filled content for services taxonomy pages:
   - `services-taxonomy-seo.html`;
   - `services-taxonomy-branding.html`;
@@ -67,18 +67,17 @@ Branch:
 ## Remaining roadmap
 
 1. Стоимость после получения реальных цен.
-2. Вопрос-ответ.
-3. Ревизия услуг и отраслевых страниц.
-4. Ревизия отдельных кейсов.
-5. Глоссарий.
-6. Внутренняя перелинковка.
-7. Персональная контентная ревизия.
-8. SEO.
-9. Performance.
-10. Accessibility.
-11. WordPress integration.
-12. Rank Math / sitemap / robots / `llms.txt`.
-13. Финальный release.
+2. Ревизия услуг и отраслевых страниц.
+3. Ревизия отдельных кейсов.
+4. Глоссарий.
+5. Внутренняя перелинковка.
+6. Персональная контентная ревизия.
+7. SEO.
+8. Performance.
+9. Accessibility.
+10. WordPress integration.
+11. Rank Math / sitemap / robots / `llms.txt`.
+12. Финальный release.
 
 Портрет считается подготовленным этапом и не включается повторно.
 
