@@ -1446,10 +1446,15 @@ body.cookie-banner-visible
 	> * 
 		position: relative
 		z-index: 1
-	&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page):not(.work-conditions-page):not(.faq-page))
+	&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page):not(.services):not(.work-conditions-page):not(.faq-page))
 		> *
 			&:first-child
 				padding-top: 180px
+	&:is(.faq-page, .work-conditions-page, .services)
+		--page-top-offset: 130px
+		padding-top: 0
+		> :first-child
+			padding-top: var(--page-top-offset)
 	> .home-hero
 		position: relative
 		min-height: 620px
@@ -6365,11 +6370,8 @@ body.cookie-banner-visible
 	position: relative
 	gap: 0
 	overflow-x: hidden
-	padding-top: var(--header-height, 88px)
 	padding-bottom: 90px
 	background-image: linear-gradient(112deg, color.adjust($red, $alpha: -.94), transparent 36%), repeating-linear-gradient(90deg, color.adjust($white, $alpha: -.975) 0 1px, transparent 1px 180px)
-	> *:first-child
-		padding-top: 0
 
 .work-conditions-hero
 	padding: 40px 0 70px
@@ -6836,11 +6838,8 @@ body.cookie-banner-visible
 	position: relative
 	gap: 0
 	overflow: visible
-	padding-top: var(--header-height, 88px)
 	padding-bottom: 90px
 	background-image: linear-gradient(118deg, color.adjust($red, $alpha: -.95), transparent 34%), repeating-linear-gradient(90deg, color.adjust($white, $alpha: -.98) 0 1px, transparent 1px 178px)
-	> *:first-child
-		padding-top: 0
 
 .faq-hero
 	padding: 40px 0 52px

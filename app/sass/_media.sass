@@ -13,7 +13,7 @@
 				width: 150px
 	.main
 		gap: 80px
-		&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page):not(.work-conditions-page):not(.faq-page))
+		&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page):not(.services):not(.work-conditions-page):not(.faq-page))
 			> :first-child
 				padding-top: 130px
 		&--header
@@ -354,7 +354,7 @@
 			.menu
 				gap: 25px
 	.main
-		&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page):not(.work-conditions-page):not(.faq-page))
+		&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page):not(.services):not(.work-conditions-page):not(.faq-page))
 			> *
 				&:first-child
 					padding-top: 140px
@@ -583,8 +583,10 @@
 					margin-right: auto
 
 @media (max-width : 1200px)
+	.main:is(.faq-page, .work-conditions-page, .services)
+		--page-top-offset: 120px
 	.main
-		&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page):not(.work-conditions-page):not(.faq-page))
+		&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page):not(.services):not(.work-conditions-page):not(.faq-page))
 			> *
 				&:first-child
 					padding-top: 120px
@@ -1315,6 +1317,8 @@
 
 /* Small Devices, Tablets */
 @media (max-width : 768px)
+	.main:is(.faq-page, .work-conditions-page, .services)
+		--page-top-offset: 106px
 	.mobile 
 		display: flex !important
 	.desktop
@@ -2040,13 +2044,10 @@
 		gap: 60px
 		> * 
 			z-index: 2
-		&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page):not(.work-conditions-page):not(.faq-page))
+		&:where(:not(.about-page):not(.sitemap-page):not(.search-page):not(.articles-archive):not(.article-page):not(.brief-page):not(.contacts-page):not(.portfolio-page):not(.case-study-page):not(.industry-page):not(.services):not(.work-conditions-page):not(.faq-page))
 			> *
 				&:first-child
 					padding-top: 80px
-		&.services
-			> :first-child
-				padding-top: 106px
 		> .home-hero
 			padding: 92px 0 0
 			background-image: linear-gradient(120deg, color.adjust($red, $alpha: -.9) 0%, color.adjust($black, $alpha: -1) 44%), linear-gradient(180deg, color.adjust($white, $alpha: -.985) 0, color.adjust($white, $alpha: -1) 52%)
