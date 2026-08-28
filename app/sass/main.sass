@@ -5094,6 +5094,7 @@ body.cookie-banner-visible
 								fill: $accent
 
 .services-archive-page
+	--services-anchor-offset: calc(88px + 28px)
 	gap: 0
 	overflow-x: hidden
 	background-image: linear-gradient(112deg, color.adjust($red, $alpha: -.95), transparent 34%), repeating-linear-gradient(90deg, color.adjust($white, $alpha: -.982) 0 1px, transparent 1px 180px)
@@ -5210,6 +5211,7 @@ body.cookie-banner-visible
 
 .services-archive-map
 	padding-top: 0
+	scroll-margin-top: var(--services-anchor-offset)
 
 .services-archive-section-head
 	max-width: 880px
@@ -5240,13 +5242,15 @@ body.cookie-banner-visible
 
 .services-archive-direction
 	display: grid
-	grid-template-columns: 78px minmax(0, .98fr) minmax(360px, .72fr)
-	gap: 30px
+	grid-template-columns: 78px minmax(0, 1fr)
+	gap: 20px 32px
 	align-items: start
-	padding: 34px 0 36px
+	padding: 34px 0 38px
 	border-top: 1px solid color.adjust($white, $alpha: -.84)
 	&:last-child
 		border-bottom: 1px solid color.adjust($white, $alpha: -.84)
+	&[id]
+		scroll-margin-top: var(--services-anchor-offset)
 	&__number
 		color: color.adjust($white, $alpha: -.58)
 		font-size: 22px
@@ -5279,17 +5283,25 @@ body.cookie-banner-visible
 		font-size: 17px
 		line-height: 1.55
 	&__links
+		grid-column: 2
 		display: grid
 		align-content: start
-		gap: 18px
+		gap: 16px
+		max-width: 1040px
 		min-width: 0
 	&__service-list
 		display: grid
 		grid-template-columns: repeat(2, minmax(0, 1fr))
-		gap: 8px 18px
+		gap: 8px 22px
+		width: 100%
 		margin: 0
 		padding: 0
 		list-style: none
+		&--long,
+		&--medium
+			grid-template-columns: repeat(3, minmax(0, 1fr))
+		&--short
+			grid-template-columns: repeat(2, minmax(160px, 260px))
 		li
 			min-width: 0
 	&__service-link

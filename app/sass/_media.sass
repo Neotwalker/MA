@@ -5888,6 +5888,8 @@
 			font-size: 14px
 
 @media (max-width : 1440px)
+	.services-archive-page
+		--services-anchor-offset: calc(84px + 28px)
 	.services-archive-hero
 		&__layout
 			grid-template-columns: minmax(0, 1fr) minmax(330px, 430px)
@@ -5897,13 +5899,16 @@
 		&__lead
 			font-size: 20px
 	.services-archive-direction
-		grid-template-columns: 68px minmax(0, .98fr) minmax(330px, .72fr)
-		gap: 22px
+		grid-template-columns: 68px minmax(0, 1fr)
+		gap: 18px 28px
+		&__links
+			max-width: 960px
 		&__title
 			font-size: 28px
 
 @media (max-width : 1200px)
 	.services-archive-page
+		--services-anchor-offset: calc(76px + 28px)
 		.main--services
 			padding-bottom: 84px
 	.services-archive-hero
@@ -5920,11 +5925,15 @@
 			height: 150px
 	.services-archive-direction
 		grid-template-columns: 58px minmax(0, 1fr)
+		gap: 18px 24px
 		&__links
 			grid-column: 2
-			max-width: 820px
+			max-width: 900px
 		&__service-list
-			grid-template-columns: repeat(3, minmax(0, 1fr))
+			grid-template-columns: repeat(2, minmax(0, 1fr))
+			&--long,
+			&--medium
+				grid-template-columns: repeat(3, minmax(0, 1fr))
 	.services-archive-choose
 		&__layout
 			gap: 48px
@@ -5977,6 +5986,7 @@
 		gap: 18px 22px
 		&__links
 			grid-column: 2
+			max-width: 100%
 		&__service-list
 			grid-template-columns: repeat(2, minmax(0, 1fr))
 	.services-archive-choose
@@ -6038,6 +6048,7 @@
 			font-size: 16px
 	.services-archive-direction
 		grid-template-columns: 48px minmax(0, 1fr)
+		gap: 16px 20px
 		padding: 28px 0 30px
 		&__number
 			font-size: 19px
@@ -6063,6 +6074,10 @@
 			p:last-child
 				font-size: 16px
 
+@media (max-width : 767px)
+	.services-archive-page
+		--services-anchor-offset: calc(66px + 24px)
+
 @media (max-width : 480px)
 	.services-archive-page
 		.main--services
@@ -6086,6 +6101,7 @@
 		&__links
 			grid-column: auto
 		&__service-list
+			grid-template-columns: repeat(2, minmax(0, 1fr))
 			gap: 6px 14px
 		&__main-link,
 		&__service-link
