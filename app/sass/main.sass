@@ -5205,7 +5205,6 @@ body.cookie-banner-visible
 
 .services-archive-map,
 .services-archive-choose,
-.services-archive-system,
 .services-archive-next
 	padding: 88px 0
 
@@ -5241,8 +5240,8 @@ body.cookie-banner-visible
 
 .services-archive-direction
 	display: grid
-	grid-template-columns: 78px minmax(0, 1.02fr) minmax(230px, .62fr) minmax(210px, .45fr)
-	gap: 26px
+	grid-template-columns: 78px minmax(0, .98fr) minmax(360px, .72fr)
+	gap: 30px
 	align-items: start
 	padding: 34px 0 36px
 	border-top: 1px solid color.adjust($white, $alpha: -.84)
@@ -5279,33 +5278,39 @@ body.cookie-banner-visible
 		color: color.adjust($white, $alpha: -.28)
 		font-size: 17px
 		line-height: 1.55
-	&__tasks
-		display: grid
-		gap: 10px
-		margin: 0
-		padding: 2px 0 0
-		list-style: none
-		color: color.adjust($white, $alpha: -.22)
-		font-size: 15px
-		line-height: 1.42
-		li
-			position: relative
-			padding-left: 18px
-			&::before
-				content: ''
-				position: absolute
-				left: 0
-				top: .66em
-				width: 7px
-				height: 1px
-				background-color: $accent
 	&__links
-		display: flex
-		flex-direction: column
-		align-items: flex-start
-		gap: 10px
-	&__main-link,
+		display: grid
+		align-content: start
+		gap: 18px
+		min-width: 0
+	&__service-list
+		display: grid
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+		gap: 8px 18px
+		margin: 0
+		padding: 0
+		list-style: none
+		li
+			min-width: 0
 	&__service-link
+		display: inline-flex
+		align-items: center
+		max-width: 100%
+		min-height: 32px
+		padding: 3px 0
+		color: color.adjust($white, $alpha: -.34)
+		font-size: 15px
+		line-height: 1.32
+		font-weight: 500
+		overflow-wrap: anywhere
+		text-decoration: none
+		border-bottom: 1px solid transparent
+		transition: color .25s ease, border-color .25s ease
+		&:hover
+			color: $accent
+			border-color: color.adjust($accent, $alpha: -.45)
+	&__main-link
+		justify-self: start
 		display: inline-flex
 		align-items: center
 		min-height: 44px
@@ -5320,9 +5325,6 @@ body.cookie-banner-visible
 		&:hover
 			color: $accent
 			transform: translateX(4px)
-	&__service-link
-		color: color.adjust($white, $alpha: -.32)
-		font-weight: 500
 
 .services-archive-choose
 	background-color: color.adjust($white, $alpha: -.985)
@@ -5369,50 +5371,8 @@ body.cookie-banner-visible
 			&:hover
 				color: $accent
 
-.services-archive-system
-	&__layout
-		display: grid
-		grid-template-columns: minmax(260px, 420px) minmax(0, 1fr)
-		gap: 70px
-		align-items: start
-	&__intro
-		h2
-			margin: 0
-
-.services-archive-flow
-	display: grid
-	grid-template-columns: repeat(3, minmax(0, 1fr))
-	gap: 0
-	margin: 0
-	padding: 0
-	list-style: none
-	border-top: 1px solid color.adjust($white, $alpha: -.84)
-	li
-		min-width: 0
-		padding: 28px 28px 6px 0
-		border-right: 1px solid color.adjust($white, $alpha: -.88)
-		&:last-child
-			border-right: 0
-		span
-			display: block
-			margin-bottom: 28px
-			color: $accent
-			font-size: 16px
-			line-height: 1.2
-			font-weight: 700
-		h3
-			margin: 0 0 12px
-			color: $white
-			font-size: 24px
-			line-height: 1.24
-			font-weight: 400
-		p
-			margin: 0
-			color: color.adjust($white, $alpha: -.32)
-			font-size: 15px
-			line-height: 1.5
-
 .services-archive-next
+	padding-top: 56px
 	padding-bottom: 112px
 	&__layout
 		display: grid
