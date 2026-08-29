@@ -59,33 +59,36 @@ Branch:
   - `services-taxonomy-branding.html`;
   - `services-taxonomy-reklama.html`;
   - `services-taxonomy-readysites.html`.
-- Redesigned `services.html` as the services archive / top-level services map.
+- Redesigned `services.html` as the services archive / top-level services map; user visual approval received before the individual service reference stage.
+- Redesigned `services-single.html` as the first individual service reference page for “Разработка лендинга”.
 
 ## Current task
 
 Current redesign checkpoint:
 
 - FAQ: `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
-- SERVICES ARCHIVE: `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
+- SERVICES ARCHIVE: `USER APPROVED`.
+- INDIVIDUAL SERVICE REFERENCE (`services-single.html`, “Разработка лендинга”): `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
 
-FAQ and services archive should not be marked `USER APPROVED` until the user reviews the live result and explicitly confirms acceptance.
+FAQ should not be marked `USER APPROVED` until the user reviews the live result and explicitly confirms acceptance.
 
-Stop after this checkpoint. Do not start individual service pages, industry pages, pricing or other roadmap stages without a separate user command.
+Stop after this checkpoint. Do not scale the individual service template to other services, and do not start industry pages, pricing or other roadmap stages without a separate user command and user visual approval of the reference page.
 
 ## Remaining roadmap
 
-1. Стоимость после получения реальных цен.
-2. Ревизия услуг и отраслевых страниц.
-3. Ревизия отдельных кейсов.
-4. Глоссарий.
-5. Внутренняя перелинковка.
-6. Персональная контентная ревизия.
-7. SEO.
-8. Performance.
-9. Accessibility.
-10. WordPress integration.
-11. Rank Math / sitemap / robots / `llms.txt`.
-12. Финальный release.
+1. Масштабирование individual service pages после `USER APPROVED` по текущей reference-странице.
+2. Стоимость после получения реальных цен.
+3. Ревизия услуг и отраслевых страниц.
+4. Ревизия отдельных кейсов.
+5. Глоссарий.
+6. Внутренняя перелинковка.
+7. Персональная контентная ревизия.
+8. SEO.
+9. Performance.
+10. Accessibility.
+11. WordPress integration.
+12. Rank Math / sitemap / robots / `llms.txt`.
+13. Финальный release.
 
 Портрет считается подготовленным этапом и не включается повторно.
 

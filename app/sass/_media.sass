@@ -6129,3 +6129,342 @@
 		&__main-link,
 		&__service-link
 			font-size: 14px
+
+@media (max-width : 1440px)
+	.service-single-page
+		--service-single-anchor-offset: calc(84px + 28px)
+	.service-single-hero
+		&__layout
+			grid-template-columns: minmax(0, 1fr) minmax(330px, 430px)
+			gap: 56px
+		&__title
+			font-size: 64px
+		&__lead
+			font-size: 20px
+	.service-single-work
+		&__layout
+			gap: 52px
+		&__list
+			li
+				min-height: 240px
+				padding: 24px
+	.service-single-process
+		&__head
+			grid-template-columns: minmax(210px, .26fr) minmax(0, 760px)
+	.service-single-linked
+		&__layout
+			gap: 42px
+
+@media (max-width : 1200px)
+	.service-single-page
+		--service-single-anchor-offset: calc(76px + 28px)
+	.service-single-hero
+		padding-bottom: 88px
+		&__layout
+			grid-template-columns: minmax(0, 1fr) minmax(300px, 360px)
+			gap: 42px
+		&__title
+			font-size: 56px
+		&__aside
+			padding-left: 26px
+	.service-single-fit,
+	.service-single-work,
+	.service-single-process,
+	.service-single-result,
+	.service-single-cases,
+	.service-single-linked,
+	.service-single-contact
+		padding: 76px 0
+	.service-single-fit
+		&__layout
+			grid-template-columns: minmax(230px, .32fr) minmax(0, 1fr)
+			gap: 46px
+	.service-single-work
+		&__layout
+			grid-template-columns: minmax(230px, .3fr) minmax(0, 1fr)
+			gap: 46px
+		&__list
+			grid-template-columns: repeat(2, minmax(0, 1fr))
+	.service-single-result
+		&__layout
+			grid-template-columns: minmax(250px, .36fr) minmax(0, 1fr)
+			gap: 46px
+	.service-single-contact
+		.main--contacts__wrapper
+			gap: 42px
+		.main--contacts__right
+			flex-basis: 260px
+			max-width: 260px
+
+@media (max-width : 1024px)
+	.service-single-hero
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 42px
+			align-items: start
+		&__content
+			max-width: 840px
+		&__title
+			font-size: 52px
+		&__aside
+			width: 100%
+			max-width: 100%
+			padding: 24px 0 0
+			border-left: 0
+		&__route
+			grid-template-columns: repeat(4, minmax(0, 1fr))
+			li
+				grid-template-columns: minmax(0, 1fr)
+				padding: 14px 14px 14px 0
+				small
+					grid-column: auto
+	.service-single-section-head
+		&--sticky
+			position: static
+	.service-single-fit
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 34px
+	.service-single-work
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 34px
+	.service-single-process
+		&__head
+			grid-template-columns: minmax(0, 1fr)
+			gap: 18px
+			margin-bottom: 38px
+	.service-single-result
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 34px
+	.service-single-linked
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 46px
+	.service-single-contact
+		.main--contacts__wrapper
+			align-items: flex-start
+			flex-direction: column
+		.main--contacts__left
+			max-width: 760px
+		.main--contacts__right
+			display: none
+
+@media (max-width : 768px)
+	.service-single-page
+		.breadcrumbs
+			margin-bottom: 25px
+	.service-single-hero
+		padding-bottom: 70px
+		&__eyebrow
+			margin-bottom: 14px
+			font-size: 14px
+		&__title
+			margin-bottom: 20px
+			font-size: 44px
+			line-height: 1.08
+		&__lead
+			font-size: 18px
+		&__text
+			font-size: 16px
+		&__actions
+			margin-top: 30px
+		&__route
+			grid-template-columns: repeat(2, minmax(0, 1fr))
+			li
+				strong
+					font-size: 18px
+	.service-single-fit,
+	.service-single-work,
+	.service-single-process,
+	.service-single-result,
+	.service-single-cases,
+	.service-single-linked,
+	.service-single-contact
+		padding: 62px 0
+	.service-single-section-head
+		margin-bottom: 32px
+		p
+			font-size: 16px
+	.service-single-fit
+		&__layout
+			gap: 0
+		&__list
+			li
+				grid-template-columns: 48px minmax(0, 1fr)
+				gap: 18px
+				padding: 24px 0
+				h3
+					font-size: 23px
+				p
+					font-size: 16px
+		&__note
+			margin-top: 28px
+			padding-left: 48px
+			p
+				font-size: 16px
+	.service-single-work
+		&__layout
+			gap: 0
+		&__list
+			li
+				min-height: 220px
+				h3
+					font-size: 21px
+	.service-single-process
+		&__head
+			margin-bottom: 30px
+			p:not(.service-single-section-head__eyebrow)
+				font-size: 16px
+		&__list
+			li
+				grid-template-columns: 56px minmax(0, 1fr)
+				gap: 18px
+				padding: 24px 0
+				h3
+					font-size: 23px
+				p
+					font-size: 16px
+	.service-single-result
+		&__content
+			p
+				font-size: 16px
+		&__list
+			li
+				font-size: 16px
+	.service-single-cases
+		&__grid
+			grid-template-columns: minmax(0, 1fr)
+			gap: 34px
+			margin-top: 34px
+	.service-single-linked
+		&__block
+			h2
+				margin-bottom: 24px
+		&__list
+			a
+				min-height: 82px
+	.service-single-contact
+		.main--contacts__description
+			font-size: 16px
+		form[data-service-single-contact-form]
+			.main--contacts__contact-group
+				grid-template-columns: minmax(0, 1fr)
+
+@media (max-width : 480px)
+	.service-single-page
+		--service-single-anchor-offset: calc(66px + 24px)
+	.service-single-hero
+		padding-bottom: 58px
+		&__title
+			font-size: 36px
+		&__lead
+			font-size: 16px
+		&__actions
+			align-items: stretch
+			flex-direction: column
+			.button
+				width: 100%
+				justify-content: center
+		&__route
+			grid-template-columns: minmax(0, 1fr)
+			li
+				grid-template-columns: 40px minmax(0, 1fr)
+				padding: 14px 0
+				small
+					grid-column: 2
+	.service-single-fit,
+	.service-single-work,
+	.service-single-process,
+	.service-single-result,
+	.service-single-cases,
+	.service-single-linked,
+	.service-single-contact
+		padding: 52px 0
+	.service-single-fit
+		&__list
+			li
+				grid-template-columns: minmax(0, 1fr)
+				gap: 10px
+		&__note
+			padding-left: 0
+	.service-single-work
+		&__list
+			grid-template-columns: minmax(0, 1fr)
+			li
+				min-height: 0
+				padding: 20px
+				span
+					margin-bottom: 20px
+	.service-single-process
+		&__list
+			li
+				grid-template-columns: minmax(0, 1fr)
+				gap: 10px
+	.service-single-result
+		&__list
+			li
+				padding-left: 26px
+	.service-single-case
+		&__media
+			aspect-ratio: 16 / 10
+			margin-top: 20px
+		h3
+			font-size: 26px
+		p:not(.service-single-case__meta)
+			font-size: 16px
+	.service-single-linked
+		&__list,
+		&__list--articles
+			a
+				grid-template-columns: minmax(0, 1fr)
+				gap: 8px
+				min-height: 0
+				padding: 18px 0
+	.service-single-contact
+		.main--contacts__wrapper
+			gap: 0
+		form[data-service-single-contact-form]
+			.button
+				width: 100%
+				justify-content: center
+
+@media (max-width : 360px)
+	.service-single-hero
+		&__title
+			font-size: 32px
+		&__aside-label
+			font-size: 15px
+	.service-single-section-head
+		h2
+			font-size: 27px
+	.service-single-fit
+		&__list
+			li
+				h3
+					font-size: 21px
+	.service-single-process
+		&__list
+			li
+				h3
+					font-size: 21px
+	.service-single-linked
+		&__list
+			span
+				font-size: 17px
+
+@media (max-width : 340px)
+	.service-single-hero
+		&__title
+			font-size: 30px
+	.service-single-work
+		&__list
+			li
+				padding: 18px
+	.service-single-contact
+		form[data-service-single-contact-form]
+			input,
+			textarea
+				padding-left: 16px
+				padding-right: 16px
