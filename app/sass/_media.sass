@@ -1854,26 +1854,6 @@
 				font-size: 20px
 			&__text
 				font-size: 14px
-		#contacts
-			.main--contacts
-				&__description
-					margin-bottom: 24px
-					font-size: 16px
-			form[data-development-contact-form]
-				gap: 16px
-				.form-field__label
-					font-size: 14px
-				.form-field__hint,
-				.form-status
-					font-size: 13px
-				input,
-				textarea
-					min-height: 50px
-				textarea
-					min-height: 132px
-				.wpcf7-submit
-					width: 100%
-					max-width: 100%
 		.taxonomy--workscope
 			&__item
 				flex-basis: 100%
@@ -6130,6 +6110,24 @@
 		&__service-link
 			font-size: 14px
 
+@media (max-width : 1680px)
+	.service-single-hero
+		&__layout
+			gap: 64px
+		&__title
+			font-size: 68px
+	.service-single-fit,
+	.service-single-work,
+	.service-single-idea,
+	.service-single-result
+		&__layout
+			gap: 58px
+	.service-single-work
+		&__list
+			li
+				min-height: 244px
+				padding: 25px
+
 @media (max-width : 1440px)
 	.service-single-page
 		--service-single-anchor-offset: calc(84px + 28px)
@@ -6148,11 +6146,39 @@
 			li
 				min-height: 240px
 				padding: 24px
-	.service-single-process
-		&__head
-			grid-template-columns: minmax(210px, .26fr) minmax(0, 760px)
+	.service-single-idea
+		&__layout
+			gap: 52px
 	.service-single-linked
 		&__layout
+			gap: 42px
+
+@media (max-width : 1280px)
+	.service-single-hero
+		&__layout
+			grid-template-columns: minmax(0, 1fr) minmax(300px, 380px)
+			gap: 42px
+		&__title
+			font-size: 58px
+		&__aside
+			padding-left: 28px
+	.service-single-fit
+		&__layout
+			grid-template-columns: minmax(220px, .32fr) minmax(0, 1fr)
+			gap: 42px
+	.service-single-work
+		&__layout
+			grid-template-columns: minmax(220px, .3fr) minmax(0, 1fr)
+			gap: 42px
+		&__list
+			grid-template-columns: repeat(2, minmax(0, 1fr))
+	.service-single-idea
+		&__layout
+			grid-template-columns: minmax(220px, .3fr) minmax(0, 1fr)
+			gap: 42px
+	.service-single-result
+		&__layout
+			grid-template-columns: minmax(230px, .34fr) minmax(0, 1fr)
 			gap: 42px
 
 @media (max-width : 1200px)
@@ -6169,6 +6195,7 @@
 			padding-left: 26px
 	.service-single-fit,
 	.service-single-work,
+	.service-single-idea,
 	.service-single-process,
 	.service-single-result,
 	.service-single-cases,
@@ -6185,16 +6212,20 @@
 			gap: 46px
 		&__list
 			grid-template-columns: repeat(2, minmax(0, 1fr))
+	.service-single-idea
+		&__layout
+			grid-template-columns: minmax(230px, .3fr) minmax(0, 1fr)
+			gap: 46px
 	.service-single-result
 		&__layout
 			grid-template-columns: minmax(250px, .36fr) minmax(0, 1fr)
 			gap: 46px
-	.service-single-contact
+	.main--contacts
 		.main--contacts__wrapper
 			gap: 42px
 		.main--contacts__right
-			flex-basis: 260px
-			max-width: 260px
+			flex-basis: 320px
+			max-width: 320px
 
 @media (max-width : 1024px)
 	.service-single-hero
@@ -6229,27 +6260,36 @@
 		&__layout
 			grid-template-columns: minmax(0, 1fr)
 			gap: 34px
+	.service-single-idea
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+			gap: 34px
+		&__item
+			grid-template-columns: minmax(180px, .28fr) minmax(0, 1fr)
 	.service-single-process
 		&__head
-			grid-template-columns: minmax(0, 1fr)
-			gap: 18px
 			margin-bottom: 38px
 	.service-single-result
 		&__layout
 			grid-template-columns: minmax(0, 1fr)
 			gap: 34px
+		&__list
+			li
+				&::before
+					top: 26px
 	.service-single-linked
 		&__layout
 			grid-template-columns: minmax(0, 1fr)
 			gap: 46px
-	.service-single-contact
+	.main--contacts
 		.main--contacts__wrapper
 			align-items: flex-start
 			flex-direction: column
 		.main--contacts__left
-			max-width: 760px
+			max-width: 820px
 		.main--contacts__right
-			display: none
+			width: 100%
+			max-width: 360px
 
 @media (max-width : 768px)
 	.service-single-page
@@ -6277,6 +6317,7 @@
 					font-size: 18px
 	.service-single-fit,
 	.service-single-work,
+	.service-single-idea,
 	.service-single-process,
 	.service-single-result,
 	.service-single-cases,
@@ -6300,8 +6341,8 @@
 				p
 					font-size: 16px
 		&__note
-			margin-top: 28px
-			padding-left: 48px
+			margin-bottom: 26px
+			padding-left: 20px
 			p
 				font-size: 16px
 	.service-single-work
@@ -6312,6 +6353,17 @@
 				min-height: 220px
 				h3
 					font-size: 21px
+	.service-single-idea
+		&__layout
+			gap: 0
+		&__item
+			grid-template-columns: minmax(0, 1fr)
+			gap: 10px
+			padding: 24px 0
+			h3
+				font-size: 23px
+			p
+				font-size: 16px
 	.service-single-process
 		&__head
 			margin-bottom: 30px
@@ -6338,6 +6390,8 @@
 			grid-template-columns: minmax(0, 1fr)
 			gap: 34px
 			margin-top: 34px
+		&__footer
+			margin-top: 28px
 	.service-single-linked
 		&__block
 			h2
@@ -6345,12 +6399,25 @@
 		&__list
 			a
 				min-height: 82px
-	.service-single-contact
+	.main--contacts
 		.main--contacts__description
+			margin-bottom: 24px
 			font-size: 16px
-		form[data-service-single-contact-form]
-			.main--contacts__contact-group
-				grid-template-columns: minmax(0, 1fr)
+		form[data-development-contact-form]
+			gap: 16px
+			.form-field__label
+				font-size: 14px
+			.form-field__hint,
+			.form-status
+				font-size: 13px
+			input,
+			textarea
+				min-height: 50px
+			textarea
+				min-height: 132px
+			.wpcf7-submit
+				width: 100%
+				max-width: 100%
 
 @media (max-width : 480px)
 	.service-single-page
@@ -6376,6 +6443,7 @@
 					grid-column: 2
 	.service-single-fit,
 	.service-single-work,
+	.service-single-idea,
 	.service-single-process,
 	.service-single-result,
 	.service-single-cases,
@@ -6388,7 +6456,7 @@
 				grid-template-columns: minmax(0, 1fr)
 				gap: 10px
 		&__note
-			padding-left: 0
+			padding-left: 18px
 	.service-single-work
 		&__list
 			grid-template-columns: minmax(0, 1fr)
@@ -6397,6 +6465,10 @@
 				padding: 20px
 				span
 					margin-bottom: 20px
+	.service-single-idea
+		&__item
+			h3
+				font-size: 21px
 	.service-single-process
 		&__list
 			li
@@ -6406,6 +6478,8 @@
 		&__list
 			li
 				padding-left: 26px
+				&::before
+					top: 24px
 	.service-single-case
 		&__media
 			aspect-ratio: 16 / 10
@@ -6422,13 +6496,30 @@
 				gap: 8px
 				min-height: 0
 				padding: 18px 0
-	.service-single-contact
+	.main--contacts
 		.main--contacts__wrapper
 			gap: 0
-		form[data-service-single-contact-form]
+		form[data-development-contact-form]
+			.form-field--consent.form-consent
+				align-items: flex-start
+				.form-consent__control
+					align-items: flex-start
+					margin-top: 1px
 			.button
 				width: 100%
 				justify-content: center
+	.form-consent
+		align-items: flex-start
+		.form-consent__control
+			margin-top: 1px
+	.modal
+		&--general
+			[data-modal-contact-form]
+				.form-field--consent.form-consent
+					align-items: flex-start
+					.form-consent__control
+						align-items: flex-start
+						margin-top: 1px
 
 @media (max-width : 360px)
 	.service-single-hero
@@ -6444,6 +6535,10 @@
 			li
 				h3
 					font-size: 21px
+	.service-single-idea
+		&__item
+			h3
+				font-size: 20px
 	.service-single-process
 		&__list
 			li
@@ -6462,8 +6557,8 @@
 		&__list
 			li
 				padding: 18px
-	.service-single-contact
-		form[data-service-single-contact-form]
+	.main--contacts
+		form[data-development-contact-form]
 			input,
 			textarea
 				padding-left: 16px
