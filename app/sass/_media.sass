@@ -6141,8 +6141,10 @@
 			font-size: 20px
 	.service-single-work
 		&__layout
-			gap: 52px
+			grid-template-columns: minmax(0, 1fr)
+			gap: 36px
 		&__list
+			grid-template-columns: repeat(3, minmax(0, 1fr))
 			li
 				min-height: 240px
 				padding: 24px
@@ -6162,24 +6164,27 @@
 			font-size: 58px
 		&__aside
 			padding-left: 28px
+	.service-single-section-head
+		&--sticky
+			position: static
 	.service-single-fit
 		&__layout
-			grid-template-columns: minmax(220px, .32fr) minmax(0, 1fr)
-			gap: 42px
+			grid-template-columns: minmax(0, 1fr)
+			gap: 36px
 	.service-single-work
 		&__layout
-			grid-template-columns: minmax(220px, .3fr) minmax(0, 1fr)
-			gap: 42px
+			grid-template-columns: minmax(0, 1fr)
+			gap: 36px
 		&__list
-			grid-template-columns: repeat(2, minmax(0, 1fr))
+			grid-template-columns: repeat(3, minmax(0, 1fr))
 	.service-single-idea
 		&__layout
-			grid-template-columns: minmax(220px, .3fr) minmax(0, 1fr)
-			gap: 42px
+			grid-template-columns: minmax(0, 1fr)
+			gap: 36px
 	.service-single-result
 		&__layout
-			grid-template-columns: minmax(230px, .34fr) minmax(0, 1fr)
-			gap: 42px
+			grid-template-columns: minmax(0, 1fr)
+			gap: 36px
 
 @media (max-width : 1200px)
 	.service-single-page
@@ -6204,22 +6209,22 @@
 		padding: 76px 0
 	.service-single-fit
 		&__layout
-			grid-template-columns: minmax(230px, .32fr) minmax(0, 1fr)
-			gap: 46px
+			grid-template-columns: minmax(0, 1fr)
+			gap: 34px
 	.service-single-work
 		&__layout
-			grid-template-columns: minmax(230px, .3fr) minmax(0, 1fr)
-			gap: 46px
+			grid-template-columns: minmax(0, 1fr)
+			gap: 34px
 		&__list
 			grid-template-columns: repeat(2, minmax(0, 1fr))
 	.service-single-idea
 		&__layout
-			grid-template-columns: minmax(230px, .3fr) minmax(0, 1fr)
-			gap: 46px
+			grid-template-columns: minmax(0, 1fr)
+			gap: 34px
 	.service-single-result
 		&__layout
-			grid-template-columns: minmax(250px, .36fr) minmax(0, 1fr)
-			gap: 46px
+			grid-template-columns: minmax(0, 1fr)
+			gap: 34px
 	.main--contacts
 		.main--contacts__wrapper
 			gap: 42px
