@@ -5602,7 +5602,7 @@ body.cookie-banner-visible
 
 .service-single-fit,
 .service-single-work,
-.service-single-idea,
+.service-single-content,
 .service-single-process,
 .service-single-result,
 .service-single-cases,
@@ -5612,7 +5612,7 @@ body.cookie-banner-visible
 
 .service-single-fit,
 .service-single-work,
-.service-single-idea,
+.service-single-content,
 .service-single-result,
 .service-single-linked
 	border-top: 1px solid color.adjust($white, $alpha: -.9)
@@ -5709,36 +5709,208 @@ body.cookie-banner-visible
 				color: $accent
 				transform: translateX(4px)
 
-.service-single-idea
+.service-single-content
 	background-color: color.adjust($white, $alpha: -.992)
-	&__layout
-		display: grid
-		grid-template-columns: minmax(260px, .32fr) minmax(680px, 1fr)
-		gap: 64px
-		align-items: start
 	&__body
-		display: grid
-		gap: 0
+		width: min(100%, 960px)
+		max-width: 960px
+		margin: 0 auto
 		min-width: 0
-		border-top: 1px solid color.adjust($white, $alpha: -.86)
-	&__item
-		display: grid
-		grid-template-columns: minmax(180px, .32fr) minmax(0, 1fr)
-		gap: 28px
-		align-items: start
-		padding: 28px 0
-		border-bottom: 1px solid color.adjust($white, $alpha: -.86)
+		color: color.adjust($white, $alpha: -.18)
+		font-size: 19px
+		line-height: 1.74
+		overflow-wrap: break-word
+		&::after
+			content: ''
+			display: block
+			clear: both
+		> *:first-child
+			margin-top: 0
+		> *:last-child
+			margin-bottom: 0
+		h2, h3, h4
+			max-width: 900px
+			color: $white
+			letter-spacing: 0
+			overflow-wrap: anywhere
+		h2
+			position: relative
+			margin: 58px 0 22px
+			padding-top: 18px
+			font-size: 42px
+			line-height: 1.12
+			font-weight: 600
+			&::before
+				content: ''
+				position: absolute
+				top: 0
+				left: 0
+				width: 56px
+				height: 2px
+				background: linear-gradient(90deg, $red, $orange)
 		h3
-			margin: 0
-			font-size: 25px
+			margin: 42px 0 16px
+			font-size: 28px
 			line-height: 1.22
 			font-weight: 500
+		h4
+			margin: 30px 0 12px
+			font-size: 22px
+			line-height: 1.3
+			font-weight: 600
 		p
-			max-width: 760px
-			margin: 0
-			color: color.adjust($white, $alpha: -.3)
-			font-size: 17px
-			line-height: 1.58
+			max-width: 840px
+			margin: 0 0 21px
+		strong, b
+			color: $white
+			font-weight: 700
+		em, i
+			color: color.adjust($white, $alpha: -.08)
+			font-style: italic
+		a
+			color: $white
+			text-decoration: underline
+			text-decoration-color: color.adjust($orange, $alpha: -.16)
+			text-decoration-thickness: 1px
+			text-underline-offset: .24em
+			overflow-wrap: anywhere
+			transition: color .22s ease, text-decoration-color .22s ease
+			&:hover,
+			&:focus-visible
+				color: $orange
+				text-decoration-color: $orange
+				outline: none
+			&:focus-visible
+				box-shadow: 0 0 0 3px color.adjust($orange, $alpha: -.78)
+		ul, ol
+			display: grid
+			gap: 13px
+			max-width: 860px
+			margin: 24px 0 32px
+			padding: 0
+			list-style: none
+		li
+			position: relative
+			padding-left: 30px
+			&::before
+				position: absolute
+				left: 0
+				color: $orange
+				font-weight: 800
+				line-height: 1
+			> ul,
+			> ol
+				margin: 14px 0 4px
+		ul > li::before
+			content: ''
+			top: .72em
+			width: 8px
+			height: 8px
+			border-radius: 50%
+			background-color: $orange
+		ol
+			counter-reset: service-editor-list
+			> li
+				counter-increment: service-editor-list
+				&::before
+					content: counter(service-editor-list, decimal-leading-zero)
+					top: .2em
+					font-size: 12px
+		blockquote
+			max-width: 880px
+			margin: 36px 0
+			padding: 4px 0 4px 24px
+			border-left: 2px solid color.adjust($orange, $alpha: -.08)
+			color: color.adjust($white, $alpha: -.08)
+			font-size: 21px
+			line-height: 1.62
+			p
+				max-width: none
+				margin: 0
+		figure,
+		.wp-caption
+			max-width: 100%
+			margin: 38px 0 34px
+		> img
+			margin: 36px 0 32px
+		img
+			display: block
+			max-width: 100%
+			height: auto
+			border-radius: 8px
+			border: 1px solid color.adjust($white, $alpha: -.88)
+			object-fit: contain
+		figcaption,
+		.wp-caption-text
+			max-width: 720px
+			margin: 10px 0 0
+			color: color.adjust($white, $alpha: -.42)
+			font-size: 15px
+			line-height: 1.45
+		table
+			display: block
+			width: 100%
+			max-width: 100%
+			min-width: 720px
+			margin: 36px 0
+			border-collapse: collapse
+			overflow-x: auto
+			overflow-y: hidden
+			color: color.adjust($white, $alpha: -.18)
+			font-size: 16px
+			line-height: 1.5
+			text-align: left
+			-webkit-overflow-scrolling: touch
+			overscroll-behavior-x: contain
+			@include local-dark-scrollbar
+		thead, tbody, tr
+			min-width: 100%
+		th, td
+			min-width: 190px
+			padding: 15px 16px
+			border: 1px solid color.adjust($white, $alpha: -.84)
+			vertical-align: top
+		th
+			color: $white
+			background-color: color.adjust($white, $alpha: -.94)
+			font-weight: 700
+		.wp-block-table
+			display: block
+			width: 100%
+			max-width: 100%
+			overflow-x: auto
+			overflow-y: hidden
+			-webkit-overflow-scrolling: touch
+			overscroll-behavior-x: contain
+			@include local-dark-scrollbar
+			table
+				display: table
+				margin: 0
+				overflow: visible
+		.aligncenter
+			margin-left: auto
+			margin-right: auto
+			text-align: center
+			img
+				margin-left: auto
+				margin-right: auto
+		.alignwide
+			width: 100%
+			max-width: 100%
+			margin-left: auto
+			margin-right: auto
+			img
+				width: 100%
+		.alignleft
+			float: left
+			max-width: min(42%, 360px)
+			margin: .35em 28px 20px 0
+		.alignright
+			float: right
+			max-width: min(42%, 360px)
+			margin: .35em 0 20px 28px
+		.wp-caption
+			width: auto !important
 
 .service-single-work
 	&__layout

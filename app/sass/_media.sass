@@ -6118,10 +6118,12 @@
 			font-size: 68px
 	.service-single-fit,
 	.service-single-work,
-	.service-single-idea,
 	.service-single-result
 		&__layout
 			gap: 58px
+	.service-single-content
+		&__body
+			max-width: 940px
 	.service-single-work
 		&__list
 			li
@@ -6148,9 +6150,9 @@
 			li
 				min-height: 240px
 				padding: 24px
-	.service-single-idea
-		&__layout
-			gap: 52px
+	.service-single-content
+		&__body
+			max-width: 920px
 	.service-single-linked
 		&__layout
 			gap: 42px
@@ -6177,10 +6179,9 @@
 			gap: 36px
 		&__list
 			grid-template-columns: repeat(3, minmax(0, 1fr))
-	.service-single-idea
-		&__layout
-			grid-template-columns: minmax(0, 1fr)
-			gap: 36px
+	.service-single-content
+		&__body
+			max-width: 920px
 	.service-single-result
 		&__layout
 			grid-template-columns: minmax(0, 1fr)
@@ -6200,7 +6201,7 @@
 			padding-left: 26px
 	.service-single-fit,
 	.service-single-work,
-	.service-single-idea,
+	.service-single-content,
 	.service-single-process,
 	.service-single-result,
 	.service-single-cases,
@@ -6217,10 +6218,9 @@
 			gap: 34px
 		&__list
 			grid-template-columns: repeat(2, minmax(0, 1fr))
-	.service-single-idea
-		&__layout
-			grid-template-columns: minmax(0, 1fr)
-			gap: 34px
+	.service-single-content
+		&__body
+			max-width: 900px
 	.service-single-result
 		&__layout
 			grid-template-columns: minmax(0, 1fr)
@@ -6265,12 +6265,15 @@
 		&__layout
 			grid-template-columns: minmax(0, 1fr)
 			gap: 34px
-	.service-single-idea
-		&__layout
-			grid-template-columns: minmax(0, 1fr)
-			gap: 34px
-		&__item
-			grid-template-columns: minmax(180px, .28fr) minmax(0, 1fr)
+	.service-single-content
+		&__body
+			max-width: 100%
+			font-size: 18px
+			line-height: 1.72
+			h2
+				font-size: 38px
+			h3
+				font-size: 26px
 	.service-single-process
 		&__head
 			margin-bottom: 38px
@@ -6322,7 +6325,7 @@
 					font-size: 18px
 	.service-single-fit,
 	.service-single-work,
-	.service-single-idea,
+	.service-single-content,
 	.service-single-process,
 	.service-single-result,
 	.service-single-cases,
@@ -6358,17 +6361,35 @@
 				min-height: 220px
 				h3
 					font-size: 21px
-	.service-single-idea
-		&__layout
-			gap: 0
-		&__item
-			grid-template-columns: minmax(0, 1fr)
-			gap: 10px
-			padding: 24px 0
+	.service-single-content
+		&__body
+			font-size: 17px
+			line-height: 1.72
+			h2
+				margin-top: 48px
+				font-size: 33px
 			h3
-				font-size: 23px
+				margin-top: 34px
+				font-size: 24px
+			h4
+				font-size: 20px
 			p
-				font-size: 16px
+				margin-bottom: 19px
+			ul, ol
+				gap: 11px
+				margin: 22px 0 28px
+			blockquote
+				margin: 30px 0
+				font-size: 19px
+			figure,
+			.wp-caption,
+			.wp-block-table
+				margin: 30px 0 28px
+			.alignleft,
+			.alignright
+				float: none
+				max-width: 100%
+				margin: 30px 0 28px
 	.service-single-process
 		&__head
 			margin-bottom: 30px
@@ -6448,7 +6469,7 @@
 					grid-column: 2
 	.service-single-fit,
 	.service-single-work,
-	.service-single-idea,
+	.service-single-content,
 	.service-single-process,
 	.service-single-result,
 	.service-single-cases,
@@ -6470,10 +6491,34 @@
 				padding: 20px
 				span
 					margin-bottom: 20px
-	.service-single-idea
-		&__item
+	.service-single-content
+		&__body
+			font-size: 16px
+			line-height: 1.68
+			h2
+				margin-top: 42px
+				padding-top: 14px
+				font-size: 28px
 			h3
-				font-size: 21px
+				margin-top: 30px
+				font-size: 22px
+			h4
+				margin-top: 26px
+				font-size: 19px
+			li
+				padding-left: 25px
+			ul > li::before
+				width: 7px
+				height: 7px
+			blockquote
+				padding-left: 18px
+				font-size: 18px
+			table
+				min-width: 620px
+				font-size: 15px
+			th, td
+				min-width: 170px
+				padding: 13px 14px
 	.service-single-process
 		&__list
 			li
@@ -6540,10 +6585,14 @@
 			li
 				h3
 					font-size: 21px
-	.service-single-idea
-		&__item
+	.service-single-content
+		&__body
+			h2
+				font-size: 26px
 			h3
-				font-size: 20px
+				font-size: 21px
+			table
+				min-width: 580px
 	.service-single-process
 		&__list
 			li

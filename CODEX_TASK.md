@@ -61,6 +61,7 @@ Branch:
   - `services-taxonomy-readysites.html`.
 - Redesigned `services.html` as the services archive / top-level services map; user visual approval received before the individual service reference stage.
 - Redesigned `services-single.html` as the first individual service reference page for “Разработка лендинга”.
+- Prepared the individual service extended editor content area in `services-single.html`: the static reference now uses a generic `service-single-content` rich-text wrapper that mirrors future `the_content()` output.
 
 ## Current task
 
@@ -103,6 +104,27 @@ Stop after this checkpoint. Do not scale the individual service template to othe
 - Portrait face/appearance нельзя изменять.
 - Не считать существование файла признаком завершенности этапа: сверяться с Git history и фактическим состоянием.
 - QA artifacts сохранять до user review, кроме папок, которые пользователь явно разрешил удалить.
+
+## Individual service extended content architecture
+
+- Confirmed source of truth from the user / author of the old site: the old production `taxonomy--idea` content on service pages was rendered through the standard WordPress editor output, `the_content()`.
+- Future individual service pages use the standard WordPress post editor for extended editorial / SEO content, then render it with `the_content()`.
+- Structural UI blocks stay separate from `the_content()`: hero, fit, work, process, result, cases, related services, articles and contacts remain dedicated template components.
+- Extended editorial content is rendered inside the generic `service-single-content` section:
+
+```php
+<section class="section service-single-content">
+    <div class="container">
+        <div class="service-single-content__body">
+            <?php the_content(); ?>
+        </div>
+    </div>
+</section>
+```
+
+- Empty post content means the entire `service-single-content` section is not rendered: no empty section, wrapper, heading, padding or divider should appear.
+- Checking whether content exists must be handled correctly in the future WordPress theme before rendering the section; the public output remains the standard `the_content()`, not a custom field replacement.
+- The current static HTML is only the frontend reference. PHP implementation stays in the separate later WordPress integration stage.
 
 ## Portrait assets
 
