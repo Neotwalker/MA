@@ -6545,10 +6545,18 @@
 		&__list,
 		&__list--articles
 			a
-				grid-template-columns: minmax(0, 1fr)
-				gap: 8px
+				grid-template-columns: minmax(0, 1fr) 24px
+				gap: 8px 12px
 				min-height: 0
 				padding: 18px 0
+				&::after
+					grid-column: 2
+					grid-row: 1 / span 2
+					align-self: start
+					margin-top: 2px
+			span,
+			small
+				grid-column: 1
 	.main--contacts
 		.main--contacts__wrapper
 			gap: 0
