@@ -6221,6 +6221,17 @@
 	.service-single-content
 		&__body
 			max-width: 920px
+			.wp-block-table,
+			> table
+				width: calc(100% + 80px)
+				max-width: none
+				margin-left: -40px
+				margin-right: -40px
+				padding-left: 40px
+				padding-right: 40px
+				box-sizing: border-box
+				scroll-padding-left: 40px
+				scroll-padding-right: 40px
 	.service-single-result
 		&__layout
 			grid-template-columns: minmax(0, 1fr)
@@ -6385,6 +6396,16 @@
 			.wp-caption,
 			.wp-block-table
 				margin: 30px 0 28px
+			.wp-block-table,
+			> table
+				width: calc(100% + 48px)
+				max-width: none
+				margin-left: -24px
+				margin-right: -24px
+				padding-left: 24px
+				padding-right: 24px
+				scroll-padding-left: 24px
+				scroll-padding-right: 24px
 			.alignleft,
 			.alignright
 				float: none
@@ -6517,8 +6538,23 @@
 				min-width: 0
 				font-size: 15px
 			.wp-block-table
+				width: calc(100% + 32px)
+				margin-left: -16px
+				margin-right: -16px
+				padding-left: 16px
+				padding-right: 16px
+				scroll-padding-left: 16px
+				scroll-padding-right: 16px
 				table
 					min-width: 620px
+			> table
+				width: calc(100% + 32px)
+				margin-left: -16px
+				margin-right: -16px
+				padding-left: 16px
+				padding-right: 16px
+				scroll-padding-left: 16px
+				scroll-padding-right: 16px
 			th, td
 				min-width: 170px
 				padding: 13px 14px
