@@ -64,11 +64,13 @@ Branch:
 - Prepared the individual service extended editor content area in `services-single.html`: the static reference now uses a generic `service-single-content` rich-text wrapper that mirrors future `the_content()` output.
 - Individual service reference `services-single.html`: `USER APPROVED` by user visual review.
 - Development category individual service pages (`Разработка сайтов`): static rollout implemented for 25 taxonomy services and ready for user visual review.
+- Development category individual service pages: pre-SEO copy / proof polish implemented across 25 static pages; internal QA boilerplate, H3/P duplication, public-facing developer jargon and misleading direct-proof wording were cleaned up while keeping the frozen reference, shared styles/scripts and page architecture untouched.
 
 ## Current task
 
 Current redesign checkpoint:
 
+- DEVELOPMENT INDIVIDUAL SERVICE PAGES PRE-SEO COPY / PROOF POLISH: `IMPLEMENTED / AWAITING USER REVIEW`.
 - FAQ: `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
 - SERVICES ARCHIVE: `USER APPROVED`.
 - INDIVIDUAL SERVICE REFERENCE (`services-single.html`, “Разработка лендинга”): `USER APPROVED`.
