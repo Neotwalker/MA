@@ -10,6 +10,7 @@ const contentLimit = 4200
 const excludedFiles = new Set([
 	'404.html',
 	'search.html',
+	'services-single.html',
 	'sitemap.html'
 ])
 

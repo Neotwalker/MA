@@ -62,6 +62,8 @@ Branch:
 - Redesigned `services.html` as the services archive / top-level services map; user visual approval received before the individual service reference stage.
 - Redesigned `services-single.html` as the first individual service reference page for “Разработка лендинга”.
 - Prepared the individual service extended editor content area in `services-single.html`: the static reference now uses a generic `service-single-content` rich-text wrapper that mirrors future `the_content()` output.
+- Individual service reference `services-single.html`: `USER APPROVED` by user visual review.
+- Development category individual service pages (`Разработка сайтов`): static rollout implemented for production-confirmed URLs and ready for user visual review.
 
 ## Current task
 
@@ -69,15 +71,16 @@ Current redesign checkpoint:
 
 - FAQ: `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
 - SERVICES ARCHIVE: `USER APPROVED`.
-- INDIVIDUAL SERVICE REFERENCE (`services-single.html`, “Разработка лендинга”): `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
+- INDIVIDUAL SERVICE REFERENCE (`services-single.html`, “Разработка лендинга”): `USER APPROVED`.
+- DEVELOPMENT INDIVIDUAL SERVICE PAGES (`Разработка сайтов`): `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
 
 FAQ should not be marked `USER APPROVED` until the user reviews the live result and explicitly confirms acceptance.
 
-Stop after this checkpoint. Do not scale the individual service template to other services, and do not start industry pages, pricing or other roadmap stages without a separate user command and user visual approval of the reference page.
+Stop after the development category rollout checkpoint. Do not start SEO, branding, advertising, ready-sites, industry pages, pricing or other roadmap stages without a separate user command and user visual approval of the implemented development pages.
 
 ## Remaining roadmap
 
-1. Масштабирование individual service pages после `USER APPROVED` по текущей reference-странице.
+1. Пользовательская визуальная приемка individual service pages группы `Разработка сайтов`; затем отдельными командами масштабировать следующие группы услуг.
 2. Стоимость после получения реальных цен.
 3. Ревизия услуг и отраслевых страниц.
 4. Ревизия отдельных кейсов.
@@ -98,6 +101,9 @@ Stop after this checkpoint. Do not scale the individual service template to othe
 - Рабочая ветка: только `redesign-2026`.
 - `origin/main` не изменять.
 - Source of truth по портфолио: `_reference/portfolio/`.
+- Public production URLs are defined by current production `https://limitlesscreators.ru/`, not by static filenames.
+- Existing production service paths must be preserved 1:1; static filenames are only frontend prototype files.
+- Future WordPress services integration must preserve current production paths and map CPT/taxonomy output to those URLs.
 - Static breadcrumbs не перерабатывать без отдельного задания.
 - В WordPress breadcrumbs выводятся через `rank_math_the_breadcrumbs()`.
 - Future services WordPress architecture: услуги реализуются через CPT услуг, `services.html` становится reference для archive template, taxonomy prototype pages становятся reference для taxonomy archive templates, списки услуг выводятся динамически по taxonomy term. Точные post type / taxonomy slugs брать из существующей WordPress-архитектуры, не придумывать.
