@@ -3378,12 +3378,15 @@
 
 @media (max-width : 1440px)
 	.industry-hero
+		padding: 106px 0 28px
 		h1
 			font-size: 62px
 		&__wrapper
 			gap: 48px
+	.industry-proof
+		padding: 62px 0
 	.industry-business
-		padding: 62px 0 68px
+		padding: 50px 0 64px
 		&__head
 			margin-bottom: 38px
 			h2
@@ -3403,7 +3406,7 @@
 
 @media (max-width : 1200px)
 	.industry-hero
-		padding-top: 128px
+		padding-top: 106px
 		h1
 			font-size: 56px
 		&__wrapper
@@ -3431,30 +3434,20 @@
 		&__item
 			min-width: 150px
 	.industry-journey-route
-		grid-template-columns: repeat(2, minmax(0, 1fr))
-		&__item--tall
-			grid-row: auto
-	.industry-model-grid
-		grid-template-columns: minmax(0, 1fr)
+		grid-template-columns: repeat(3, minmax(0, 1fr))
+	.industry-proof
+		&__layout
+			grid-template-columns: minmax(0, 1fr) minmax(300px, .62fr)
+			gap: 34px
 	.industry-scenario-matrix
 		article
 			flex-basis: calc(50% - 11px)
 	.industry-function-system
-		&__grid--interiors
-			.industry-function-system__panel--path,
-			.industry-function-system__panel--project
-				flex-basis: calc(50% - 12px)
-			.industry-function-system__panel--target
-				flex-basis: 100%
 		&__grid--production
 			.industry-function-system__panel--brief
 				flex-basis: calc(60% - 12px)
 			.industry-function-system__results
 				flex-basis: calc(40% - 12px)
-	.industry-product-blueprint
-		grid-template-columns: minmax(0, 1fr)
-		&__panel::after
-			display: none
 	.industry-delivery
 		&__split
 			grid-template-columns: minmax(0, 1fr)
@@ -3505,7 +3498,7 @@
 			gap: 22px
 @media (max-width : 1023px)
 	.industry-hero
-		padding: 122px 0 56px
+		padding: 98px 0 36px
 		&__wrapper
 			flex-direction: column
 			gap: 32px
@@ -3517,6 +3510,11 @@
 			padding-top: 24px
 			border-left: 0
 			border-top: 1px solid color.adjust($white, $alpha: -.84)
+	.industry-proof
+		&__layout
+			grid-template-columns: minmax(0, 1fr)
+		&__content
+			max-width: 780px
 	.industry-scenario
 		&__layout,
 		.industry-spec-board
@@ -3582,9 +3580,9 @@
 		.breadcrumbs
 			margin-bottom: 28px
 		> .industry-hero
-			padding-top: 116px
+			padding-top: 94px
 	.industry-hero
-		padding: 108px 0 50px
+		padding: 92px 0 34px
 		h1
 			font-size: 42px
 			line-height: 1.08
@@ -3592,7 +3590,15 @@
 			font-size: 16px
 			line-height: 1.58
 		&__actions
-			margin-top: 28px
+			margin-top: 24px
+	.industry-proof
+		padding: 48px 0 54px
+		&__layout
+			gap: 28px
+		&__mobile
+			right: 18px
+			bottom: -22px
+			width: min(30%, 140px)
 	.industry-business
 		padding: 48px 0 52px
 		&__head
@@ -3673,27 +3679,12 @@
 	.industry-journey-route
 		grid-template-columns: minmax(0, 1fr)
 		gap: 14px
-		&::before
-			top: 0
-			bottom: 0
-			left: 29px
-			right: auto
-			width: 1px
-			height: auto
-			background-image: linear-gradient(180deg, color.adjust($accent, $alpha: -.5), color.adjust($white, $alpha: -.9))
-		&__item,
-		&__item--wide
-			grid-column: auto
 		&__item
-			padding: 24px 22px 24px 74px
+			min-height: 0
+			padding: 22px 20px
 		&__number
-			position: absolute
-			top: 24px
-			left: 18px
-			margin-bottom: 0
-			font-size: 20px
-	.industry-parameter-grid
-		grid-template-columns: repeat(2, minmax(0, 1fr))
+			margin-bottom: 18px
+			font-size: 24px
 	.industry-route--horizontal
 		gap: 0 18px
 		.industry-route__item
@@ -3706,10 +3697,6 @@
 			flex-basis: 100%
 	.industry-cta
 		padding: 48px 0 64px
-	.industry-model-card
-		padding: 26px 22px
-		h3
-			font-size: 24px
 	.industry-delivery
 		&__primary,
 		&__secondary
@@ -3719,8 +3706,6 @@
 	.industry-process
 		&__timeline
 			grid-template-columns: repeat(2, minmax(0, 1fr))
-			&::before
-				display: none
 			li
 				min-height: 0
 	.industry-topics
@@ -3729,15 +3714,9 @@
 	.industry-function-system
 		h3
 			font-size: 22px
-		&__grid--interiors,
 		&__matrix,
 		&__pairs
 			flex-direction: column
-		&__grid--interiors
-			.industry-function-system__panel--path,
-			.industry-function-system__panel--project,
-			.industry-function-system__panel--target
-				flex-basis: auto
 		&__matrix-column,
 		&__matrix-column:last-child,
 		&__pair
@@ -3759,13 +3738,6 @@
 					text-align: left
 					transform: rotate(90deg)
 					transform-origin: 10px 50%
-	.industry-product-blueprint
-		&__panel--project
-			padding: 28px 24px
-		&__mock
-			grid-template-columns: minmax(0, 1fr)
-		&__media
-			min-height: 190px
 	.industry-faq
 		&__aside
 			h2
@@ -3891,13 +3863,13 @@
 @media (max-width : 390px)
 	.industry-page
 		> .industry-hero
-			padding-top: 106px
+			padding-top: 88px
 	.industry-hero
-		padding: 100px 0 44px
+		padding: 86px 0 32px
 		h1
 			font-size: 36px
 		&__wrapper
-			padding-top: 26px
+			padding-top: 22px
 		&__aside
 			p
 				font-size: 16px
@@ -3928,6 +3900,12 @@
 				font-size: 12px
 	.industry-section
 		padding: 42px 0
+	.industry-proof
+		padding: 42px 0 48px
+		&__mobile
+			position: static
+			width: min(62%, 176px)
+			margin: -28px 18px 0 auto
 	.industry-topics
 		padding: 40px 0 26px
 	.industry-faq
@@ -3949,8 +3927,6 @@
 			padding: 22px 18px
 		&__card-title
 			font-size: 18px
-	.industry-parameter-grid
-		grid-template-columns: minmax(0, 1fr)
 	.industry-function-system
 		h3
 			font-size: 21px
@@ -3965,14 +3941,6 @@
 		&__pair-flow
 			span
 				font-size: 15px
-	.industry-product-blueprint
-		&__panel,
-		&__panel--project
-			padding: 22px 18px
-		&__mini-list,
-		&__actions
-			span
-				font-size: 13px
 	.industry-faq
 		&__aside
 			h2
@@ -3984,9 +3952,6 @@
 			font-size: 32px
 		&__lead
 			font-size: 15px
-		&__case-link
-			padding-left: 14px
-			padding-right: 14px
 	.industry-route,
 	.industry-route--stacked,
 	.industry-route--timeline
