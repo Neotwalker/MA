@@ -32,9 +32,6 @@
 		.main--experts:before{
 			background-image: url(img/line-horizontal.svg);
 		}
-		.main--faq:after {
-			background-image: url(img/line-left.svg);
-		}
 		@media (max-width: 992px) {
 			.main--header {
 				background-image: url(img/circle-bg-tab.svg);
@@ -52,9 +49,6 @@
 			}
 			.main--projects:before{
 				background-image: url(img/line-mob.svg);
-			}
-			.main--faq:after{
-				background-image: url(img/line-left-mob.svg);
 			}
 			.main--contacts:after{
 				background-image: url(img/line-mob.svg)
@@ -465,27 +459,45 @@
 				<div class="container">
 					<div class="row">
 					<div class="industry-scenario__head">
-						<p class="industry-section__kicker">Путь посетителя</p>
-						<h2 class="industry-scenario__title h2" id="interiors-scenario-title">Как посетитель изучает проект</h2>
-						<p class="industry-scenario__description">Для интерьерной тематики важна связка портфолио, контекста проекта и понятного следующего шага.</p>
+						<p class="industry-section__kicker">Как клиент выбирает</p>
+						<h2 class="industry-scenario__title h2" id="interiors-scenario-title">Путь от портфолио до обсуждения проекта</h2>
+						<p class="industry-scenario__description">Посетитель редко начинает с формы. Сначала он ищет близкий тип объекта, проверяет стиль и только потом смотрит, можно ли обсудить похожую задачу.</p>
 					</div>
-					<div class="industry-scenario__layout industry-scenario__layout--route-side">
-						<div class="industry-route industry-route--horizontal" role="list">
-							<article class="industry-route__item" role="listitem"><span aria-hidden="true">01</span><p>Открывает портфолио</p></article>
-							<article class="industry-route__item" role="listitem"><span aria-hidden="true">02</span><p>Выбирает тип помещения или стиль</p></article>
-							<article class="industry-route__item" role="listitem"><span aria-hidden="true">03</span><p>Изучает отдельный проект</p></article>
-							<article class="industry-route__item" role="listitem"><span aria-hidden="true">04</span><p>Смотрит состав работ и роль специалиста</p></article>
-							<article class="industry-route__item" role="listitem"><span aria-hidden="true">05</span><p>Отправляет запрос на обсуждение объекта</p></article>
+					<div class="industry-scenario__layout industry-scenario__layout--journey">
+						<div class="industry-journey-route" role="list" aria-label="Путь выбора интерьерного проекта">
+							<article class="industry-journey-route__item industry-journey-route__item--wide" role="listitem">
+								<span class="industry-journey-route__number" aria-hidden="true">01</span>
+								<h3>Портфолио</h3>
+								<p>Человек сначала смотрит общую подборку работ и пытается быстро понять уровень, стиль и типы объектов.</p>
+							</article>
+							<article class="industry-journey-route__item" role="listitem">
+								<span class="industry-journey-route__number" aria-hidden="true">02</span>
+								<h3>Объект и стиль</h3>
+								<p>Фильтры или рубрики помогают найти квартиру, дом, коммерческое пространство или близкую визуальную подачу.</p>
+							</article>
+							<article class="industry-journey-route__item industry-journey-route__item--tall" role="listitem">
+								<span class="industry-journey-route__number" aria-hidden="true">03</span>
+								<h3>Проект</h3>
+								<p>На странице проекта важны не только изображения, но и задача, исходные условия, материалы и состав выполненных работ.</p>
+							</article>
+							<article class="industry-journey-route__item" role="listitem">
+								<span class="industry-journey-route__number" aria-hidden="true">04</span>
+								<h3>Состав работ</h3>
+								<p>Посетитель сверяет, подходит ли формат: проектирование, комплектация, сопровождение или отдельная консультация.</p>
+							</article>
+							<article class="industry-journey-route__item industry-journey-route__item--accent" role="listitem">
+								<span class="industry-journey-route__number" aria-hidden="true">05</span>
+								<h3>Обращение</h3>
+								<p>Форма должна просить не всё сразу, а только данные, которые помогают начать разговор об объекте.</p>
+							</article>
 						</div>
-						<aside class="industry-scenario__note">
+						<aside class="industry-scenario__note industry-scenario__note--parameters">
 							<h3>Данные в карточке проекта</h3>
-							<div class="industry-token-list" role="list">
-								<span role="listitem">тип объекта</span>
-								<span role="listitem">состав работ</span>
-								<span role="listitem">фотографии</span>
-								<span role="listitem">планировки</span>
-								<span role="listitem">визуализации</span>
-								<span role="listitem">описание задачи</span>
+							<div class="industry-parameter-grid" role="list">
+								<div role="listitem"><span>Объект</span><p>квартира, дом, коммерческое помещение</p></div>
+								<div role="listitem"><span>Материалы</span><p>фото, планы, визуализации, описания</p></div>
+								<div role="listitem"><span>Роль</span><p>дизайн, проектирование, сопровождение</p></div>
+								<div role="listitem"><span>Следующий шаг</span><p>запрос, бриф или короткий вопрос</p></div>
 							</div>
 						</aside>
 					</div>
@@ -497,15 +509,39 @@
 				<div class="container">
 					<div class="row industry-section">
 					<div class="industry-section__head">
-						<p class="industry-section__kicker">Формат сайта</p>
-						<h2 class="industry-section__title h2" id="industry-formats-title">Подходящие варианты реализации</h2>
+						<p class="industry-section__kicker">Модель работы</p>
+						<h2 class="industry-section__title h2" id="industry-formats-title">Какой сайт нужен под формат практики</h2>
+						<p class="industry-section__description">Формат сайта выбирается не по названию, а по тому, как устроены услуги, портфолио и первый контакт с потенциальным клиентом.</p>
 					</div>
-					<ul class="industry-format-list">
-						<li>Личный сайт специалиста</li>
-						<li>Сайт студии</li>
-						<li>Сайт услуг</li>
-						<li>Корпоративный сайт с портфолио</li>
-					</ul>
+					<div class="industry-model-grid" role="list">
+						<article class="industry-model-card" role="listitem">
+							<p class="industry-model-card__label">01 / личный специалист</p>
+							<h3>Авторский сайт с портфолио</h3>
+							<div class="industry-model-card__rows">
+								<p><span>Подходит</span> дизайнеру, который продаёт личный подход, стиль и понятный формат работы.</p>
+								<p><span>Ядро</span> портфолио, услуги, личная подача и короткий путь к обсуждению объекта.</p>
+								<p><span>Следующий шаг</span> заявка с описанием помещения, сроков и готовых материалов.</p>
+							</div>
+						</article>
+						<article class="industry-model-card industry-model-card--featured" role="listitem">
+							<p class="industry-model-card__label">02 / студия интерьера</p>
+							<h3>Сайт студии с направлениями</h3>
+							<div class="industry-model-card__rows">
+								<p><span>Подходит</span> студии, где важно разделить услуги, типы проектов и процесс взаимодействия.</p>
+								<p><span>Ядро</span> главная страница, портфолио, страницы услуг, этапы и понятная форма обращения.</p>
+								<p><span>Следующий шаг</span> выбор услуги или заполнение брифа перед первым разговором.</p>
+							</div>
+						</article>
+						<article class="industry-model-card" role="listitem">
+							<p class="industry-model-card__label">03 / portfolio-first</p>
+							<h3>Портфолио как главный продукт</h3>
+							<div class="industry-model-card__rows">
+								<p><span>Подходит</span> практике с разными объектами, стилями, публикациями и большим архивом работ.</p>
+								<p><span>Ядро</span> каталог проектов, карточки объектов, параметры, медиа и связка с услугами.</p>
+								<p><span>Следующий шаг</span> переход от похожего проекта к обсуждению собственной задачи.</p>
+							</div>
+						</article>
+					</div>
 
 					</div></div>
 			</section>
@@ -519,56 +555,39 @@
 						<p class="industry-section__description">Структура страницы помогает показать путь от общего портфолио к конкретному интерьеру и понятному обращению по будущему объекту.</p>
 					</div>
 					<div class="industry-function-system industry-function-system--interiors">
-						<div class="industry-function-system__grid industry-function-system__grid--interiors">
-							<article class="industry-function-system__panel industry-function-system__panel--path">
-								<p class="industry-function-system__eyebrow">Левая зона</p>
+						<div class="industry-product-blueprint" aria-label="Схема цифрового продукта для интерьерного проекта">
+							<article class="industry-function-system__panel industry-product-blueprint__panel industry-product-blueprint__panel--index">
+								<p class="industry-function-system__eyebrow">Portfolio index</p>
 								<h3>Навигация по портфолио</h3>
-								<div class="industry-function-system__sequence">
-									<div class="industry-function-system__sequence-item">
-										<span aria-hidden="true">01</span>
-										<p>Портфолио</p>
-									</div>
-									<div class="industry-function-system__sequence-item">
-										<span aria-hidden="true">02</span>
-										<p>Фильтр по типу объекта или стилю</p>
-									</div>
-									<div class="industry-function-system__sequence-item">
-										<span aria-hidden="true">03</span>
-										<p>Отдельная страница проекта</p>
-									</div>
+								<div class="industry-product-blueprint__mini-list">
+									<span>Тип объекта</span>
+									<span>Стиль</span>
+									<span>Состав работ</span>
 								</div>
+								<p>Входной экран помогает не листать всё подряд, а быстро найти близкий сценарий.</p>
 							</article>
-							<article class="industry-function-system__panel industry-function-system__panel--project">
-								<p class="industry-function-system__eyebrow">Центр</p>
+							<article class="industry-function-system__panel industry-product-blueprint__panel industry-product-blueprint__panel--project">
+								<p class="industry-function-system__eyebrow">Project page</p>
 								<h3>Карточка проекта</h3>
-								<dl class="industry-function-system__definition-list">
-									<div>
-										<dt>Задача</dt>
-										<dd>Что нужно было решить в интерьере.</dd>
+								<div class="industry-product-blueprint__mock">
+									<div class="industry-product-blueprint__media" aria-hidden="true"></div>
+									<div class="industry-product-blueprint__meta" role="list" aria-label="Данные проекта">
+										<div role="listitem"><span>Задача</span><p>какой интерьер проектировался</p></div>
+										<div role="listitem"><span>Объект</span><p>тип помещения и исходные условия</p></div>
+										<div role="listitem"><span>Материалы</span><p>фото, планы, визуализации</p></div>
+										<div role="listitem"><span>Работы</span><p>что можно обсуждать дальше</p></div>
 									</div>
-									<div>
-										<dt>Объект</dt>
-										<dd>Тип помещения и исходные условия.</dd>
-									</div>
-									<div>
-										<dt>Материалы</dt>
-										<dd>Фотографии, планировки и визуализации.</dd>
-									</div>
-									<div>
-										<dt>Работы</dt>
-										<dd>Состав проекта, который можно обсуждать с клиентом.</dd>
-									</div>
-								</dl>
-							</article>
-							<article class="industry-function-system__panel industry-function-system__panel--target">
-								<p class="industry-function-system__eyebrow">Правая зона</p>
-								<h3>Целевое действие</h3>
-								<div class="industry-function-system__action-stack">
-									<div>Услуги</div>
-									<div>Авторский надзор</div>
-									<div>Комплектация</div>
-									<div>Запрос на обсуждение объекта</div>
 								</div>
+							</article>
+							<article class="industry-function-system__panel industry-product-blueprint__panel industry-product-blueprint__panel--action">
+								<p class="industry-function-system__eyebrow">Next action</p>
+								<h3>Целевое действие</h3>
+								<div class="industry-product-blueprint__actions">
+									<span>Обсудить объект</span>
+									<span>Заполнить бриф</span>
+									<span>Задать короткий вопрос</span>
+								</div>
+								<p>Действие связано с проектом, который человек только что изучил.</p>
 							</article>
 						</div>
 					</div>
@@ -579,28 +598,30 @@
 <section class="section industry-delivery" aria-labelledby="industry-delivery-title">
 				<div class="container">
 					<div class="row industry-section">
-					<div class="industry-section__grid">
-						<article class="industry-panel industry-workscope">
-							<p class="industry-section__kicker">Состав работ</p>
-							<h2 class="industry-section__title h2" id="industry-delivery-title">Что входит в разработку</h2>
-							<div class="industry-list" role="list">
-					<article class="industry-line-item" role="listitem"><p>Проектирование структуры портфолио</p></article>
-					<article class="industry-line-item" role="listitem"><p>Дизайн ключевых экранов и страниц проектов</p></article>
-					<article class="industry-line-item" role="listitem"><p>Frontend-вёрстка</p></article>
-					<article class="industry-line-item" role="listitem"><p>Интеграция с CMS при необходимости</p></article>
-					<article class="industry-line-item" role="listitem"><p>Настройка форм и базовой аналитики</p></article>
-				</div>
+					<div class="industry-delivery__split">
+						<article class="industry-delivery__primary">
+							<p class="industry-section__kicker">Что проектируется</p>
+							<h2 class="industry-section__title h2" id="industry-delivery-title">Структура сайта, которая держит портфолио и обращение</h2>
+							<p class="industry-delivery__intro">В разработке важно собрать не набор экранов, а понятную систему: где человек смотрит работы, как узнаёт формат услуг и куда переходит после проекта.</p>
+							<div class="industry-delivery__items" role="list">
+								<article class="industry-delivery__item" role="listitem"><span aria-hidden="true">01</span><p>Структура портфолио, рубрик и страниц отдельных объектов.</p></article>
+								<article class="industry-delivery__item" role="listitem"><span aria-hidden="true">02</span><p>Дизайн главной страницы, карточек проектов и ключевых переходов.</p></article>
+								<article class="industry-delivery__item" role="listitem"><span aria-hidden="true">03</span><p>Адаптивная frontend-вёрстка с аккуратной подачей медиа и текста.</p></article>
+								<article class="industry-delivery__item" role="listitem"><span aria-hidden="true">04</span><p>Подготовка CMS-логики для самостоятельного пополнения проектов, если она нужна.</p></article>
+							</div>
 						</article>
-						<article class="industry-panel industry-integrations">
-							<p class="industry-section__kicker">Интеграции</p>
-							<h2 class="industry-section__title h2">Что можно подключить</h2>
-							<div class="industry-list" role="list">
-					<article class="industry-line-item" role="listitem"><p>Формы заявок</p></article>
-					<article class="industry-line-item" role="listitem"><p>CRM при наличии понятного процесса</p></article>
-					<article class="industry-line-item" role="listitem"><p>Сервисы аналитики</p></article>
-					<article class="industry-line-item" role="listitem"><p>Почтовые уведомления</p></article>
-					<article class="industry-line-item" role="listitem"><p>Галереи и медиа-библиотека CMS</p></article>
-				</div>
+						<article class="industry-delivery__secondary">
+							<p class="industry-section__kicker">Что можно подключить</p>
+							<h2 class="industry-section__title h2">Поддержка процесса после первого контакта</h2>
+							<p class="industry-delivery__intro">Подключения добавляются, когда они помогают обработать обращение или поддерживать портфолио, а не ради ощущения сложности.</p>
+							<div class="industry-delivery__chips" role="list">
+								<span role="listitem">формы заявок</span>
+								<span role="listitem">бриф на объект</span>
+								<span role="listitem">почтовые уведомления</span>
+								<span role="listitem">аналитика событий</span>
+								<span role="listitem">CRM при понятном процессе</span>
+								<span role="listitem">медиа-библиотека CMS</span>
+							</div>
 						</article>
 					</div>
 
@@ -615,13 +636,31 @@
 						<h2 class="industry-section__title h2" id="industry-process-title">Как проходит работа</h2>
 						<p class="industry-section__description">Последовательность зависит от масштаба проекта, но базовая логика остаётся прозрачной: от задачи и структуры к дизайну, вёрстке, интеграции и запуску.</p>
 					</div>
-					<ol class="industry-process__list">
-						<li><span aria-hidden="true">01</span>Обсуждение задачи и отраслевых сценариев</li>
-						<li><span aria-hidden="true">02</span>Структура страниц и пользовательских путей</li>
-						<li><span aria-hidden="true">03</span>Дизайн ключевых экранов</li>
-						<li><span aria-hidden="true">04</span>Frontend-вёрстка и адаптив</li>
-						<li><span aria-hidden="true">05</span>Интеграция с CMS или формами</li>
-						<li><span aria-hidden="true">06</span>Проверка, запуск и передача доступа</li>
+					<ol class="industry-process__timeline">
+						<li>
+							<span class="industry-process__number" aria-hidden="true">01</span>
+							<div><h3>Вводные</h3><p>Фиксируются задачи, материалы, формат практики и ограничения.</p></div>
+						</li>
+						<li>
+							<span class="industry-process__number" aria-hidden="true">02</span>
+							<div><h3>Структура</h3><p>Собираются страницы, сценарии выбора и логика портфолио.</p></div>
+						</li>
+						<li>
+							<span class="industry-process__number" aria-hidden="true">03</span>
+							<div><h3>Дизайн</h3><p>Прорабатываются ключевые экраны и состояние карточек проектов.</p></div>
+						</li>
+						<li>
+							<span class="industry-process__number" aria-hidden="true">04</span>
+							<div><h3>Вёрстка</h3><p>Интерфейс переносится в адаптивную frontend-структуру.</p></div>
+						</li>
+						<li>
+							<span class="industry-process__number" aria-hidden="true">05</span>
+							<div><h3>Подключения</h3><p>Настраиваются формы, CMS и нужные сервисы без лишней механики.</p></div>
+						</li>
+						<li>
+							<span class="industry-process__number" aria-hidden="true">06</span>
+							<div><h3>Проверка</h3><p>Проходятся ключевые сценарии, адаптив и передача доступа.</p></div>
+						</li>
 					</ol>
 
 					</div></div>
@@ -632,79 +671,138 @@
 					<div class="row">
 					<div class="industry-topics__head">
 						<p class="industry-topics__kicker">Отраслевые решения</p>
-						<h2 class="industry-topics__title h2" id="industry-topics-title">Создаю сайты для разных отраслей</h2>
+						<h2 class="industry-topics__title h2" id="industry-topics-title">Другие отраслевые страницы</h2>
+						<p class="industry-topics__description">Каждая ниша требует собственной логики выбора: где-то важны услуги и сроки, где-то каталог, доказательства, заявки или сложный процесс согласования.</p>
 					</div>
-					<ul class="industry-topics__list" aria-label="Отрасли">
-						<li class="industry-topics__item"><a class="industry-topics__link industry-topics__link--current" href="services-industry-interiors.html" aria-current="page">Дизайн интерьеров <span aria-hidden="true">→</span></a></li>
-						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-cleaning.html">Клининг <span aria-hidden="true">→</span></a></li>
-						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-retail.html">Коммерция и ритейл <span aria-hidden="true">→</span></a></li>
-						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-advertising-production.html">Рекламное производство <span aria-hidden="true">→</span></a></li>
-						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-medical.html">Медицина <span aria-hidden="true">→</span></a></li>
-						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-industrial.html">Промышленность и производство <span aria-hidden="true">→</span></a></li>
-						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-construction.html">Строительство и недвижимость <span aria-hidden="true">→</span></a></li>
-					</ul>
+					<div class="industry-topics__grid" aria-label="Отрасли">
+						<a class="industry-topics__card" href="services-industry-cleaning.html">
+							<span class="industry-topics__card-title">Клининг</span>
+							<span class="industry-topics__card-text">Услуги, параметры объекта и быстрый путь к заявке.</span>
+							<span class="industry-topics__card-arrow" aria-hidden="true">→</span>
+						</a>
+						<a class="industry-topics__card" href="services-industry-retail.html">
+							<span class="industry-topics__card-title">Коммерция и ритейл</span>
+							<span class="industry-topics__card-text">Каталог, точки доверия и сценарии выбора товара.</span>
+							<span class="industry-topics__card-arrow" aria-hidden="true">→</span>
+						</a>
+						<a class="industry-topics__card" href="services-industry-advertising-production.html">
+							<span class="industry-topics__card-title">Рекламное производство</span>
+							<span class="industry-topics__card-text">Заявки, требования к макетам и производственный процесс.</span>
+							<span class="industry-topics__card-arrow" aria-hidden="true">→</span>
+						</a>
+						<a class="industry-topics__card" href="services-industry-medical.html">
+							<span class="industry-topics__card-title">Медицина</span>
+							<span class="industry-topics__card-text">Услуги, специалисты, запись и аккуратная подача доверия.</span>
+							<span class="industry-topics__card-arrow" aria-hidden="true">→</span>
+						</a>
+						<a class="industry-topics__card" href="services-industry-industrial.html">
+							<span class="industry-topics__card-title">Промышленность</span>
+							<span class="industry-topics__card-text">Направления, компетенции и сложные B2B-сценарии.</span>
+							<span class="industry-topics__card-arrow" aria-hidden="true">→</span>
+						</a>
+						<a class="industry-topics__card" href="services-industry-construction.html">
+							<span class="industry-topics__card-title">Строительство и недвижимость</span>
+							<span class="industry-topics__card-text">Объекты, этапы, документы и путь к консультации.</span>
+							<span class="industry-topics__card-arrow" aria-hidden="true">→</span>
+						</a>
+					</div>
 
 					</div></div>
 			</section>
 
-<section class="section main--faq industry-faq" id="faq" aria-labelledby="industry-faq-title">
+<section class="section industry-faq" id="faq" aria-labelledby="industry-faq-title">
 				<div class="container">
 					<div class="row">
-					<h2 class="h2" id="industry-faq-title">Вопросы по отраслевому сайту</h2>
-					<div class="main--faq__wrapper">
-						<div class="main--faq__item active" data-open="true">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle active" type="button" aria-expanded="true" aria-controls="interiors-faq-answer-1">
-									<span class="main--faq__question">Какие материалы нужны для сайта дизайнера интерьера?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="interiors-faq-answer-1" aria-hidden="false">
-								<p>Для старта достаточно описать услуги, аудиторию, несколько примеров работ и желаемую структуру. Если есть фотографии, визуализации, планы, публикации или тексты о проектах, их стоит подготовить отдельно.</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="interiors-faq-answer-2">
-									<span class="main--faq__question">Можно ли сделать сайт без готового портфолио?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="interiors-faq-answer-2" aria-hidden="true">
-								<p>Да, но структуру лучше сразу подготовить под будущие проекты. На первом этапе можно использовать услуги, подход, публикации и форму обсуждения, а портфолио пополнять позже.</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="interiors-faq-answer-3">
-									<span class="main--faq__question">Нужны ли фильтры по стилям и помещениям?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="interiors-faq-answer-3" aria-hidden="true">
-								<p>Фильтры полезны, если проектов достаточно много и посетителю важно быстро найти похожий объект. Если работ мало, лучше начать с понятных страниц проектов без лишней механики.</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="interiors-faq-answer-4">
-									<span class="main--faq__question">Можно ли добавлять новые проекты самостоятельно?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="interiors-faq-answer-4" aria-hidden="true">
-								<p>Если сайт делается на CMS, можно настроить редактируемые карточки проектов, галереи, параметры объекта и текстовые блоки. Тогда новые работы можно добавлять без изменения кода.</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="interiors-faq-answer-5">
-									<span class="main--faq__question">Что важнее: главная страница или портфолио?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="interiors-faq-answer-5" aria-hidden="true">
-								<p>Для интерьерной тематики важны оба уровня. Главная объясняет позиционирование и путь клиента, а портфолио подтверждает стиль и опыт конкретными объектами.</p>
+					<div class="industry-faq__layout">
+						<aside class="industry-faq__aside" aria-labelledby="industry-faq-title">
+							<p class="industry-section__kicker">Вопросы</p>
+							<h2 class="h2" id="industry-faq-title">Что уточнить перед сайтом для интерьерной практики</h2>
+							<p>Ответы остаются отраслевыми, но визуально используют актуальный FAQ pattern сайта.</p>
+						</aside>
+						<div class="faq-content industry-faq__content" data-faq-accordion>
+							<section class="faq-section industry-faq__section" aria-labelledby="interiors-faq-section-title">
+								<div class="faq-section__head">
+									<span class="faq-section__number" aria-hidden="true">01</span>
+									<div>
+										<p class="faq-section__eyebrow">Перед стартом</p>
+										<h2 class="faq-section__title h2" id="interiors-faq-section-title">Материалы, портфолио и структура</h2>
+									</div>
+								</div>
+								<div class="faq-list">
+									<div class="faq-item" data-faq-item data-faq-open>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="interiors-faq-q-1" aria-expanded="false" aria-controls="interiors-faq-a-1" data-faq-toggle>
+												<span class="faq-item__number">01</span>
+												<span class="faq-item__question">Какие материалы нужны для сайта дизайнера интерьера?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="interiors-faq-a-1" role="region" aria-labelledby="interiors-faq-q-1" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Для старта достаточно описать услуги, аудиторию, несколько примеров работ и желаемую структуру. Если есть фотографии, визуализации, планы, публикации или тексты о проектах, их стоит подготовить отдельно.</p>
+											</div>
+										</div>
+									</div>
+									<div class="faq-item" data-faq-item>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="interiors-faq-q-2" aria-expanded="false" aria-controls="interiors-faq-a-2" data-faq-toggle>
+												<span class="faq-item__number">02</span>
+												<span class="faq-item__question">Можно ли сделать сайт без готового портфолио?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="interiors-faq-a-2" role="region" aria-labelledby="interiors-faq-q-2" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Да, но структуру лучше сразу подготовить под будущие проекты. На первом этапе можно использовать услуги, подход, публикации и форму обсуждения, а портфолио пополнять позже.</p>
+											</div>
+										</div>
+									</div>
+									<div class="faq-item" data-faq-item>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="interiors-faq-q-3" aria-expanded="false" aria-controls="interiors-faq-a-3" data-faq-toggle>
+												<span class="faq-item__number">03</span>
+												<span class="faq-item__question">Нужны ли фильтры по стилям и помещениям?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="interiors-faq-a-3" role="region" aria-labelledby="interiors-faq-q-3" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Фильтры полезны, если проектов достаточно много и посетителю важно быстро найти похожий объект. Если работ мало, лучше начать с понятных страниц проектов без лишней механики.</p>
+											</div>
+										</div>
+									</div>
+									<div class="faq-item" data-faq-item>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="interiors-faq-q-4" aria-expanded="false" aria-controls="interiors-faq-a-4" data-faq-toggle>
+												<span class="faq-item__number">04</span>
+												<span class="faq-item__question">Можно ли добавлять новые проекты самостоятельно?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="interiors-faq-a-4" role="region" aria-labelledby="interiors-faq-q-4" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Если сайт делается на CMS, можно настроить редактируемые карточки проектов, галереи, параметры объекта и текстовые блоки. Тогда новые работы можно добавлять без изменения кода.</p>
+											</div>
+										</div>
+									</div>
+									<div class="faq-item" data-faq-item>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="interiors-faq-q-5" aria-expanded="false" aria-controls="interiors-faq-a-5" data-faq-toggle>
+												<span class="faq-item__number">05</span>
+												<span class="faq-item__question">Что важнее: главная страница или портфолио?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="interiors-faq-a-5" role="region" aria-labelledby="interiors-faq-q-5" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Для интерьерной тематики важны оба уровня. Главная объясняет позиционирование и путь клиента, а портфолио подтверждает стиль и опыт конкретными объектами.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+							<div class="faq-next industry-faq__next">
+								<a class="faq-next__button button button--primary button--gradient modal--open" href="#modal_general" data-modal-target="#modal_general"><span>Обсудить проект</span></a>
 							</div>
 						</div>
 					</div>
