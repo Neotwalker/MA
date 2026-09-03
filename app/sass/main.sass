@@ -580,6 +580,10 @@ body.cookie-banner-visible
 	.last
 		color: color.adjust($white, $alpha: -.08)
 		font-weight: 650
+	.breadcrumb_last,
+	[aria-current="page"]
+		color: color.adjust($white, $alpha: -.08)
+		font-weight: 650
 	a
 		font-weight: 700
 		font-size: 15px
@@ -3438,32 +3442,9 @@ body.cookie-banner-visible
 				grid-column: auto
 				grid-row: auto
 				min-height: 100%
-				&--lead, &--medium, &--wide, &--compact, &--desktop-half, &--compact.portfolio-card--wide, &--wide.portfolio-card--featured
+				&--wide, &--compact, &--desktop-half, &--compact.portfolio-card--wide
 					grid-column: auto
 					grid-row: auto
-				&--wide.portfolio-card--featured
-					display: flex
-					grid-template-columns: none
-					.portfolio-card__media
-						height: auto
-						min-height: 0
-				&--featured
-					.portfolio-card__title
-						font-size: 30px
-				&--lead
-					.portfolio-card__body
-						padding: 24px
-					.portfolio-card__title
-						font-size: 30px
-					.portfolio-card__description
-						font-size: 16px
-	.portfolio-featured
-		margin-bottom: 0
-		&__grid
-			display: grid
-			grid-template-columns: repeat(12, minmax(0, 1fr))
-			gap: 24px
-			align-items: start
 	.portfolio-grid
 		display: grid
 		grid-template-columns: repeat(3, minmax(0, 1fr))
@@ -3513,45 +3494,12 @@ body.cookie-banner-visible
 			opacity: 0
 			transform: translateY(8px)
 			pointer-events: none
-		&--featured
-			.portfolio-card__media
-				aspect-ratio: 16 / 10
-			.portfolio-card__title
-				font-size: 30px
-		&--lead
-			grid-column: span 7
-			grid-row: auto
-			.portfolio-card__body
-				padding: 30px
-			.portfolio-card__title
-				font-size: 40px
-			.portfolio-card__description
-				font-size: 17px
-		&--medium
-			grid-column: span 5
 		&--wide
 			grid-column: span 6
-			&.portfolio-card--featured
-				grid-column: span 7
-				display: grid
-				grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr)
-				.portfolio-card__media
-					height: 100%
-					min-height: 320px
-				.portfolio-card__body
-					align-self: center
 		&--sarakula
-			&.portfolio-card--featured
-				display: flex
-				grid-template-columns: none
-				.portfolio-card__media
-					height: auto
-					min-height: 0
-					aspect-ratio: 16 / 10
-					img
-						object-position: center top
-				.portfolio-card__body
-					align-self: stretch
+			.portfolio-card__media
+				img
+					object-position: center top
 		&--compact
 			grid-column: span 4
 			.portfolio-card__media
@@ -6115,17 +6063,13 @@ body.cookie-banner-visible
 			padding-left: clamp(24px, 2.4vw, 38px)
 			border-left: 1px solid color.adjust($white, $alpha: -.75)
 			opacity: 0
-			.price
+			&-main
 				display: flex
 				flex-direction: column
 				gap: 7px
-				font-size: clamp(22px, 1.65vw, 26px)
-				line-height: 1.22
-				font-weight: 650
 				max-width: 100%
 				color: $white
-				overflow-wrap: normal
-			.taxonomy--header__price-label
+			&-label
 				display: block
 				color: color.adjust($white, $alpha: -.34)
 				font-size: 13px
@@ -6133,6 +6077,14 @@ body.cookie-banner-visible
 				line-height: 1.2
 				text-transform: uppercase
 				letter-spacing: 0
+			&-title
+				font-size: clamp(22px, 1.65vw, 26px)
+				line-height: 1.22
+				font-weight: 650
+				max-width: 100%
+				color: $white
+				overflow-wrap: anywhere
+				margin: 0
 			.taxonomy--header__price-value
 				display: block
 				color: $white
@@ -6162,8 +6114,8 @@ body.cookie-banner-visible
 				color: color.adjust($white, $alpha: -.08)
 		&__actions
 			display: flex
-			flex-wrap: wrap
-			align-items: center
+			flex-direction: column
+			align-items: flex-start
 			gap: 10px
 			.button
 				width: auto
@@ -6174,7 +6126,7 @@ body.cookie-banner-visible
 				white-space: nowrap
 				text-align: center
 				line-height: 1.1
-		&__price-note
+		&__aside-note
 			max-width: 100%
 			font-size: 16px
 			line-height: 1.5
@@ -6443,9 +6395,12 @@ body.cookie-banner-visible
 				transition-delay: 1.2s
 
 .taxonomy
+	--taxonomy-anchor-offset: calc(var(--header-height, 88px) + 32px)
 	#development-services,
-	#development-cases
-		scroll-margin-top: 120px
+	#development-cases,
+	#taxonomy-services,
+	#taxonomy-fit
+		scroll-margin-top: var(--taxonomy-anchor-offset)
 	.main--cases
 		&__description
 			max-width: 760px
@@ -6680,7 +6635,7 @@ body.cookie-banner-visible
 				border-color: color.adjust($accent, $alpha: -.15)
 				background-color: color.adjust($accent, $alpha: -.88)
 	.development-industries
-		scroll-margin-top: 120px
+		scroll-margin-top: var(--taxonomy-anchor-offset)
 		&__wrapper
 			display: flex
 			align-items: flex-start
@@ -6863,8 +6818,7 @@ body.cookie-banner-visible
 			.taxonomy--services-link__title
 				color: $white
 			.taxonomy--services-link__arrow
-				color: $accent
-				transform: translateX(4px)
+				transform: translateX(6px)
 		&:focus-visible
 			outline: 2px solid color.adjust($accent, $alpha: -.05)
 			outline-offset: 4px
@@ -6872,8 +6826,7 @@ body.cookie-banner-visible
 			.taxonomy--services-link__title
 				color: $white
 			.taxonomy--services-link__arrow
-				color: $accent
-				transform: translateX(4px)
+				transform: translateX(6px)
 		&:active
 			background-color: color.adjust($white, $alpha: -.93)
 			opacity: .88
@@ -6899,12 +6852,13 @@ body.cookie-banner-visible
 		&__arrow
 			width: 30px
 			min-width: 30px
-			display: flex
+			display: inline-flex
+			align-items: center
 			justify-content: flex-end
-			color: color.adjust($white, $alpha: -.46)
-			font-size: 22px
-			line-height: 1.2
-			transition: color .2s ease, transform .2s ease
+			color: $orange
+			font-size: 24px
+			line-height: 1
+			transition: transform .22s ease
 	@media (prefers-reduced-motion: reduce)
 		.taxonomy--services-link
 			transition-duration: .01ms
@@ -9552,32 +9506,6 @@ figure
 
 .article-breadcrumbs
 	margin-bottom: 28px
-	ol
-		display: flex
-		flex-wrap: wrap
-		align-items: center
-		gap: 8px
-		margin: 0
-		padding: 0
-		list-style: none
-	li
-		display: inline-flex
-		align-items: center
-		min-width: 0
-		color: color.adjust($white, $alpha: -.42)
-		font-size: 14px
-		line-height: 1.45
-		&:not(:last-child)::after
-			content: '/'
-			margin-left: 8px
-			color: color.adjust($white, $alpha: -.72)
-	a
-		color: color.adjust($white, $alpha: -.24)
-		text-decoration: none
-		transition: color .22s ease
-		&:hover, &:focus-visible
-			color: $orange
-			outline: none
 	span
 		min-width: 0
 		overflow-wrap: anywhere
