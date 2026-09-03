@@ -365,8 +365,8 @@
 							<h1>Разработка сайтов для строительства и недвижимости</h1>
 							<p class="industry-hero__lead">В строительстве и недвижимости сайт может продавать услугу, объект, аренду или проект. Я сначала разделяю бизнес-модель, а уже потом проектирую страницы, чтобы подрядчик, девелопер, арендодатель и каталог проектов не выглядели как один сценарий.</p>
 							<div class="industry-hero__actions">
-								<a class="industry-hero__cta button button--secondary button--white modal--open" href="#modal_general" data-modal-target="#modal_general">Обсудить проект</a>
-								<a class="industry-hero__case-link" href="archive-case.html">Посмотреть портфолио</a>
+								<a class="industry-hero__cta button button--primary button--gradient modal--open" href="#modal_general" data-modal-target="#modal_general"><span>Обсудить проект</span></a>
+								<a class="industry-hero__case-link button button--secondary button--white" href="archive-case.html"><span>Посмотреть портфолио</span></a>
 							</div>
 						</div>
 						<aside class="industry-hero__aside" aria-label="Фокус первого экрана">
@@ -462,78 +462,44 @@
 						</div>
 					</section>
 
-<section class="section industry-scenario industry-scenario--construction-matrix" aria-labelledby="construction-scenario-title">
+<section class="section industry-scenario industry-scenario--construction-request" aria-labelledby="construction-scenario-title">
 				<div class="container">
 					<div class="row">
-					<div class="industry-scenario__head"><p class="industry-section__kicker">Архитектура сайта</p><h2 class="industry-scenario__title h2" id="construction-scenario-title">Разные задачи требуют разной архитектуры сайта</h2></div>
-					<div class="industry-scenario-matrix">
-						<article><h3>Строительные услуги</h3><p><b>Ищет:</b> подрядчика и состав работ.</p><p><b>Нужны:</b> услуги, проекты, этапы, документы.</p><p><b>Действие:</b> заявка на консультацию или расчёт.</p></article>
-						<article><h3>Продажа объектов</h3><p><b>Ищет:</b> подходящий объект и параметры.</p><p><b>Нужны:</b> каталог, карточки, планировки, карта.</p><p><b>Действие:</b> запрос по объекту.</p></article>
-						<article><h3>Аренда объектов</h3><p><b>Ищет:</b> площадь, условия и локацию.</p><p><b>Нужны:</b> фильтры, статусы, условия, контакты.</p><p><b>Действие:</b> заявка на просмотр.</p></article>
-						<article><h3>Каталог проектов</h3><p><b>Ищет:</b> тип дома или помещения.</p><p><b>Нужны:</b> параметры, планировки, комплектации.</p><p><b>Действие:</b> запрос проекта или сметы.</p></article>
+					<div class="industry-scenario__head">
+						<p class="industry-section__kicker">Путь клиента</p>
+						<h2 class="industry-scenario__title h2" id="construction-scenario-title">Путь от услуги до обсуждения объекта</h2>
+						<p class="industry-scenario__description">Строительный сайт должен показать услуги, объекты, этапы и способ начать разговор о конкретной задаче.</p>
 					</div>
-
-					</div></div>
-			</section>
-
-<section class="section industry-formats" aria-labelledby="industry-formats-title">
-				<div class="container">
-					<div class="row industry-section">
-					<div class="industry-section__head">
-						<p class="industry-section__kicker">Формат сайта</p>
-						<h2 class="industry-section__title h2" id="industry-formats-title">Подходящие варианты реализации</h2>
-					</div>
-					<ul class="industry-format-list">
-						<li>Корпоративный сайт</li>
-						<li>Сайт услуг</li>
-						<li>Каталог объектов</li>
-						<li>Веб-сервис для заявок</li>
-					</ul>
-
-					</div></div>
-			</section>
-
-<section class="section industry-functions" aria-labelledby="industry-functions-title">
-				<div class="container">
-					<div class="row industry-section">
-					<div class="industry-section__head">
-						<p class="industry-section__kicker">Объект и заявка</p>
-						<h2 class="industry-section__title h2" id="industry-functions-title">Что связывает объект и целевое действие</h2>
-						<p class="industry-section__description">В строительных проектах один и тот же каталог может вести к разным действиям: консультации, расчёту, просмотру, бронированию или смете.</p>
-					</div>
-					<div class="industry-function-system industry-function-system--construction">
-						<div class="industry-function-system__pairs">
-							<article class="industry-function-system__pair">
-								<p class="industry-function-system__eyebrow">Услуга</p>
-								<div class="industry-function-system__pair-flow">
-									<span>Описание работ</span>
-									<span aria-hidden="true">→</span>
-									<span>Форма консультации или расчёта</span>
-								</div>
+					<div class="industry-scenario__layout industry-scenario__layout--journey">
+						<div class="industry-journey-route" role="list" aria-label="Путь клиента в строительной тематике">
+							<article class="industry-journey-route__item" role="listitem">
+								<span class="industry-journey-route__number" aria-hidden="true">01</span>
+								<h3>Услуга</h3>
+								<p>Посетитель выбирает направление работ или тип объекта.</p>
+								<span class="industry-journey-route__arrow" aria-hidden="true">→</span>
 							</article>
-							<article class="industry-function-system__pair">
-								<p class="industry-function-system__eyebrow">Объект на продажу</p>
-								<div class="industry-function-system__pair-flow">
-									<span>Параметры и планировка</span>
-									<span aria-hidden="true">→</span>
-									<span>Заявка по конкретному объекту</span>
-								</div>
+							<article class="industry-journey-route__item" role="listitem">
+								<span class="industry-journey-route__number" aria-hidden="true">02</span>
+								<h3>Объект</h3>
+								<p>Страница помогает понять масштаб, условия и похожие задачи.</p>
+								<span class="industry-journey-route__arrow" aria-hidden="true">→</span>
 							</article>
-							<article class="industry-function-system__pair">
-								<p class="industry-function-system__eyebrow">Объект в аренду</p>
-								<div class="industry-function-system__pair-flow">
-									<span>Условия и доступность</span>
-									<span aria-hidden="true">→</span>
-									<span>Запрос просмотра или бронирования</span>
-								</div>
+							<article class="industry-journey-route__item" role="listitem">
+								<span class="industry-journey-route__number" aria-hidden="true">03</span>
+								<h3>Примеры</h3>
+								<p>Если есть реальные работы, они показывают подход и уровень детализации.</p>
+								<span class="industry-journey-route__arrow" aria-hidden="true">→</span>
 							</article>
-							<article class="industry-function-system__pair">
-								<p class="industry-function-system__eyebrow">Проект дома</p>
-								<div class="industry-function-system__pair-flow">
-									<span>Комплектация и характеристики</span>
-									<span aria-hidden="true">→</span>
-									<span>Запрос сметы или консультации</span>
-								</div>
+							<article class="industry-journey-route__item" role="listitem">
+								<span class="industry-journey-route__number" aria-hidden="true">04</span>
+								<h3>Состав</h3>
+								<p>Пользователь сверяет этапы, документы и границы ответственности.</p>
+								<span class="industry-journey-route__arrow" aria-hidden="true">→</span>
+							</article>
+							<article class="industry-journey-route__item industry-journey-route__item--accent" role="listitem">
+								<span class="industry-journey-route__number" aria-hidden="true">05</span>
+								<h3>Обсуждение</h3>
+								<p>Форма переводит интерес в консультацию или запрос расчёта.</p>
 							</article>
 						</div>
 					</div>
@@ -544,35 +510,33 @@
 <section class="section industry-delivery" aria-labelledby="industry-delivery-title">
 				<div class="container">
 					<div class="row industry-section">
-					<div class="industry-section__grid">
-						<article class="industry-panel industry-workscope">
-							<p class="industry-section__kicker">Состав работ</p>
-							<h2 class="industry-section__title h2" id="industry-delivery-title">Что входит в разработку</h2>
-							<div class="industry-list" role="list">
-					<article class="industry-line-item" role="listitem"><p>Разделение сценариев услуг и объектов</p></article>
-					<article class="industry-line-item" role="listitem"><p>Дизайн страниц проектов и каталога</p></article>
-					<article class="industry-line-item" role="listitem"><p>Frontend-вёрстка</p></article>
-					<article class="industry-line-item" role="listitem"><p>Интеграция с CMS при необходимости</p></article>
-					<article class="industry-line-item" role="listitem"><p>Настройка форм и базовой аналитики</p></article>
-				</div>
+					<div class="industry-delivery__split">
+						<article class="industry-delivery__primary">
+							<p class="industry-section__kicker">Состав разработки</p>
+							<h2 class="industry-section__title h2" id="industry-delivery-title">Что входит в сайт для строительной тематики</h2>
+							<p class="industry-delivery__intro">Сайт должен связывать услуги, объекты, этапы и обращение, не обещая то, что не подтверждено материалами.</p>
+							<div class="industry-delivery__items" role="list">
+								<article class="industry-delivery__item" role="listitem"><span aria-hidden="true">01</span><h3>Presentation</h3><p>Услуги, технологии, объекты, проекты, этапы и понятная подача выполненных работ при наличии материалов.</p></article>
+								<article class="industry-delivery__item" role="listitem"><span aria-hidden="true">02</span><h3>Conversion</h3><p>Заявка, расчёт, консультация, документы / сметы только при реальной необходимости.</p></article>
+							</div>
 						</article>
-						<article class="industry-panel industry-integrations">
-							<p class="industry-section__kicker">Интеграции</p>
-							<h2 class="industry-section__title h2">Что можно подключить</h2>
-							<div class="industry-list" role="list">
-					<article class="industry-line-item" role="listitem"><p>Карты</p></article>
-					<article class="industry-line-item" role="listitem"><p>CRM</p></article>
-					<article class="industry-line-item" role="listitem"><p>Формы заявок</p></article>
-					<article class="industry-line-item" role="listitem"><p>Каталог объектов</p></article>
-					<article class="industry-line-item" role="listitem"><p>Импорт данных при наличии источника</p></article>
-				</div>
+						<article class="industry-delivery__secondary">
+							<p class="industry-section__kicker">Разработка и подключения</p>
+							<h2 class="industry-section__title h2">Подключения и управление</h2>
+							<p class="industry-delivery__intro">Техническая часть добавляется под реальный процесс заявок, документов и консультаций.</p>
+							<div class="industry-delivery__chips" role="list">
+								<span role="listitem">WordPress / CMS</span>
+								<span role="listitem">формы заявок</span>
+								<span role="listitem">загрузка файлов</span>
+								<span role="listitem">аналитика</span>
+								<span role="listitem">CRM</span>
+								<span role="listitem">мессенджеры</span>
+							</div>
 						</article>
 					</div>
 
 					</div></div>
 			</section>
-
-
 
 <section class="section industry-process" aria-labelledby="industry-process-title">
 				<div class="container">
@@ -582,15 +546,55 @@
 						<h2 class="industry-section__title h2" id="industry-process-title">Как проходит работа</h2>
 						<p class="industry-section__description">Последовательность зависит от масштаба проекта, но базовая логика остаётся прозрачной: от задачи и структуры к дизайну, вёрстке, интеграции и запуску.</p>
 					</div>
-					<ol class="industry-process__list">
-						<li><span aria-hidden="true">01</span>Обсуждение задачи и отраслевых сценариев</li>
-						<li><span aria-hidden="true">02</span>Структура страниц и пользовательских путей</li>
-						<li><span aria-hidden="true">03</span>Дизайн ключевых экранов</li>
-						<li><span aria-hidden="true">04</span>Frontend-вёрстка и адаптив</li>
-						<li><span aria-hidden="true">05</span>Интеграция с CMS или формами</li>
-						<li><span aria-hidden="true">06</span>Проверка, запуск и передача доступа</li>
+					<ol class="industry-process__timeline">
+						<li>
+							<span class="industry-process__number" aria-hidden="true">01</span>
+							<div><h3>Вводные</h3><p>Фиксируются услуги, объекты, материалы и способ обработки обращений.</p></div>
+						</li>
+						<li>
+							<span class="industry-process__number" aria-hidden="true">02</span>
+							<div><h3>Структура</h3><p>Собираются направления, этапы, примеры и путь к консультации.</p></div>
+						</li>
+						<li>
+							<span class="industry-process__number" aria-hidden="true">03</span>
+							<div><h3>Дизайн</h3><p>Прорабатываются страницы услуг, объектов и формы заявки.</p></div>
+						</li>
+						<li>
+							<span class="industry-process__number" aria-hidden="true">04</span>
+							<div><h3>Вёрстка</h3><p>Интерфейс переносится в адаптивную вёрстку.</p></div>
+						</li>
+						<li>
+							<span class="industry-process__number" aria-hidden="true">05</span>
+							<div><h3>Подключения</h3><p>Настраиваются CMS, формы, файлы и уведомления.</p></div>
+						</li>
+						<li>
+							<span class="industry-process__number" aria-hidden="true">06</span>
+							<div><h3>Проверка</h3><p>Проверяются сценарии обращения и передача доступа.</p></div>
+						</li>
 					</ol>
 
+					</div></div>
+			</section>
+
+<section class="section industry-content service-single-content" aria-label="Черновой редакторский текст отраслевой страницы">
+				<div class="container">
+					<div class="row">
+					<div class="service-single-content__body">
+						<h2>Как собрать строительный сайт вокруг доверия и конкретики</h2>
+						<p>В строительной тематике посетителю важно быстро понять, какие услуги оказываются, с какими объектами можно обратиться и что будет следующим шагом.</p>
+						<p>В текущем registry не подтверждён прямой строительный кейс, поэтому страница не использует искусственный проект как доказательство.</p>
+
+						<h3>Что стоит подготовить</h3>
+						<ul>
+							<li>список услуг и направлений;</li>
+							<li>этапы работы и ограничения;</li>
+							<li>примеры объектов, если их можно публиковать;</li>
+							<li>документы или вводные, которые нужны для расчёта.</li>
+						</ul>
+
+						<h3>Почему proof section здесь не добавлен</h3>
+						<p>Лучше оставить страницу без кейса, чем считать проект строительным только по названию или смежным ассоциациям.</p>
+					</div>
 					</div></div>
 			</section>
 
@@ -599,45 +603,77 @@
 					<div class="row">
 					<div class="industry-topics__head">
 						<p class="industry-topics__kicker">Отраслевые решения</p>
-						<h2 class="industry-topics__title h2" id="industry-topics-title">Создаю сайты для разных отраслей</h2>
+						<h2 class="industry-topics__title h2" id="industry-topics-title">Другие отраслевые страницы</h2>
+						<p class="industry-topics__description">Каждая ниша требует собственной логики выбора: где-то важны услуги и сроки, где-то каталог, доказательства, заявки или сложный процесс согласования.</p>
 					</div>
-					<ul class="industry-topics__list" aria-label="Отрасли">
-						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-interiors.html">Дизайн интерьеров <span aria-hidden="true">→</span></a></li>
-						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-cleaning.html">Клининг <span aria-hidden="true">→</span></a></li>
-						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-retail.html">Коммерция и ритейл <span aria-hidden="true">→</span></a></li>
-						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-advertising-production.html">Рекламное производство <span aria-hidden="true">→</span></a></li>
-						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-medical.html">Медицина <span aria-hidden="true">→</span></a></li>
-						<li class="industry-topics__item"><a class="industry-topics__link" href="services-industry-industrial.html">Промышленность и производство <span aria-hidden="true">→</span></a></li>
-						<li class="industry-topics__item"><a class="industry-topics__link industry-topics__link--current" href="services-industry-construction.html" aria-current="page">Строительство и недвижимость <span aria-hidden="true">→</span></a></li>
-					</ul>
+					<div class="industry-topics__grid" aria-label="Отрасли">
+						<a class="industry-topics__card" href="services-industry-interiors.html">
+							<span class="industry-topics__card-title">Дизайн интерьеров</span>
+							<span class="industry-topics__card-text">Портфолио, услуги и путь к обсуждению объекта.</span>
+							<span class="industry-topics__card-arrow" aria-hidden="true">→</span>
+						</a>
+						<a class="industry-topics__card" href="services-industry-cleaning.html">
+							<span class="industry-topics__card-title">Клининг</span>
+							<span class="industry-topics__card-text">Услуги, параметры объекта и быстрый путь к заявке.</span>
+							<span class="industry-topics__card-arrow" aria-hidden="true">→</span>
+						</a>
+						<a class="industry-topics__card" href="services-industry-retail.html">
+							<span class="industry-topics__card-title">Коммерция и ритейл</span>
+							<span class="industry-topics__card-text">Каталог, точки доверия и сценарии выбора товара.</span>
+							<span class="industry-topics__card-arrow" aria-hidden="true">→</span>
+						</a>
+						<a class="industry-topics__card" href="services-industry-advertising-production.html">
+							<span class="industry-topics__card-title">Рекламное производство</span>
+							<span class="industry-topics__card-text">Заявки, требования к макетам и производственный процесс.</span>
+							<span class="industry-topics__card-arrow" aria-hidden="true">→</span>
+						</a>
+						<a class="industry-topics__card" href="services-industry-medical.html">
+							<span class="industry-topics__card-title">Медицина</span>
+							<span class="industry-topics__card-text">Услуги, специалисты, запись и аккуратная подача доверия.</span>
+							<span class="industry-topics__card-arrow" aria-hidden="true">→</span>
+						</a>
+						<a class="industry-topics__card" href="services-industry-industrial.html">
+							<span class="industry-topics__card-title">Промышленность</span>
+							<span class="industry-topics__card-text">Направления, компетенции и сложные B2B-сценарии.</span>
+							<span class="industry-topics__card-arrow" aria-hidden="true">→</span>
+						</a>
+					</div>
 
 					</div></div>
 			</section>
 
+
+
 		<section class="section industry-faq" id="faq" aria-labelledby="industry-faq-title">
-			<div class="container">
-				<div class="row">
-					<div class="faq-content industry-faq__content" data-faq-accordion>
-						<section class="faq-section" aria-labelledby="industry-faq-title">
-							<div class="faq-section__head">
-								<span class="faq-section__number" aria-hidden="true">01</span>
-								<div>
-									<p class="faq-section__eyebrow">Вопросы по направлению</p>
-									<h2 class="faq-section__title h2" id="industry-faq-title">Вопросы по отраслевому сайту</h2>
+				<div class="container">
+					<div class="row">
+					<div class="industry-faq__layout">
+						<aside class="industry-faq__aside" aria-labelledby="industry-faq-title">
+							<p class="industry-section__kicker">Вопросы</p>
+							<h2 class="h2" id="industry-faq-title">Что уточнить перед строительным сайтом</h2>
+							<p>Ответы помогают подготовить услуги, объекты и путь к консультации.</p>
+						</aside>
+						<div class="faq-content industry-faq__content" data-faq-accordion>
+							<section class="faq-section industry-faq__section" aria-labelledby="construction-faq-section-title">
+								<div class="faq-section__head">
+									<span class="faq-section__number" aria-hidden="true">01</span>
+									<div>
+										<p class="faq-section__eyebrow">Перед стартом</p>
+										<h2 class="faq-section__title h2" id="construction-faq-section-title">Услуги, объекты и обсуждение</h2>
+									</div>
 								</div>
-							</div>
-							<div class="faq-list">
+								<div class="faq-list">
 									<div class="faq-item" data-faq-item data-faq-open>
 										<h3 class="faq-item__heading">
 											<button class="faq-item__button" type="button" id="construction-faq-q-1" aria-expanded="false" aria-controls="construction-faq-a-1" data-faq-toggle>
 												<span class="faq-item__number">01</span>
-												<span class="faq-item__question">Как понять, нужен сайт услуг или каталог объектов?</span>
+												<span class="faq-item__question">Можно ли показать проекты и объекты?</span>
 												<span class="faq-item__icon" aria-hidden="true"></span>
 											</button>
 										</h3>
 										<div class="faq-item__answer" id="construction-faq-a-1" role="region" aria-labelledby="construction-faq-q-1" aria-hidden="true" data-faq-panel>
 											<div class="faq-item__answer-inner">
-												<p>Если пользователь выбирает подрядчика, важнее услуги, проекты и доверие. Если он выбирает помещение, дом или объект, нужен каталог с параметрами, фильтрами и отдельными карточками.</p>
+												<p>Да, если есть реальные материалы и разрешение на публикацию.</p>
 											</div>
 										</div>
 									</div>
@@ -645,13 +681,13 @@
 										<h3 class="faq-item__heading">
 											<button class="faq-item__button" type="button" id="construction-faq-q-2" aria-expanded="false" aria-controls="construction-faq-a-2" data-faq-toggle>
 												<span class="faq-item__number">02</span>
-												<span class="faq-item__question">Можно ли добавить карту объектов?</span>
+												<span class="faq-item__question">Нужен ли расчёт стоимости на сайте?</span>
 												<span class="faq-item__icon" aria-hidden="true"></span>
 											</button>
 										</h3>
 										<div class="faq-item__answer" id="construction-faq-a-2" role="region" aria-labelledby="construction-faq-q-2" aria-hidden="true" data-faq-panel>
 											<div class="faq-item__answer-inner">
-												<p>Да, если есть адреса, координаты или понятная география. Карта должна помогать выбору, а не быть декоративным блоком без полезной информации.</p>
+												<p>Если расчёт зависит от объекта и вводных, лучше использовать форму запроса или консультации.</p>
 											</div>
 										</div>
 									</div>
@@ -659,13 +695,13 @@
 										<h3 class="faq-item__heading">
 											<button class="faq-item__button" type="button" id="construction-faq-q-3" aria-expanded="false" aria-controls="construction-faq-a-3" data-faq-toggle>
 												<span class="faq-item__number">03</span>
-												<span class="faq-item__question">Нужен ли калькулятор сметы?</span>
+												<span class="faq-item__question">Можно ли добавить документы или файлы?</span>
 												<span class="faq-item__icon" aria-hidden="true"></span>
 											</button>
 										</h3>
 										<div class="faq-item__answer" id="construction-faq-a-3" role="region" aria-labelledby="construction-faq-q-3" aria-hidden="true" data-faq-panel>
 											<div class="faq-item__answer-inner">
-												<p>Калькулятор стоит делать только при понятной формуле и ограниченном наборе параметров. Если расчёт зависит от обследования и материалов, лучше использовать форму предварительной заявки.</p>
+												<p>Да, если они помогают пользователю подготовить обращение или менеджеру быстрее оценить задачу.</p>
 											</div>
 										</div>
 									</div>
@@ -673,13 +709,13 @@
 										<h3 class="faq-item__heading">
 											<button class="faq-item__button" type="button" id="construction-faq-q-4" aria-expanded="false" aria-controls="construction-faq-a-4" data-faq-toggle>
 												<span class="faq-item__number">04</span>
-												<span class="faq-item__question">Как показывать выполненные проекты?</span>
+												<span class="faq-item__question">Что подготовить перед началом?</span>
 												<span class="faq-item__icon" aria-hidden="true"></span>
 											</button>
 										</h3>
 										<div class="faq-item__answer" id="construction-faq-a-4" role="region" aria-labelledby="construction-faq-q-4" aria-hidden="true" data-faq-panel>
 											<div class="faq-item__answer-inner">
-												<p>Лучше делать отдельные страницы или карточки с задачей, типом объекта, составом работ и реальными материалами. Неподтверждённые цифры и обещания добавлять не нужно.</p>
+												<p>Услуги, направления, этапы, примеры работ, условия и желаемые поля заявки.</p>
 											</div>
 										</div>
 									</div>
@@ -687,33 +723,79 @@
 										<h3 class="faq-item__heading">
 											<button class="faq-item__button" type="button" id="construction-faq-q-5" aria-expanded="false" aria-controls="construction-faq-a-5" data-faq-toggle>
 												<span class="faq-item__number">05</span>
-												<span class="faq-item__question">Можно ли управлять объектами через CMS?</span>
+												<span class="faq-item__question">Можно ли начать без портфолио?</span>
 												<span class="faq-item__icon" aria-hidden="true"></span>
 											</button>
 										</h3>
 										<div class="faq-item__answer" id="construction-faq-a-5" role="region" aria-labelledby="construction-faq-q-5" aria-hidden="true" data-faq-panel>
 											<div class="faq-item__answer-inner">
-												<p>Да. Можно настроить редактируемые карточки объектов, параметры, фотографии, статусы и формы обращения, если это заложено в структуру проекта.</p>
+												<p>Можно, но структуру лучше подготовить так, чтобы реальные объекты можно было добавить позже.</p>
 											</div>
 										</div>
 									</div>
+								</div>
+							</section>
+							<div class="faq-next industry-faq__next">
+								<a class="faq-next__button button button--primary button--gradient modal--open" href="#modal_general" data-modal-target="#modal_general"><span>Обсудить проект</span></a>
 							</div>
-						</section>
+						</div>
 					</div>
-				</div>
-			</div>
-		</section>
 
-<section class="section industry-cta" aria-labelledby="industry-cta-title">
+					</div></div>
+			</section>
+
+<section id="contacts" class="section main--contacts visible industry-contact" aria-labelledby="industry-contact-construction-title">
 				<div class="container">
 					<div class="row">
-					<div class="industry-cta__wrapper">
-						<div>
-							<p class="industry-section__kicker">Обсудить проект</p>
-							<h2 class="industry-cta__title h2" id="industry-cta-title">Обсудим архитектуру сайта под вашу модель</h2>
-							<p>Расскажите, что нужно показывать: услуги, объекты, аренду, проекты домов или несколько сценариев одновременно.</p>
+					<div class="main--contacts__wrapper">
+						<div class="main--contacts__left">
+							<h2 class="h2" id="industry-contact-construction-title">Обсудить строительный сайт</h2>
+							<p class="main--contacts__description">
+								Опишите услуги, типы объектов, этапы и какие вводные нужны для заявки. Я посмотрю вводные и предложу ближайший практический шаг.
+							</p>
+							<form action="/#wpcf7-f8-o1" method="post" class="wpcf7-form init" aria-label="Контактная форма" novalidate="novalidate" data-status="init" data-development-contact-form data-industry-contact-form aria-busy="false">
+								<div class="form-field">
+									<label class="form-field__label" for="industry-contact-construction-name">Как к вам обращаться</label>
+									<span class="wpcf7-form-control-wrap" data-name="fio1"><input id="industry-contact-construction-name" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" aria-describedby="industry-contact-construction-name-error" placeholder="Например, Марат" value="" type="text" name="fio1" autocomplete="name" maxlength="80"></span>
+									<span class="form-field__error" id="industry-contact-construction-name-error" aria-live="polite"></span>
+								</div>
+								<div class="main--contacts__contact-group">
+									<p class="form-field__hint" id="industry-contact-construction-channel-hint">Укажите телефон или e-mail - достаточно одного способа связи.</p>
+									<span class="form-field__error" id="industry-contact-construction-channel-error" aria-live="polite"></span>
+									<div class="form-field">
+										<label class="form-field__label" for="industry-contact-construction-phone">Телефон</label>
+										<span class="wpcf7-form-control-wrap" data-name="tel"><input id="industry-contact-construction-phone" size="40" class="wpcf7-form-control wpcf7-tel wpcf7-text" aria-invalid="false" aria-describedby="industry-contact-construction-channel-hint industry-contact-construction-channel-error industry-contact-construction-phone-error" placeholder="+7 (999) 123 45-67" value="" type="tel" name="tel" autocomplete="tel" inputmode="numeric" maxlength="18"></span>
+										<span class="form-field__error" id="industry-contact-construction-phone-error" aria-live="polite"></span>
+									</div>
+									<div class="form-field">
+										<label class="form-field__label" for="industry-contact-construction-email">E-mail</label>
+										<span class="wpcf7-form-control-wrap" data-name="email"><input id="industry-contact-construction-email" size="40" class="wpcf7-form-control wpcf7-email wpcf7-text" aria-invalid="false" aria-describedby="industry-contact-construction-channel-hint industry-contact-construction-channel-error industry-contact-construction-email-error" placeholder="name@example.com" value="" type="email" name="email" autocomplete="email" inputmode="email" maxlength="160"></span>
+										<span class="form-field__error" id="industry-contact-construction-email-error" aria-live="polite"></span>
+									</div>
+								</div>
+								<div class="form-field">
+									<label class="form-field__label" for="industry-contact-construction-message">Кратко о задаче</label>
+									<span class="wpcf7-form-control-wrap" data-name="message"><textarea id="industry-contact-construction-message" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" aria-describedby="industry-contact-construction-message-error" placeholder="Например: нужен сайт строительной компании с услугами, объектами и заявкой на расчёт" name="message" rows="5" maxlength="1000"></textarea></span>
+									<span class="form-field__error" id="industry-contact-construction-message-error" aria-live="polite"></span>
+								</div>
+								<div class="radio--button form-field form-field--consent form-consent">
+									<span class="form-consent__control"><input class="custom--check form-consent__input" type="checkbox" id="industry-contact-construction-consent" name="check1" required aria-required="true" aria-invalid="false" aria-describedby="industry-contact-construction-consent-error"><label class="form-consent__toggle" for="industry-contact-construction-consent" aria-label="Подтвердить согласие"></label></span>
+									<p class="form-consent__text"><label class="form-consent__label" for="industry-contact-construction-consent">Я соглашаюсь с обработкой персональных данных и принимаю</label> <a class="form-consent__link" href="https://limitlesscreators.ru/privacy-policy/" target="_blank" rel="noopener">Политику конфиденциальности</a>.</p>
+									<span class="form-field__error" id="industry-contact-construction-consent-error" aria-live="polite"></span>
+								</div>
+								<button class="button button--primary button--gradient wpcf7-form-control wpcf7-submit" type="submit"><span>Отправить задачу</span></button>
+								<div class="form-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></div>
+								<div class="wpcf7-response-output" aria-hidden="true"></div>
+							</form>
 						</div>
-						<a class="industry-cta__button button button--secondary button--white modal--open" href="#modal_general" data-modal-target="#modal_general">Оставить заявку</a>
+						<div class="main--contacts__right">
+							<a class="main--contacts__link" href="mailto:lim-creative@yandex.ru">lim-creative@yandex.ru</a>
+							<a class="main--contacts__link" href="tel:+79068769813">+7 906 876-98-13</a>
+							<div class="main--contacts__socials" aria-label="Социальные сети">
+								<a href="https://t.me/limitlesscreatorsweb" target="_blank" rel="noopener">Telegram</a>
+								<a href="https://vk.com/limitlesscreatorsweb" target="_blank" rel="noopener">ВКонтакте</a>
+							</div>
+						</div>
 					</div>
 
 					</div></div>
