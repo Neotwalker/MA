@@ -3537,8 +3537,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	};
-	smoothHeight('.main--faq__item', '.main--faq__toggle, .main--faq__item--button', '.main--faq__item--answer');
-
 	// анимации при появлении
 	const headitems = document.querySelectorAll(".main--header, .taxonomy--header");
 	const headobserver = new IntersectionObserver((entries) => {
@@ -3552,7 +3550,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 	headitems.forEach(item => headobserver.observe(item));
 
-	const allitems = document.querySelectorAll(".services--stages, .contacts--header, .case--header, .case--client, .main--faq, .taxonomy--team, .main--areas, .taxonomy--info, .taxonomy--idea, .main--stages, .taxonomy--services, .main--adv__wrapper .item, .main--adv, .main--services, .main--services__wrapper, .main--companies, .main--experts, .main--cases, .main--brief, .main--idea, .main--articles, .main--contacts");
+	const allitems = document.querySelectorAll(".services--stages, .contacts--header, .case--header, .case--client, .taxonomy--team, .main--areas, .taxonomy--info, .taxonomy--idea, .main--stages, .taxonomy--services, .main--adv__wrapper .item, .main--adv, .main--services, .main--services__wrapper, .main--companies, .main--experts, .main--cases, .main--brief, .main--idea, .main--articles, .main--contacts");
 	const allobserver = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {

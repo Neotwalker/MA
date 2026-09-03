@@ -623,70 +623,95 @@
 					</div></div>
 			</section>
 
-<section class="section main--faq industry-faq" id="faq" aria-labelledby="industry-faq-title">
-				<div class="container">
-					<div class="row">
-					<h2 class="h2" id="industry-faq-title">Вопросы по отраслевому сайту</h2>
-					<div class="main--faq__wrapper">
-						<div class="main--faq__item active" data-open="true">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle active" type="button" aria-expanded="true" aria-controls="retail-faq-answer-1">
-									<span class="main--faq__question">Можно ли сделать каталог без онлайн-оплаты?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="retail-faq-answer-1" aria-hidden="false">
-								<p>Да. Для многих торговых и B2B-проектов достаточно каталога с заявкой, запросом цены или коммерческого предложения. Онлайн-оплата нужна только там, где она действительно поддерживает процесс продажи.</p>
+		<section class="section industry-faq" id="faq" aria-labelledby="industry-faq-title">
+			<div class="container">
+				<div class="row">
+					<div class="faq-content industry-faq__content" data-faq-accordion>
+						<section class="faq-section" aria-labelledby="industry-faq-title">
+							<div class="faq-section__head">
+								<span class="faq-section__number" aria-hidden="true">01</span>
+								<div>
+									<p class="faq-section__eyebrow">Вопросы по направлению</p>
+									<h2 class="faq-section__title h2" id="industry-faq-title">Вопросы по отраслевому сайту</h2>
+								</div>
 							</div>
-						</div>
-						<div class="main--faq__item">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="retail-faq-answer-2">
-									<span class="main--faq__question">Что нужно для фильтров и поиска?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="retail-faq-answer-2" aria-hidden="true">
-								<p>Нужны понятные категории, характеристики товаров и правила заполнения карточек. Если данные уже есть в учётной системе или таблице, их можно подготовить к импорту.</p>
+							<div class="faq-list">
+									<div class="faq-item" data-faq-item data-faq-open>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="retail-faq-q-1" aria-expanded="false" aria-controls="retail-faq-a-1" data-faq-toggle>
+												<span class="faq-item__number">01</span>
+												<span class="faq-item__question">Можно ли сделать каталог без онлайн-оплаты?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="retail-faq-a-1" role="region" aria-labelledby="retail-faq-q-1" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Да. Для многих торговых и B2B-проектов достаточно каталога с заявкой, запросом цены или коммерческого предложения. Онлайн-оплата нужна только там, где она действительно поддерживает процесс продажи.</p>
+											</div>
+										</div>
+									</div>
+									<div class="faq-item" data-faq-item>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="retail-faq-q-2" aria-expanded="false" aria-controls="retail-faq-a-2" data-faq-toggle>
+												<span class="faq-item__number">02</span>
+												<span class="faq-item__question">Что нужно для фильтров и поиска?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="retail-faq-a-2" role="region" aria-labelledby="retail-faq-q-2" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Нужны понятные категории, характеристики товаров и правила заполнения карточек. Если данные уже есть в учётной системе или таблице, их можно подготовить к импорту.</p>
+											</div>
+										</div>
+									</div>
+									<div class="faq-item" data-faq-item>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="retail-faq-q-3" aria-expanded="false" aria-controls="retail-faq-a-3" data-faq-toggle>
+												<span class="faq-item__number">03</span>
+												<span class="faq-item__question">Можно ли связать сайт с 1C или CRM?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="retail-faq-a-3" role="region" aria-labelledby="retail-faq-q-3" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Можно, если у системы есть подходящий API, обмен файлами или другой стабильный способ передачи данных. Перед обещанием интеграции нужно изучить документацию и формат данных.</p>
+											</div>
+										</div>
+									</div>
+									<div class="faq-item" data-faq-item>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="retail-faq-q-4" aria-expanded="false" aria-controls="retail-faq-a-4" data-faq-toggle>
+												<span class="faq-item__number">04</span>
+												<span class="faq-item__question">Подходит ли сайт-каталог для оптовых продаж?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="retail-faq-a-4" role="region" aria-labelledby="retail-faq-q-4" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Да. Для опта можно предусмотреть скрытые цены, заявки, роли пользователей, документы, повторные заказы и личный кабинет, если это требуется процессом продаж.</p>
+											</div>
+										</div>
+									</div>
+									<div class="faq-item" data-faq-item>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="retail-faq-q-5" aria-expanded="false" aria-controls="retail-faq-a-5" data-faq-toggle>
+												<span class="faq-item__number">05</span>
+												<span class="faq-item__question">Как подготовить ассортимент к разработке?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="retail-faq-a-5" role="region" aria-labelledby="retail-faq-q-5" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Нужно собрать категории, названия товаров, характеристики, изображения, цены или правила их отображения, остатки и условия заказа. Чем чище данные, тем надёжнее каталог.</p>
+											</div>
+										</div>
+									</div>
 							</div>
-						</div>
-						<div class="main--faq__item">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="retail-faq-answer-3">
-									<span class="main--faq__question">Можно ли связать сайт с 1C или CRM?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="retail-faq-answer-3" aria-hidden="true">
-								<p>Можно, если у системы есть подходящий API, обмен файлами или другой стабильный способ передачи данных. Перед обещанием интеграции нужно изучить документацию и формат данных.</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="retail-faq-answer-4">
-									<span class="main--faq__question">Подходит ли сайт-каталог для оптовых продаж?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="retail-faq-answer-4" aria-hidden="true">
-								<p>Да. Для опта можно предусмотреть скрытые цены, заявки, роли пользователей, документы, повторные заказы и личный кабинет, если это требуется процессом продаж.</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="retail-faq-answer-5">
-									<span class="main--faq__question">Как подготовить ассортимент к разработке?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="retail-faq-answer-5" aria-hidden="true">
-								<p>Нужно собрать категории, названия товаров, характеристики, изображения, цены или правила их отображения, остатки и условия заказа. Чем чище данные, тем надёжнее каталог.</p>
-							</div>
-						</div>
+						</section>
 					</div>
-
-					</div></div>
-			</section>
+				</div>
+			</div>
+		</section>
 
 <section class="section industry-cta" aria-labelledby="industry-cta-title">
 				<div class="container">

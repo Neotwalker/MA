@@ -630,70 +630,95 @@
 					</div></div>
 			</section>
 
-<section class="section main--faq industry-faq" id="faq" aria-labelledby="industry-faq-title">
-				<div class="container">
-					<div class="row">
-					<h2 class="h2" id="industry-faq-title">Вопросы по отраслевому сайту</h2>
-					<div class="main--faq__wrapper">
-						<div class="main--faq__item active" data-open="true">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle active" type="button" aria-expanded="true" aria-controls="medical-faq-answer-1">
-									<span class="main--faq__question">Можно ли разместить врачей и расписание?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="medical-faq-answer-1" aria-hidden="false">
-								<p>Да, если есть подтверждённые данные: ФИО, специализация, опыт, расписание, филиал и другие сведения, которые можно публиковать. При CMS эти разделы можно сделать редактируемыми.</p>
+		<section class="section industry-faq" id="faq" aria-labelledby="industry-faq-title">
+			<div class="container">
+				<div class="row">
+					<div class="faq-content industry-faq__content" data-faq-accordion>
+						<section class="faq-section" aria-labelledby="industry-faq-title">
+							<div class="faq-section__head">
+								<span class="faq-section__number" aria-hidden="true">01</span>
+								<div>
+									<p class="faq-section__eyebrow">Вопросы по направлению</p>
+									<h2 class="faq-section__title h2" id="industry-faq-title">Вопросы по отраслевому сайту</h2>
+								</div>
 							</div>
-						</div>
-						<div class="main--faq__item">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="medical-faq-answer-2">
-									<span class="main--faq__question">Как правильно показать лицензии и документы?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="medical-faq-answer-2" aria-hidden="true">
-								<p>Документы лучше выводить в отдельном разделе или рядом с организационной информацией. Я не придумываю лицензии и реквизиты: все материалы предоставляет владелец сайта.</p>
+							<div class="faq-list">
+									<div class="faq-item" data-faq-item data-faq-open>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="medical-faq-q-1" aria-expanded="false" aria-controls="medical-faq-a-1" data-faq-toggle>
+												<span class="faq-item__number">01</span>
+												<span class="faq-item__question">Можно ли разместить врачей и расписание?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="medical-faq-a-1" role="region" aria-labelledby="medical-faq-q-1" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Да, если есть подтверждённые данные: ФИО, специализация, опыт, расписание, филиал и другие сведения, которые можно публиковать. При CMS эти разделы можно сделать редактируемыми.</p>
+											</div>
+										</div>
+									</div>
+									<div class="faq-item" data-faq-item>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="medical-faq-q-2" aria-expanded="false" aria-controls="medical-faq-a-2" data-faq-toggle>
+												<span class="faq-item__number">02</span>
+												<span class="faq-item__question">Как правильно показать лицензии и документы?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="medical-faq-a-2" role="region" aria-labelledby="medical-faq-q-2" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Документы лучше выводить в отдельном разделе или рядом с организационной информацией. Я не придумываю лицензии и реквизиты: все материалы предоставляет владелец сайта.</p>
+											</div>
+										</div>
+									</div>
+									<div class="faq-item" data-faq-item>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="medical-faq-q-3" aria-expanded="false" aria-controls="medical-faq-a-3" data-faq-toggle>
+												<span class="faq-item__number">03</span>
+												<span class="faq-item__question">Можно ли подключить онлайн-запись?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="medical-faq-a-3" role="region" aria-labelledby="medical-faq-q-3" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Можно, если есть понятный сервис записи, CRM или медицинская система с доступным API. Если интеграции нет, можно начать с формы заявки или обратного звонка.</p>
+											</div>
+										</div>
+									</div>
+									<div class="faq-item" data-faq-item>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="medical-faq-q-4" aria-expanded="false" aria-controls="medical-faq-a-4" data-faq-toggle>
+												<span class="faq-item__number">04</span>
+												<span class="faq-item__question">Какие тексты нужны для медицинского сайта?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="medical-faq-a-4" role="region" aria-labelledby="medical-faq-q-4" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Нужны описания направлений, услуг, подготовки к процедурам, организационных правил, документов, филиалов и специалистов. Медицинские утверждения должны быть корректными и согласованными.</p>
+											</div>
+										</div>
+									</div>
+									<div class="faq-item" data-faq-item>
+										<h3 class="faq-item__heading">
+											<button class="faq-item__button" type="button" id="medical-faq-q-5" aria-expanded="false" aria-controls="medical-faq-a-5" data-faq-toggle>
+												<span class="faq-item__number">05</span>
+												<span class="faq-item__question">Как избежать рекламных обещаний в медицинской тематике?</span>
+												<span class="faq-item__icon" aria-hidden="true"></span>
+											</button>
+										</h3>
+										<div class="faq-item__answer" id="medical-faq-a-5" role="region" aria-labelledby="medical-faq-q-5" aria-hidden="true" data-faq-panel>
+											<div class="faq-item__answer-inner">
+												<p>Вместо обещаний результата лучше давать понятную информацию: что делает специалист, как проходит приём, какие документы есть и как записаться. Это безопаснее и полезнее для посетителя.</p>
+											</div>
+										</div>
+									</div>
 							</div>
-						</div>
-						<div class="main--faq__item">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="medical-faq-answer-3">
-									<span class="main--faq__question">Можно ли подключить онлайн-запись?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="medical-faq-answer-3" aria-hidden="true">
-								<p>Можно, если есть понятный сервис записи, CRM или медицинская система с доступным API. Если интеграции нет, можно начать с формы заявки или обратного звонка.</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="medical-faq-answer-4">
-									<span class="main--faq__question">Какие тексты нужны для медицинского сайта?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="medical-faq-answer-4" aria-hidden="true">
-								<p>Нужны описания направлений, услуг, подготовки к процедурам, организационных правил, документов, филиалов и специалистов. Медицинские утверждения должны быть корректными и согласованными.</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<h3 class="main--faq__title">
-								<button class="main--faq__item--button main--faq__toggle" type="button" aria-expanded="false" aria-controls="medical-faq-answer-5">
-									<span class="main--faq__question">Как избежать рекламных обещаний в медицинской тематике?</span>
-									<span class="main--faq__item--icon main--faq__icon" aria-hidden="true"><span class="main--faq__item--icon__lines"><span></span><span></span></span></span>
-								</button>
-							</h3>
-							<div class="main--faq__item--answer" id="medical-faq-answer-5" aria-hidden="true">
-								<p>Вместо обещаний результата лучше давать понятную информацию: что делает специалист, как проходит приём, какие документы есть и как записаться. Это безопаснее и полезнее для посетителя.</p>
-							</div>
-						</div>
+						</section>
 					</div>
-
-					</div></div>
-			</section>
+				</div>
+			</div>
+		</section>
 
 <section class="section industry-cta" aria-labelledby="industry-cta-title">
 				<div class="container">

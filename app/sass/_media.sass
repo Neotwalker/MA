@@ -168,16 +168,6 @@
 				flex-direction: column
 				align-items: flex-start
 				gap: 30px
-		&--faq
-			&::after
-				background-size: 218px 741px
-				height: 741px
-				max-width: 218px
-			&__item
-				&--button
-					> span:not(.main--faq__item--icon)
-						font-size: 20px
-						line-height: 1.3
 		&--contacts
 			&__wrapper
 				gap: 60px
@@ -980,37 +970,6 @@
 				gap: 20px
 				p
 					font-size: 14px
-		&--faq
-			&::after
-				height: 703px
-				width: 206px
-				background-size: 206px 703px
-			&__item
-				min-height: 62px
-				&--button
-					min-height: 62px
-					> span:not(.main--faq__item--icon)
-						font-size: 16px
-						line-height: 1.4
-				&--icon 
-					min-width: 30px
-					width: 30px
-					height: 30px
-					&::before
-						width: 30px
-						height: 30px
-					&__lines
-						> span
-							transform: translate(-50%, -50%)
-							&:first-of-type
-								height: 16px
-								width: 3px
-							&:last-of-type
-								width: 16px
-								height: 3px
-				&--answer
-					font-size: 14px
-					line-height: 1.35
 		&--contacts
 			&__wrapper
 				flex-direction: column
@@ -2331,34 +2290,6 @@
 				p
 					br
 						display: none
-		&--faq
-			&::after
-				background-size: 250px 630px
-				background-position: center left
-				width: 100%
-				height: 540px
-			&__wrapper 
-				gap: 16px
-			&__item
-				min-height: fit-content
-				border-radius: 12px
-				&::before
-					border-radius: 12px
-				&--button
-					min-height: fit-content
-					padding-top: 12px
-					padding-left: 12px
-					padding-right: 12px 
-					padding-bottom: 12px
-					> span:not(.main--faq__item--icon)
-						font-size: 16px
-						line-height: 1.3
-						padding-right: 10px
-				&--answer 
-					padding-left: 12px
-					padding-right: 12px
-					font-size: 16px
-					line-height: 1.3
 		&--articles
 			&__title
 				.button
@@ -3115,26 +3046,6 @@
 			&__link
 				margin-top: 26px
 				font-size: 15px
-		&--faq
-			&__item
-				&--icon
-					width: 25px
-					min-width: 25px
-					height: 25px
-					&::before
-						width: 25px
-						height: 25px
-					&__lines
-						> span
-							transform: translate(-50%, -50%)
-							&:first-of-type
-								height: 14px
-								width: 2px
-							&:last-of-type
-								width: 14px
-								height: 2px
-				&--answer
-					font-size: 14px
 		&--cases
 			&__block
 				gap: 15px
@@ -6748,3 +6659,90 @@
 			textarea
 				padding-left: 16px
 				padding-right: 16px
+
+@media (max-width : 1920px)
+	.main:is(.about-page, .sitemap-page, .brief-page, .contacts-page, .portfolio-page, .case-study-page, .industry-page, .services, .work-conditions-page, .faq-page)
+		--breadcrumb-page-top-offset: 130px
+		--page-top-offset: var(--breadcrumb-page-top-offset, 130px)
+		> :first-child
+			padding-top: var(--page-top-offset)
+	.articles-archive
+		--blog-archive-hero-top: 44px
+	.article-hero
+		padding-top: 42px
+
+@media (max-width : 1280px)
+	.taxonomy
+		.taxonomy--header
+			&__text
+				gap: 34px
+			&__aside
+				flex-basis: clamp(380px, 34vw, 430px)
+				max-width: clamp(380px, 34vw, 430px)
+				padding-left: 28px
+
+@media (max-width : 1200px)
+	.main:is(.about-page, .sitemap-page, .brief-page, .contacts-page, .portfolio-page, .case-study-page, .industry-page, .services, .work-conditions-page, .faq-page)
+		--breadcrumb-page-top-offset: 120px
+		--page-top-offset: var(--breadcrumb-page-top-offset, 120px)
+		> :first-child
+			padding-top: var(--page-top-offset)
+	.articles-archive
+		--blog-archive-hero-top: 34px
+	.article-hero
+		padding-top: 30px
+
+@media (max-width : 1023px)
+	.taxonomy
+		.taxonomy--header
+			&__text
+				flex-direction: column
+				gap: 32px
+			&__content,
+			&__aside
+				width: 100%
+				max-width: none
+				flex-basis: auto
+			&__aside
+				padding-left: 0
+				padding-top: 26px
+				border-left: 0
+				border-top: 1px solid color.adjust($white, $alpha: -.78)
+			&__actions
+				max-width: 100%
+
+@media (max-width : 768px)
+	.main:is(.about-page, .sitemap-page, .brief-page, .contacts-page, .portfolio-page, .case-study-page, .industry-page, .services, .work-conditions-page, .faq-page)
+		--breadcrumb-page-top-offset: 106px
+		--page-top-offset: var(--breadcrumb-page-top-offset, 106px)
+		> :first-child
+			padding-top: var(--page-top-offset)
+	.articles-archive
+		--blog-archive-hero-top: 18px
+	.article-hero
+		padding-top: 18px
+
+@media (max-width : 767px)
+	.taxonomy
+		.taxonomy--header
+			&__aside
+				gap: 16px
+			&__actions
+				gap: 8px
+				.button
+					min-height: 44px
+					padding: 12px 18px
+			&__price-note
+				font-size: 15px
+			.taxonomy--header__price-value
+				font-size: 28px
+
+@media (max-width : 390px)
+	.taxonomy
+		.taxonomy--header
+			&__actions
+				flex-direction: column
+				align-items: flex-start
+				.button
+					width: fit-content
+					max-width: 100%
