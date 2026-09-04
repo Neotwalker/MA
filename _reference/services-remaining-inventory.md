@@ -2,7 +2,7 @@
 
 Inventory date: 2026-09-04
 
-Git source checked: `redesign-2026`, HEAD `8bc6d58960137a27a3c68755b1ef5dfb72a31d10`.
+Git source checked: `redesign-2026`, HEAD `76a56a48199c7a2f3714a6bfd37abea70b090a9e`.
 
 Scope: individual service entries listed in `app/services-taxonomy-seo.html`, `app/services-taxonomy-branding.html`, `app/services-taxonomy-reklama.html`, `app/services-taxonomy-readysites.html`, cross-checked against `app/services.html` and existing `app/*.html` canonicals.
 
@@ -17,8 +17,8 @@ Notes:
 SEO:
 
 - taxonomy services count: 11
-- existing static pages: 0
-- missing pages: 11
+- existing static pages: 11
+- missing pages: 0
 - URL SOURCE NEEDED count: 0
 
 Branding:
@@ -45,8 +45,8 @@ Ready Sites:
 Total:
 
 - taxonomy services count: 27
-- existing static pages: 6
-- missing pages: 21
+- existing static pages: 18
+- missing pages: 9
 - URL SOURCE NEEDED count: 6
 
 ## SEO
@@ -55,17 +55,17 @@ Source files: `app/services-taxonomy-seo.html`, `app/services.html`.
 
 | Taxonomy | Group | Service title | Taxonomy href | Static file | File exists | Current implementation | Production URL | URL source | Canonical status | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| SEO | По поисковым системам | Продвижение в Google | `https://limitlesscreators.ru/services/seo/prodvizhenie-v-google/` | None found | NO | MISSING | `https://limitlesscreators.ru/services/seo/prodvizhenie-v-google/` | Taxonomy href and services archive href | No local canonical | External production link exists; no matching `app/*.html` canonical. |
-| SEO | По поисковым системам | Продвижение в Яндексе | `https://limitlesscreators.ru/services/seo/prodvizhenie-v-yandex/` | None found | NO | MISSING | `https://limitlesscreators.ru/services/seo/prodvizhenie-v-yandex/` | Taxonomy href and services archive href | No local canonical | External production link exists; no matching `app/*.html` canonical. |
-| SEO | По типу сайта | SEO интернет-магазина | `https://limitlesscreators.ru/services/seo/prodvizhenie-internet-magazina/` | None found | NO | MISSING | `https://limitlesscreators.ru/services/seo/prodvizhenie-internet-magazina/` | Taxonomy href and services archive href | No local canonical | External production link exists; no matching `app/*.html` canonical. |
-| SEO | По типу сайта | SEO корпоративного сайта | `https://limitlesscreators.ru/services/seo/prodvizhenie-korporativnogo-sajta/` | None found | NO | MISSING | `https://limitlesscreators.ru/services/seo/prodvizhenie-korporativnogo-sajta/` | Taxonomy href and services archive href | No local canonical | External production link exists; no matching `app/*.html` canonical. |
-| SEO | По типу сайта | SEO молодого сайта | `https://limitlesscreators.ru/services/seo/prodvizhenie-molodogo-sajta/` | None found | NO | MISSING | `https://limitlesscreators.ru/services/seo/prodvizhenie-molodogo-sajta/` | Taxonomy href and services archive href | No local canonical | External production link exists; no matching `app/*.html` canonical. |
-| SEO | По типу сайта | SEO лендинга | `https://limitlesscreators.ru/services/seo/prodvizhenie-lendinga/` | None found | NO | MISSING | `https://limitlesscreators.ru/services/seo/prodvizhenie-lendinga/` | Taxonomy href and services archive href | No local canonical | External production link exists; no matching `app/*.html` canonical. |
-| SEO | По типу сайта | SEO портала | `https://limitlesscreators.ru/services/seo/prodvizhenie-portala/` | None found | NO | MISSING | `https://limitlesscreators.ru/services/seo/prodvizhenie-portala/` | Taxonomy href and services archive href | No local canonical | External production link exists; no matching `app/*.html` canonical. |
-| SEO | По модели результата | Продвижение по позициям | `https://limitlesscreators.ru/services/seo/prodvizhenie-po-pozicziyam/` | None found | NO | MISSING | `https://limitlesscreators.ru/services/seo/prodvizhenie-po-pozicziyam/` | Taxonomy href and services archive href | No local canonical | External production link exists; no matching `app/*.html` canonical. |
-| SEO | По модели результата | Продвижение по трафику | `https://limitlesscreators.ru/services/seo/prodvizhenie-po-trafiku/` | None found | NO | MISSING | `https://limitlesscreators.ru/services/seo/prodvizhenie-po-trafiku/` | Taxonomy href and services archive href | No local canonical | External production link exists; no matching `app/*.html` canonical. |
-| SEO | По модели результата | Продвижение по лидам | `https://limitlesscreators.ru/services/seo/prodvizhenie-po-lidam/` | None found | NO | MISSING | `https://limitlesscreators.ru/services/seo/prodvizhenie-po-lidam/` | Taxonomy href and services archive href | No local canonical | External production link exists; no matching `app/*.html` canonical. |
-| SEO | По модели результата | Региональное продвижение | `https://limitlesscreators.ru/services/seo/regionalnoe-prodvizhenie/` | None found | NO | MISSING | `https://limitlesscreators.ru/services/seo/regionalnoe-prodvizhenie/` | Taxonomy href and services archive href | No local canonical | External production link exists; no matching `app/*.html` canonical. |
+| SEO | По поисковым системам | Продвижение в Google | `services-seo-prodvizhenie-v-google.html` | `app/services-seo-prodvizhenie-v-google.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/seo/prodvizhenie-v-google/` | Rollout implementation, production URL preserved | Canonical present | Taxonomy and services archive use local static link. |
+| SEO | По поисковым системам | Продвижение в Яндексе | `services-seo-prodvizhenie-v-yandex.html` | `app/services-seo-prodvizhenie-v-yandex.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/seo/prodvizhenie-v-yandex/` | Approved reference page canonical | Canonical present | Taxonomy and services archive use local static link. |
+| SEO | По типу сайта | SEO интернет-магазина | `services-seo-prodvizhenie-internet-magazina.html` | `app/services-seo-prodvizhenie-internet-magazina.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/seo/prodvizhenie-internet-magazina/` | Rollout implementation, production URL preserved | Canonical present | Taxonomy and services archive use local static link. |
+| SEO | По типу сайта | SEO корпоративного сайта | `services-seo-prodvizhenie-korporativnogo-sajta.html` | `app/services-seo-prodvizhenie-korporativnogo-sajta.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/seo/prodvizhenie-korporativnogo-sajta/` | Rollout implementation, production URL preserved | Canonical present | Taxonomy and services archive use local static link. |
+| SEO | По типу сайта | SEO молодого сайта | `services-seo-prodvizhenie-molodogo-sajta.html` | `app/services-seo-prodvizhenie-molodogo-sajta.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/seo/prodvizhenie-molodogo-sajta/` | Rollout implementation, production URL preserved | Canonical present | Taxonomy and services archive use local static link. |
+| SEO | По типу сайта | SEO лендинга | `services-seo-prodvizhenie-lendinga.html` | `app/services-seo-prodvizhenie-lendinga.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/seo/prodvizhenie-lendinga/` | Rollout implementation, production URL preserved | Canonical present | Taxonomy and services archive use local static link. |
+| SEO | По типу сайта | SEO портала | `services-seo-prodvizhenie-portala.html` | `app/services-seo-prodvizhenie-portala.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/seo/prodvizhenie-portala/` | Rollout implementation, production URL preserved | Canonical present | Taxonomy and services archive use local static link. |
+| SEO | По модели результата | Продвижение по позициям | `services-seo-prodvizhenie-po-pozicziyam.html` | `app/services-seo-prodvizhenie-po-pozicziyam.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/seo/prodvizhenie-po-pozicziyam/` | Rollout implementation, production URL preserved | Canonical present | Taxonomy and services archive use local static link. |
+| SEO | По модели результата | Продвижение по трафику | `services-seo-prodvizhenie-po-trafiku.html` | `app/services-seo-prodvizhenie-po-trafiku.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/seo/prodvizhenie-po-trafiku/` | Rollout implementation, production URL preserved | Canonical present | Taxonomy and services archive use local static link. |
+| SEO | По модели результата | Продвижение по лидам | `services-seo-prodvizhenie-po-lidam.html` | `app/services-seo-prodvizhenie-po-lidam.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/seo/prodvizhenie-po-lidam/` | Rollout implementation, production URL preserved | Canonical present | Taxonomy and services archive use local static link. |
+| SEO | По модели результата | Региональное продвижение | `services-seo-regionalnoe-prodvizhenie.html` | `app/services-seo-regionalnoe-prodvizhenie.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/seo/regionalnoe-prodvizhenie/` | Rollout implementation, production URL preserved | Canonical present | Taxonomy and services archive use local static link. |
 
 ## Branding
 
@@ -106,7 +106,7 @@ Source files: `app/services-taxonomy-readysites.html`, `app/services.html`, exis
 
 ## Structural issues
 
-- SEO taxonomy and services archive list 11 production service URLs, but no matching individual static HTML files exist in `app/`.
+- SEO individual system is implemented: 11/11 static pages exist, taxonomy/services archive use local static links, production canonicals are preserved.
 - Branding has 4 service rows; `Логотип` now has a static reference page and the other 3 remain planned placeholder self-links.
 - Branding production URLs are USER APPROVED 2026-09-04 for `Логотип`, `Фирменный стиль`, `Айдентика`, and `Гайдлайн или брендбук`.
 - Old `/services/branding/web-design/` is NOT part of Branding architecture; current service lives at `/services/development/web-design/`. Do not recreate the old Branding page.
@@ -120,7 +120,6 @@ Source files: `app/services-taxonomy-readysites.html`, `app/services.html`, exis
 
 ## Recommended rollout order
 
-1. Branding: technically smallest scope, 4 missing individual pages, all placeholder self-links, no confirmed individual URLs.
-2. Reklama: 6 missing individual pages, similar placeholder pattern, plus one cross-taxonomy href that should be resolved during rollout.
-3. SEO: 11 missing individual static pages, but production URLs are already fixed by taxonomy and services archive links, so rollout can preserve URL targets 1:1.
-4. Ready Sites: most dependent on architectural choice, because current items overlap with approved development and industry pages; rollout should first decide whether these are links to existing development/industry services or separate ready-made-sites service records.
+1. Branding: remaining 3 approved individual pages after Logo reference approval.
+2. Reklama: 6 individual services after production URL decision.
+3. Ready Sites: architecture decision required because entries overlap existing Development/Industry pages.
