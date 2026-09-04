@@ -2,7 +2,7 @@
 
 Inventory date: 2026-09-04
 
-Git source checked: `redesign-2026`, HEAD `76a56a48199c7a2f3714a6bfd37abea70b090a9e`.
+Git source checked: `redesign-2026`, HEAD `83d1a1acf12c69d29790d6cd313fa2eed97c216c`.
 
 Scope: individual service entries listed in `app/services-taxonomy-seo.html`, `app/services-taxonomy-branding.html`, `app/services-taxonomy-reklama.html`, `app/services-taxonomy-readysites.html`, cross-checked against `app/services.html` and existing `app/*.html` canonicals.
 
@@ -24,8 +24,8 @@ SEO:
 Branding:
 
 - taxonomy services count: 4
-- existing static pages: 1
-- missing pages: 3
+- existing static pages: 4
+- missing pages: 0
 - URL SOURCE NEEDED count: 0
 
 Reklama:
@@ -45,8 +45,8 @@ Ready Sites:
 Total:
 
 - taxonomy services count: 27
-- existing static pages: 18
-- missing pages: 9
+- existing static pages: 21
+- missing pages: 6
 - URL SOURCE NEEDED count: 6
 
 ## SEO
@@ -74,9 +74,9 @@ Source files: `app/services-taxonomy-branding.html`, `app/services.html`.
 | Taxonomy | Group | Service title | Taxonomy href | Static file | File exists | Current implementation | Production URL | URL source | Canonical status | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Branding | Базовые элементы | Логотип | `services-branding-logotip.html` | `app/services-branding-logotip.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/branding/logotip/` | USER APPROVED 2026-09-04 | Canonical present | Static reference page created; taxonomy and services archive link to local file. |
-| Branding | Базовые элементы | Фирменный стиль | `services-taxonomy-branding.html` | None found as individual service page | NO | MISSING / PLANNED | `https://limitlesscreators.ru/services/branding/firmennyj-stil/` | USER APPROVED 2026-09-04 | No local canonical | Production URL approved; static page not created yet. |
-| Branding | Система применения | Айдентика | `services-taxonomy-branding.html` | None found as individual service page | NO | MISSING / PLANNED | `https://limitlesscreators.ru/services/branding/ajdentika/` | USER APPROVED 2026-09-04 | No local canonical | Production URL approved; static page not created yet. |
-| Branding | Система применения | Гайдлайн или брендбук | `services-taxonomy-branding.html` | None found as individual service page | NO | MISSING / PLANNED | `https://limitlesscreators.ru/services/branding/brendbuk/` | USER APPROVED 2026-09-04 | No local canonical | Production URL approved; static page not created yet. |
+| Branding | Базовые элементы | Фирменный стиль | `services-branding-firmennyj-stil.html` | `app/services-branding-firmennyj-stil.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/branding/firmennyj-stil/` | Rollout implementation, awaiting user visual approval | Canonical present | Static page created; taxonomy and services archive link to local file. |
+| Branding | Система применения | Айдентика | `services-branding-ajdentika.html` | `app/services-branding-ajdentika.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/branding/ajdentika/` | Rollout implementation, awaiting user visual approval | Canonical present | Static page created; taxonomy and services archive link to local file. |
+| Branding | Система применения | Гайдлайн или брендбук | `services-branding-brendbuk.html` | `app/services-branding-brendbuk.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/branding/brendbuk/` | Rollout implementation, awaiting user visual approval | Canonical present | Static page created; taxonomy and services archive link to local file. |
 
 ## Reklama
 
@@ -107,8 +107,8 @@ Source files: `app/services-taxonomy-readysites.html`, `app/services.html`, exis
 ## Structural issues
 
 - SEO individual system is implemented: 11/11 static pages exist, taxonomy/services archive use local static links, production canonicals are preserved.
-- Branding has 4 service rows; `Логотип` now has a static reference page and the other 3 remain planned placeholder self-links.
-- Branding production URLs are USER APPROVED 2026-09-04 for `Логотип`, `Фирменный стиль`, `Айдентика`, and `Гайдлайн или брендбук`.
+- Branding individual system implemented: 4/4 static pages exist, approved production canonicals preserved.
+- Branding production URLs: `Логотип` is USER APPROVED 2026-09-04; `Фирменный стиль`, `Айдентика`, and `Гайдлайн или брендбук` use requested canonicals from the 2026-09-04 rollout and await user visual approval.
 - Old `/services/branding/web-design/` is NOT part of Branding architecture; current service lives at `/services/development/web-design/`. Do not recreate the old Branding page.
 - Reklama has 5 service rows pointing back to `services-taxonomy-reklama.html`; these are duplicate placeholder self-links, not individual service pages.
 - Reklama item `Доработка посадочной` points to `services-taxonomy-dev.html`, a development taxonomy page, not an individual advertising service page.
@@ -120,6 +120,5 @@ Source files: `app/services-taxonomy-readysites.html`, `app/services.html`, exis
 
 ## Recommended rollout order
 
-1. Branding: remaining 3 approved individual pages after Logo reference approval.
-2. Reklama: 6 individual services after production URL decision.
-3. Ready Sites: architecture decision required because entries overlap existing Development/Industry pages.
+1. Reklama: URL decision required before individual rollout.
+2. Ready Sites: architecture decision required because entries overlap existing Development/Industry pages.
