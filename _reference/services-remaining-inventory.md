@@ -24,9 +24,9 @@ SEO:
 Branding:
 
 - taxonomy services count: 4
-- existing static pages: 0
-- missing pages: 4
-- URL SOURCE NEEDED count: 4
+- existing static pages: 1
+- missing pages: 3
+- URL SOURCE NEEDED count: 0
 
 Reklama:
 
@@ -47,7 +47,7 @@ Total:
 - taxonomy services count: 27
 - existing static pages: 6
 - missing pages: 21
-- URL SOURCE NEEDED count: 10
+- URL SOURCE NEEDED count: 6
 
 ## SEO
 
@@ -73,10 +73,10 @@ Source files: `app/services-taxonomy-branding.html`, `app/services.html`.
 
 | Taxonomy | Group | Service title | Taxonomy href | Static file | File exists | Current implementation | Production URL | URL source | Canonical status | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Branding | Базовые элементы | Логотип | `services-taxonomy-branding.html` | None found as individual service page | NO | PLACEHOLDER | URL SOURCE NEEDED | Not confirmed locally | Taxonomy page canonical only: `https://limitlesscreators.ru/services/branding/` | Taxonomy self-link; duplicated placeholder destination. |
-| Branding | Базовые элементы | Фирменный стиль | `services-taxonomy-branding.html` | None found as individual service page | NO | PLACEHOLDER | URL SOURCE NEEDED | Not confirmed locally | Taxonomy page canonical only: `https://limitlesscreators.ru/services/branding/` | Taxonomy self-link; duplicated placeholder destination. |
-| Branding | Система применения | Айдентика | `services-taxonomy-branding.html` | None found as individual service page | NO | PLACEHOLDER | URL SOURCE NEEDED | Not confirmed locally | Taxonomy page canonical only: `https://limitlesscreators.ru/services/branding/` | Taxonomy self-link; duplicated placeholder destination. |
-| Branding | Система применения | Гайдлайн или брендбук | `services-taxonomy-branding.html` | None found as individual service page | NO | PLACEHOLDER | URL SOURCE NEEDED | Not confirmed locally | Taxonomy page canonical only: `https://limitlesscreators.ru/services/branding/` | Taxonomy self-link; duplicated placeholder destination. |
+| Branding | Базовые элементы | Логотип | `services-branding-logotip.html` | `app/services-branding-logotip.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/branding/logotip/` | USER APPROVED 2026-09-04 | Canonical present | Static reference page created; taxonomy and services archive link to local file. |
+| Branding | Базовые элементы | Фирменный стиль | `services-taxonomy-branding.html` | None found as individual service page | NO | MISSING / PLANNED | `https://limitlesscreators.ru/services/branding/firmennyj-stil/` | USER APPROVED 2026-09-04 | No local canonical | Production URL approved; static page not created yet. |
+| Branding | Система применения | Айдентика | `services-taxonomy-branding.html` | None found as individual service page | NO | MISSING / PLANNED | `https://limitlesscreators.ru/services/branding/ajdentika/` | USER APPROVED 2026-09-04 | No local canonical | Production URL approved; static page not created yet. |
+| Branding | Система применения | Гайдлайн или брендбук | `services-taxonomy-branding.html` | None found as individual service page | NO | MISSING / PLANNED | `https://limitlesscreators.ru/services/branding/brendbuk/` | USER APPROVED 2026-09-04 | No local canonical | Production URL approved; static page not created yet. |
 
 ## Reklama
 
@@ -107,8 +107,9 @@ Source files: `app/services-taxonomy-readysites.html`, `app/services.html`, exis
 ## Structural issues
 
 - SEO taxonomy and services archive list 11 production service URLs, but no matching individual static HTML files exist in `app/`.
-- Branding has 4 service rows, and all point back to `services-taxonomy-branding.html`; these are duplicate placeholder self-links, not individual service pages.
-- Branding has no locally confirmed individual production URLs for the 4 listed service rows.
+- Branding has 4 service rows; `Логотип` now has a static reference page and the other 3 remain planned placeholder self-links.
+- Branding production URLs are USER APPROVED 2026-09-04 for `Логотип`, `Фирменный стиль`, `Айдентика`, and `Гайдлайн или брендбук`.
+- Old `/services/branding/web-design/` is NOT part of Branding architecture; current service lives at `/services/development/web-design/`. Do not recreate the old Branding page.
 - Reklama has 5 service rows pointing back to `services-taxonomy-reklama.html`; these are duplicate placeholder self-links, not individual service pages.
 - Reklama item `Доработка посадочной` points to `services-taxonomy-dev.html`, a development taxonomy page, not an individual advertising service page.
 - Reklama has no locally confirmed individual production URLs for the 6 listed service rows.
