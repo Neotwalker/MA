@@ -31,8 +31,8 @@ Branding:
 Reklama:
 
 - taxonomy services count: 6
-- existing static pages: 1
-- missing pages: 5
+- existing static pages: 6
+- missing pages: 0
 - URL SOURCE NEEDED count: 0
 
 Ready Sites:
@@ -45,8 +45,8 @@ Ready Sites:
 Total:
 
 - taxonomy services count: 27
-- existing static pages: 22
-- missing pages: 5
+- existing static pages: 27
+- missing pages: 0
 - URL SOURCE NEEDED count: 0
 
 ## SEO
@@ -85,11 +85,11 @@ Source files: `app/services-taxonomy-reklama.html`, `app/services.html`.
 | Taxonomy | Group | Service title | Taxonomy href | Static file | File exists | Current implementation | Production URL | URL source | Canonical status | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Reklama | Запуск и ведение | Яндекс Директ | `services-reklama-yandex-direct.html` | `app/services-reklama-yandex-direct.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/reklama/yandex-direct/` | USER APPROVED 2026-09-05 | Canonical present | Static reference page created; taxonomy and services archive link to local file. |
-| Reklama | Запуск и ведение | Реклама во ВКонтакте | `services-taxonomy-reklama.html` | None found as individual service page | NO | MISSING / PLANNED | `https://limitlesscreators.ru/services/reklama/reklama-vkontakte/` | USER APPROVED 2026-09-05 | Planned canonical | Taxonomy self-link remains until individual page rollout. |
-| Reklama | Запуск и ведение | Ретаргетинг | `services-taxonomy-reklama.html` | None found as individual service page | NO | MISSING / PLANNED | `https://limitlesscreators.ru/services/reklama/retargeting/` | USER APPROVED 2026-09-05 | Planned canonical | Taxonomy self-link remains until individual page rollout. |
-| Reklama | Проверка и улучшение | Аудит рекламы | `services-taxonomy-reklama.html` | None found as individual service page | NO | MISSING / PLANNED | `https://limitlesscreators.ru/services/reklama/audit-reklamy/` | USER APPROVED 2026-09-05 | Planned canonical | Taxonomy self-link remains until individual page rollout. |
-| Reklama | Проверка и улучшение | Аналитика обращений | `services-taxonomy-reklama.html` | None found as individual service page | NO | MISSING / PLANNED | `https://limitlesscreators.ru/services/reklama/analitika-obrashhenij/` | USER APPROVED 2026-09-05 | Planned canonical | Taxonomy self-link remains until individual page rollout. |
-| Reklama | Проверка и улучшение | Доработка посадочной | `services-taxonomy-dev.html` | None found as exact individual advertising service page | NO | MISSING / PLANNED | `https://limitlesscreators.ru/services/reklama/dorabotka-posadochnoj/` | USER APPROVED 2026-09-05 | Planned canonical | Separate advertising service for offer, landing structure, CTA, forms, analytics and advertising scenario; existing taxonomy href remains until individual page rollout. |
+| Reklama | Запуск и ведение | Реклама во ВКонтакте | `services-reklama-reklama-vkontakte.html` | `app/services-reklama-reklama-vkontakte.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/reklama/reklama-vkontakte/` | USER APPROVED 2026-09-05 | Canonical present | Taxonomy and services archive use local static link. |
+| Reklama | Запуск и ведение | Ретаргетинг | `services-reklama-retargeting.html` | `app/services-reklama-retargeting.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/reklama/retargeting/` | USER APPROVED 2026-09-05 | Canonical present | Taxonomy and services archive use local static link. |
+| Reklama | Проверка и улучшение | Аудит рекламы | `services-reklama-audit-reklamy.html` | `app/services-reklama-audit-reklamy.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/reklama/audit-reklamy/` | USER APPROVED 2026-09-05 | Canonical present | Taxonomy and services archive use local static link. |
+| Reklama | Проверка и улучшение | Аналитика обращений | `services-reklama-analitika-obrashhenij.html` | `app/services-reklama-analitika-obrashhenij.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/reklama/analitika-obrashhenij/` | USER APPROVED 2026-09-05 | Canonical present | Taxonomy and services archive use local static link. |
+| Reklama | Проверка и улучшение | Доработка посадочной | `services-reklama-dorabotka-posadochnoj.html` | `app/services-reklama-dorabotka-posadochnoj.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/reklama/dorabotka-posadochnoj/` | USER APPROVED 2026-09-05 | Canonical present | Separate advertising service for offer, landing structure, CTA, forms, analytics and advertising scenario; taxonomy and services archive use local static link. |
 
 ## Ready Sites
 
@@ -110,8 +110,7 @@ Source files: `app/services-taxonomy-readysites.html`, `app/services.html`, exis
 - Branding individual system implemented: 4/4 static pages exist, approved production canonicals preserved.
 - Branding production URLs: `Логотип` is USER APPROVED 2026-09-04; `Фирменный стиль`, `Айдентика`, and `Гайдлайн или брендбук` use requested canonicals from the 2026-09-04 rollout and await user visual approval.
 - Old `/services/branding/web-design/` is NOT part of Branding architecture; current service lives at `/services/development/web-design/`. Do not recreate the old Branding page.
-- Reklama Yandex Direct reference page is implemented; taxonomy/services archive use the local static link for this one service.
-- Reklama remaining 5 service pages are planned after Yandex Direct visual approval; their production URLs are USER APPROVED 2026-09-05.
+- Reklama individual system implemented: 6/6 static pages exist, approved production canonicals preserved.
 - Reklama item `Доработка посадочной` is a separate advertising service under `/services/reklama/dorabotka-posadochnoj/`, not a replacement for `/services/development/dorabotka-sajta/`.
 - Ready Sites items `Сайт услуг`, `Сайт-каталог`, and `Корпоративный сайт` have related existing individual development pages, but taxonomy hrefs currently point to `services-taxonomy-dev.html`.
 - Ready Sites industry items point to approved industry pages whose canonicals are under `/services/development/...`, not under `/services/ready-made-sites/...`.
@@ -120,5 +119,4 @@ Source files: `app/services-taxonomy-readysites.html`, `app/services.html`, exis
 
 ## Recommended rollout order
 
-1. Reklama: remaining 5 pages after Yandex Direct visual approval.
-2. Ready Sites: architecture decision required.
+1. Ready Sites: architecture decision required because entries overlap existing Development/Industry pages.
