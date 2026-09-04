@@ -98,13 +98,13 @@ Source files: `app/services-taxonomy-readysites.html`, `app/services.html`.
 
 | Taxonomy | Product title | Taxonomy href | Static file | File exists | Current implementation | Production URL | URL source | Canonical status | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Ready Sites | Готовый сайт для аренды авто | `services-readysites-arenda-avto.html` | `app/services-readysites-arenda-avto.html` | YES | NEW PRODUCTIZED SYSTEM | `https://limitlesscreators.ru/services/ready-made-sites/arenda-avto/` | USER APPROVED ARCHITECTURE 2026-09-05 | Canonical present | Awaiting user visual approval. |
+| Ready Sites | Готовый сайт для аренды авто | `services-readysites-arenda-avto.html` | `app/services-readysites-arenda-avto.html` | YES | NEW PRODUCTIZED SYSTEM | `https://limitlesscreators.ru/ready-made-sites/arenda-avto/` | USER APPROVED 2026-09-05 | Canonical present | AWAITING USER VISUAL APPROVAL. |
 
 ### Planned product roadmap
 
 - Готовый сайт для строительства каркасных домов
 - planned file: `app/services-readysites-karkasnye-doma.html`
-- planned URL: `https://limitlesscreators.ru/services/ready-made-sites/karkasnye-doma/`
+- planned URL: `https://limitlesscreators.ru/ready-made-sites/karkasnye-doma/`
 - status: PRODUCT NOT READY / DO NOT CREATE YET
 - URL source: USER APPROVED 2026-09-05
 
@@ -117,6 +117,7 @@ Source files: `app/services-taxonomy-readysites.html`, `app/services.html`.
 - Reklama individual system implemented: 6/6 static pages exist, approved production canonicals preserved.
 - Reklama item `Доработка посадочной` is a separate advertising service under `/services/reklama/dorabotka-posadochnoj/`, not a replacement for `/services/development/dorabotka-sajta/`.
 - Previous Ready Sites alias model was superseded by USER APPROVED productized niche architecture on 2026-09-05.
+- Ready Sites uses a root-level product namespace `/ready-made-sites/`, while remaining part of the Services information architecture and navigation.
 - Development/Industry pages remain valid in their original taxonomies.
 - Current Ready Sites taxonomy has 1 real product item; planned frame houses product is recorded only in roadmap and must not be created yet.
 
