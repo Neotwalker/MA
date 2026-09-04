@@ -37,17 +37,18 @@ Reklama:
 
 Ready Sites:
 
-- taxonomy services count: 6
-- existing static pages: 6 related existing pages found
-- missing pages: 0 for the currently referenced/matched development or industry targets
-- URL SOURCE NEEDED count: 0 for the currently referenced/matched development or industry targets
+- taxonomy products count: 1
+- existing static product pages: 1
+- missing current taxonomy pages: 0
+- URL SOURCE NEEDED count: 0
 
 Total:
 
-- taxonomy services count: 27
-- existing static pages: 27
-- missing pages: 0
+- current taxonomy items count: 22
+- existing static pages/products: 22
+- missing pages/products: 0
 - URL SOURCE NEEDED count: 0
+- Note: total changed from 27 to 22 because 6 old Ready Sites aliases were replaced by 1 real product item; Development/Industry pages were not deleted.
 
 ## SEO
 
@@ -93,16 +94,19 @@ Source files: `app/services-taxonomy-reklama.html`, `app/services.html`.
 
 ## Ready Sites
 
-Source files: `app/services-taxonomy-readysites.html`, `app/services.html`, existing development/industry page canonicals.
+Source files: `app/services-taxonomy-readysites.html`, `app/services.html`.
 
-| Taxonomy | Group | Service title | Taxonomy href | Static file | File exists | Current implementation | Production URL | URL source | Canonical status | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Ready Sites | По типу задачи | Сайт услуг | `services-taxonomy-dev.html` | `app/services-development-uslugi.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/development/uslugi/` | Existing page canonical | Canonical present; href does not use this file | Matching individual development service page exists by H1/canonical, but taxonomy href points to the development taxonomy page. |
-| Ready Sites | По типу задачи | Сайт-каталог | `services-taxonomy-dev.html` | `app/services-development-katalog.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/development/katalog/` | Existing page canonical | Canonical present; href does not use this file | Matching individual development service page exists by H1/canonical, but taxonomy href points to the development taxonomy page. |
-| Ready Sites | По типу задачи | Корпоративный сайт | `services-taxonomy-dev.html` | `app/services-development-corporate-website.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/development/corporate-website/` | Existing page canonical | Canonical present; href does not use this file | Matching individual development service page exists by H1/canonical, but taxonomy href points to the development taxonomy page. |
-| Ready Sites | По отраслевой логике | Клининг | `services-industry-cleaning.html` | `app/services-industry-cleaning.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/development/klining/` | Existing page canonical | Canonical present and href matches file | Existing approved industry page under development taxonomy, not a ready-made-sites URL. |
-| Ready Sites | По отраслевой логике | Рекламное производство | `services-industry-advertising-production.html` | `app/services-industry-advertising-production.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/development/reklamnoe-proizvodstvo/` | Existing page canonical | Canonical present and href matches file | Existing approved industry page under development taxonomy, not a ready-made-sites URL. |
-| Ready Sites | По отраслевой логике | Промышленность | `services-industry-industrial.html` | `app/services-industry-industrial.html` | YES | NEW SYSTEM | `https://limitlesscreators.ru/services/development/promyshlennost/` | Existing page canonical | Canonical present and href matches file | Existing approved industry page under development taxonomy, not a ready-made-sites URL. |
+| Taxonomy | Product title | Taxonomy href | Static file | File exists | Current implementation | Production URL | URL source | Canonical status | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Ready Sites | Готовый сайт для аренды авто | `services-readysites-arenda-avto.html` | `app/services-readysites-arenda-avto.html` | YES | NEW PRODUCTIZED SYSTEM | `https://limitlesscreators.ru/services/ready-made-sites/arenda-avto/` | USER APPROVED ARCHITECTURE 2026-09-05 | Canonical present | Awaiting user visual approval. |
+
+### Planned product roadmap
+
+- Готовый сайт для строительства каркасных домов
+- planned file: `app/services-readysites-karkasnye-doma.html`
+- planned URL: `https://limitlesscreators.ru/services/ready-made-sites/karkasnye-doma/`
+- status: PRODUCT NOT READY / DO NOT CREATE YET
+- URL source: USER APPROVED 2026-09-05
 
 ## Structural issues
 
@@ -112,11 +116,10 @@ Source files: `app/services-taxonomy-readysites.html`, `app/services.html`, exis
 - Old `/services/branding/web-design/` is NOT part of Branding architecture; current service lives at `/services/development/web-design/`. Do not recreate the old Branding page.
 - Reklama individual system implemented: 6/6 static pages exist, approved production canonicals preserved.
 - Reklama item `Доработка посадочной` is a separate advertising service under `/services/reklama/dorabotka-posadochnoj/`, not a replacement for `/services/development/dorabotka-sajta/`.
-- Ready Sites items `Сайт услуг`, `Сайт-каталог`, and `Корпоративный сайт` have related existing individual development pages, but taxonomy hrefs currently point to `services-taxonomy-dev.html`.
-- Ready Sites industry items point to approved industry pages whose canonicals are under `/services/development/...`, not under `/services/ready-made-sites/...`.
-- Existing approved industry files `app/services-industry-construction.html`, `app/services-industry-interiors.html`, `app/services-industry-medical.html`, and `app/services-industry-retail.html` are not represented in the Ready Sites taxonomy list, while 3 other industry pages are represented there.
-- No `#` hrefs or local hrefs to absent files were found inside the four `#taxonomy-services` catalog sections; the problematic local hrefs are existing taxonomy/archive targets used as placeholders.
+- Previous Ready Sites alias model was superseded by USER APPROVED productized niche architecture on 2026-09-05.
+- Development/Industry pages remain valid in their original taxonomies.
+- Current Ready Sites taxonomy has 1 real product item; planned frame houses product is recorded only in roadmap and must not be created yet.
 
 ## Recommended rollout order
 
-1. Ready Sites: architecture decision required because entries overlap existing Development/Industry pages.
+1. Ready Sites: wait for user visual review of the car rental product reference before adding more niche products.
