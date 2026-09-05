@@ -140,8 +140,8 @@
 					</div>
 					<a class="header-services-menu__cta modal--open" href="#modal_general" data-modal-target="#modal_general">Не знаете, какой формат нужен? Рассказать о задаче →</a>
 				</div>
-				<div class="header-search-panel site-search site-search--header" id="header-search-panel" role="search" aria-hidden="true" inert data-site-search data-search-context="header" data-search-limit="7">
-					<form class="header-search-form site-search__form" action="search.html" method="get" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="header-search-results" aria-label="Поиск по сайту" data-site-search-form data-site-search-combobox>
+				<div class="header-search-panel site-search site-search--header" id="header-search-panel" aria-hidden="true" inert data-site-search data-search-context="header" data-search-limit="7" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="header-search-results" aria-label="Поиск по сайту" data-site-search-combobox>
+					<form class="header-search-form site-search__form" action="search.html" method="get" role="search" data-site-search-form>
 						<label class="visually-hidden" for="header-search-input">Поиск по сайту</label>
 						<input class="header-search-form__input site-search__input" type="search" name="q" id="header-search-input" autocomplete="off" enterkeyhint="search" placeholder="Услуга, проект или статья" aria-controls="header-search-results" aria-autocomplete="list" data-site-search-input>
 						<button class="header-search-form__submit site-search__submit" type="submit" data-site-search-submit>Найти</button>
@@ -225,8 +225,8 @@
 		<section class="section search-page__section" aria-label="Результаты поиска">
 			<div class="container">
 				<div class="row">
-					<div class="site-search site-search--page search-page__module" data-site-search data-search-context="page" data-search-limit="50">
-						<form class="site-search__form search-page__form" action="search.html" method="get" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="search-page-live-results" aria-label="Поиск по сайту" data-site-search-form data-site-search-combobox>
+					<div class="site-search site-search--page search-page__module" data-site-search data-search-context="page" data-search-limit="50" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="search-page-live-results" aria-label="Поиск по сайту" data-site-search-combobox>
+						<form class="site-search__form search-page__form" action="search.html" method="get" role="search" data-site-search-form>
 							<label class="visually-hidden" for="search-page-input">Поиск по сайту</label>
 							<input class="site-search__input search-page__input" type="search" name="q" id="search-page-input" autocomplete="off" enterkeyhint="search" placeholder="Например, разработка сайта, SEO или доставка" aria-controls="search-page-live-results" aria-autocomplete="list" data-site-search-input>
 							<button class="site-search__clear search-page__clear" type="button" data-site-search-clear hidden>Очистить</button>

@@ -1384,7 +1384,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	function initSiteSearch(root) {
 		const form = root.querySelector('[data-site-search-form]');
 		const input = root.querySelector('[data-site-search-input]');
-		const combobox = root.querySelector('[data-site-search-combobox]') || input;
+		const combobox = root.matches('[data-site-search-combobox]') ? root : root.querySelector('[data-site-search-combobox]') || input;
 		const dropdown = root.querySelector('[data-site-search-dropdown]');
 		const status = root.querySelector('[data-site-search-status]');
 		const list = root.querySelector('[data-site-search-list]');
