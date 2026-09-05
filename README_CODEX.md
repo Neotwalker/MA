@@ -1,11 +1,10 @@
 # Запуск проекта в Codex
 
-## Запуск
-
-1. Открыть существующий Git repository.
+1. Открыть frontend reference repository:
+   `C:\Users\and1m\Desktop\work\limitless-codex`
 2. Прочитать `AGENTS.md`.
 3. Прочитать `CODEX_TASK.md`.
-4. Проверить:
+4. Проверить Git state:
 
 ```bash
 git status --short
@@ -13,81 +12,12 @@ git branch --show-current
 git log -1 --oneline
 ```
 
-5. Не изменять файлы до проверки текущего task и working tree.
+5. Понять, что затрагивает задача: frontend reference repo, existing WordPress installation или оба проекта.
+6. Не изменять файлы, пока scope задачи и working tree не понятны.
+7. Existing WordPress target:
+   `D:\OpenServer\domains\limitlesscreators`
+8. Для WordPress-задач сначала inspect/audit existing WP project. Не предполагать clean new WordPress install.
+9. QA по умолчанию code-level. Не запускать Browser QA, Playwright, screenshots или dev server автоматически.
+10. Не начинать самостоятельно Wordstat, semantics, clustering или keyword mapping; внедрять только утвержденный content/SEO output.
 
-## Repository
-
-- Основной GitHub repository: `https://github.com/Neotwalker/MA/`.
-- Рабочая ветка: `redesign-2026`.
-- GitHub можно использовать для проверки уже pushed состояния проекта.
-- Точный текущий HEAD определять через Git, а не по вручную записанному hash в документации.
-- `origin/main` защищен: не изменять без отдельной явной команды.
-- Raw URLs репозитория не добавлять на публичные страницы сайта; это только внутренняя Codex-документация.
-
-## Dependencies
-
-Не выполнять `npm ci` автоматически при каждом новом чате.
-
-Использовать существующее окружение и установленные `node_modules`.
-
-`npm ci` запускать только если dependencies отсутствуют или отдельная задача требует чистой установки.
-
-Если `npm` отсутствует в `PATH`, использовать bundled/local Node и существующие зависимости проекта. Не переустанавливать окружение без необходимости.
-
-## Dev server
-
-Не запускать `npm run dev` автоматически.
-
-Сначала проверить существующий локальный сервер:
-
-```text
-http://127.0.0.1:8080
-```
-
-Запускать новый dev server только если существующий недоступен и задача действительно требует Browser QA.
-
-## Browser QA
-
-Интерактивные проверки, DOM assertions, console assertions, modal, menu и Live Search проверять через Codex Browser.
-
-Основной visual QA workflow - интерактивный browser review. После первой реализации пройти страницу как пользователь и UI/UX reviewer, проверить responsive behavior, sticky, overflow, hover/focus, keyboard, console и релевантные пользовательские сценарии; найденные дефекты исправить и повторить review до финальных проверок.
-
-Для visual redesign / UI-polish задач не смешивать реализацию и пользовательскую приемку: `IMPLEMENTED` означает, что код, Codex QA, commit и push выполнены; `USER APPROVED` означает, что пользователь отдельно просмотрел живой результат и явно подтвердил приемку. До такого подтверждения статус visual stage фиксируется как `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
-
-Скриншоты больше не создаются автоматически и не являются обязательным deliverable. Делать PNG только если пользователь явно попросил, если нужно зафиксировать конкретную найденную визуальную проблему или если screenshot полезен для диагностики.
-
-Если PNG действительно нужен, сохранять его project runner'ом:
-
-```bash
-npm run qa:screenshots -- --url http://127.0.0.1:8080/about.html --task about-final
-```
-
-Если `npm` недоступен в `PATH`, использовать тот же bundled/local Node, которым запускаются остальные project scripts:
-
-```bash
-node scripts/capture-qa-screenshots.mjs --url http://127.0.0.1:8080/about.html --task about-final
-```
-
-Созданные screenshots и другие QA-артефакты сохраняются в `.qa-artifacts/<task-slug>/` и остаются там до пользовательского ревью, если пользователь попросил их проверить. Не очищать всю `.qa-artifacts/` автоматически.
-
-## Safe start prompt
-
-```text
-Прочитай AGENTS.md и CODEX_TASK.md. Затем проверь git status, текущую ветку, git log и состояние origin/redesign-2026. Сравни Git history с Completed / Current task из CODEX_TASK.md и сообщи, если есть расхождения. Точный HEAD определяй через Git. Не изменяй файлы, пока не убедишься, что продолжаешь фактический актуальный этап.
-```
-
-После успешного push GitHub repository можно использовать для дополнительной проверки:
-
-```text
-https://github.com/Neotwalker/MA/tree/redesign-2026
-```
-
-Локальный Git остается источником истины для изменений, которые еще не pushed.
-
-## WordPress
-
-Сейчас развивается статический redesign в `app/`.
-
-WordPress-интеграция будет отдельным этапом. Не требуется переносить каждое текущее изменение в WordPress немедленно.
-
-После добавления темы WordPress производственным источником станет тема, а статическая верстка останется визуальным и компонентным эталоном.
+`origin/main` защищен: не изменять и не push без отдельной явной команды пользователя. Рабочая frontend ветка: `redesign-2026`.

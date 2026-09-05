@@ -2,21 +2,46 @@
 
 ## Назначение проекта
 
-Это личный сайт Марата Абзалова. Текущая рабочая ветка развивает статический redesign сайта в исходной Gulp-верстке.
+Это личный сайт Марата Абзалова. Текущая рабочая ветка содержит статический redesign сайта в исходной Gulp-верстке и служит утвержденным frontend reference для будущей WordPress-интеграции.
 
 Limitless Creators - прежнее название/обозначение работы самого Марата. Это не отдельное агентство, команда или сторонний исполнитель. Все проекты портфолио выполнены лично Маратом Абзаловым; различается только объем и формат выполненных работ.
 
 В публичных текстах использовать первый человек или нейтральную форму. Не писать «мы», «наша команда», «агентство», не указывать Limitless Creators как отдельного исполнителя и не придумывать роли, результаты, метрики или состав команды. Объем участия описывать строго по реальным работам, подтвержденным страницами кейсов или `_reference`.
 
-## Текущий workflow
+## Рабочие области проекта
 
-- Текущий источник frontend-разработки - `app/`.
-- `_reference/` содержит зафиксированные архитектурные и контентные источники истины.
-- Сначала полностью доводится статический redesign.
-- WordPress-интеграция выполняется отдельным поздним этапом.
-- После WordPress-интеграции production source становится тема WordPress.
-- Breadcrumbs статического прототипа не перерабатывать без отдельного задания.
-- В WordPress breadcrumbs выводятся через `rank_math_the_breadcrumbs()`.
+### Frontend reference repository
+
+Путь:
+`C:\Users\and1m\Desktop\work\limitless-codex`
+
+GitHub:
+`https://github.com/Neotwalker/MA/`
+
+Рабочая ветка:
+`redesign-2026`
+
+Назначение:
+
+- утвержденный frontend reference;
+- утвержденные layout, responsive behavior, UI-компоненты и интеракции;
+- статическая архитектура страниц;
+- источник assets и frontend-логики;
+- источник для маппинга static HTML -> WordPress templates.
+
+Текущий статический source остается в `app/`.
+
+### Existing WordPress installation
+
+Путь:
+`D:\OpenServer\domains\limitlesscreators`
+
+Production:
+`https://limitlesscreators.ru/`
+
+Это локальная копия существующего/current WordPress-проекта и будущая цель интеграции. Стратегия не заключается в создании чистого WordPress с нуля. Предпочтительная модель: сохранить и проаудировать существующую WordPress-инсталляцию, базу данных, контент и полезную инфраструктуру, затем внедрить утвержденный frontend через новую или рефакторинговую theme architecture.
+
+Не изменять WordPress-проект, не создавать тему и не проводить глубокий аудит без отдельной задачи.
 
 ## Repository
 
@@ -27,7 +52,7 @@ Limitless Creators - прежнее название/обозначение ра
 - `origin/main` защищен: не изменять и не push без отдельной явной команды пользователя.
 - Не добавлять raw URLs репозитория на публичные страницы сайта. Эти ссылки допустимы только во внутренней Codex-документации.
 
-## Структура
+## Структура frontend reference
 
 - `app/*.html` - статические шаблоны страниц.
 - `app/sass/main.sass` - основные стили.
@@ -36,28 +61,72 @@ Limitless Creators - прежнее название/обозначение ра
 - `app/css/main.min.css` и `app/js/scripts.min.js` - generated-файлы. Не редактировать вручную.
 - `app/search-index.json` - generated search index.
 - `app/img/brand/` - постоянные брендовые изображения и подготовленные portrait assets.
+- `_reference/` содержит зафиксированные архитектурные и контентные источники истины.
 - `dist/` - результат сборки. Не использовать как исходник и не коммитить.
 
-## Команды
+## Текущий workflow
+
+- Static redesign сейчас имеет статус `STRUCTURALLY COMPLETE / APPROVED WORDPRESS REFERENCE`.
+- Следующий крупный этап: read-only audit существующего WordPress в `D:\OpenServer\domains\limitlesscreators`.
+- Аудит должен идти до создания новой темы и до переноса frontend в PHP.
+- После утверждения архитектуры WordPress production source станет новая или рефакторинговая тема, а статическая верстка останется эталоном интерфейса.
+- Breadcrumbs статического прототипа не перерабатывать без отдельного задания.
+- В WordPress breadcrumbs выводятся через `rank_math_the_breadcrumbs()`.
+
+## Команды и проверки
+
+Стандартные project scripts:
 
 ```bash
-npm ci
-npm run lint:project
-npm run dev
-npm run build
-node scripts/verify-dist-assets.js
+npm.cmd run lint:project
+npm.cmd run build
+npm.cmd run verify:dist
+git diff --check
 ```
 
-Для изменений HTML/SASS/JS/build pipeline обязательно выполнить:
+Для измененного исходного JS также выполнять:
 
-- `npm run lint:project`;
-- `npm run build`;
-- `git diff --check`;
-- релевантный verify-dist, если задача затрагивает assets, dist или search index.
+```bash
+node --check <changed-js-source>
+```
 
-Для documentation-only, Git-only, push-only, audit-only и image-only задач без изменения pipeline не запускать build автоматически, если он не нужен для проверки задачи.
+Documentation-only задачи обычно проверяются только:
 
-Если `npm` отсутствует в `PATH`, использовать установленный bundled/local Node и существующие `node_modules`. Не переустанавливать окружение без необходимости.
+```bash
+git diff --check
+git status --short
+git diff --stat
+```
+
+Не выполнять `npm ci` автоматически. Использовать существующее окружение и установленные `node_modules`. Если `npm` отсутствует в `PATH`, использовать установленный bundled/local Node и существующие зависимости проекта.
+
+### QA режимы
+
+DEFAULT = code-level QA. Не запускать автоматически Browser QA, Playwright, screenshots, screenshot matrices, dev server visual review или viewport matrix.
+
+FAST MODE подходит для локальных semantic corrections, copy changes, micro UI fixes, небольших SASS-правок, изолированных JS-правок и документации. Использовать только проверки, релевантные изменению.
+
+FULL CODE-LEVEL QA нужен для новой страницы/шаблона, крупного shared component, mass rollout, substantial shared JS/SASS, WordPress architecture/template rollout и high-risk changes. FULL QA не означает автоматический Browser QA, Playwright или screenshots.
+
+Browser QA использовать только если:
+
+1. пользователь явно попросил;
+2. конкретная visual/interaction проблема действительно требует браузера;
+3. high-risk interaction нельзя разумно проверить на уровне кода.
+
+Пользователь обычно выполняет финальное визуальное ревью вручную.
+
+### Reviewer / autocheck timeouts
+
+Если reviewer/autocheck повторно зависает или истекает до того, как процесс реально стартовал:
+
+- не повторять одну команду бесконечно;
+- максимум 1-2 разумные попытки;
+- при необходимости использовать эквивалентную безопасную команду;
+- если commit/push уже успешен, не держать сессию только ради получения hash;
+- не считать reviewer timeout ошибкой кода.
+
+Если одинаковый sandbox/runtime setup failure повторяется, не зацикливаться.
 
 ## Общие ограничения
 
@@ -73,6 +142,74 @@ node scripts/verify-dist-assets.js
 10. Не изменять внешность человека на портретах: лицо, черты, глаза, очки, волосы, бороду, кожу, возраст, одежду, пропорции и выражение лица.
 11. Не использовать image generation, AI face enhancement или generative fill для портретов.
 12. `#bg_container.bg_container` и `canvas#gradient-canvas` - часть утвержденной арт-системы redesign: при redesign/refactor существующих страниц не удалять, не заменять и не отключать без отдельной явной команды; переиспользовать текущую реализацию, не создавать дополнительные canvas без необходимости, сохранять performance, mobile behavior, `prefers-reduced-motion`, accessibility и interaction.
+
+## SEO / content responsibility boundary
+
+Codex в этом development-проекте не начинает самостоятельно:
+
+- Wordstat research;
+- semantic discovery;
+- demand/frequency collection;
+- SERP research for keyword strategy;
+- query clustering;
+- keyword -> URL mapping;
+- cannibalization planning;
+- semantic SEO copy generation.
+
+Эти работы выполняются отдельно пользователем вместе с ChatGPT в проекте «Контент для моего сайта». Codex получает и внедряет утвержденный результат этого workflow, когда он передан в задаче.
+
+Codex может выполнять technical SEO в рамках разработки:
+
+- semantic HTML;
+- canonical integration;
+- Rank Math integration;
+- schema integration when specified;
+- breadcrumbs;
+- sitemap support;
+- robots;
+- metadata output;
+- redirects;
+- internal links when mappings are supplied;
+- technical indexability rules.
+
+Не смешивать technical SEO implementation с semantic research. Тексты service rollout остаются `APPROVED STRUCTURE / DRAFT SEO COPY`, если финальные SEO/content материалы еще не переданы.
+
+## HTML / W3C validation
+
+### Pre-WordPress
+
+- Исправлять подтвержденные shared semantic/ARIA defects до копирования компонентов в PHP.
+- Static homepage W3C baseline уже clean: пользователь вручную проверил `https://neotwalker.github.io/MA/index.html` через validator.w3.org после W3C-commit этапов `9b3b4f4` и `3fe0487`; итог по homepage: 0 errors.
+- Это не означает, что каждая статическая HTML-страница проверена отдельно.
+- Не тратить время на ручную W3C-проверку каждой static page только ради повторения той же проверки после WordPress-интеграции.
+
+### Post-WordPress
+
+Валидировать generated representative page types через W3C/Nu HTML Checker:
+
+- homepage;
+- services archive;
+- service taxonomy;
+- single service;
+- industry page;
+- Ready Sites taxonomy;
+- Ready Site product;
+- portfolio archive;
+- single case;
+- article archive;
+- single article;
+- about;
+- contacts;
+- FAQ;
+- brief;
+- work conditions/legal;
+- search;
+- 404;
+- other unique templates where applicable.
+
+Shared errors исправлять на уровне template, template-part или component, а не патчить rendered pages по одной. После clean representative templates выполнить broader final validation перед production release.
+
+Никогда не глушить validator errors бессмысленными ARIA roles. Accessibility semantics важнее поверхностно зеленого валидатора.
 
 ## Git workflow
 
@@ -100,16 +237,14 @@ Git history служит журналом завершенных этапов и
 
 ### QA lifecycle
 
-Основной visual QA workflow теперь интерактивный: Codex самостоятельно проходит измененную страницу в реальном браузере как пользователь и UI/UX reviewer, проверяет layout, sticky, overflow, hover/focus, keyboard, console, responsive behavior и, при необходимости, ARIA/accessibility tree. После первой реализации визуальную задачу не считать завершенной: сначала выполнить browser review, зафиксировать найденные дефекты, исправить их и повторить review.
-
 Для visual redesign / UI-polish задач разделять статус реализации и пользовательскую приемку:
 
-- `IMPLEMENTED` - код реализован, Codex QA пройден, commit/push выполнены.
+- `IMPLEMENTED` - код реализован, проверки выполнены, commit/push выполнены.
 - `USER APPROVED` - пользователь отдельно просмотрел живой результат и явно подтвердил, что визуальный этап принят.
 
 Codex не должен самостоятельно помечать visual stage как окончательно принятый пользователем после собственного QA. Если этап реализован, но пользователь еще не подтвердил результат, фиксировать статус как `IMPLEMENTED / AWAITING USER VISUAL APPROVAL` и не переводить следующий visual stage в работу автоматически.
 
-Скриншоты и PNG больше не являются обязательным QA-артефактом для визуальных задач и не создаются автоматически только ради отчета. Если screenshot, лог, временный скрипт или другой QA-артефакт все же создан по явной просьбе пользователя или для диагностики конкретной найденной проблемы:
+Скриншоты и PNG не являются обязательным QA-артефактом и не создаются автоматически только ради отчета. Если screenshot, лог, временный скрипт или другой QA-артефакт все же создан по явной просьбе пользователя или для диагностики конкретной найденной проблемы:
 
 1. Использовать `.qa-artifacts/<task-slug>/`.
 2. Не использовать общий системный `%TEMP%`.
@@ -126,92 +261,162 @@ Codex не должен самостоятельно помечать visual sta
 
 ### Browser QA
 
-#### Interactive QA
-
-- Использовать существующий локальный сервер, если он уже запущен.
+- Использовать существующий локальный сервер, если он уже запущен и browser check действительно нужен.
 - Не запускать дополнительный сервер без необходимости.
-- Использовать один browser context.
-- Использовать одну вкладку.
+- Использовать один browser context и одну вкладку.
 - Переиспользовать вкладку для всех URL и viewport.
 - Не создавать отдельный context или вкладку для каждого скриншота.
 - Не запускать параллельные browser-проверки.
 - После проверки закрывать страницы и contexts, созданные автоматизацией.
 - Не завершать пользовательские процессы Chrome.
 - Не удалять и не изменять пользовательские профили Chrome.
-- Для modal, menu, keyboard, Live Search, console assertions и DOM assertions можно использовать встроенный Codex Browser.
-- Для повторяемых сценариев использовать Browser / Playwright automation: клики, accordion, keyboard, viewport matrix, DOM measurements и regression checks.
-- Итоговый отчет по обычному UI/UX этапу должен описывать, что реально проверено интерактивно, какие проблемы найдены Codex, какие исправлены и какие viewport/scenarios пройдены.
+- Для modal, menu, keyboard, Live Search, console assertions и DOM assertions можно использовать встроенный Codex Browser, если задача реально требует browser execution.
 
-#### Screenshot QA
+### Screenshot QA
 
 - Не запускать screenshot runner автоматически.
 - Создавать screenshots только если пользователь явно попросил, если нужно зафиксировать конкретную найденную визуальную проблему или если screenshot действительно полезен как debugging artifact.
-- Для сохранения визуальных PNG в этих случаях использовать project runner: `npm run qa:screenshots -- --url <url> --task <task-slug>`.
-- Если `npm` отсутствует в `PATH`, использовать bundled/local Node эквивалент: `node scripts/capture-qa-screenshots.mjs --url <url> --task <task-slug>`.
-- Runner запускает отдельный isolated headless Chrome process, использует отдельный profile внутри `.qa-artifacts/` и не подключается к пользовательскому Chrome.
+- Для сохранения PNG использовать project runner: `npm run qa:screenshots -- --url <url> --task <task-slug>`.
+- Если `npm` отсутствует в `PATH`, использовать bundled/local Node: `node scripts/capture-qa-screenshots.mjs --url <url> --task <task-slug>`.
+- Runner запускает isolated headless Chrome process, использует отдельный profile внутри `.qa-artifacts/` и не подключается к пользовательскому Chrome.
 - Встроенный Browser screenshot API не является обязательным способом сохранения PNG. Если он работает, его можно использовать дополнительно.
-- EPERM или `Page.captureScreenshot` timeout во встроенном Browser plugin не являются причиной отказаться от screenshot QA, если screenshot действительно нужен и project runner работает.
-- Generated screenshots сохранять согласно QA lifecycle, если они были созданы.
-- Runner не должен удалять screenshot folder текущего task.
+- Generated screenshots сохранять согласно QA lifecycle.
 
-### Скриншоты
+## WordPress-интеграция
 
-Для значительных визуальных изменений обязательна интерактивная viewport-проверка. Screenshot matrix больше не является обязательной по умолчанию.
+### Preferred integration model
 
-Если пользователь явно попросил screenshots или конкретная диагностика требует PNG, использовать релевантные размеры:
+Постоянное архитектурное правило:
 
-- 1920 px - основной desktop и проверка максимальной ширины контейнера;
-- 1440 px - средний desktop;
-- 1024 px - небольшой desktop / планшет landscape;
-- 768 px - планшет;
-- 390 px - мобильный экран.
+```text
+EXISTING WORDPRESS
++
+EXISTING DATABASE
++
+EXISTING CONTENT
++
+EXISTING USEFUL PLUGIN/SEO/REDIRECT INFRASTRUCTURE
++
+NEW APPROVED FRONTEND/THEME IMPLEMENTATION
+```
 
-1920 px нельзя заменять проверкой на 1440 px.
+Не создавать clean separate WordPress project без конкретной причины, найденной поздним аудитом. Возможные причины: modified/corrupted core, compromised installation, irreparable theme/plugin architecture, critical database corruption или demonstrably safer migration path. Не предполагать, что эти условия сейчас существуют.
 
-Для обычного UI/UX этапа не создавать full-page PNG и не запускать project screenshot runner автоматически. В отчете перечислять PNG только если они действительно были созданы.
+Не удалять и не заменять старую инсталляцию во время разработки.
 
-Перед созданием скриншотов закрывать cookie-уведомление, открытое мобильное меню, модальные окна и служебные панели, если они перекрывают проверяемую область.
+### Audit before implementation
 
-Если visual PNG нужен, использовать project runner из раздела Screenshot QA. Если встроенный Codex Browser не может сохранить PNG из-за EPERM, `Page.captureScreenshot` timeout или security policy, использовать project runner. Только если сам project runner не может выполнить capture по технической причине, не обходить security/runtime ограничения, выполнить доступные interactive/DOM checks, сообщить точную ошибку runner и явно указать, что PNG отсутствуют.
+Read-only audit существующего WordPress должен идти до создания новой темы. Во время аудита не изменять WordPress project, database, plugins, theme files, uploads, `.htaccess` или configuration.
 
-### Временные скрипты
+Существующая инсталляция может содержать redirects, content, CPT/taxonomy registrations, ACF field groups/data, Rank Math configuration/data, plugin configuration, permalink/rewrite behavior, relations between posts/terms and other production business logic. Это infrastructure to inspect and preserve where valid, а не заранее подтвержденный список фактов.
 
-- Временные скрипты для QA хранить внутри `.qa-artifacts/<task-slug>/`, а не в `%TEMP%`.
-- Если скрипт становится постоянной проверкой проекта, переносить его в `scripts/`, давать понятное имя и добавлять в Git отдельным осознанным изменением.
-- Не оставлять одноразовые `.js`, `.cjs`, `.mjs`, `.patch`, `.log`, `.out` и `.err` после завершения задачи.
+### Theme strategy
 
-## Правила WordPress-интеграции
+Предпочтительное направление после аудита:
 
-Когда в репозиторий будет добавлена действующая тема WordPress:
+- keep existing WordPress installation;
+- keep old working theme available during migration;
+- create a new/refactored theme for the redesign;
+- migrate template-by-template;
+- reuse existing database/content/configuration;
+- move reusable site/business logic out of old presentation code when necessary;
+- avoid changing WordPress core or plugins.
 
-1. Производственным источником становится тема WordPress; статическая верстка остается эталоном интерфейса.
-2. Не менять публичные URL и типы записей без отдельного задания.
-3. Данные выводить из WordPress и ACF, а не дублировать статически.
-4. Если поле, изображение, ссылка, элемент списка или блок не заполнены, не выводить элемент и не подставлять статический fallback.
-5. Поля, без которых блок не может работать корректно, делать обязательными в ACF.
-6. Экранировать вывод: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()` по назначению.
-7. Для циклов и запросов восстанавливать глобальные данные через `wp_reset_postdata()`.
-8. Не хранить секреты, SMTP-доступы, ключи и пароли в репозитории.
-9. Не править плагины и ядро WordPress.
-10. Изменения ACF оформлять управляемо: через PHP-регистрацию полей или синхронизируемый `acf-json`, в зависимости от текущей архитектуры темы.
+Не фиксировать заранее имя новой темы или точную структуру директорий. Это решение принимается после аудита.
+
+### Theme switch risk
+
+Перед переключением темы Codex должен определить functionality, зарегистрированную старой темой:
+
+- `register_post_type()`;
+- `register_taxonomy()`;
+- rewrite rules;
+- shortcodes;
+- image sizes;
+- custom REST endpoints;
+- AJAX handlers;
+- form hooks;
+- ACF PHP field registration;
+- custom options;
+- Rank Math filters;
+- redirect filters;
+- custom cron/actions;
+- theme-specific helpers.
+
+Если business/content architecture завязана на старую тему, не переключать тему так, чтобы эта функциональность исчезла. Явно решить, где ей жить дальше: в новой теме, существующем custom plugin или новом site-specific plugin. Long-lived CPT/taxonomy architecture не должна случайно зависеть от presentation theme, если ее разумно вынести.
+
+### Implementation principles
+
+- Использовать semantic HTML/PHP.
+- Разносить shared components по template-parts, не собирать giant monolithic template.
+- Не складывать всю логику в `functions.php`.
+- Использовать WordPress APIs для URLs, queries, permalinks и term links.
+- Сохранять существующие public URLs, если пользователь явно не утвердил изменение.
+- Использовать ACF только для подходящих structured data.
+- Нормальный редактор WordPress и `the_content()` использовать для approved editorial content.
+- Optional empty fields/blocks не должны выводить empty markup.
+- Required ACF fields делать только там, где component не может корректно работать без данных.
+- Экранировать вывод: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`.
+- После custom loops and queries выполнять `wp_reset_postdata()`.
+- Не изменять plugins и WordPress core.
+- Не хранить passwords, SMTP/API secrets, keys в Git.
+- ACF changes оформлять управляемо через PHP registration или `acf-json` согласно выбранной архитектуре.
+- Dynamic links to WP objects строить через WordPress permalink/term APIs, а не hard-coded local paths.
 
 ### Архитектура услуг в WordPress
 
 - Услуги должны быть реализованы через Custom Post Type услуг.
-- Точные slugs брать из существующей WordPress-архитектуры, если она доступна. На текущем production REST подтверждены taxonomy slugs `service_category` и `service_tag`; taxonomy `service_category` и `service_tag` привязаны к типу `services`. REST collection самого CPT `services` может быть закрыт, поэтому не придумывать альтернативный slug без проверки темы.
-- `services.html` в статическом redesign является визуальным прототипом будущего archive template CPT услуг.
-- `services-taxonomy-dev.html`, `services-taxonomy-seo.html`, `services-taxonomy-branding.html`, `services-taxonomy-reklama.html` и `services-taxonomy-readysites.html` являются визуальными и контентными reference для taxonomy archive templates направлений услуг.
+- Known/confirmed existing architecture: post type `services`; taxonomies `service_category` и `service_tag`.
+- Не придумывать alternate slugs без проверки локального WordPress-проекта.
+- `services.html` в static redesign является reference для future service archive template.
+- `services-taxonomy-dev.html`, `services-taxonomy-seo.html`, `services-taxonomy-branding.html`, `services-taxonomy-reklama.html` являются reference для service taxonomy archive templates.
 - Individual service pages в WordPress должны формироваться из записей CPT услуг.
-- Списки услуг внутри taxonomy pages должны формироваться динамически по принадлежности записи CPT к соответствующему taxonomy term.
-- Ссылки на individual services должны строиться через WordPress permalink, а ссылки на taxonomy archives - через term links.
+- WordPress individual services должны использовать реальные существующие records where they already exist; не создавать duplicate service entries blindly.
+- Сначала маппить existing WordPress record -> taxonomy -> production URL -> approved static reference.
+- Списки услуг внутри taxonomy pages формировать динамически по принадлежности записи CPT к term.
+- Ссылки на individual services строить через permalink, ссылки на taxonomy archives - через term links.
 - Добавление новой услуги в админке не должно требовать ручного изменения taxonomy template.
-- Не переносить эти технические термины в публичный текст статического redesign, если они не относятся к содержанию конкретной технической услуги.
+- Ready Sites не форсировать автоматически в `/services/` URL architecture.
+
+### Service extended content / the_content()
+
+Old production service extended content рендерился через стандартный WordPress editor output, `the_content()`.
+
+Future individual service pages:
+
+- structural UI blocks remain template components;
+- extended editorial/SEO content stays in the normal WordPress editor and renders through `the_content()`;
+- do not replace editor content with ACF without explicit architectural reason.
+
+Reference structure:
+
+```php
+<section class="section service-single-content">
+    <div class="container">
+        <div class="service-single-content__body">
+            <?php the_content(); ?>
+        </div>
+    </div>
+</section>
+```
+
+If editor content is empty, omit the entire section: no empty wrapper, padding or divider.
+
+### URL and redirect policy
+
+Existing production URLs from `https://limitlesscreators.ru/` must be preserved unless the user explicitly approves a URL architecture change.
+
+Do not improve, simplify, translate, normalize or recreate legacy slugs by intuition. Existing redirects must be audited before changing them.
+
+Do not recreate redirects inside the new theme if they already have a durable home such as Rank Math, a dedicated redirect plugin or server config.
+
+Ready Sites root namespace is an explicit approved exception/new architecture: `/ready-made-sites/`.
 
 ## Формат работы
 
 Перед крупным изменением:
 
-1. Изучи связанные HTML, SASS, JavaScript и, если применимо, шаблоны WordPress.
+1. Изучи связанные HTML, SASS, JavaScript и, если применимо, WordPress-шаблоны.
 2. Кратко перечисли файлы, которые планируешь менять.
 3. Выполни изменение небольшим связанным набором правок.
 4. Запусти проверки, релевантные типу задачи, и сообщи точный результат.

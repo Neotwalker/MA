@@ -5,122 +5,196 @@
 Личный сайт:
 Марат Абзалов
 
-Branch:
+Frontend reference branch:
 `redesign-2026`
+
+Frontend reference path:
+`C:\Users\and1m\Desktop\work\limitless-codex`
+
+Existing WordPress integration target:
+`D:\OpenServer\domains\limitlesscreators`
+
+Production site:
+`https://limitlesscreators.ru/`
 
 ## Git checkpoint policy
 
 - Exact current HEAD не хранится в этом файле, потому что изменение `CODEX_TASK.md` само создает новый commit.
 - Exact HEAD всегда определяется Git-командами.
-- `CODEX_TASK.md` описывает завершенные этапы, следующий этап и текущие ограничения.
+- `CODEX_TASK.md` описывает завершенные этапы, текущий checkpoint, следующий этап и актуальные ограничения.
 - Git history является source of truth для конкретных commits и фактического состояния проекта.
 - Pushed state можно дополнительно проверить в GitHub:
   `https://github.com/Neotwalker/MA/tree/redesign-2026`
 
-## Completed
+## Current checkpoint
 
-- Personal global header and industry navigation.
-- Global footer for personal brand.
-- Cookie consent and preferences.
-- Global buttons, modal forms, textarea states, validation and accessibility improvements.
-- Development contact form, development services catalog and development page content stages.
-- GitHub Pages deployment workflow.
-- Utility pages and navigation links.
-- Live Search, `search.html` and 404 search integration.
-- `sitemap.html`.
-- Portfolio architecture and cases registry.
-- Redesigned `archive-case.html`.
-- Portfolio archive responsive/filter/accessibility polish.
-- Portrait responsive assets.
-- Full redesign and polish of `about.html`.
-- Reliable QA screenshot runner and QA artifact lifecycle documentation.
-- Complete personal homepage redesign for `index.html`.
-- Homepage expert content and article metadata.
-- Complete grouped one-page project brief in `brief.html`.
-- iOS Safari modal layout fix.
-- Mobile modal input zoom and scrollbar fix.
-- Brief form interaction and final QA fixes.
-- Redesigned Funtech single case page `single-case.html`.
-- Single case responsive polish.
-- Editorial article archive `archive-articles.html`.
-- Article archive media system, index heading polish, pagination and responsive UX polish.
-- Single article long-read page `single-articles.html`.
-- Single article TOC, sharing, bottom blocks, hero spacing and anchor offset polish.
-- Unified blog page vertical rhythm.
-- Global page top spacing fix across static pages.
-- Redesigned and polished `contacts.html`.
-- Article archive view counts metadata.
-- Redesigned work conditions page in `conditions.html`.
-- Redesigned standalone `faq.html` as the separate “Вопрос-ответ” page.
-- Final FAQ UI/UX polish: transform-only icons, active navigation state, mobile overflow checks, modal and textarea scrollbar behavior.
-- Shared header-to-breadcrumb spacing normalization for FAQ, work conditions, services taxonomy pages, service single page and services archive.
-- Filled content for services taxonomy pages:
-  - `services-taxonomy-seo.html`;
-  - `services-taxonomy-branding.html`;
-  - `services-taxonomy-reklama.html`;
-  - `services-taxonomy-readysites.html`.
-- Redesigned `services.html` as the services archive / top-level services map; user visual approval received before the individual service reference stage.
-- Redesigned `services-single.html` as the first individual service reference page for “Разработка лендинга”.
-- Prepared the individual service extended editor content area in `services-single.html`: the static reference now uses a generic `service-single-content` rich-text wrapper that mirrors future `the_content()` output.
-- Individual service reference `services-single.html`: `USER APPROVED` by user visual review.
-- Development category individual service pages (`Разработка сайтов`): static rollout implemented for 25 taxonomy services and ready for user visual review.
-- Development category individual service pages: pre-SEO copy / proof polish implemented across 25 static pages; internal QA boilerplate, H3/P duplication, public-facing developer jargon and misleading direct-proof wording were cleaned up while keeping the frozen reference, shared styles/scripts and page architecture untouched.
+Static redesign:
+`STRUCTURALLY COMPLETE / APPROVED WORDPRESS REFERENCE`
 
-## Current task
+Static homepage W3C baseline:
+`USER VALIDATED / COMPLETE`
 
-Current redesign checkpoint:
+Пользователь вручную проверил homepage `https://neotwalker.github.io/MA/index.html` через validator.w3.org после shared W3C fixes, включая финальный combobox fix. Итог homepage: 0 errors.
 
-- DEVELOPMENT INDIVIDUAL SERVICE PAGES PRE-SEO COPY / PROOF POLISH: `IMPLEMENTED / AWAITING USER REVIEW`.
-- FAQ: `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
-- SERVICES ARCHIVE: `USER APPROVED`.
-- INDIVIDUAL SERVICE REFERENCE (`services-single.html`, “Разработка лендинга”): `USER APPROVED`.
-- DEVELOPMENT INDIVIDUAL SERVICE PAGES (`Разработка сайтов`): `IMPLEMENTED / AWAITING USER VISUAL APPROVAL`.
-- Development taxonomy source contains 25 individual services; `Доработка сайта` is a new service page with a newly assigned production URL because no legacy production URL existed.
+Это не означает, что каждая static HTML page была индивидуально провалидирована. Не тратить время на полную ручную W3C-проверку всех static pages перед WordPress-интеграцией; shared defects уже исправлялись на уровне shared components.
 
-FAQ should not be marked `USER APPROVED` until the user reviews the live result and explicitly confirms acceptance.
+## Completed / user-approved frontend systems
 
-Stop after the development category rollout checkpoint. Do not start SEO, branding, advertising, ready-sites, industry pages, pricing or other roadmap stages without a separate user command and user visual approval of the implemented development pages.
+Статический redesign готов как WordPress reference. Следующие системы и этапы имеют статус `USER APPROVED`:
 
-## Remaining roadmap
+- services archive;
+- individual service reference;
+- Development individual pages: 25/25;
+- global breadcrumbs;
+- FAQ;
+- taxonomy header system;
+- portfolio archive;
+- portfolio mobile filters;
+- Industry pages: 7/7;
+- SEO individual service pages: 11/11;
+- Branding individual service pages: 4/4;
+- Reklama individual service pages: 6/6;
+- Ready Sites taxonomy;
+- Ready Site product reference: car rental;
+- global/shared UI systems previously explicitly accepted by user.
 
-1. Пользовательская визуальная приемка individual service pages группы `Разработка сайтов`; затем отдельными командами масштабировать следующие группы услуг.
-2. Стоимость после получения реальных цен.
-3. Ревизия услуг и отраслевых страниц.
-4. Ревизия отдельных кейсов.
-5. Глоссарий.
-6. Внутренняя перелинковка.
-7. Персональная контентная ревизия.
-8. SEO.
-9. Performance.
-10. Accessibility.
-11. WordPress integration.
-12. Rank Math / sitemap / robots / `llms.txt`.
-13. Финальный release.
+Не использовать устаревшие статусы о том, что Development pages, FAQ, SEO, Branding, Reklama или Ready Sites еще ожидают rollout/review. Не останавливаться на старом чекпойнте Development rollout.
 
-Портрет считается подготовленным этапом и не включается повторно.
+## Ready Sites locked architecture
+
+Ready Sites - самостоятельный productized niche-site catalog. Он связан с Services на уровне information architecture/navigation, но использует отдельный root-level URL namespace.
+
+Production namespace:
+`https://limitlesscreators.ru/ready-made-sites/`
+
+Current approved product:
+`Готовый сайт для аренды авто`
+
+URL:
+`https://limitlesscreators.ru/ready-made-sites/arenda-avto/`
+
+Future planned product:
+`Готовый сайт для строительства каркасных домов`
+
+Planned URL:
+`https://limitlesscreators.ru/ready-made-sites/karkasnye-doma/`
+
+Frame-houses page сейчас не существует и не должна создаваться до готовности реального продукта.
+
+Previous namespace `/services/ready-made-sites/...` superseded и не является текущей production architecture.
+
+## Next task
+
+Следующий этап:
+`READ-ONLY AUDIT OF EXISTING WORDPRESS INSTALLATION`
+
+Target:
+`D:\OpenServer\domains\limitlesscreators`
+
+Purpose:
+понять, что можно безопасно сохранить и переиспользовать перед проектированием новой theme architecture.
+
+Do NOT begin implementation until the audit is reviewed. Do NOT create a new theme before the audit.
+
+Audit must determine:
+
+1. WordPress version and environment structure.
+2. Active theme.
+3. Installed/active plugins.
+4. Whether WordPress core appears standard.
+5. Existing custom themes/plugins.
+6. Where CPTs are registered.
+7. Where taxonomies are registered.
+8. Existing post types.
+9. Existing taxonomy terms.
+10. Existing permalink/rewrite structure.
+11. Existing ACF field groups.
+12. Whether ACF fields are stored through admin, PHP registration, `acf-json` or mixed.
+13. Existing Rank Math configuration relevant to theme migration.
+14. Existing redirect implementation: Rank Math, Redirection plugin, `.htaccess`, custom PHP or other.
+15. Existing form stack.
+16. Existing scripts/styles/assets that contain business logic worth retaining.
+17. Existing theme functions that must survive theme switch.
+18. Anything theme-dependent that would disappear when old theme is deactivated.
+19. Current WP content that should map into the new frontend.
+20. Risks before theme switch.
+
+The audit is read-only. Do not change the WordPress project during the audit.
+
+## Current roadmap
+
+1. Static homepage W3C baseline - COMPLETE.
+2. Update project documentation - CURRENT.
+3. Read-only audit of existing local WordPress.
+4. Approve WordPress integration architecture.
+5. Decide theme vs site-plugin responsibility boundaries.
+6. Create new theme scaffold inside existing WP installation.
+7. Integrate global components: header, navigation, footer, modals/forms, cookie UI, background/canvas system.
+8. Integrate core static pages.
+9. Integrate Services CPT/taxonomy system.
+10. Map/migrate existing service records to approved frontend templates.
+11. Integrate Industry pages.
+12. Integrate Ready Sites architecture.
+13. Integrate portfolio/cases.
+14. Integrate articles.
+15. Integrate about/contacts/FAQ/conditions/brief/search/404 and other utility templates.
+16. Reuse/migrate ACF and existing data.
+17. Integrate forms and required business logic.
+18. Integrate supplied approved SEO/content materials when available.
+19. Rank Math / metadata / canonical / schema / sitemap / robots / `llms.txt`.
+20. W3C validation of generated WordPress templates.
+21. Accessibility and performance QA.
+22. Redirect/URL migration verification.
+23. Final production migration/release QA.
+
+Do not include Wordstat, semantic discovery, clustering or keyword mapping as Codex development roadmap stages. Those belong to the separate content workflow unless the user supplies approved output to implement.
 
 ## Important current constraints
 
-- Рабочая ветка: только `redesign-2026`.
+- Рабочая ветка frontend reference: only `redesign-2026`.
 - `origin/main` не изменять.
-- Source of truth по портфолио: `_reference/portfolio/`.
-- Public production URLs are defined by current production `https://limitlesscreators.ru/`, not by static filenames.
-- Existing production service paths must be preserved 1:1; static filenames are only frontend prototype files.
-- New service URLs without legacy production paths are created only after an explicit user requirement; `Доработка сайта` uses `/services/development/dorabotka-sajta/`.
-- Future WordPress services integration must preserve current production paths and map CPT/taxonomy output to those URLs.
+- Frontend source of truth: `app/`.
+- `_reference/` remains source of truth where applicable.
+- Existing WordPress target: `D:\OpenServer\domains\limitlesscreators`.
+- Do not modify the WordPress installation without a specific implementation task.
+- Production URLs from `https://limitlesscreators.ru/` must be preserved unless explicitly changed by the user.
+- Existing redirects must be audited before changing them.
 - Static breadcrumbs не перерабатывать без отдельного задания.
 - В WordPress breadcrumbs выводятся через `rank_math_the_breadcrumbs()`.
-- Future services WordPress architecture: услуги реализуются через CPT услуг, `services.html` становится reference для archive template, taxonomy prototype pages становятся reference для taxonomy archive templates, списки услуг выводятся динамически по taxonomy term. Точные post type / taxonomy slugs брать из существующей WordPress-архитектуры, не придумывать.
-- Portrait face/appearance нельзя изменять.
+- Portrait face/appearance нельзя изменять; protected portrait assets remain protected.
+- `#bg_container.bg_container` and `canvas#gradient-canvas` remain protected shared art-system elements.
 - Не считать существование файла признаком завершенности этапа: сверяться с Git history и фактическим состоянием.
+- QA defaults to code-level verification. Browser QA / Playwright / screenshots are not automatic.
 - QA artifacts сохранять до user review, кроме папок, которые пользователь явно разрешил удалить.
 
-## Individual service extended content architecture
+## Services WordPress architecture
 
-- Confirmed source of truth from the user / author of the old site: the old production `taxonomy--idea` content on service pages was rendered through the standard WordPress editor output, `the_content()`.
-- Future individual service pages use the standard WordPress post editor for extended editorial / SEO content, then render it with `the_content()`.
-- Structural UI blocks stay separate from `the_content()`: hero, fit, work, process, result, cases, related services, articles and contacts remain dedicated template components.
-- Extended editorial content is rendered inside the generic `service-single-content` section:
+Known/confirmed existing architecture includes:
+
+- post type: `services`;
+- taxonomies: `service_category`, `service_tag`.
+
+Do not invent alternate slugs without inspecting the actual local WordPress project.
+
+Static references:
+
+- `app/services.html` -> future service archive reference.
+- `app/services-taxonomy-dev.html`, `app/services-taxonomy-seo.html`, `app/services-taxonomy-branding.html`, `app/services-taxonomy-reklama.html` -> taxonomy archive references.
+- Individual service static pages -> future single service references.
+
+Ready Sites is special: do not automatically force Ready Sites into the same `/services/` URL architecture.
+
+WordPress individual services should use current real records where they already exist. Do not create duplicate service entries blindly. First map existing WordPress record -> taxonomy -> production URL -> approved static reference.
+
+## Service extended content architecture
+
+Confirmed source of truth from the user / author of the old site: old production service extended content was rendered through the standard WordPress editor output, `the_content()`.
+
+Future individual service pages use the standard WordPress post editor for extended editorial / SEO content, then render it with `the_content()`.
+
+Structural UI blocks stay separate from `the_content()`: hero, fit, work, process, result, cases, related services, articles and contacts remain dedicated template components.
+
+Reference structure:
 
 ```php
 <section class="section service-single-content">
@@ -132,9 +206,42 @@ Stop after the development category rollout checkpoint. Do not start SEO, brandi
 </section>
 ```
 
-- Empty post content means the entire `service-single-content` section is not rendered: no empty section, wrapper, heading, padding or divider should appear.
-- Checking whether content exists must be handled correctly in the future WordPress theme before rendering the section; the public output remains the standard `the_content()`, not a custom field replacement.
-- The current static HTML is only the frontend reference. PHP implementation stays in the separate later WordPress integration stage.
+Empty post content means the entire `service-single-content` section is not rendered: no empty section, wrapper, heading, padding or divider should appear.
+
+Do not replace editor content with ACF without explicit architectural reason.
+
+## Existing WordPress facts and unknowns
+
+Confirmed:
+
+- Existing WordPress local path: `D:\OpenServer\domains\limitlesscreators`.
+- Existing production: `https://limitlesscreators.ru/`.
+- This existing installation is the integration target.
+
+To inspect and preserve where valid:
+
+- redirects;
+- content;
+- CPT registrations;
+- taxonomy registrations;
+- ACF field groups/data;
+- Rank Math configuration/data;
+- plugin configuration;
+- permalink/rewrite behavior;
+- existing relations between posts/terms;
+- other production business logic.
+
+Do not state exact active theme, WordPress version, plugin list, ACF architecture, redirect plugin, number of WP records, database structure, theme folder name or site-plugin requirement before the audit.
+
+## SEO / content boundary
+
+Codex does not independently run Wordstat, semantic research, demand/frequency collection, SERP keyword strategy, clustering, keyword -> URL mapping, cannibalization planning or semantic SEO copy generation in this development project.
+
+Those activities are handled separately by the user and ChatGPT in «Контент для моего сайта». Codex implements approved output from that workflow when supplied.
+
+Codex may implement technical SEO: semantic HTML, canonicals, Rank Math integration, schema when specified, breadcrumbs, sitemap, robots, metadata, redirects, supplied internal-link mappings and technical indexability rules.
+
+Existing rollout service texts remain `APPROVED STRUCTURE / DRAFT SEO COPY` unless final SEO/content work has been supplied.
 
 ## Portrait assets
 
