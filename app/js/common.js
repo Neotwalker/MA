@@ -1384,6 +1384,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	function initSiteSearch(root) {
 		const form = root.querySelector('[data-site-search-form]');
 		const input = root.querySelector('[data-site-search-input]');
+		const combobox = root.querySelector('[data-site-search-combobox]') || input;
 		const dropdown = root.querySelector('[data-site-search-dropdown]');
 		const status = root.querySelector('[data-site-search-status]');
 		const list = root.querySelector('[data-site-search-list]');
@@ -1418,7 +1419,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		function setDropdownOpen(isOpen) {
 			dropdown.hidden = !isOpen;
-			input.setAttribute('aria-expanded', String(isOpen));
+			combobox.setAttribute('aria-expanded', String(isOpen));
 			if (!isOpen) {
 				activeIndex = -1;
 				input.removeAttribute('aria-activedescendant');

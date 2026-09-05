@@ -80,7 +80,7 @@
 							</svg>
 						</button>
 						<a class="header-phone" href="tel:+79617968186" aria-label="Позвонить Марату Абзалову">+7 (961) 796-81-86</a>
-						<div class="header-socials" aria-label="Социальные сети">
+						<nav class="header-socials" aria-label="Социальные сети">
 							<a class="header-social" href="https://t.me/limitlesscreators" target="_blank" rel="noopener" aria-label="Написать Марату Абзалову в Telegram">
 								<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
 									<path d="M17.7 3.3L15.2 16.2C15 17 14.6 17.2 13.9 16.8L10.1 13.9L8.3 15.7C8.1 15.9 7.9 16.1 7.5 16.1L7.8 12.1L15 5.5C15.3 5.2 14.9 5 14.5 5.3L5.6 10.9L1.8 9.7C1 9.5 1 8.9 1.9 8.5L16.8 2.8C17.5 2.5 18 2.9 17.7 3.3Z" fill="currentColor" />
@@ -91,7 +91,7 @@
 									<path d="M10.8 14.8C5.8 14.8 3 11.4 2.9 5.7H5.4C5.5 9.9 7.3 11.6 8.6 12V5.7H11V9.3C12.3 9.2 13.6 7.4 14.1 5.7H16.6C16.2 7.9 14.4 9.6 13.2 10.3C14.4 10.9 16.4 12.4 17.2 14.8H14.5C14 13.1 12.8 11.8 11 11.6V14.8H10.8Z" fill="currentColor" />
 								</svg>
 							</a>
-						</div>
+						</nav>
 						<a href="#modal_general" class="header-cta button button--primary button--gradient modal--open" data-modal-target="#modal_general"><span>Обсудить проект</span></a>
 						<button class="burger" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Открыть меню">
 							<span class="burger__line"></span>
@@ -151,9 +151,9 @@
 					<a class="header-services-menu__cta modal--open" href="#modal_general" data-modal-target="#modal_general">Не знаете, какой формат нужен? Рассказать о задаче →</a>
 				</div>
 				<div class="header-search-panel site-search site-search--header" id="header-search-panel" role="search" aria-hidden="true" inert data-site-search data-search-context="header" data-search-limit="7">
-					<form class="header-search-form site-search__form" action="search.html" method="get" data-site-search-form>
+					<form class="header-search-form site-search__form" action="search.html" method="get" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="header-search-results" aria-label="Поиск по сайту" data-site-search-form data-site-search-combobox>
 						<label class="visually-hidden" for="header-search-input">Поиск по сайту</label>
-						<input class="header-search-form__input site-search__input" type="search" name="q" id="header-search-input" autocomplete="off" enterkeyhint="search" placeholder="Услуга, проект или статья" role="combobox" aria-expanded="false" aria-controls="header-search-results" aria-autocomplete="list" data-site-search-input>
+						<input class="header-search-form__input site-search__input" type="search" name="q" id="header-search-input" autocomplete="off" enterkeyhint="search" placeholder="Услуга, проект или статья" aria-controls="header-search-results" aria-autocomplete="list" data-site-search-input>
 						<button class="header-search-form__submit site-search__submit" type="submit" data-site-search-submit>Найти</button>
 						<button class="header-search-form__close" type="button" aria-label="Закрыть поиск" data-site-search-close>
 							<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
@@ -209,14 +209,14 @@
 					</li>
 				</ul>
 				<a href="#modal_general" class="mobile-navigation__cta button button--primary button--gradient modal--open" data-modal-target="#modal_general"><span>Обсудить проект</span></a>
-				<div class="mobile-navigation__contacts" aria-label="Контакты">
-					<div class="mobile-navigation__contacts-title">Связаться со мной</div>
+				<section class="mobile-navigation__contacts" aria-labelledby="mobile-navigation-contacts-title">
+					<h2 class="mobile-navigation__contacts-title" id="mobile-navigation-contacts-title">Связаться со мной</h2>
 					<a class="mobile-navigation__contact mobile-navigation__contact--phone" href="tel:+79617968186"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M5.1 2.2L6.7 5.8L5.5 7C6.4 8.9 8 10.5 10 11.5L11.2 10.3L14.8 11.9L14.2 14.8C14 15.5 13.4 16 12.7 16C6.8 16 2 11.2 2 5.3C2 4.6 2.5 4 3.2 3.8L5.1 2.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg><span class="mobile-navigation__contact-text">+7 (961) 796-81-86</span></a>
 					<a class="mobile-navigation__contact mobile-navigation__contact--email" href="mailto:info@limitlesscreators.ru"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M3 4.5H15V13.5H3V4.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /><path d="M3.5 5L9 9.5L14.5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg><span class="mobile-navigation__contact-text">info@limitlesscreators.ru</span></a>
 					<a class="mobile-navigation__contact mobile-navigation__contact--telegram" href="https://t.me/limitlesscreators" target="_blank" rel="noopener"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M15.8 3.1L13.6 14.7C13.4 15.4 13 15.5 12.4 15.2L9 12.6L7.4 14.1C7.2 14.3 7 14.4 6.7 14.4L7 10.9L13.4 5C13.7 4.8 13.3 4.6 13 4.8L5 9.8L1.6 8.7C.9 8.5.9 8 1.7 7.6L15 2.5C15.6 2.3 16 2.6 15.8 3.1Z" fill="currentColor" /></svg><span class="mobile-navigation__contact-text">Написать в Telegram</span></a>
 					<a class="mobile-navigation__contact" href="https://t.me/limitlesscreatorsweb" target="_blank" rel="noopener"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M3 10.2V7.8L12.8 4V14L3 10.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /><path d="M5.3 10.6L6.2 14H8.2L7 11.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg><span class="mobile-navigation__contact-text">Telegram-канал</span></a>
 					<a class="mobile-navigation__contact" href="https://vk.com/limitlesscreatorsweb" target="_blank" rel="noopener"><svg class="mobile-navigation__contact-icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M9.6 13.2C5.2 13.2 2.8 10.2 2.7 5.2H5C5.1 8.9 6.6 10.4 7.8 10.7V5.2H10V8.4C11.1 8.3 12.2 6.8 12.7 5.2H15C14.6 7.1 13 8.6 12 9.2C13 9.7 14.8 11 15.5 13.2H13.1C12.6 11.7 11.5 10.6 10 10.4V13.2H9.6Z" fill="currentColor" /></svg><span class="mobile-navigation__contact-text">ВКонтакте</span></a>
-				</div>
+				</section>
 			</div>
 		</nav>
 	</header>
@@ -571,7 +571,7 @@
 									<span class="form-field__error" id="service-single-contact-message-error" aria-live="polite"></span>
 								</div>
 								<div class="radio--button form-field form-field--consent form-consent">
-									<span class="form-consent__control"><input class="custom--check form-consent__input" type="checkbox" id="service-single-contact-consent" name="check1" required aria-required="true" aria-invalid="false" aria-describedby="service-single-contact-consent-error"><label class="form-consent__toggle" for="service-single-contact-consent" aria-label="Подтвердить согласие"></label></span>
+									<span class="form-consent__control"><input class="custom--check form-consent__input" type="checkbox" id="service-single-contact-consent" name="check1" required aria-invalid="false" aria-describedby="service-single-contact-consent-error"><label class="form-consent__toggle" for="service-single-contact-consent"></label></span>
 									<p class="form-consent__text"><label class="form-consent__label" for="service-single-contact-consent">Я соглашаюсь с обработкой персональных данных и принимаю</label> <a class="form-consent__link" href="https://limitlesscreators.ru/privacy-policy/" target="_blank" rel="noopener">Политику конфиденциальности</a>.</p>
 									<span class="form-field__error" id="service-single-contact-consent-error" aria-live="polite"></span>
 								</div>
@@ -642,8 +642,9 @@
 							<li><a href="sitemap.html">Карта сайта</a></li>
 						</ul>
 					</nav>
-					<address class="site-footer__contacts">
-						<h2 class="site-footer__heading">Контакты</h2>
+					<section class="site-footer__contacts" aria-labelledby="site-footer-contacts-title">
+						<h2 class="site-footer__heading" id="site-footer-contacts-title">Контакты</h2>
+						<address class="site-footer__contacts-address">
 						<ul class="site-footer__contact-list">
 							<li><a href="tel:+79617968186">+7 (961) 796-81-86</a></li>
 							<li><a href="mailto:info@limitlesscreators.ru">info@limitlesscreators.ru</a></li>
@@ -677,6 +678,7 @@
 							</li>
 						</ul>
 					</address>
+					</section>
 				</div>
 				<div class="site-footer__bottom">
 					<p class="site-footer__copyright">© 2018–2026 Марат Абзалов</p>
@@ -726,7 +728,7 @@
 					<span class="form-field__error" id="modal-contact-message-seo-yandex-error" aria-live="polite"></span>
 				</div>
 				<div class="form-field form-field--consent form-consent">
-					<span class="wpcf7-form-control-wrap form-consent__control" data-name="check"><input class="custom--check wpcf7-form-control form-consent__input" type="checkbox" id="modal-contact-consent" name="check" required aria-required="true" aria-invalid="false" aria-describedby="modal-contact-consent-error"><label class="form-consent__toggle" for="modal-contact-consent" aria-label="Подтвердить согласие"></label></span>
+					<span class="wpcf7-form-control-wrap form-consent__control" data-name="check"><input class="custom--check wpcf7-form-control form-consent__input" type="checkbox" id="modal-contact-consent" name="check" required aria-invalid="false" aria-describedby="modal-contact-consent-error"><label class="form-consent__toggle" for="modal-contact-consent"></label></span>
 					<p class="form-consent__text"><label class="form-consent__label" for="modal-contact-consent">Я соглашаюсь с обработкой персональных данных и принимаю</label> <a class="form-consent__link" href="https://limitlesscreators.ru/privacy-policy/" target="_blank" rel="noopener">Политику конфиденциальности</a>.</p>
 					<span class="form-field__error" id="modal-contact-consent-error" aria-live="polite"></span>
 				</div>
@@ -787,16 +789,16 @@
 					</div>
 					<span class="cookie-preferences__status">Всегда активно</span>
 				</div>
-				<label class="cookie-preferences__option cookie-preferences__option--toggle" for="cookie-analytics-toggle">
+				<div class="cookie-preferences__option cookie-preferences__option--toggle">
 					<div>
-						<h3 class="cookie-preferences__option-title">Аналитика</h3>
+						<h3 class="cookie-preferences__option-title"><label for="cookie-analytics-toggle">Аналитика</label></h3>
 						<p>Яндекс Метрика и Вебвизор будут подключаться только при включённом согласии.</p>
 					</div>
 					<span class="cookie-preferences__switch">
 						<input id="cookie-analytics-toggle" class="cookie-preferences__checkbox" type="checkbox">
 						<span class="cookie-preferences__switch-ui" aria-hidden="true"></span>
 					</span>
-				</label>
+				</div>
 			</div>
 			<div class="cookie-preferences__actions">
 				<button class="cookie-preferences__save" type="button">Сохранить выбор</button>
