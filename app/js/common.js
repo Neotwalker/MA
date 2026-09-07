@@ -913,19 +913,29 @@ document.addEventListener("DOMContentLoaded", () => {
 		const article = document.querySelector('[data-article-single]');
 		if (!toc || !article) return;
 
-		const links = Array.from(document.querySelectorAll('.article-toc a[href^="#"], .article-toc-mobile a[href^="#"]'));
+		const links = Array.from(document.querySelectorAll('.article-toc a[href^="#"]'));
 		const entries = links
 			.map(link => {
-				const id = decodeURIComponent(link.getAttribute('href') || '').replace(/^#/, '');
-				const section = id ? document.getElementById(id) : null;
-				return section ? { id, link, section } : null;
+				const rawId = (link.getAttribute('href') || '').replace(/^#/, '');
+				if (!rawId) return null;
+
+				let section = document.getElementById(rawId);
+				if (!section) {
+					try {
+						const decodedId = decodeURIComponent(rawId);
+						section = decodedId !== rawId ? document.getElementById(decodedId) : null;
+					} catch (error) {
+						section = null;
+					}
+				}
+
+				return section?.id ? { id: section.id, link, section } : null;
 			})
 			.filter(Boolean);
 		if (!entries.length) return;
 
 		const sections = Array.from(new Map(entries.map(entry => [entry.id, entry.section])).entries())
 			.map(([id, section]) => ({ id, section }));
-		const mobileToc = document.querySelector('.article-toc-mobile');
 		let activeRaf = 0;
 
 		const setActive = (id) => {
@@ -934,8 +944,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				const isVisible = Boolean(entry.link.offsetWidth || entry.link.offsetHeight || entry.link.getClientRects().length);
 				if (entry.id === id && isVisible) {
 					entry.link.setAttribute('aria-current', 'true');
+					entry.link.classList.add('is-active');
 				} else {
 					entry.link.removeAttribute('aria-current');
+					entry.link.classList.remove('is-active');
 				}
 			});
 		};
@@ -989,14 +1001,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		links.forEach(link => {
 			link.addEventListener('click', () => {
-				const id = decodeURIComponent(link.getAttribute('href') || '').replace(/^#/, '');
-				setActive(id);
+				const rawId = (link.getAttribute('href') || '').replace(/^#/, '');
+				let section = document.getElementById(rawId);
+				if (!section) {
+					try {
+						const decodedId = decodeURIComponent(rawId);
+						section = decodedId !== rawId ? document.getElementById(decodedId) : null;
+					} catch (error) {
+						section = null;
+					}
+				}
+				if (section?.id) setActive(section.id);
 				window.setTimeout(queueActiveUpdate, 450);
 			});
 		});
 		window.addEventListener('scroll', queueActiveUpdate, { passive: true });
 		window.addEventListener('resize', queueActiveUpdate);
-		mobileToc?.addEventListener('toggle', queueActiveUpdate);
 		queueActiveUpdate();
 	}());
 
