@@ -7984,6 +7984,8 @@ body.cookie-banner-visible
 		min-height: 0
 		overflow: hidden
 		padding: 0 var(--faq-item-pad-right) 0 var(--faq-item-pad-left)
+		padding-bottom: 0
+		transition: padding-bottom .28s ease
 		color: color.adjust($white, $alpha: -.22)
 		font-size: 18px
 		line-height: 1.62
@@ -8185,6 +8187,7 @@ body.cookie-banner-visible
 	.faq-item__icon::before,
 	.faq-item__icon::after,
 	.faq-item__answer,
+	.faq-item__answer-inner,
 	.contacts-list__item,
 	.contacts-list__item::before,
 	.contacts-list__action span
@@ -10740,8 +10743,11 @@ figure
 	ul, ol
 		padding-left: 30px
 		li
-			&:not(:last-child)
-				margin-bottom: 15px
+			> p:only-child
+				margin: 0
+			> ul,
+			> ol
+				margin-top: 15px
 			b
 				display: block
 	a
