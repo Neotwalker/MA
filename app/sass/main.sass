@@ -3283,7 +3283,7 @@ body.cookie-banner-visible
 	.portfolio-archive
 		position: relative
 		padding-top: 132px
-		padding-bottom: 110px
+		padding-bottom: 72px
 		overflow: hidden
 		.row
 			display: block
@@ -3331,7 +3331,7 @@ body.cookie-banner-visible
 			justify-content: space-between
 			gap: 32px
 			margin-top: 64px
-			margin-bottom: 70px
+			margin-bottom: 0
 			padding: 30px 34px
 			background-color: color.adjust($blockGlass, $alpha: -.08)
 			border: 1px solid color.adjust($white, $alpha: -.84)
@@ -3431,12 +3431,8 @@ body.cookie-banner-visible
 			grid-template-columns: repeat(3, minmax(0, 1fr))
 			gap: 24px
 			align-items: stretch
-			&[data-filtered-count="1"]
-				max-width: 760px
-				grid-template-columns: minmax(0, 1fr)
-			&[data-filtered-count="2"]
-				grid-template-columns: repeat(2, minmax(0, 1fr))
-			&[data-filtered-count="3"]
+			&[data-filtered-count="1"], &[data-filtered-count="2"], &[data-filtered-count="3"]
+				max-width: none
 				grid-template-columns: repeat(3, minmax(0, 1fr))
 			.portfolio-card
 				grid-column: auto
