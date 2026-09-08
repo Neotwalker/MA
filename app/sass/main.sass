@@ -10148,7 +10148,7 @@ figure
 				opacity: 1
 				transition-delay: .3s
 
-.case-study-page
+.main.case-study-page
 	--case-page-gutter: clamp(32px, 4.16vw, 80px)
 	--case-layout-gap: clamp(42px, 3.8vw, 74px)
 	--case-rail-width: clamp(188px, 12vw, 240px)
@@ -10166,7 +10166,7 @@ figure
 
 .case-study-hero
 	position: relative
-	padding: 132px 0 82px
+	padding: 132px 0 64px
 	overflow: hidden
 	&::before
 		content: ''
@@ -10198,6 +10198,7 @@ figure
 		font-size: clamp(54px, 3.65vw, 70px)
 		font-weight: 800
 		line-height: 1.03
+		text-wrap: balance
 	&__lead
 		max-width: 820px
 		margin-bottom: 30px
@@ -10287,7 +10288,7 @@ figure
 			line-height: 1.45
 
 .case-study-story
-	padding: 76px 0 50px
+	padding: 60px 0 42px
 	.row
 		display: block
 	&__layout
@@ -10386,7 +10387,7 @@ figure
 	grid-template-columns: clamp(64px, 4.8vw, 92px) minmax(0, 1fr)
 	gap: clamp(24px, 2vw, 36px)
 	scroll-margin-top: 120px
-	padding: 72px 0
+	padding: 54px 0
 	border-top: 1px solid color.adjust($white, $alpha: -.86)
 	&:first-child
 		padding-top: 0
@@ -10426,7 +10427,7 @@ figure
 
 .case-study-facts
 	display: grid
-	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
+	grid-template-columns: repeat(4, minmax(0, 1fr))
 	gap: 0
 	margin-top: 34px
 	padding: 0
@@ -10485,7 +10486,7 @@ figure
 
 .case-study-decision
 	display: grid
-	grid-template-columns: minmax(190px, .25fr) minmax(420px, 1fr) minmax(260px, .36fr)
+	grid-template-columns: minmax(190px, .4fr) minmax(420px, .6fr)
 	gap: 26px
 	align-items: start
 	padding: 24px 0
@@ -10500,8 +10501,9 @@ figure
 		font-size: 24px
 		font-weight: 800
 		line-height: 1.18
-		overflow-wrap: anywhere
-		word-break: break-word
+		overflow-wrap: normal
+		word-break: normal
+		hyphens: none
 	p
 		margin: 0
 		color: color.adjust($white, $alpha: -.15)
@@ -10509,10 +10511,18 @@ figure
 		line-height: 1.55
 	span
 		display: block
+		grid-column: 2
 		color: color.adjust($white, $alpha: -.36)
 		font-size: 15px
 		font-weight: 700
 		line-height: 1.45
+
+.main.case-study-page
+	.case-study-decision
+		h3
+			overflow-wrap: normal
+			word-break: normal
+			hyphens: none
 
 .case-study-screenwalk
 	display: grid
@@ -10614,7 +10624,7 @@ figure
 			transform: translateY(-50%)
 
 .case-study-next
-	padding: 40px 0 110px
+	padding: 32px 0 88px
 	.row
 		display: block
 	&__layout
@@ -10678,6 +10688,10 @@ figure
 		border: 1px solid color.adjust($white, $alpha: -.84)
 		border-radius: 8px
 		text-decoration: none
+		picture
+			display: block
+			width: 100%
+			height: 100%
 		img
 			width: 100%
 			height: 100%
@@ -10692,6 +10706,12 @@ figure
 		&:focus-visible
 			outline: 2px solid color.adjust($accent, $alpha: -.18)
 			outline-offset: 4px
+	&--text-only
+		.case-study-next__layout
+			grid-template-columns: minmax(0, 760px)
+			max-width: 900px
+		.case-study-next__content
+			padding: 24px 0 8px
 
 .case-study-cta
 	display: flex

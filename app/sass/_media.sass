@@ -4873,21 +4873,22 @@
 			line-height: 1
 
 @media (max-width : 1680px)
-	.case-study-page
+	.main.case-study-page
 		--case-page-gutter: clamp(40px, 4vw, 68px)
 		--case-layout-gap: clamp(48px, 3.4vw, 62px)
 		--case-rail-width: clamp(176px, 11vw, 220px)
+		gap: 0
 	.case-study-hero
 		padding-top: 132px
-		padding-bottom: 72px
+		padding-bottom: 60px
 		&__grid
 			grid-template-columns: minmax(620px, .98fr) minmax(520px, 1.02fr)
 	.case-study-story
-		padding-top: 68px
+		padding-top: 58px
 	.case-chapter
-		padding: 68px 0
+		padding: 54px 0
 	.case-study-decision
-		grid-template-columns: minmax(170px, .24fr) minmax(380px, 1fr) minmax(230px, .34fr)
+		grid-template-columns: minmax(190px, .4fr) minmax(420px, .6fr)
 		gap: 22px
 	.case-study-screenwalk
 		grid-template-columns: minmax(300px, .34fr) minmax(560px, .66fr)
@@ -4897,14 +4898,17 @@
 			grid-template-columns: minmax(360px, .38fr) minmax(560px, .62fr)
 
 @media (max-width : 1440px)
-	.case-study-page
+	.main.case-study-page
 		--case-page-gutter: clamp(44px, 4.2vw, 60px)
 		--case-layout-gap: 42px
 		--case-rail-width: 176px
+		gap: 0
 		.breadcrumbs
 			margin-bottom: 38px
+	.case-study-facts
+		grid-template-columns: repeat(3, minmax(0, 1fr))
 	.case-study-hero
-		padding-bottom: 64px
+		padding-bottom: 56px
 		&__grid
 			grid-template-columns: minmax(660px, 1.08fr) minmax(460px, .92fr)
 			gap: 36px
@@ -4912,14 +4916,14 @@
 			dd
 				font-size: 16px
 	.case-chapter
-		padding: 64px 0
+		padding: 52px 0
 		&__marker
 			font-size: 48px
 		&__lead,
 		&__text
 			font-size: 19px
 	.case-study-decision
-		grid-template-columns: minmax(170px, .25fr) minmax(360px, 1fr) minmax(220px, .34fr)
+		grid-template-columns: minmax(180px, .4fr) minmax(390px, .6fr)
 	.case-study-screenwalk
 		grid-template-columns: minmax(300px, .36fr) minmax(520px, .64fr)
 	.case-study-next
@@ -4929,8 +4933,9 @@
 			font-size: 40px
 
 @media (max-width : 1399px)
-	.case-study-page
+	.main.case-study-page
 		--case-page-gutter: clamp(42px, 4.3vw, 58px)
+		gap: 0
 	.case-study-hero
 		&__grid
 			grid-template-columns: minmax(0, 1fr)
@@ -4952,7 +4957,7 @@
 	.case-chapter
 		grid-template-columns: 64px minmax(0, 1fr)
 	.case-study-decision
-		grid-template-columns: minmax(180px, .26fr) minmax(420px, 1fr) minmax(250px, .34fr)
+		grid-template-columns: minmax(180px, .4fr) minmax(420px, .6fr)
 	.case-study-next
 		&__layout
 			grid-template-columns: minmax(340px, .36fr) minmax(620px, .64fr)
@@ -4995,23 +5000,24 @@
 
 @media (max-width : 1023px)
 	.case-study-story
-		padding-top: 56px
+		padding-top: 48px
 	.case-chapter
 		grid-template-columns: minmax(0, 1fr)
 		gap: 16px
-		padding: 56px 0
+		padding: 46px 0
 		&__title
 			font-size: 36px
 @media (max-width : 767px)
-	.case-study-page
+	.main.case-study-page
 		--case-page-gutter: 16px
+		gap: 0
 		overflow-x: hidden
 		background-image: linear-gradient(120deg, color.adjust($red, $alpha: -.96), color.adjust($black, $alpha: -1) 46%)
 		.breadcrumbs
 			margin-bottom: 26px
 	.case-study-hero
 		padding-top: 104px
-		padding-bottom: 52px
+		padding-bottom: 40px
 		&__grid
 			gap: 30px
 		&__eyebrow
@@ -5042,12 +5048,12 @@
 			figcaption
 				font-size: 12px
 	.case-study-story
-		padding: 46px 0 34px
+		padding: 36px 0 30px
 	.case-chapter
 		grid-template-columns: minmax(0, 1fr)
 		gap: 14px
 		scroll-margin-top: 92px
-		padding: 48px 0
+		padding: 36px 0
 		&__marker
 			font-size: 38px
 		&__kicker
@@ -5097,8 +5103,8 @@
 		span
 			font-size: 12px
 	.case-study-next
-		padding-top: 26px
-		padding-bottom: 72px
+		padding-top: 22px
+		padding-bottom: 64px
 		&__layout
 			gap: 24px
 			margin-bottom: 34px
@@ -5138,22 +5144,28 @@
 				object-fit: cover
 				object-position: center top
 
+@media (max-width : 480px)
+	.case-study-hero
+		&__title
+			font-size: 32px
+
 @media (max-width : 390px)
-	.case-study-page
+	.main.case-study-page
+		gap: 0
 		.breadcrumbs
 			margin-bottom: 22px
 		> .case-study-hero
 			padding-top: 104px
 	.case-study-hero
 		&__title
-			font-size: 36px
+			font-size: 30px
 		&__lead
 			font-size: 16px
 		&__meta
 			dd
 				font-size: 15px
 	.case-chapter
-		padding: 42px 0
+		padding: 34px 0
 		&__title
 			font-size: 29px
 	.case-study-facts
@@ -6697,6 +6709,8 @@
 		--page-top-offset: var(--breadcrumb-page-top-offset, 130px)
 		> :first-child
 			padding-top: var(--page-top-offset)
+	.main.case-study-page
+		gap: 0
 	.articles-archive
 		--blog-archive-hero-top: 44px
 	.article-hero
@@ -6718,6 +6732,8 @@
 		--page-top-offset: var(--breadcrumb-page-top-offset, 120px)
 		> :first-child
 			padding-top: var(--page-top-offset)
+	.main.case-study-page
+		gap: 0
 	.articles-archive
 		--blog-archive-hero-top: 34px
 	.article-hero
@@ -6748,6 +6764,8 @@
 		--page-top-offset: var(--breadcrumb-page-top-offset, 106px)
 		> :first-child
 			padding-top: var(--page-top-offset)
+	.main.case-study-page
+		gap: 0
 	.articles-archive
 		--blog-archive-hero-top: 18px
 	.article-hero
