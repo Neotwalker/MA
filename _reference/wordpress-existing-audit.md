@@ -4,7 +4,7 @@ Date: 2026-09-05
 
 Scope: read-only audit of the existing local WordPress installation before integrating the approved static redesign.
 
-Frontend reference repository: `C:\Users\and1m\Desktop\work\limitless-codex`
+Frontend reference repository: `C:\Users\and1m\Desktop\work\MA-project\limitless-codex`
 
 Existing WordPress target: `D:\OpenServer\domains\limitlesscreators`
 

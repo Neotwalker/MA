@@ -9,7 +9,7 @@ Frontend reference branch:
 `redesign-2026`
 
 Frontend reference path:
-`C:\Users\and1m\Desktop\work\limitless-codex`
+`C:\Users\and1m\Desktop\work\MA-project\limitless-codex`
 
 Existing WordPress integration target:
 `D:\OpenServer\domains\limitlesscreators`

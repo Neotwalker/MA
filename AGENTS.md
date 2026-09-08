@@ -13,7 +13,7 @@ Limitless Creators - прежнее название/обозначение ра
 ### Frontend reference repository
 
 Путь:
-`C:\Users\and1m\Desktop\work\limitless-codex`
+`C:\Users\and1m\Desktop\work\MA-project\limitless-codex`
 
 GitHub:
 `https://github.com/Neotwalker/MA/`

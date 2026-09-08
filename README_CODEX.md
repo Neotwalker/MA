@@ -1,7 +1,7 @@
 # Запуск проекта в Codex
 
 1. Открыть frontend reference repository:
-   `C:\Users\and1m\Desktop\work\limitless-codex`
+   `C:\Users\and1m\Desktop\work\MA-project\limitless-codex`
 2. Прочитать `AGENTS.md`.
 3. Прочитать `CODEX_TASK.md`.
 4. Проверить Git state:
