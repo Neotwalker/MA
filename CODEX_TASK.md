@@ -11,7 +11,7 @@ Frontend reference branch:
 Frontend reference path:
 `C:\Users\and1m\Desktop\work\MA-project\limitless-codex`
 
-Existing WordPress integration target:
+OpenServer runtime:
 `D:\OpenServer\domains\limitlesscreators`
 
 Production site:
@@ -88,7 +88,7 @@ Previous namespace `/services/ready-made-sites/...` superseded и не явля�
 Следующий этап:
 `READ-ONLY AUDIT OF EXISTING WORDPRESS INSTALLATION`
 
-Target:
+OpenServer runtime:
 `D:\OpenServer\domains\limitlesscreators`
 
 Purpose:
@@ -152,11 +152,10 @@ Do not include Wordstat, semantic discovery, clustering or keyword mapping as Co
 ## Important current constraints
 
 - Рабочая ветка frontend reference: only `redesign-2026`.
-- `origin/main` не изменять.
 - Frontend source of truth: `app/`.
 - `_reference/` remains source of truth where applicable.
-- Existing WordPress target: `D:\OpenServer\domains\limitlesscreators`.
-- Do not modify the WordPress installation without a specific implementation task.
+- Existing OpenServer runtime: `D:\OpenServer\domains\limitlesscreators`.
+- Do not modify the runtime without a specific approved runtime task.
 - Production URLs from `https://limitlesscreators.ru/` must be preserved unless explicitly changed by the user.
 - Existing redirects must be audited before changing them.
 - Static breadcrumbs не перерабатывать без отдельного задания.
@@ -214,9 +213,9 @@ Do not replace editor content with ACF without explicit architectural reason.
 
 Confirmed:
 
-- Existing WordPress local path: `D:\OpenServer\domains\limitlesscreators`.
+- Existing OpenServer runtime: `D:\OpenServer\domains\limitlesscreators`.
 - Existing production: `https://limitlesscreators.ru/`.
-- This existing installation is the integration target.
+- This existing OpenServer copy is runtime, not source.
 
 To inspect and preserve where valid:
 
