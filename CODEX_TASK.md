@@ -1,4 +1,15 @@
-# Текущее состояние проекта для Codex
+# Canonical historical/reference context for Codex
+
+> Historical / canonical reference only.
+>
+> This file does not define the current project task, migration roadmap,
+> operational rules, or Git workflow.
+>
+> Current operational rules:
+> `C:\Users\and1m\Desktop\work\MA-project\limitless-wp\wp-content\AGENTS.md`
+>
+> Current migration stage / next task:
+> `C:\Users\and1m\Desktop\work\MA-project\limitless-wp\wp-content\docs\REBRAND-MIGRATION-ROADMAP.md`
 
 ## Project
 
@@ -17,16 +28,14 @@ OpenServer runtime:
 Production site:
 `https://limitlesscreators.ru/`
 
-## Git checkpoint policy
+## Ownership
 
-- Exact current HEAD не хранится в этом файле, потому что изменение `CODEX_TASK.md` само создает новый commit.
-- Exact HEAD всегда определяется Git-командами.
-- `CODEX_TASK.md` описывает завершенные этапы, текущий checkpoint, следующий этап и актуальные ограничения.
-- Git history является source of truth для конкретных commits и фактического состояния проекта.
-- Pushed state можно дополнительно проверить в GitHub:
-  `https://github.com/Neotwalker/MA/tree/redesign-2026`
+- `CODEX_TASK.md` preserves canonical frontend history and technical reference context.
+- Exact HEAD and pushed state are determined through Git, not this file.
+- Current project stage, gates and next task are owned by the WordPress roadmap.
+- Project-wide operational and Git workflow rules are owned by the tracked WordPress `AGENTS.md`.
 
-## Current checkpoint
+## Canonical frontend reference checkpoint
 
 Static redesign:
 `STRUCTURALLY COMPLETE / APPROVED WORDPRESS REFERENCE`
@@ -83,79 +92,31 @@ Frame-houses page сейчас не существует и не должна с
 
 Previous namespace `/services/ready-made-sites/...` superseded и не является текущей production architecture.
 
-## Next task
+## Historical WordPress audit milestone
 
-Следующий этап:
-`READ-ONLY AUDIT OF EXISTING WORDPRESS INSTALLATION`
+Earlier planning listed `READ-ONLY AUDIT OF EXISTING WORDPRESS INSTALLATION`
+as the next active task.
 
-OpenServer runtime:
-`D:\OpenServer\domains\limitlesscreators`
+That audit and later integration architecture phases were completed later in
+the project. See Git history and the current WordPress roadmap for current
+state, sequence, gates and next task.
 
-Purpose:
-понять, что можно безопасно сохранить и переиспользовать перед проектированием новой theme architecture.
+## Migration roadmap owner
 
-Do NOT begin implementation until the audit is reviewed. Do NOT create a new theme before the audit.
+The active migration sequence, current stage, current batch, gates and next
+task are owned by:
 
-Audit must determine:
+`C:\Users\and1m\Desktop\work\MA-project\limitless-wp\wp-content\docs\REBRAND-MIGRATION-ROADMAP.md`
 
-1. WordPress version and environment structure.
-2. Active theme.
-3. Installed/active plugins.
-4. Whether WordPress core appears standard.
-5. Existing custom themes/plugins.
-6. Where CPTs are registered.
-7. Where taxonomies are registered.
-8. Existing post types.
-9. Existing taxonomy terms.
-10. Existing permalink/rewrite structure.
-11. Existing ACF field groups.
-12. Whether ACF fields are stored through admin, PHP registration, `acf-json` or mixed.
-13. Existing Rank Math configuration relevant to theme migration.
-14. Existing redirect implementation: Rank Math, Redirection plugin, `.htaccess`, custom PHP or other.
-15. Existing form stack.
-16. Existing scripts/styles/assets that contain business logic worth retaining.
-17. Existing theme functions that must survive theme switch.
-18. Anything theme-dependent that would disappear when old theme is deactivated.
-19. Current WP content that should map into the new frontend.
-20. Risks before theme switch.
+Do not reconstruct the current roadmap from historical sections in this file.
 
-The audit is read-only. Do not change the WordPress project during the audit.
-
-## Current roadmap
-
-1. Static homepage W3C baseline - COMPLETE.
-2. Update project documentation - CURRENT.
-3. Read-only audit of existing local WordPress.
-4. Approve WordPress integration architecture.
-5. Decide theme vs site-plugin responsibility boundaries.
-6. Create new theme scaffold inside existing WP installation.
-7. Integrate global components: header, navigation, footer, modals/forms, cookie UI, background/canvas system.
-8. Integrate core static pages.
-9. Integrate Services CPT/taxonomy system.
-10. Map/migrate existing service records to approved frontend templates.
-11. Integrate Industry pages.
-12. Integrate Ready Sites architecture.
-13. Integrate portfolio/cases.
-14. Integrate articles.
-15. Integrate about/contacts/FAQ/conditions/brief/search/404 and other utility templates.
-16. Reuse/migrate ACF and existing data.
-17. Integrate forms and required business logic.
-18. Integrate supplied approved SEO/content materials when available.
-19. Rank Math / metadata / canonical / schema / sitemap / robots / `llms.txt`.
-20. W3C validation of generated WordPress templates.
-21. Accessibility and performance QA.
-22. Redirect/URL migration verification.
-23. Final production migration/release QA.
-
-Do not include Wordstat, semantic discovery, clustering or keyword mapping as Codex development roadmap stages. Those belong to the separate content workflow unless the user supplies approved output to implement.
-
-## Important current constraints
+## Canonical technical/reference facts
 
 - Рабочая ветка frontend reference: only `redesign-2026`.
 - Frontend source of truth: `app/`.
 - `_reference/` remains source of truth where applicable.
 - Existing OpenServer runtime: `D:\OpenServer\domains\limitlesscreators`.
-- Do not modify the runtime without a specific approved runtime task.
+- Runtime rules are owned by the tracked WordPress `AGENTS.md`.
 - Production URLs from `https://limitlesscreators.ru/` must be preserved unless explicitly changed by the user.
 - Existing redirects must be audited before changing them.
 - Static breadcrumbs не перерабатывать без отдельного задания.
@@ -163,8 +124,6 @@ Do not include Wordstat, semantic discovery, clustering or keyword mapping as Co
 - Portrait face/appearance нельзя изменять; protected portrait assets remain protected.
 - `#bg_container.bg_container` and `canvas#gradient-canvas` remain protected shared art-system elements.
 - Не считать существование файла признаком завершенности этапа: сверяться с Git history и фактическим состоянием.
-- QA defaults to code-level verification. Browser QA / Playwright / screenshots are not automatic.
-- QA artifacts сохранять до user review, кроме папок, которые пользователь явно разрешил удалить.
 
 ## Services WordPress architecture
 
@@ -209,28 +168,11 @@ Empty post content means the entire `service-single-content` section is not rend
 
 Do not replace editor content with ACF without explicit architectural reason.
 
-## Existing WordPress facts and unknowns
+## Historical WordPress audit note
 
-Confirmed:
-
-- Existing OpenServer runtime: `D:\OpenServer\domains\limitlesscreators`.
-- Existing production: `https://limitlesscreators.ru/`.
-- This existing OpenServer copy is runtime, not source.
-
-To inspect and preserve where valid:
-
-- redirects;
-- content;
-- CPT registrations;
-- taxonomy registrations;
-- ACF field groups/data;
-- Rank Math configuration/data;
-- plugin configuration;
-- permalink/rewrite behavior;
-- existing relations between posts/terms;
-- other production business logic.
-
-Do not state exact active theme, WordPress version, plugin list, ACF architecture, redirect plugin, number of WP records, database structure, theme folder name or site-plugin requirement before the audit.
+Earlier versions of this file listed WordPress facts and unknowns before the
+initial audit. That pre-audit unknown list is historical. Use the WordPress
+roadmap, architecture docs and Git history for current WordPress source state.
 
 ## SEO / content boundary
 
