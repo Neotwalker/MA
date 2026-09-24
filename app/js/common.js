@@ -2066,6 +2066,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const fileInput = briefForm.querySelector('#brief-project-files');
 		const fileList = briefForm.querySelector('[data-brief-files-list]');
 		const fields = {
+			projectTypeOther: briefForm.querySelector('#brief-project-type-other-text'),
 			businessDescription: briefForm.querySelector('#brief-business-description'),
 			projectGoal: briefForm.querySelector('#brief-project-goal'),
 			clientName: briefForm.querySelector('#brief-client-name'),
@@ -2079,6 +2080,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			'contact-email': fields.contactEmail,
 			'contact-telegram': fields.contactTelegram,
 		};
+		const projectTypeOtherRequired = briefForm.querySelector('[data-brief-project-other-required]');
 		let isBriefLoading = false;
 		let draftTimer = null;
 
@@ -2168,7 +2170,22 @@ document.addEventListener("DOMContentLoaded", () => {
 		};
 		const updateProjectTypeOther = () => {
 			const selected = getCheckedGroupInput('project_type');
-			updateConditional('project-type-other', selected?.dataset.briefToggle === 'project-type-other');
+			const isOther = selected?.dataset.briefToggle === 'project-type-other';
+			updateConditional('project-type-other', isOther);
+
+			if (fields.projectTypeOther) {
+				fields.projectTypeOther.toggleAttribute('required', isOther);
+				if (isOther) {
+					fields.projectTypeOther.setAttribute('aria-required', 'true');
+				} else {
+					fields.projectTypeOther.removeAttribute('aria-required');
+					setFieldError(fields.projectTypeOther);
+				}
+			}
+
+			if (projectTypeOtherRequired) {
+				projectTypeOtherRequired.hidden = !isOther;
+			}
 		};
 		const updateCurrentSiteFields = () => {
 			const selected = getCheckedGroupInput('current_state');
@@ -2332,6 +2349,11 @@ document.addEventListener("DOMContentLoaded", () => {
 				const message = 'Выберите, что нужно сделать.';
 				setGroupError('project_type', 'brief-project-type-error', message);
 				errors.push({ target, label: 'Что нужно сделать', message });
+			} else if (
+				projectType.dataset.briefToggle === 'project-type-other' &&
+				!fields.projectTypeOther?.value.trim()
+			) {
+				pushFieldError(fields.projectTypeOther, 'Опишите другой формат задачи', 'Заполните это поле.');
 			}
 			if (!fields.businessDescription?.value.trim()) {
 				pushFieldError(fields.businessDescription, 'Чем занимается проект или бизнес', 'Заполните это поле.');
