@@ -2745,15 +2745,23 @@ body.cookie-banner-visible
 			padding: 42px 0 96px
 		.sitemap-grid
 			width: 100%
-			display: flex
-			align-items: flex-start
-			gap: 24px
+			display: grid
+			grid-template-columns: repeat(2, minmax(0, 1fr))
+			align-items: start
+			gap: 34px 24px
 		.sitemap-column
-			flex: 1 1 0
 			min-width: 0
 			display: flex
 			flex-direction: column
 			gap: 34px
+			&--primary
+				grid-column: 1
+				grid-row: 1
+			&--services
+				grid-column: 1 / -1
+				grid-row: 2
+			&--secondary
+				display: contents
 		.sitemap-group
 			width: 100%
 			min-width: 0
@@ -2772,6 +2780,19 @@ body.cookie-banner-visible
 				list-style: none
 				margin: 0
 				padding: 0
+			&--portfolio
+				grid-column: 2
+				grid-row: 1
+			&--blog
+				grid-column: 1 / -1
+				grid-row: 3
+			&--services,
+			&--blog
+				ul
+					display: grid
+					grid-template-columns: repeat(3, minmax(0, 1fr))
+					column-gap: 24px
+					row-gap: 2px
 		.sitemap-link
 			display: flex
 			align-items: center
@@ -6402,6 +6423,8 @@ body.cookie-banner-visible
 	#taxonomy-fit
 		scroll-margin-top: var(--taxonomy-anchor-offset)
 	.main--cases
+		&__block
+			align-items: flex-start
 		&__description
 			max-width: 760px
 			margin: -18px 0 34px
@@ -6414,6 +6437,7 @@ body.cookie-banner-visible
 		&__item
 			display: flex
 			flex-direction: column
+			align-self: flex-start
 			.text
 				padding-bottom: 24px
 				.h3
@@ -7992,9 +8016,57 @@ body.cookie-banner-visible
 			grid-column: 2
 		p
 			margin: 0 0 18px
+			font-size: inherit
+			line-height: inherit
+			&:last-child
+				margin-bottom: 0
+		ul,
+		ol
+			margin: 0 0 18px
+			padding-left: 1.35em
+			font-size: inherit
+			line-height: inherit
+			&:last-child
+				margin-bottom: 0
+		ul
+			list-style: disc
+		ol
+			list-style: decimal
+		li
+			margin: 0 0 8px
+			font-size: inherit
+			line-height: inherit
+			&:last-child
+				margin-bottom: 0
+			&::marker
+				color: color.adjust($white, $alpha: -.42)
+				font-size: .82em
+		span,
+		strong,
+		b,
+		em,
+		i
+			font-size: inherit
+			line-height: inherit
+		strong,
+		b
+			font-weight: 700
+			color: color.adjust($white, $alpha: -.08)
+		em,
+		i
+			font-style: italic
+		blockquote
+			margin: 0 0 18px
+			padding-left: 18px
+			border-left: 2px solid color.adjust($orange, $alpha: -.28)
+			color: color.adjust($white, $alpha: -.16)
+			font-size: inherit
+			line-height: inherit
 			&:last-child
 				margin-bottom: 0
 		a
+			font-size: inherit
+			line-height: inherit
 			color: $orange
 			font-weight: 700
 			text-decoration: underline
@@ -8168,8 +8240,8 @@ body.cookie-banner-visible
 			width: 30px
 			height: 30px
 		&__answer-inner
-			font-size: 16px
-			line-height: 1.58
+			font-size: 15px
+			line-height: 1.56
 
 @media (prefers-reduced-motion: reduce)
 	.work-conditions-nav a,

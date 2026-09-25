@@ -2548,6 +2548,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		let isBriefLoading = false;
 		let draftTimer = null;
 
+		const hasBriefTransportOwner = () => Boolean(briefForm.dataset.cf7Endpoint);
 		const hasBriefForm7Context = () => {
 			const hasCf7Api = typeof window.wpcf7 === 'object' && typeof window.wpcf7.submit === 'function';
 			const hasCf7Unit = Boolean(briefForm.querySelector('input[name="_wpcf7"], input[name="_wpcf7_unit_tag"]'));
@@ -2918,6 +2919,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 			if (!validateBriefForm()) {
 				e.preventDefault();
+				return;
+			}
+			if (hasBriefTransportOwner()) {
 				return;
 			}
 			if (!hasBriefForm7Context()) {
@@ -4789,8 +4793,11 @@ document.addEventListener("DOMContentLoaded", () => {
 				).filter(Boolean).map(normalizeColor)
 		}
 	}
-	var gradient = new Gradient;
-	gradient.initGradient("#gradient-canvas");
+	const gradientCanvas = document.querySelector("#gradient-canvas");
+	if (gradientCanvas) {
+		const gradient = new Gradient;
+		gradient.initGradient("#gradient-canvas");
+	}
 
 
 });

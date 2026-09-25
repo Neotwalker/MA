@@ -246,7 +246,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="sitemap-grid">
-						<div class="sitemap-column">
+						<div class="sitemap-column sitemap-column--primary">
 						<section class="sitemap-group" aria-labelledby="sitemap-main-pages">
 							<h2 id="sitemap-main-pages">Основные страницы</h2>
 							<ul>
@@ -266,8 +266,8 @@
 							</ul>
 						</section>
 						</div>
-						<div class="sitemap-column">
-						<section class="sitemap-group" aria-labelledby="sitemap-services-pages">
+						<div class="sitemap-column sitemap-column--services">
+						<section class="sitemap-group sitemap-group--services" aria-labelledby="sitemap-services-pages">
 							<h2 id="sitemap-services-pages">Услуги</h2>
 							<ul>
 								<li><a class="sitemap-link" href="services.html">Услуги</a></li>
@@ -311,14 +311,14 @@
 							</ul>
 						</section>
 						</div>
-						<div class="sitemap-column">
-						<section class="sitemap-group" aria-labelledby="sitemap-portfolio-pages">
+						<div class="sitemap-column sitemap-column--secondary">
+						<section class="sitemap-group sitemap-group--portfolio" aria-labelledby="sitemap-portfolio-pages">
 							<h2 id="sitemap-portfolio-pages">Портфолио</h2>
 							<ul>
 								<li><a class="sitemap-link" href="archive-case.html">Портфолио</a></li>
 							</ul>
 						</section>
-						<section class="sitemap-group" aria-labelledby="sitemap-blog-pages">
+						<section class="sitemap-group sitemap-group--blog" aria-labelledby="sitemap-blog-pages">
 							<h2 id="sitemap-blog-pages">Блог</h2>
 							<ul>
 								<li><a class="sitemap-link" href="archive-articles.html">Блог</a></li>
@@ -330,7 +330,10 @@
 				</div>
 			</div>
 		</section>
-	</main>
+			<div id="bg_container" class="bg_container">
+			<canvas id="gradient-canvas" data-js-darken-top></canvas>
+		</div>
+</main>
 <footer class="site-footer">
 	<div class="container">
 		<div class="row">
