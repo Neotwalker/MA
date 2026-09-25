@@ -2053,6 +2053,178 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (unit?.matches?.('form')) return unit;
 		return unit?.querySelector?.('form') || null;
 	};
+	const smartCaptchaConfig = window.limitlessSmartCaptcha || {};
+	const smartCaptchaSiteKey = typeof smartCaptchaConfig.siteKey === 'string' ? smartCaptchaConfig.siteKey.trim() : '';
+	const smartCaptchaStates = new WeakMap();
+	let smartCaptchaLoadPromise = null;
+	const isSmartCaptchaEnabled = () => Boolean(smartCaptchaSiteKey);
+	const loadSmartCaptcha = () => {
+		if (window.smartCaptcha?.render && window.smartCaptcha?.execute) {
+			return Promise.resolve(window.smartCaptcha);
+		}
+		if (smartCaptchaLoadPromise) return smartCaptchaLoadPromise;
+
+		smartCaptchaLoadPromise = new Promise((resolve, reject) => {
+			const callbackName = 'limitlessSmartCaptchaOnload';
+			const previousCallback = window[callbackName];
+			window[callbackName] = () => {
+				if (typeof previousCallback === 'function') previousCallback();
+				if (window.smartCaptcha?.render && window.smartCaptcha?.execute) {
+					resolve(window.smartCaptcha);
+					return;
+				}
+				reject(new Error('SmartCaptcha API is unavailable.'));
+			};
+
+			const existingScript = document.querySelector('script[src*="smartcaptcha.cloud.yandex.ru/captcha.js"]');
+			if (existingScript) {
+				const startedAt = Date.now();
+				const waitForExistingScript = () => {
+					if (window.smartCaptcha?.render && window.smartCaptcha?.execute) {
+						resolve(window.smartCaptcha);
+						return;
+					}
+					if (Date.now() - startedAt > 30000) {
+						reject(new Error('SmartCaptcha API is unavailable.'));
+						return;
+					}
+					window.setTimeout(waitForExistingScript, 50);
+				};
+				waitForExistingScript();
+				return;
+			}
+
+			const script = document.createElement('script');
+			script.src = `https://smartcaptcha.cloud.yandex.ru/captcha.js?render=onload&onload=${callbackName}`;
+			script.async = true;
+			script.defer = true;
+			script.onerror = () => reject(new Error('SmartCaptcha script failed to load.'));
+			document.head.append(script);
+		});
+
+		return smartCaptchaLoadPromise;
+	};
+	const renderSmartCaptcha = async (container, callback) => {
+		const api = await loadSmartCaptcha();
+		return api.render(container, {
+			sitekey: smartCaptchaSiteKey,
+			invisible: true,
+			shieldPosition: 'bottom-left',
+			callback,
+		});
+	};
+	const executeSmartCaptcha = async (widgetId) => {
+		const api = await loadSmartCaptcha();
+		api.execute(widgetId);
+	};
+	const resetSmartCaptcha = (widgetId) => {
+		if (widgetId !== null && typeof window.smartCaptcha?.reset === 'function') {
+			window.smartCaptcha.reset(widgetId);
+		}
+	};
+	window.limitlessSmartCaptchaRuntime = {
+		isEnabled: isSmartCaptchaEnabled,
+		render: renderSmartCaptcha,
+		execute: executeSmartCaptcha,
+		reset: resetSmartCaptcha,
+	};
+	const smartCaptchaStatus = (form, message, type = 'error') => {
+		const status = form.querySelector('.form-status, [data-brief-status]');
+		if (!status) return;
+		status.textContent = message;
+		status.dataset.status = type;
+	};
+	const getSmartCaptchaState = (form) => {
+		if (smartCaptchaStates.has(form)) return smartCaptchaStates.get(form);
+
+		const container = document.createElement('div');
+		container.setAttribute('data-smartcaptcha-container', '');
+
+		form.append(container);
+
+		const state = {
+			container,
+			token: '',
+			widgetId: null,
+			executing: false,
+			resubmitting: false,
+			submitter: null,
+		};
+		smartCaptchaStates.set(form, state);
+		return state;
+	};
+	const resetSmartCaptchaForm = (form) => {
+		const state = smartCaptchaStates.get(form);
+		if (!state) return;
+		state.executing = false;
+		state.resubmitting = false;
+		state.submitter = null;
+		state.token = '';
+		resetSmartCaptcha(state.widgetId);
+	};
+	const submitSmartCaptchaForm = (form, state) => {
+		state.resubmitting = true;
+		if (typeof form.requestSubmit === 'function') {
+			try {
+				if (state.submitter && form.contains(state.submitter)) {
+					form.requestSubmit(state.submitter);
+				} else {
+					form.requestSubmit();
+				}
+				return;
+			} catch (error) {}
+		}
+		form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+	};
+	const ensureSmartCaptchaWidget = async (form) => {
+		const state = getSmartCaptchaState(form);
+		if (state.widgetId !== null) return state;
+
+		state.widgetId = await renderSmartCaptcha(state.container, (token) => {
+				state.executing = false;
+				state.token = token || '';
+				if (!state.token) {
+					smartCaptchaStatus(form, 'Не удалось выполнить проверку. Попробуйте ещё раз.');
+					return;
+				}
+				submitSmartCaptchaForm(form, state);
+		});
+
+		return state;
+	};
+	const requestSmartCaptchaBeforeSubmit = (form, event) => {
+		if (!isSmartCaptchaEnabled()) return false;
+
+		const state = getSmartCaptchaState(form);
+		if (state.resubmitting) {
+			state.resubmitting = false;
+			return false;
+		}
+		if (state.token) return false;
+
+		event.preventDefault();
+		event.stopImmediatePropagation();
+		if (state.executing) return true;
+
+		state.executing = true;
+		state.submitter = event.submitter instanceof HTMLElement ? event.submitter : form.querySelector('.wpcf7-submit');
+		ensureSmartCaptchaWidget(form)
+			.then((captchaState) => {
+				return executeSmartCaptcha(captchaState.widgetId);
+			})
+			.catch(() => {
+				state.executing = false;
+				smartCaptchaStatus(form, 'Не удалось выполнить проверку. Попробуйте ещё раз.');
+			});
+
+		return true;
+	};
+	['wpcf7mailsent', 'wpcf7invalid', 'wpcf7mailfailed', 'wpcf7spam'].forEach(eventName => {
+		document.addEventListener(eventName, (event) => {
+			const form = getCf7EventForm(event);
+			if (form) resetSmartCaptchaForm(form);
+		});
+	});
 	// Project Brief Form
 	const briefForm = document.querySelector('[data-brief-form]');
 	if (briefForm) {
@@ -2599,21 +2771,31 @@ document.addEventListener("DOMContentLoaded", () => {
 			form.addEventListener('submit', (e) => {
 				if (submitButton?.disabled) {
 					e.preventDefault();
+					e.stopImmediatePropagation();
 					return;
 				}
+
 				if (!validate()) {
 					e.preventDefault();
+					e.stopImmediatePropagation();
 					return;
 				}
+
 				if (!hasModalContactForm7Context(form)) {
 					e.preventDefault();
+					e.stopImmediatePropagation();
 					setLoading(false);
 					setStatus('Форма подготовлена к отправке. Фактическая отправка будет подключена при интеграции с WordPress.', 'info');
 					formStatus?.focus();
 					return;
 				}
+
+				if (requestSmartCaptchaBeforeSubmit(form, e)) {
+					return;
+				}
+
 				setLoading(true);
-			});
+			}, true);
 
 			return {
 				form,
@@ -2791,20 +2973,30 @@ document.addEventListener("DOMContentLoaded", () => {
 		developmentContactForm.addEventListener('submit', (e) => {
 			if (submitButton?.disabled) {
 				e.preventDefault();
+				e.stopImmediatePropagation();
 				return;
 			}
+
 			if (!validateDevelopmentContactForm()) {
 				e.preventDefault();
+				e.stopImmediatePropagation();
 				return;
 			}
+
 			if (!hasContactForm7Context()) {
 				e.preventDefault();
+				e.stopImmediatePropagation();
 				setLoading(false);
 				setStatus('Форма подготовлена к отправке. Фактическая отправка будет подключена при интеграции с WordPress.', 'info');
 				return;
 			}
+
+			if (requestSmartCaptchaBeforeSubmit(developmentContactForm, e)) {
+				return;
+			}
+
 			setLoading(true);
-		});
+		}, true);
 
 		document.addEventListener('wpcf7mailsent', (e) => {
 			const eventForm = getCf7EventForm(e);
