@@ -12385,4 +12385,135 @@ body.industry-template
 	&.isLoaded
 		opacity: 1
 
+.site-toast-region
+	position: fixed
+	right: 18px
+	z-index: 11000
+	display: flex
+	flex-direction: column
+	gap: 10px
+	width: min(420px, calc(100vw - 36px))
+	overflow: visible
+	pointer-events: none
+
+.site-toast
+	position: relative
+	display: flex
+	align-items: stretch
+	min-height: 74px
+	overflow: hidden
+	border: 1px solid rgba(255, 255, 255, .16)
+	border-radius: 16px
+	background: rgba(7, 15, 36, .96)
+	box-shadow: 0 18px 50px rgba(0, 0, 0, .34)
+	backdrop-filter: blur(16px)
+	-webkit-backdrop-filter: blur(16px)
+	pointer-events: auto
+	animation: site-toast-in .18s ease-out both
+
+	&--error
+		border-color: rgba(239, 77, 31, .72)
+
+	&--success
+		border-color: rgba(95, 214, 149, .56)
+
+	&--info
+		border-color: rgba(255, 255, 255, .28)
+
+	&--leaving
+		animation: site-toast-out .18s ease-in both
+
+	&__body
+		display: flex
+		flex: 1
+		flex-direction: column
+		gap: 4px
+		min-width: 0
+		padding: 15px 48px 15px 16px
+		color: #fff
+		text-align: left
+		background: transparent
+		border: 0
+		font: inherit
+
+	&__title
+		font-size: 14px
+		font-weight: 700
+		line-height: 1.35
+
+	&__message
+		color: rgba(255, 255, 255, .74)
+		font-size: 13px
+		line-height: 1.45
+
+	&__close
+		position: absolute
+		top: 9px
+		right: 9px
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		width: 30px
+		height: 30px
+		padding: 0
+		border: 0
+		border-radius: 50%
+		background: rgba(255, 255, 255, .06)
+		color: rgba(255, 255, 255, .72)
+		font-size: 20px
+		line-height: 1
+		cursor: pointer
+
+		&:hover
+			background: rgba(255, 255, 255, .12)
+			color: #fff
+
+		&:focus-visible
+			outline: 2px solid rgba(255, 115, 92, .9)
+			outline-offset: 2px
+
+button.site-toast__body
+	cursor: pointer
+
+	&:hover
+		background: rgba(255, 255, 255, .04)
+
+	&:focus-visible
+		outline: 2px solid rgba(255, 115, 92, .9)
+		outline-offset: -3px
+
+@keyframes site-toast-in
+	from
+		opacity: 0
+		transform: translate3d(18px, 0, 0)
+
+	to
+		opacity: 1
+		transform: translate3d(0, 0, 0)
+
+@keyframes site-toast-out
+	from
+		opacity: 1
+		transform: translate3d(0, 0, 0)
+
+	to
+		opacity: 0
+		transform: translate3d(18px, 0, 0)
+
+@media (max-width: 767px)
+	.site-toast-region
+		left: 12px
+		right: 12px
+		width: auto
+
+	.site-toast
+		min-height: 68px
+
+		&__body
+			padding: 13px 44px 13px 14px
+
+@media (prefers-reduced-motion: reduce)
+	.site-toast,
+	.site-toast--leaving
+		animation-duration: .01ms
 @include meta.load-css("media")

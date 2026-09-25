@@ -45,6 +45,276 @@ document.addEventListener("DOMContentLoaded", () => {
 	const modalTouchViewportQuery = window.matchMedia ? window.matchMedia('(hover: none) and (pointer: coarse)') : null;
 	let modalViewportRaf = 0;
 	
+    // ---------- SHARED TOASTS ----------
+    const createToastRuntime = () => {
+        let toastRegion = null;
+
+        const updateToastOffset = () => {
+            if (!toastRegion?.isConnected) return;
+
+            const headerHeight = Math.ceil(
+                header?.getBoundingClientRect().height || 0
+            );
+
+            toastRegion.style.top = (headerHeight + 16) + 'px';
+        };
+
+        const ensureToastRegion = () => {
+            if (toastRegion?.isConnected) {
+                return toastRegion;
+            }
+
+            toastRegion = document.querySelector(
+                '[data-site-toast-region]'
+            );
+
+            if (!toastRegion) {
+                toastRegion = document.createElement('div');
+                toastRegion.className = 'site-toast-region';
+                toastRegion.setAttribute('data-site-toast-region', '');
+                toastRegion.setAttribute('aria-label', 'Уведомления');
+                toastRegion.setAttribute('aria-live', 'polite');
+                toastRegion.setAttribute(
+                    'aria-relevant',
+                    'additions removals'
+                );
+
+                body.append(toastRegion);
+            }
+
+            updateToastOffset();
+
+            return toastRegion;
+        };
+
+        const remove = (toast) => {
+            if (!toast) return;
+
+            toast.classList.add('site-toast--leaving');
+
+            window.setTimeout(() => {
+                toast.remove();
+            }, 180);
+        };
+
+        const clear = (role = '') => {
+            if (!toastRegion?.isConnected) return;
+
+            toastRegion
+                .querySelectorAll('.site-toast')
+                .forEach((toast) => {
+                    if (
+                        !role ||
+                        toast.dataset.toastRole === role
+                    ) {
+                        toast.remove();
+                    }
+                });
+        };
+
+        const focusTarget = (target) => {
+            if (!target) return;
+
+            const context =
+                target.closest?.(
+                    '.brief-form__step, .brief-field, .form-field'
+                ) || target;
+
+            const headerHeight = Math.ceil(
+                header?.getBoundingClientRect().height || 0
+            );
+
+            const top = Math.max(
+                0,
+                window.scrollY +
+                    context.getBoundingClientRect().top -
+                    headerHeight -
+                    20
+            );
+
+            try {
+                target.focus({
+                    preventScroll: true
+                });
+            } catch (error) {
+                target.focus();
+            }
+
+            window.scrollTo({
+                top,
+                behavior: window
+                    .matchMedia(
+                        '(prefers-reduced-motion: reduce)'
+                    )
+                    .matches
+                    ? 'auto'
+                    : 'smooth'
+            });
+        };
+
+        const show = ({
+            type = 'info',
+            title = '',
+            message = '',
+            target = null,
+            role = 'status',
+            autoDismiss = 0
+        } = {}) => {
+            const region = ensureToastRegion();
+
+            const safeType = [
+                'success',
+                'error',
+                'info'
+            ].includes(type)
+                ? type
+                : 'info';
+
+            const toast = document.createElement('div');
+
+            toast.className =
+                'site-toast site-toast--' + safeType;
+
+            toast.dataset.toastRole = role;
+
+            toast.setAttribute(
+                'role',
+                safeType === 'error'
+                    ? 'alert'
+                    : 'status'
+            );
+
+            if (target?.id) {
+                toast.dataset.targetId = target.id;
+            }
+
+            if (target?.name) {
+                toast.dataset.targetName = target.name;
+            }
+
+            const content = document.createElement(
+                target ? 'button' : 'div'
+            );
+
+            content.className = 'site-toast__body';
+
+            if (target) {
+                content.type = 'button';
+
+                content.addEventListener(
+                    'click',
+                    () => focusTarget(target)
+                );
+            }
+
+            if (title) {
+                const heading =
+                    document.createElement('strong');
+
+                heading.className =
+                    'site-toast__title';
+
+                heading.textContent = title;
+
+                content.append(heading);
+            }
+
+            if (message) {
+                const text =
+                    document.createElement('span');
+
+                text.className =
+                    'site-toast__message';
+
+                text.textContent = message;
+
+                content.append(text);
+            }
+
+            const close =
+                document.createElement('button');
+
+            close.className = 'site-toast__close';
+            close.type = 'button';
+
+            close.setAttribute(
+                'aria-label',
+                'Закрыть уведомление'
+            );
+
+            close.textContent = '×';
+
+            close.addEventListener(
+                'click',
+                () => remove(toast)
+            );
+
+            toast.append(content, close);
+            region.append(toast);
+
+            if (autoDismiss > 0) {
+                window.setTimeout(
+                    () => remove(toast),
+                    autoDismiss
+                );
+            }
+
+            return toast;
+        };
+
+        const showStatus = (
+            type,
+            title,
+            message,
+            autoDismiss = 6000
+        ) => {
+            clear('status');
+
+            return show({
+                type,
+                title,
+                message,
+                role: 'status',
+                autoDismiss
+            });
+        };
+
+        window.addEventListener(
+            'resize',
+            updateToastOffset,
+            {
+                passive: true
+            }
+        );
+
+        return {
+            show,
+            showStatus,
+            clear,
+            remove,
+            focusTarget
+        };
+    };
+
+    const limitlessToast =
+        window.limitlessToast ||
+        createToastRuntime();
+
+    window.limitlessToast = limitlessToast;
+
+    const showStatusToast = (
+        type,
+        title,
+        message,
+        autoDismiss = 6000
+    ) => {
+        return limitlessToast.showStatus(
+            type,
+            title,
+            message,
+            autoDismiss
+        );
+    };
 	// ---------- COOKIE CONSENT ----------
 	(function () {
 		const banner = document.querySelector('.cookie-consent');
@@ -2128,12 +2398,27 @@ document.addEventListener("DOMContentLoaded", () => {
 		execute: executeSmartCaptcha,
 		reset: resetSmartCaptcha,
 	};
-	const smartCaptchaStatus = (form, message, type = 'error') => {
-		const status = form.querySelector('.form-status, [data-brief-status]');
-		if (!status) return;
-		status.textContent = message;
-		status.dataset.status = type;
-	};
+    const smartCaptchaStatus = (form, message, type = 'error') => {
+        const status = form.querySelector(
+            '.form-status, [data-brief-status]'
+        );
+
+        if (status) {
+            status.textContent = '';
+            status.dataset.status = '';
+        }
+
+        showStatusToast(
+            type,
+            type === 'error'
+                ? 'Ошибка проверки'
+                : 'Проверка',
+            message,
+            type === 'error'
+                ? 0
+                : 6000
+        );
+    };
 	const getSmartCaptchaState = (form) => {
 		if (smartCaptchaStates.has(form)) return smartCaptchaStates.get(form);
 
@@ -2811,35 +3096,83 @@ document.addEventListener("DOMContentLoaded", () => {
 			modalContactFormState.set(form, createModalContactFormState(form));
 		});
 
-		document.addEventListener('wpcf7mailsent', (e) => {
-			const form = getCf7EventForm(e);
-			const state = modalContactFormState.get(form);
-			if (!state) return;
-			form.querySelector('.cf7sg-response-output')?.style.setProperty('display', 'none');
-			state.clearErrors();
-			form.reset();
-			state.applyModalPhoneMask();
-			state.setLoading(false);
-			state.setStatus('');
-			const sourceModal = form.closest('.modal');
-			if (modalSend && sourceModal && activeModal === sourceModal) {
-				closeModal(sourceModal, { unlockScroll: false, restoreFocus: false });
-				openModal(modalSend);
-			}
-		});
+        document.addEventListener('wpcf7mailsent', (e) => {
+            const form = getCf7EventForm(e);
+            const state = modalContactFormState.get(form);
 
-		const handleModalCf7Failure = (message) => (e) => {
-			const form = getCf7EventForm(e);
-			const state = modalContactFormState.get(form);
-			if (!state) return;
-			state.setLoading(false);
-			state.setStatus(message, 'error');
-			state.formStatus?.focus();
-		};
+            if (!state) return;
 
-		document.addEventListener('wpcf7invalid', handleModalCf7Failure('Проверьте выделенные поля.'));
-		document.addEventListener('wpcf7mailfailed', handleModalCf7Failure('Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь со мной другим способом.'));
-		document.addEventListener('wpcf7spam', handleModalCf7Failure('Заявка не отправлена. Проверьте данные и попробуйте ещё раз.'));
+            form
+                .querySelector('.cf7sg-response-output')
+                ?.style.setProperty('display', 'none');
+
+            state.clearErrors();
+            form.reset();
+            state.applyModalPhoneMask();
+            state.setLoading(false);
+            state.setStatus('');
+
+            const sourceModal =
+                form.closest('.modal');
+
+            if (
+                sourceModal &&
+                activeModal === sourceModal
+            ) {
+                closeModal(sourceModal);
+            }
+
+            showStatusToast(
+                'success',
+                'Заявка отправлена',
+                'Спасибо. Я свяжусь с вами после просмотра сообщения.'
+            );
+        });
+
+        const handleModalCf7Failure = (
+            title,
+            message
+        ) => (e) => {
+            const form = getCf7EventForm(e);
+            const state =
+                modalContactFormState.get(form);
+
+            if (!state) return;
+
+            state.setLoading(false);
+            state.setStatus('');
+
+            showStatusToast(
+                'error',
+                title,
+                message,
+                0
+            );
+        };
+
+        document.addEventListener(
+            'wpcf7invalid',
+            handleModalCf7Failure(
+                'Проверьте данные',
+                'Проверьте выделенные поля.'
+            )
+        );
+
+        document.addEventListener(
+            'wpcf7mailfailed',
+            handleModalCf7Failure(
+                'Не удалось отправить заявку',
+                'Попробуйте ещё раз или свяжитесь со мной другим способом.'
+            )
+        );
+
+        document.addEventListener(
+            'wpcf7spam',
+            handleModalCf7Failure(
+                'Заявка не отправлена',
+                'Проверьте данные и попробуйте ещё раз.'
+            )
+        );
 	}
 	// Development Contact Form
 	const developmentContactForms = document.querySelectorAll('[data-development-contact-form]');
@@ -2998,28 +3331,81 @@ document.addEventListener("DOMContentLoaded", () => {
 			setLoading(true);
 		}, true);
 
-		document.addEventListener('wpcf7mailsent', (e) => {
-			const eventForm = getCf7EventForm(e);
-			if (eventForm !== developmentContactForm) return;
-			developmentContactForm.querySelector('.cf7sg-response-output')?.style.setProperty('display', 'none');
-			clearErrors();
-			developmentContactForm.reset();
-			setLoading(false);
-			setStatus('Спасибо, задача отправлена. Я свяжусь с вами после просмотра сообщения.', 'success');
-			formStatus?.focus();
-		});
+        document.addEventListener('wpcf7mailsent', (e) => {
+            const eventForm =
+                getCf7EventForm(e);
 
-		const handleCf7Failure = (message) => (e) => {
-			const eventForm = getCf7EventForm(e);
-			if (eventForm !== developmentContactForm) return;
-			setLoading(false);
-			setStatus(message, 'error');
-			formStatus?.focus();
-		};
+            if (
+                eventForm !==
+                developmentContactForm
+            ) {
+                return;
+            }
 
-		document.addEventListener('wpcf7invalid', handleCf7Failure('Проверьте выделенные поля.'));
-		document.addEventListener('wpcf7mailfailed', handleCf7Failure('Не удалось отправить сообщение. Попробуйте ещё раз или свяжитесь со мной другим способом.'));
-		document.addEventListener('wpcf7spam', handleCf7Failure('Сообщение не отправлено. Проверьте данные и попробуйте ещё раз.'));
+            developmentContactForm
+                .querySelector('.cf7sg-response-output')
+                ?.style.setProperty('display', 'none');
+
+            clearErrors();
+            developmentContactForm.reset();
+            setLoading(false);
+            setStatus('');
+
+            showStatusToast(
+                'success',
+                'Сообщение отправлено',
+                'Спасибо. Я свяжусь с вами после просмотра сообщения.'
+            );
+        });
+
+        const handleCf7Failure = (
+            title,
+            message
+        ) => (e) => {
+            const eventForm =
+                getCf7EventForm(e);
+
+            if (
+                eventForm !==
+                developmentContactForm
+            ) {
+                return;
+            }
+
+            setLoading(false);
+            setStatus('');
+
+            showStatusToast(
+                'error',
+                title,
+                message,
+                0
+            );
+        };
+
+        document.addEventListener(
+            'wpcf7invalid',
+            handleCf7Failure(
+                'Проверьте данные',
+                'Проверьте выделенные поля.'
+            )
+        );
+
+        document.addEventListener(
+            'wpcf7mailfailed',
+            handleCf7Failure(
+                'Не удалось отправить сообщение',
+                'Попробуйте ещё раз или свяжитесь со мной другим способом.'
+            )
+        );
+
+        document.addEventListener(
+            'wpcf7spam',
+            handleCf7Failure(
+                'Сообщение не отправлено',
+                'Проверьте данные и попробуйте ещё раз.'
+            )
+        );
 	});
 	// Form Submission
 	document.addEventListener('wpcf7mailsent', (e) => {
