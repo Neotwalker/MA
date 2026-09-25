@@ -1527,12 +1527,15 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	const siteSearchRoots = qsa('[data-site-search]');
+	const runtimeSearchConfig = window.limitlessSearch || {};
 	const siteSearchConfig = {
-		source: 'static',
-		staticIndexUrl: 'search-index.json',
-		futureEndpoint: '/wp-json/limitless/v1/search',
-		minLength: 2,
-		debounce: 200
+		source: runtimeSearchConfig.source === 'rest' ? 'rest' : 'static',
+		staticIndexUrl: runtimeSearchConfig.staticIndexUrl || 'search-index.json',
+		endpoint: runtimeSearchConfig.endpoint || '/wp-json/limitless/v1/search',
+		searchUrl: runtimeSearchConfig.searchUrl || 'search.html',
+		queryParam: runtimeSearchConfig.queryParam || 'q',
+		minLength: Number(runtimeSearchConfig.minLength) || 2,
+		debounce: Number(runtimeSearchConfig.debounce) || 200
 	};
 	let siteSearchIndexPromise = null;
 
@@ -1581,7 +1584,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function getSearchIndex() {
 		if (!siteSearchIndexPromise) {
-			siteSearchIndexPromise = fetch(siteSearchConfig.staticIndexUrl, {
+			const indexUrl = siteSearchConfig.source === 'rest' ? siteSearchConfig.endpoint : siteSearchConfig.staticIndexUrl;
+			siteSearchIndexPromise = fetch(indexUrl, {
 				headers: { Accept: 'application/json' },
 				cache: 'no-store'
 			})
@@ -1668,7 +1672,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function getSearchUrl(query = '') {
 		const normalizedQuery = query.trim();
-		return normalizedQuery ? `search.html?q=${encodeURIComponent(normalizedQuery)}` : 'search.html';
+		const separator = siteSearchConfig.searchUrl.includes('?') ? '&' : '?';
+		return normalizedQuery
+			? siteSearchConfig.searchUrl + separator + encodeURIComponent(siteSearchConfig.queryParam) + '=' + encodeURIComponent(normalizedQuery)
+			: siteSearchConfig.searchUrl;
 	}
 
 	function initSiteSearch(root) {
@@ -2001,7 +2008,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		clearButton?.addEventListener('click', () => {
 			resetSearch();
 			if (isPage && window.history?.pushState) {
-				window.history.pushState({ q: '' }, '', 'search.html');
+				window.history.pushState({ q: '' }, '', getSearchUrl(''));
 			}
 			input.focus();
 		});
@@ -2009,7 +2016,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (isPage) {
 			const applyQueryFromUrl = () => {
 				const params = new URLSearchParams(window.location.search);
-				input.value = params.get('q') || '';
+				input.value = params.get(siteSearchConfig.queryParam) || '';
 				runSearch({ live: false, page: true });
 			};
 
