@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const header = document.querySelector('.header');
 	const topButton = document.querySelector('.top');
 	const modalGeneral = document.querySelector('#modal_general');
-	const modalSend = document.querySelector('#modal_send') || document.querySelector('.modal--send');
 	const servicesToggle = document.querySelector('.header-nav__services-toggle');
 	const servicesMenu = document.querySelector('#header-services-menu');
 	const aboutToggle = document.querySelector('.header-nav__about-toggle');
@@ -978,7 +977,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	if (modalGeneral || modalSend) {
+	if (modalGeneral) {
 		qsa('.modal--open').forEach(trigger => {
 			trigger.addEventListener('click', e => {
 				const target = getModalTarget(trigger);
@@ -3418,23 +3417,6 @@ document.addEventListener("DOMContentLoaded", () => {
             )
         );
 	});
-	// Form Submission
-	document.addEventListener('wpcf7mailsent', (e) => {
-		const form = getCf7EventForm(e);
-		if (!form) return;
-		if (form?.matches?.('[data-development-contact-form], [data-modal-contact-form], [data-brief-form]')) return;
-		const sourceModal = form.closest('.modal');
-		if (!sourceModal || activeModal !== sourceModal) return;
-
-		form?.querySelector('.cf7sg-response-output')?.style.setProperty('display', 'none');
-		if (modalSend) {
-			closeModal(sourceModal, { unlockScroll: false, restoreFocus: false });
-			openModal(modalSend);
-		}
-		form?.querySelector('.wpcf7-submit')?.setAttribute('disabled', 'disabled');
-		form?.reset();
-	});
-
 	// Footer Menu (Mobile)
 	if (window.innerWidth <= 768) {
 		document.querySelectorAll('.footer--menu').forEach((menu, index) => {
