@@ -550,10 +550,15 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 
 		function saveChoice(analyticsAllowed) {
+			const previousConsent = getCurrentConsent();
 			const consent = writeConsent(analyticsAllowed);
+			const shouldReload = previousConsent.analytics === true && consent.analytics === false;
 			hideBanner();
 			closePreferences({ returnFocus: true, restoreBanner: false });
 			emitConsentChange(consent);
+			if (shouldReload) {
+				window.setTimeout(() => window.location.reload(), 0);
+			}
 		}
 
 		function trapPreferencesFocus(event) {
